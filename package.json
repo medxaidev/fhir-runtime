@@ -1,0 +1,73 @@
+{
+  "name": "fhir-runtime",
+  "version": "0.2.0",
+  "description": "FHIR R4 Core Library - TypeScript implementation with parser, validator, context, and profile support",
+  "homepage": "https://medxai.com.cn",
+  "license": "MIT",
+  "author": "Fangjun <fangjun20208@gmail.com>",
+  "keywords": [
+    "fhir",
+    "fhir-r4",
+    "healthcare",
+    "hl7",
+    "typescript",
+    "parser",
+    "validator",
+    "medical",
+    "interoperability"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medxaidev/medxai.git",
+    "directory": "packages/fhir-core"
+  },
+  "bugs": {
+    "url": "https://github.com/medxaidev/medxai/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc && node ./scripts/esbuild.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "25.2.0",
+    "rimraf": "6.1.2",
+    "esbuild": "0.27.2",
+    "@microsoft/api-extractor": "7.56.1"
+  },
+  "peerDependencies": {},
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
