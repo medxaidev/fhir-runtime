@@ -1,0 +1,13 @@
+{
+  "resourceType": "Patient",
+  "id": "unknown-property",
+  "_comment": "WARNING: 'favoriteColor' and 'customField' are not defined in Patient SD",
+  "name": [
+    { "family": "Smith" }
+  ],
+  "gender": "male",
+  "favoriteColor": "blue",
+  "customField": {
+    "nested": true
+  }
+}

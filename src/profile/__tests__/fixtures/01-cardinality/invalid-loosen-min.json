@@ -1,0 +1,18 @@
+{
+  "description": "Invalid: loosen min from 1 to 0 (not a slice)",
+  "base": {
+    "path": "Patient.identifier",
+    "min": 1,
+    "max": "*"
+  },
+  "diff": {
+    "path": "Patient.identifier",
+    "min": 0
+  },
+  "expected": {
+    "min": 0,
+    "max": "*",
+    "issueCount": 1,
+    "issueCode": "CARDINALITY_VIOLATION"
+  }
+}

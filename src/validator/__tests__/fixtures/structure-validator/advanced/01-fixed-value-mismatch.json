@@ -1,0 +1,23 @@
+{
+  "description": "Fixed value mismatch — status must be 'final' but is 'preliminary' → FIXED_VALUE_MISMATCH",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "obs-1",
+    "status": "preliminary",
+    "code": { "coding": [{ "system": "http://loinc.org", "code": "85354-9" }] }
+  },
+  "profile": {
+    "url": "http://example.org/StructureDefinition/FinalObservation",
+    "name": "FinalObservation",
+    "kind": "resource",
+    "type": "Observation",
+    "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }], "fixed": "final" },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["FIXED_VALUE_MISMATCH"]
+}

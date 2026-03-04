@@ -1,0 +1,36 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-documentation-fields",
+  "url": "http://example.org/fhir/StructureDefinition/EDDocumentationFields",
+  "name": "EDDocumentationFields",
+  "title": "ElementDefinition: short, definition, comment, requirements, alias",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "short": "Patient's legal or preferred name",
+        "definition": "A name associated with the patient. Must include at least family or given name.",
+        "comment": "In this profile, at least one name is required for patient matching.",
+        "requirements": "Need to be able to track the patient by name.",
+        "alias": ["full name", "legal name"],
+        "min": 1
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "short": "Date of birth",
+        "definition": "The date of birth for the individual. Must be a complete date.",
+        "label": "Birth Date",
+        "min": 1,
+        "meaningWhenMissing": "If birthDate is absent, the patient's age cannot be determined."
+      }
+    ]
+  }
+}

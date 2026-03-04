@@ -1,0 +1,10 @@
+{
+  "description": "getSliceSiblings: single slice sibling",
+  "elements": [
+    { "path": "Patient.identifier", "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "open" } },
+    { "path": "Patient.identifier", "sliceName": "MRN" },
+    { "path": "Patient.name" }
+  ],
+  "slicingRootIndex": 0,
+  "expected": { "siblingCount": 1, "sliceNames": ["MRN"] }
+}

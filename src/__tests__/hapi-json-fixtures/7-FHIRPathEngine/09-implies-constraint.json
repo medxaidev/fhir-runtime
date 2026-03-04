@@ -1,0 +1,29 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "implies-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/ImpliesConstraint",
+  "name": "ImpliesConstraint",
+  "title": "FHIRPath: gender.exists() implies birthDate.exists() — implication",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "constraint": [
+          {
+            "key": "fp-implies-1",
+            "severity": "warning",
+            "human": "If gender is provided, birthDate should also be provided",
+            "expression": "gender.exists() implies birthDate.exists()"
+          }
+        ]
+      }
+    ]
+  }
+}

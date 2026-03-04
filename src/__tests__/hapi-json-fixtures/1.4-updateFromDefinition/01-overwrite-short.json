@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "overwrite-short",
+  "url": "http://example.org/fhir/StructureDefinition/OverwriteShort",
+  "name": "OverwriteShort",
+  "title": "Override short text on Patient.name",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "short": "Legal name of the patient"
+      }
+    ]
+  }
+}

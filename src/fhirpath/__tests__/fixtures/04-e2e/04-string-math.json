@@ -1,0 +1,36 @@
+{
+  "description": "End-to-end: String manipulation and math functions on resources",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "str-math-test",
+    "name": [
+      { "use": "official", "family": "O'Brien-Smith", "given": ["Mary", "Jane"] }
+    ],
+    "gender": "female",
+    "birthDate": "1992-07-04",
+    "address": [
+      { "city": "San Francisco", "state": "CA", "postalCode": "94102" }
+    ]
+  },
+  "tests": [
+    { "expression": "Patient.name.first().family.upper()", "expected": ["O'BRIEN-SMITH"] },
+    { "expression": "Patient.name.first().family.lower()", "expected": ["o'brien-smith"] },
+    { "expression": "Patient.name.first().family.length()", "expected": [13] },
+    { "expression": "Patient.name.first().family.startsWith('O')", "expected": [true] },
+    { "expression": "Patient.name.first().family.endsWith('Smith')", "expected": [true] },
+    { "expression": "Patient.name.first().family.contains('Brien')", "expected": [true] },
+    { "expression": "Patient.name.first().family.contains('xyz')", "expected": [false] },
+    { "expression": "Patient.name.first().family.substring(0, 7)", "expected": ["O'Brien"] },
+    { "expression": "Patient.name.first().family.indexOf('-')", "expected": [7] },
+    { "expression": "Patient.address.first().postalCode.matches('[0-9]{5}')", "expected": [true] },
+    { "expression": "Patient.name.first().given.first() & ' ' & Patient.name.first().family", "expected": ["Mary O'Brien-Smith"] },
+    { "expression": "(2).power(10)", "expected": [1024] },
+    { "expression": "(16).sqrt()", "expected": [4] },
+    { "expression": "(-5).abs()", "expected": [5] },
+    { "expression": "(3.7).ceiling()", "expected": [4] },
+    { "expression": "(3.7).floor()", "expected": [3] },
+    { "expression": "(3.14159).round(2)", "expected": [3.14] },
+    { "expression": "(1).exp().round(2)", "expected": [2.72] },
+    { "expression": "(1).ln()", "expected": [0] }
+  ]
+}

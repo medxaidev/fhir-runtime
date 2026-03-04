@@ -1,0 +1,20 @@
+{
+  "description": "Invalid Patient — missing required name (min=1)",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "no-name-patient",
+    "active": true,
+    "gender": "female"
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient", "kind": "resource", "type": "Patient", "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.name", "id": "Patient.name", "min": 1, "max": "unbounded", "types": [{ "code": "HumanName" }] },
+      { "path": "Patient.gender", "id": "Patient.gender", "min": 0, "max": 1, "types": [{ "code": "code" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["CARDINALITY_MIN_VIOLATION"]
+}

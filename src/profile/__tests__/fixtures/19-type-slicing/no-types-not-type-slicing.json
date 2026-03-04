@@ -1,0 +1,10 @@
+{
+  "description": "Not type slicing: diffs have no type constraints",
+  "basePath": "Patient.identifier",
+  "baseTypes": [{ "code": "Identifier" }],
+  "diffMatches": [
+    { "path": "Patient.identifier", "sliceName": "MRN" },
+    { "path": "Patient.identifier", "sliceName": "SSN" }
+  ],
+  "expected": { "isTypeSlicing": false }
+}

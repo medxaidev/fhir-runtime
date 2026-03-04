@@ -1,0 +1,10 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "name": "DomainResource",
+  "status": "active",
+  "kind": "resource",
+  "abstract": true,
+  "type": "DomainResource",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Resource"
+}

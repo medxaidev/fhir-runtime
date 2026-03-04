@@ -1,0 +1,38 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "slicing-closed",
+  "url": "http://example.org/fhir/StructureDefinition/SlicingClosed",
+  "name": "SlicingClosed",
+  "title": "Closed slicing on Patient.identifier — only defined slices allowed",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "system" }
+          ],
+          "rules": "closed"
+        },
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1,
+        "max": "1",
+        "patternIdentifier": {
+          "system": "http://hospital.example.org/mrn"
+        }
+      }
+    ]
+  }
+}

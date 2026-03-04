@@ -1,0 +1,14 @@
+{
+  "description": "Incompatible: ordered changed from true to false",
+  "baseSlicing": {
+    "discriminator": [{ "type": "value", "path": "code" }],
+    "rules": "open",
+    "ordered": true
+  },
+  "diffSlicing": {
+    "discriminator": [{ "type": "value", "path": "code" }],
+    "rules": "open",
+    "ordered": false
+  },
+  "expected": { "compatible": false, "issueCount": 1, "issueCode": "SLICING_ERROR" }
+}

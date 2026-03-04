@@ -1,0 +1,46 @@
+{
+  "description": "End-to-end: simple constraint profile tightens cardinality and adds mustSupport",
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.id", "min": 0, "max": "1" },
+        { "path": "Patient.identifier", "min": 0, "max": "*" },
+        { "path": "Patient.name", "min": 0, "max": "*" },
+        { "path": "Patient.birthDate", "min": 0, "max": "1" }
+      ]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/SimpleProfile",
+    "name": "SimpleProfile",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [
+        { "path": "Patient.identifier", "min": 1, "mustSupport": true },
+        { "path": "Patient.name", "min": 1, "mustSupport": true }
+      ]
+    }
+  },
+  "expected": {
+    "success": true,
+    "snapshotElementCount": 5,
+    "identifierMin": 1,
+    "identifierMustSupport": true,
+    "nameMin": 1,
+    "nameMustSupport": true,
+    "birthDateMin": 0
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/Condition",
+  "version": "4.0.1",
+  "name": "Condition",
+  "title": "Condition",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Condition",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Condition",
+        "path": "Condition",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "Condition.clinicalStatus",
+        "path": "Condition.clinicalStatus",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "CodeableConcept" }]
+      },
+      {
+        "id": "Condition.code",
+        "path": "Condition.code",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "CodeableConcept" }]
+      },
+      {
+        "id": "Condition.subject",
+        "path": "Condition.subject",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient"] }]
+      }
+    ]
+  }
+}

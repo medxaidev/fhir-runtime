@@ -1,0 +1,32 @@
+{
+  "resourceType": "Patient",
+  "id": "nested-errors",
+  "_comment": "ERRORS at multiple nesting levels: name[0].family wrong type, identifier[0].period.start invalid, contact[0] missing required fields",
+  "name": [
+    {
+      "family": 12345,
+      "given": ["John"]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://hospital.example.org/mrn",
+      "value": "12345",
+      "period": {
+        "start": "not-a-date",
+        "end": "also-not-a-date"
+      }
+    }
+  ],
+  "contact": [
+    {
+      "relationship": [
+        {
+          "coding": [
+            { "system": "http://terminology.hl7.org/CodeSystem/v2-0131", "code": "N" }
+          ]
+        }
+      ]
+    }
+  ]
+}

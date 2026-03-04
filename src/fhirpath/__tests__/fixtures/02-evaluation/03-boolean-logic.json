@@ -1,0 +1,25 @@
+{
+  "description": "Boolean logic operators: and, or, xor, implies (three-valued)",
+  "cases": [
+    { "expression": "true and true", "expected": [true] },
+    { "expression": "true and false", "expected": [false] },
+    { "expression": "false and true", "expected": [false] },
+    { "expression": "false and false", "expected": [false] },
+    { "expression": "true and {}", "expected": [] },
+    { "expression": "false and {}", "expected": [false] },
+    { "expression": "true or true", "expected": [true] },
+    { "expression": "true or false", "expected": [true] },
+    { "expression": "false or false", "expected": [false] },
+    { "expression": "true or {}", "expected": [true] },
+    { "expression": "false or {}", "expected": [] },
+    { "expression": "true xor false", "expected": [true] },
+    { "expression": "true xor true", "expected": [false] },
+    { "expression": "false xor false", "expected": [false] },
+    { "expression": "true implies true", "expected": [true] },
+    { "expression": "true implies false", "expected": [false] },
+    { "expression": "false implies true", "expected": [true] },
+    { "expression": "false implies false", "expected": [true] },
+    { "expression": "false implies {}", "expected": [true] },
+    { "expression": "true implies {}", "expected": [] }
+  ]
+}

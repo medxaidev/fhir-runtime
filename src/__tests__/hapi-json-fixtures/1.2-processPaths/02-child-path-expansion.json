@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "child-path-expansion",
+  "url": "http://example.org/fhir/StructureDefinition/ChildPathExpansion",
+  "name": "ChildPathExpansion",
+  "title": "Constrain child of complex type — Patient.name.family required",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name.family",
+        "path": "Patient.name.family",
+        "min": 1
+      }
+    ]
+  }
+}

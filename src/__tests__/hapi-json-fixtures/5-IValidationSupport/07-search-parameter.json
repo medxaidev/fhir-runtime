@@ -1,0 +1,13 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "Patient-name",
+  "url": "http://hl7.org/fhir/SearchParameter/Patient-name",
+  "version": "4.0.1",
+  "name": "name",
+  "status": "active",
+  "description": "A server defined search that may match any of the string fields in the HumanName",
+  "code": "name",
+  "base": ["Patient"],
+  "type": "string",
+  "expression": "Patient.name"
+}

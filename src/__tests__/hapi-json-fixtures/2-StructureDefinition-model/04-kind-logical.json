@@ -1,0 +1,43 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kind-logical",
+  "url": "http://example.org/fhir/StructureDefinition/ClinicalNote",
+  "name": "ClinicalNote",
+  "title": "kind=logical — Custom logical model (not a FHIR type)",
+  "status": "active",
+  "kind": "logical",
+  "abstract": false,
+  "type": "http://example.org/fhir/StructureDefinition/ClinicalNote",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "differential": {
+    "element": [
+      {
+        "id": "ClinicalNote",
+        "path": "ClinicalNote",
+        "short": "A clinical note"
+      },
+      {
+        "id": "ClinicalNote.author",
+        "path": "ClinicalNote.author",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Practitioner"] }]
+      },
+      {
+        "id": "ClinicalNote.date",
+        "path": "ClinicalNote.date",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "dateTime" }]
+      },
+      {
+        "id": "ClinicalNote.content",
+        "path": "ClinicalNote.content",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "string" }]
+      }
+    ]
+  }
+}

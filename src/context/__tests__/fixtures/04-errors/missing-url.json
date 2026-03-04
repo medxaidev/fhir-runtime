@@ -1,0 +1,8 @@
+{
+  "resourceType": "StructureDefinition",
+  "name": "NoUrl",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Basic"
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Arithmetic expression evaluation",
+  "cases": [
+    { "expression": "1 + 2", "expected": [3] },
+    { "expression": "10 - 3", "expected": [7] },
+    { "expression": "4 * 5", "expected": [20] },
+    { "expression": "10 / 4", "expected": [2.5] },
+    { "expression": "10 div 3", "expected": [3] },
+    { "expression": "10 mod 3", "expected": [1] },
+    { "expression": "3 / 3 + 4 * 9 - 1", "expected": [36] },
+    { "expression": "(3 / 3 + 4 * 3)", "expected": [13] },
+    { "expression": "5 - 4 - 3 - 2 - 1 + 512", "expected": [507] },
+    { "expression": "-4 + -(4 + 5 - -4)", "expected": [-17] }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "derivation-specialization",
+  "url": "http://example.org/fhir/StructureDefinition/CustomObservation",
+  "name": "CustomObservation",
+  "title": "derivation=specialization — New resource type extending Observation",
+  "description": "Specialization creates a new type rather than constraining an existing one. Rare in practice.",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "CustomObservation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "specialization",
+  "differential": {
+    "element": [
+      {
+        "id": "CustomObservation",
+        "path": "CustomObservation",
+        "short": "Custom observation with additional fields"
+      },
+      {
+        "id": "CustomObservation.reliability",
+        "path": "CustomObservation.reliability",
+        "short": "Custom reliability score",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "decimal" }]
+      }
+    ]
+  }
+}

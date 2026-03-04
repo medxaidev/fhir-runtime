@@ -1,0 +1,80 @@
+{
+  "description": "Complex type validation: Coding, CodeableConcept, Quantity, Reference, Period, HumanName",
+  "scenarios": [
+    {
+      "label": "Coding object matches Coding type",
+      "element": {
+        "path": "Observation.code.coding",
+        "id": "Observation.code.coding",
+        "min": 0, "max": "unbounded",
+        "types": [{ "code": "Coding" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "system": "http://loinc.org", "code": "8480-6", "display": "Systolic BP" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "CodeableConcept object matches CodeableConcept type",
+      "element": {
+        "path": "Observation.code",
+        "id": "Observation.code",
+        "min": 1, "max": 1,
+        "types": [{ "code": "CodeableConcept" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": {
+        "coding": [{ "system": "http://loinc.org", "code": "8480-6" }],
+        "text": "Systolic blood pressure"
+      },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "Quantity object matches Quantity type",
+      "element": {
+        "path": "Observation.valueQuantity",
+        "id": "Observation.valueQuantity",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "Reference object matches Reference type",
+      "element": {
+        "path": "Observation.subject",
+        "id": "Observation.subject",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Reference", "targetProfiles": ["http://hl7.org/fhir/StructureDefinition/Patient"] }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "reference": "Patient/123", "display": "John Smith" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "HumanName object matches HumanName type",
+      "element": {
+        "path": "Patient.name",
+        "id": "Patient.name",
+        "min": 0, "max": "unbounded",
+        "types": [{ "code": "HumanName" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "family": "Smith", "given": ["John", "James"] },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "Period object matches Period type",
+      "element": {
+        "path": "Encounter.period",
+        "id": "Encounter.period",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Period" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "start": "2026-01-01", "end": "2026-01-15" },
+      "expectedIssueCount": 0
+    }
+  ]
+}

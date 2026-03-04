@@ -1,0 +1,31 @@
+{
+  "description": "Valid identifier slicing — MRN and SSN both present, closed slicing satisfied",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "sliced-ok",
+    "identifier": [
+      { "system": "http://hospital.example.org/mrn", "value": "MRN-001" },
+      { "system": "http://hl7.org/fhir/sid/us-ssn", "value": "123-45-6789" }
+    ],
+    "name": [{ "family": "Doe" }]
+  },
+  "profile": {
+    "url": "http://example.org/StructureDefinition/SlicedPatient",
+    "name": "SlicedPatient", "kind": "resource", "type": "Patient", "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.identifier", "id": "Patient.identifier", "min": 1, "max": "unbounded", "types": [{ "code": "Identifier" }],
+        "slicing": { "discriminators": [{ "type": "value", "path": "system" }], "rules": "closed", "ordered": false }
+      },
+      { "path": "Patient.identifier", "id": "Patient.identifier:MRN", "min": 1, "max": 1, "types": [{ "code": "Identifier" }],
+        "sliceName": "MRN", "fixed": { "system": "http://hospital.example.org/mrn" }
+      },
+      { "path": "Patient.identifier", "id": "Patient.identifier:SSN", "min": 0, "max": 1, "types": [{ "code": "Identifier" }],
+        "sliceName": "SSN", "fixed": { "system": "http://hl7.org/fhir/sid/us-ssn" }
+      },
+      { "path": "Patient.name", "id": "Patient.name", "min": 0, "max": "unbounded", "types": [{ "code": "HumanName" }] }
+    ]
+  },
+  "expectedValid": true,
+  "expectedErrorCount": 0
+}

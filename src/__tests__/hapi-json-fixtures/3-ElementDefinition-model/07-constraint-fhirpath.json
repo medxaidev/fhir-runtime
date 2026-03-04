@@ -1,0 +1,48 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-constraint-fhirpath",
+  "url": "http://example.org/fhir/StructureDefinition/EDConstraintFHIRPath",
+  "name": "EDConstraintFHIRPath",
+  "title": "ElementDefinition: FHIRPath constraint definitions",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "constraint": [
+          {
+            "key": "pat-1",
+            "severity": "error",
+            "human": "Patient must have a name or identifier",
+            "expression": "name.exists() or identifier.exists()",
+            "source": "http://example.org/fhir/StructureDefinition/EDConstraintFHIRPath"
+          }
+        ]
+      },
+      {
+        "id": "Patient.contact",
+        "path": "Patient.contact",
+        "constraint": [
+          {
+            "key": "pat-contact-1",
+            "severity": "error",
+            "human": "Contact SHALL have at least a name or telecom or address or organization",
+            "expression": "name.exists() or telecom.exists() or address.exists() or organization.exists()"
+          },
+          {
+            "key": "pat-contact-2",
+            "severity": "warning",
+            "human": "Contact should have a relationship",
+            "expression": "relationship.exists()"
+          }
+        ]
+      }
+    ]
+  }
+}

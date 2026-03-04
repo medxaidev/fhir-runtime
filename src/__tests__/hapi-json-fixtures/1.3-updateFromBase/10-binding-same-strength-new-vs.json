@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "binding-same-strength-new-vs",
+  "url": "http://example.org/fhir/StructureDefinition/BindingSameStrengthNewVS",
+  "name": "BindingSameStrengthNewVS",
+  "title": "Same binding strength but different ValueSet (subset)",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.communication.language",
+        "path": "Patient.communication.language",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "http://example.org/fhir/ValueSet/limited-languages"
+        }
+      }
+    ]
+  }
+}

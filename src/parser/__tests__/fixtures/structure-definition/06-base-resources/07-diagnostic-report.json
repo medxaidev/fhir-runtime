@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "DiagnosticReport",
+  "url": "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+  "version": "4.0.1",
+  "name": "DiagnosticReport",
+  "title": "DiagnosticReport",
+  "status": "active",
+  "description": "The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "DiagnosticReport", "path": "DiagnosticReport", "min": 0, "max": "*", "base": { "path": "DiagnosticReport", "min": 0, "max": "*" } },
+      { "id": "DiagnosticReport.status", "path": "DiagnosticReport.status", "min": 1, "max": "1", "base": { "path": "DiagnosticReport.status", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.1" } },
+      { "id": "DiagnosticReport.category", "path": "DiagnosticReport.category", "min": 0, "max": "*", "base": { "path": "DiagnosticReport.category", "min": 0, "max": "*" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true },
+      { "id": "DiagnosticReport.code", "path": "DiagnosticReport.code", "min": 1, "max": "1", "base": { "path": "DiagnosticReport.code", "min": 1, "max": "1" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "preferred", "valueSet": "http://hl7.org/fhir/ValueSet/report-codes" } },
+      { "id": "DiagnosticReport.subject", "path": "DiagnosticReport.subject", "min": 0, "max": "1", "base": { "path": "DiagnosticReport.subject", "min": 0, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient", "http://hl7.org/fhir/StructureDefinition/Group", "http://hl7.org/fhir/StructureDefinition/Device", "http://hl7.org/fhir/StructureDefinition/Location"] }], "isSummary": true },
+      { "id": "DiagnosticReport.effective[x]", "path": "DiagnosticReport.effective[x]", "min": 0, "max": "1", "base": { "path": "DiagnosticReport.effective[x]", "min": 0, "max": "1" }, "type": [{ "code": "dateTime" }, { "code": "Period" }], "isSummary": true },
+      { "id": "DiagnosticReport.result", "path": "DiagnosticReport.result", "min": 0, "max": "*", "base": { "path": "DiagnosticReport.result", "min": 0, "max": "*" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Observation"] }] }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "binding-strength-tighten",
+  "url": "http://example.org/fhir/StructureDefinition/BindingStrengthTighten",
+  "name": "BindingStrengthTighten",
+  "title": "Tighten Patient.gender binding from required to required with custom VS",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.maritalStatus",
+        "path": "Patient.maritalStatus",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://example.org/fhir/ValueSet/custom-marital-status"
+        }
+      }
+    ]
+  }
+}

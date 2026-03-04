@@ -1,0 +1,26 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "CarePlan",
+  "url": "http://hl7.org/fhir/StructureDefinition/CarePlan",
+  "version": "4.0.1",
+  "name": "CarePlan",
+  "title": "CarePlan",
+  "status": "active",
+  "description": "Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "CarePlan",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "CarePlan", "path": "CarePlan", "min": 0, "max": "*", "base": { "path": "CarePlan", "min": 0, "max": "*" } },
+      { "id": "CarePlan.status", "path": "CarePlan.status", "min": 1, "max": "1", "base": { "path": "CarePlan.status", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/request-status|4.0.1" } },
+      { "id": "CarePlan.intent", "path": "CarePlan.intent", "min": 1, "max": "1", "base": { "path": "CarePlan.intent", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/care-plan-intent|4.0.1" } },
+      { "id": "CarePlan.category", "path": "CarePlan.category", "min": 0, "max": "*", "base": { "path": "CarePlan.category", "min": 0, "max": "*" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true },
+      { "id": "CarePlan.subject", "path": "CarePlan.subject", "min": 1, "max": "1", "base": { "path": "CarePlan.subject", "min": 1, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient", "http://hl7.org/fhir/StructureDefinition/Group"] }], "isSummary": true },
+      { "id": "CarePlan.period", "path": "CarePlan.period", "min": 0, "max": "1", "base": { "path": "CarePlan.period", "min": 0, "max": "1" }, "type": [{ "code": "Period" }], "isSummary": true }
+    ]
+  }
+}

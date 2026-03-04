@@ -1,0 +1,11 @@
+{
+  "description": "max='1' converts to number 1, max='5' converts to number 5",
+  "inputs": [
+    { "path": "Patient.id", "id": "Patient.id", "min": 0, "max": "1" },
+    { "path": "Patient.contact", "id": "Patient.contact", "min": 0, "max": "5" }
+  ],
+  "expected": [
+    { "max": 1 },
+    { "max": 5 }
+  ]
+}

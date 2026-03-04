@@ -1,0 +1,12 @@
+{
+  "description": "Reference with no targetProfile constraint → any reference is valid",
+  "element": {
+    "path": "Provenance.target",
+    "id": "Provenance.target",
+    "min": 1, "max": "unbounded",
+    "types": [{ "code": "Reference" }],
+    "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+  },
+  "value": { "reference": "Anything/999" },
+  "expectedIssueCount": 0
+}

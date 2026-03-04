@@ -1,0 +1,16 @@
+{
+  "description": "Explicit slicing: single slice on extension",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.extension", "min": 0, "max": "*" }
+  ],
+  "diff": [
+    { "path": "Patient.extension", "slicing": { "discriminator": [{ "type": "value", "path": "url" }], "rules": "open" } },
+    { "path": "Patient.extension", "sliceName": "birthPlace", "min": 0, "max": "1" }
+  ],
+  "expected": {
+    "elementCount": 3,
+    "hasSlicingRoot": true,
+    "sliceNames": ["birthPlace"]
+  }
+}

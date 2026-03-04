@@ -1,0 +1,70 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/ClinicalEvent",
+  "name": "ClinicalEvent",
+  "title": "Clinical Event Logical Model",
+  "status": "draft",
+  "kind": "logical",
+  "abstract": false,
+  "type": "http://example.org/fhir/StructureDefinition/ClinicalEvent",
+  "description": "A logical model representing a generic clinical event for research purposes.",
+  "mapping": [
+    {
+      "identity": "fhir",
+      "uri": "http://hl7.org/fhir",
+      "name": "FHIR R4"
+    },
+    {
+      "identity": "cda",
+      "uri": "http://hl7.org/v3/cda",
+      "name": "CDA R2"
+    }
+  ],
+  "snapshot": {
+    "element": [
+      {
+        "id": "ClinicalEvent",
+        "path": "ClinicalEvent",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "ClinicalEvent", "min": 0, "max": "*" }
+      },
+      {
+        "id": "ClinicalEvent.eventDate",
+        "path": "ClinicalEvent.eventDate",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "dateTime" }],
+        "base": { "path": "ClinicalEvent.eventDate", "min": 1, "max": "1" }
+      },
+      {
+        "id": "ClinicalEvent.code",
+        "path": "ClinicalEvent.code",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "CodeableConcept" }],
+        "base": { "path": "ClinicalEvent.code", "min": 1, "max": "1" },
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://example.org/fhir/ValueSet/clinical-events"
+        }
+      },
+      {
+        "id": "ClinicalEvent.subject",
+        "path": "ClinicalEvent.subject",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient"] }],
+        "base": { "path": "ClinicalEvent.subject", "min": 1, "max": "1" }
+      },
+      {
+        "id": "ClinicalEvent.note",
+        "path": "ClinicalEvent.note",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "string" }],
+        "base": { "path": "ClinicalEvent.note", "min": 0, "max": "*" }
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Post-processing: unconsumed diff element produces DIFFERENTIAL_NOT_CONSUMED warning",
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.name", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/UnconsumedTest",
+    "name": "UnconsumedTest",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [
+        { "path": "Patient.name", "min": 1 },
+        { "path": "Patient.nonExistent", "min": 1 }
+      ]
+    }
+  },
+  "expected": {
+    "success": true,
+    "hasUnconsumedWarning": true,
+    "unconsumedPath": "Patient.nonExistent"
+  }
+}

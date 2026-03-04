@@ -1,0 +1,37 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/ChinesePatient",
+  "version": "1.0.0",
+  "name": "ChinesePatient",
+  "title": "中国患者档案",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient"
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1,
+        "max": "1",
+        "comment": "Chinese patients must have exactly one name"
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "min": 1,
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "type.coding.code" }],
+          "rules": "open"
+        }
+      }
+    ]
+  }
+}

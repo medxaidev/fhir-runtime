@@ -1,0 +1,38 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-base-and-content-ref",
+  "url": "http://example.org/fhir/StructureDefinition/EDBaseAndContentRef",
+  "name": "EDBaseAndContentRef",
+  "title": "ElementDefinition: base and contentReference fields",
+  "description": "Demonstrates base (showing original cardinality from parent) and contentReference (recursive structure).",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Questionnaire",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Questionnaire",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Questionnaire.item",
+        "path": "Questionnaire.item",
+        "min": 1
+      },
+      {
+        "id": "Questionnaire.item.linkId",
+        "path": "Questionnaire.item.linkId",
+        "min": 1
+      },
+      {
+        "id": "Questionnaire.item.text",
+        "path": "Questionnaire.item.text",
+        "min": 1
+      },
+      {
+        "id": "Questionnaire.item.type",
+        "path": "Questionnaire.item.type",
+        "min": 1
+      }
+    ]
+  }
+}

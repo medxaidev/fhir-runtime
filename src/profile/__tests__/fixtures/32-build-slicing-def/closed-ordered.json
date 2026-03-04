@@ -1,0 +1,19 @@
+{
+  "description": "Closed ordered slicing with multiple discriminators",
+  "input": {
+    "discriminator": [
+      { "type": "value", "path": "system" },
+      { "type": "value", "path": "code" }
+    ],
+    "rules": "closed",
+    "ordered": true
+  },
+  "expected": {
+    "discriminators": [
+      { "type": "value", "path": "system" },
+      { "type": "value", "path": "code" }
+    ],
+    "rules": "closed",
+    "ordered": true
+  }
+}

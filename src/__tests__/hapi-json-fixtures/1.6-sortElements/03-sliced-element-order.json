@@ -1,0 +1,37 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "sliced-element-order",
+  "url": "http://example.org/fhir/StructureDefinition/SlicedElementOrder",
+  "name": "SlicedElementOrder",
+  "title": "Slicing root + slices — verify slice insertion position",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "system" }],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      }
+    ]
+  }
+}

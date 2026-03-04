@@ -1,0 +1,76 @@
+{
+  "resourceType": "Bundle",
+  "id": "multiple-profiles-bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/CorePatient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "core-patient",
+        "url": "http://example.org/fhir/StructureDefinition/CorePatient",
+        "name": "CorePatient",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.name", "path": "Patient.name", "min": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/CoreObservation",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "core-observation",
+        "url": "http://example.org/fhir/StructureDefinition/CoreObservation",
+        "name": "CoreObservation",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Observation",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Observation.subject",
+              "path": "Observation.subject",
+              "min": 1,
+              "type": [{ "code": "Reference", "targetProfile": ["http://example.org/fhir/StructureDefinition/CorePatient"] }]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/CoreCondition",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "core-condition",
+        "url": "http://example.org/fhir/StructureDefinition/CoreCondition",
+        "name": "CoreCondition",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Condition",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Condition",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Condition.subject",
+              "path": "Condition.subject",
+              "type": [{ "code": "Reference", "targetProfile": ["http://example.org/fhir/StructureDefinition/CorePatient"] }]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Claim",
+  "url": "http://hl7.org/fhir/StructureDefinition/Claim",
+  "version": "4.0.1",
+  "name": "Claim",
+  "title": "Claim",
+  "status": "active",
+  "description": "A provider issued list of professional services and products which have been provided, or are to be provided, to a patient which is sent to an insurer for reimbursement.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Claim",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Claim", "path": "Claim", "min": 0, "max": "*", "base": { "path": "Claim", "min": 0, "max": "*" } },
+      { "id": "Claim.status", "path": "Claim.status", "min": 1, "max": "1", "base": { "path": "Claim.status", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/fm-status|4.0.1" } },
+      { "id": "Claim.type", "path": "Claim.type", "min": 1, "max": "1", "base": { "path": "Claim.type", "min": 1, "max": "1" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "extensible", "valueSet": "http://hl7.org/fhir/ValueSet/claim-type" } },
+      { "id": "Claim.use", "path": "Claim.use", "min": 1, "max": "1", "base": { "path": "Claim.use", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/claim-use|4.0.1" } },
+      { "id": "Claim.patient", "path": "Claim.patient", "min": 1, "max": "1", "base": { "path": "Claim.patient", "min": 1, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient"] }], "isSummary": true },
+      { "id": "Claim.created", "path": "Claim.created", "min": 1, "max": "1", "base": { "path": "Claim.created", "min": 1, "max": "1" }, "type": [{ "code": "dateTime" }], "isSummary": true },
+      { "id": "Claim.provider", "path": "Claim.provider", "min": 1, "max": "1", "base": { "path": "Claim.provider", "min": 1, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Practitioner", "http://hl7.org/fhir/StructureDefinition/PractitionerRole", "http://hl7.org/fhir/StructureDefinition/Organization"] }], "isSummary": true },
+      { "id": "Claim.priority", "path": "Claim.priority", "min": 1, "max": "1", "base": { "path": "Claim.priority", "min": 1, "max": "1" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "example", "valueSet": "http://hl7.org/fhir/ValueSet/process-priority" } }
+    ]
+  }
+}

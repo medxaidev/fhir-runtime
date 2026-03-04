@@ -1,0 +1,24 @@
+{
+  "description": "Abstract base type SD → abstract=true in CanonicalProfile",
+  "input": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+    "name": "DomainResource",
+    "kind": "resource",
+    "abstract": true,
+    "type": "DomainResource",
+    "derivation": "specialization",
+    "snapshot": {
+      "element": [
+        { "path": "DomainResource", "id": "DomainResource", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "expected": {
+    "url": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+    "name": "DomainResource",
+    "abstract": true,
+    "derivation": "specialization",
+    "elementCount": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "choice-path-wildcard",
+  "url": "http://example.org/fhir/StructureDefinition/ChoicePathWildcard",
+  "name": "ChoicePathWildcard",
+  "title": "Use [x] wildcard path in differential — Observation.value[x]",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "min": 1,
+        "type": [
+          { "code": "Quantity" },
+          { "code": "string" }
+        ]
+      }
+    ]
+  }
+}

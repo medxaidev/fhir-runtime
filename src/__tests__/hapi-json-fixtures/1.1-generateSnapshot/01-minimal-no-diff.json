@@ -1,0 +1,21 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "minimal-no-diff",
+  "url": "http://example.org/fhir/StructureDefinition/MinimalNoDiff",
+  "name": "MinimalNoDiff",
+  "title": "Minimal Profile — No Differential Changes",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient"
+      }
+    ]
+  }
+}

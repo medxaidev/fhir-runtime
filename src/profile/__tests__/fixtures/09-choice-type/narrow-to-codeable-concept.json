@@ -1,0 +1,16 @@
+{
+  "description": "Choice type: narrow effective[x] to effectiveDateTime",
+  "base": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.effective[x]", "min": 0, "max": "1", "type": [{ "code": "dateTime" }, { "code": "Period" }, { "code": "Timing" }] }
+  ],
+  "diff": [
+    { "path": "Observation.effectiveDateTime", "min": 1 }
+  ],
+  "expected": {
+    "valueMin": 1,
+    "valueTypeCount": 1,
+    "valueTypeCode": "dateTime",
+    "issueCount": 0
+  }
+}

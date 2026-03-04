@@ -1,0 +1,9 @@
+{
+  "description": "getSliceSiblings: invalid index returns empty array",
+  "elements": [
+    { "path": "Patient.identifier", "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "open" } },
+    { "path": "Patient.identifier", "sliceName": "MRN" }
+  ],
+  "slicingRootIndex": -1,
+  "expected": { "siblingCount": 0, "sliceNames": [] }
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Case A: New slicing with ordered=true",
+  "baseElements": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.component", "min": 0, "max": "*" },
+    { "path": "Observation.component.code", "min": 1, "max": "1" }
+  ],
+  "diffElements": [
+    { "path": "Observation.component", "slicing": { "discriminator": [{ "type": "value", "path": "code" }], "rules": "closed", "ordered": true } },
+    { "path": "Observation.component", "sliceName": "systolic", "min": 1, "max": "1" },
+    { "path": "Observation.component", "sliceName": "diastolic", "min": 1, "max": "1" }
+  ],
+  "expected": {
+    "hasSlicingRoot": true,
+    "slicingRules": "closed",
+    "slicingOrdered": true,
+    "sliceCount": 2,
+    "sliceNames": ["systolic", "diastolic"]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/Quantity",
+  "version": "4.0.1",
+  "name": "Quantity",
+  "title": "Quantity",
+  "status": "active",
+  "kind": "complex-type",
+  "abstract": false,
+  "type": "Quantity",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Quantity",
+        "path": "Quantity",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "Quantity.value",
+        "path": "Quantity.value",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "decimal" }]
+      },
+      {
+        "id": "Quantity.unit",
+        "path": "Quantity.unit",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "string" }]
+      },
+      {
+        "id": "Quantity.system",
+        "path": "Quantity.system",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "uri" }]
+      },
+      {
+        "id": "Quantity.code",
+        "path": "Quantity.code",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "code" }]
+      }
+    ]
+  }
+}

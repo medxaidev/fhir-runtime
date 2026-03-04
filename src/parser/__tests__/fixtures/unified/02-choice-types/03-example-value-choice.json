@@ -1,0 +1,44 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/ExampleValueChoice",
+  "name": "ExampleValueChoice",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "example": [
+          {
+            "label": "Quantity example",
+            "valueQuantity": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" }
+          },
+          {
+            "label": "String example",
+            "valueString": "Normal"
+          },
+          {
+            "label": "Boolean example",
+            "valueBoolean": true
+          },
+          {
+            "label": "Integer example",
+            "valueInteger": 42
+          },
+          {
+            "label": "CodeableConcept example",
+            "valueCodeableConcept": {
+              "coding": [{ "system": "http://snomed.info/sct", "code": "260385009", "display": "Negative" }],
+              "text": "Negative"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

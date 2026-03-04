@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "short-definition-override",
+  "url": "http://example.org/fhir/StructureDefinition/ShortDefinitionOverride",
+  "name": "ShortDefinitionOverride",
+  "title": "Override documentation fields: short, definition, comment",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "short": "Patient's legal or preferred name",
+        "definition": "The name(s) by which the patient is known. At least one name must be provided.",
+        "comment": "In this profile, name is required for patient matching.",
+        "min": 1
+      }
+    ]
+  }
+}

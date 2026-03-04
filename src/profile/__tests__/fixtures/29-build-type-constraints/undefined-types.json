@@ -1,0 +1,5 @@
+{
+  "description": "Undefined types → empty array",
+  "input": null,
+  "expected": []
+}

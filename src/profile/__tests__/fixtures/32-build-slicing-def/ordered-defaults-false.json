@@ -1,0 +1,12 @@
+{
+  "description": "Missing ordered field defaults to false",
+  "input": {
+    "discriminator": [{ "type": "type", "path": "$this" }],
+    "rules": "open"
+  },
+  "expected": {
+    "discriminators": [{ "type": "type", "path": "$this" }],
+    "rules": "open",
+    "ordered": false
+  }
+}

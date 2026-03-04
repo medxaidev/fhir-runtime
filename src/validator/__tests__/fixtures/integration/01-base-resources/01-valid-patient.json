@@ -1,0 +1,25 @@
+{
+  "description": "Valid Patient with all common fields",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "example-patient",
+    "active": true,
+    "name": [{ "family": "Smith", "given": ["John", "Michael"] }],
+    "gender": "male",
+    "birthDate": "1990-01-15"
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient", "kind": "resource", "type": "Patient", "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.id", "id": "Patient.id", "min": 0, "max": 1, "types": [{ "code": "id" }] },
+      { "path": "Patient.active", "id": "Patient.active", "min": 0, "max": 1, "types": [{ "code": "boolean" }] },
+      { "path": "Patient.name", "id": "Patient.name", "min": 0, "max": "unbounded", "types": [{ "code": "HumanName" }] },
+      { "path": "Patient.gender", "id": "Patient.gender", "min": 0, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Patient.birthDate", "id": "Patient.birthDate", "min": 0, "max": 1, "types": [{ "code": "date" }] }
+    ]
+  },
+  "expectedValid": true,
+  "expectedErrorCount": 0
+}

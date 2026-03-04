@@ -1,0 +1,18 @@
+{
+  "resourceType": "Observation",
+  "id": "invalid-reference-type",
+  "_comment": "ERROR: subject references Medication but only Patient/Group/Device/Location allowed",
+  "status": "final",
+  "code": {
+    "coding": [
+      { "system": "http://loinc.org", "code": "8867-4" }
+    ]
+  },
+  "subject": {
+    "reference": "Medication/123"
+  },
+  "valueQuantity": {
+    "value": 72,
+    "unit": "/min"
+  }
+}

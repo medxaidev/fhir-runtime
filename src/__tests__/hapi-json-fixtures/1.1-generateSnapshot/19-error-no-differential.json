@@ -1,0 +1,13 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-no-differential",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorNoDifferential",
+  "name": "ErrorNoDifferential",
+  "title": "ERROR CASE: Missing differential entirely",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint"
+}

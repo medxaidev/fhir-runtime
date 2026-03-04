@@ -1,0 +1,27 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "example-ig",
+  "url": "http://example.org/fhir/ImplementationGuide/example-ig",
+  "version": "1.0.0",
+  "name": "ExampleIG",
+  "title": "Example Implementation Guide",
+  "status": "active",
+  "fhirVersion": ["4.0.1"],
+  "packageId": "org.example.fhir.ig",
+  "definition": {
+    "resource": [
+      {
+        "reference": { "reference": "StructureDefinition/CorePatient" },
+        "name": "Core Patient Profile"
+      },
+      {
+        "reference": { "reference": "StructureDefinition/CoreObservation" },
+        "name": "Core Observation Profile"
+      },
+      {
+        "reference": { "reference": "ValueSet/custom-marital-status" },
+        "name": "Custom Marital Status ValueSet"
+      }
+    ]
+  }
+}

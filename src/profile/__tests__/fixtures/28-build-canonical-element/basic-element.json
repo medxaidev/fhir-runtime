@@ -1,0 +1,20 @@
+{
+  "description": "Basic element with path, id, min, max",
+  "input": {
+    "path": "Patient.name",
+    "id": "Patient.name",
+    "min": 1,
+    "max": "*"
+  },
+  "expected": {
+    "path": "Patient.name",
+    "id": "Patient.name",
+    "min": 1,
+    "max": "unbounded",
+    "mustSupport": false,
+    "isModifier": false,
+    "isSummary": false,
+    "typesCount": 0,
+    "constraintsCount": 0
+  }
+}

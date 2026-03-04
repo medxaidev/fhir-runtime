@@ -1,0 +1,49 @@
+{
+  "description": "No circular dependency: A→B→Patient (valid chain, no cycle)",
+  "patientSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.name", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "sdB": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ProfileB",
+    "name": "ProfileB",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "sdA": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ProfileA",
+    "name": "ProfileA",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/ProfileB",
+    "differential": {
+      "element": [{ "path": "Patient.name", "short": "Required name" }]
+    }
+  },
+  "expected": {
+    "success": true,
+    "nameMin": 1,
+    "nameShort": "Required name"
+  }
+}

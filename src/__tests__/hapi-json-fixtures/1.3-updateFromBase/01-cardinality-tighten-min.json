@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "cardinality-tighten-min",
+  "url": "http://example.org/fhir/StructureDefinition/CardinalityTightenMin",
+  "name": "CardinalityTightenMin",
+  "title": "Tighten min cardinality: Patient.name 0→1",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      }
+    ]
+  }
+}

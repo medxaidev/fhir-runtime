@@ -1,0 +1,14 @@
+{
+  "description": "Compatible: rules tightened from open to closed",
+  "baseSlicing": {
+    "discriminator": [{ "type": "value", "path": "system" }],
+    "rules": "open",
+    "ordered": false
+  },
+  "diffSlicing": {
+    "discriminator": [{ "type": "value", "path": "system" }],
+    "rules": "closed",
+    "ordered": false
+  },
+  "expected": { "compatible": true, "issueCount": 0 }
+}

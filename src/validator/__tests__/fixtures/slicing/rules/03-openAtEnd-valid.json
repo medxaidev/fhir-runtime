@@ -1,0 +1,52 @@
+{
+  "description": "openAtEnd slicing — unmatched values must appear after matched values",
+  "slicingRoot": {
+    "path": "Patient.identifier",
+    "id": "Patient.identifier",
+    "min": 0, "max": "unbounded",
+    "types": [{ "code": "Identifier" }],
+    "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+    "slicing": {
+      "discriminators": [{ "type": "value", "path": "system" }],
+      "rules": "openAtEnd",
+      "ordered": false
+    }
+  },
+  "slices": [
+    {
+      "path": "Patient.identifier",
+      "id": "Patient.identifier:MRN",
+      "min": 0, "max": 1,
+      "types": [{ "code": "Identifier" }],
+      "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+      "sliceName": "MRN",
+      "fixed": { "system": "http://hospital.example.org/mrn" }
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "matched first, unmatched last → valid",
+      "values": [
+        { "system": "http://hospital.example.org/mrn", "value": "12345" },
+        { "system": "http://unknown.org", "value": "99999" }
+      ],
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "unmatched first, matched last → SLICING_NO_MATCH (openAtEnd violated)",
+      "values": [
+        { "system": "http://unknown.org", "value": "99999" },
+        { "system": "http://hospital.example.org/mrn", "value": "12345" }
+      ],
+      "expectedIssueCount": 1,
+      "expectedIssueCodes": ["SLICING_NO_MATCH"]
+    },
+    {
+      "label": "only unmatched → valid (no matched values to be after)",
+      "values": [
+        { "system": "http://unknown.org", "value": "99999" }
+      ],
+      "expectedIssueCount": 0
+    }
+  ]
+}

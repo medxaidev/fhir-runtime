@@ -1,0 +1,47 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kind-primitive-type",
+  "url": "http://hl7.org/fhir/StructureDefinition/string",
+  "name": "string",
+  "title": "kind=primitive-type — FHIR string type definition",
+  "status": "active",
+  "kind": "primitive-type",
+  "abstract": false,
+  "type": "string",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "string",
+        "path": "string",
+        "short": "Primitive Type string",
+        "definition": "A sequence of Unicode characters",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "string.id",
+        "path": "string.id",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "http://hl7.org/fhirpath/System.String" }]
+      },
+      {
+        "id": "string.extension",
+        "path": "string.extension",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "Extension" }]
+      },
+      {
+        "id": "string.value",
+        "path": "string.value",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "http://hl7.org/fhirpath/System.String" }],
+        "maxLength": 1048576
+      }
+    ]
+  }
+}

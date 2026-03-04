@@ -1,0 +1,32 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "simple-flat-order",
+  "url": "http://example.org/fhir/StructureDefinition/SimpleFlatOrder",
+  "name": "SimpleFlatOrder",
+  "title": "Flat elements — verify they stay in base snapshot order",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.gender",
+        "path": "Patient.gender",
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-default-and-example",
+  "url": "http://example.org/fhir/StructureDefinition/EDDefaultAndExample",
+  "name": "EDDefaultAndExample",
+  "title": "ElementDefinition: defaultValue[x] and example values",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "type": [{ "code": "Quantity" }],
+        "example": [
+          {
+            "label": "Normal heart rate",
+            "valueQuantity": {
+              "value": 72,
+              "unit": "beats/minute",
+              "system": "http://unitsofmeasure.org",
+              "code": "/min"
+            }
+          },
+          {
+            "label": "High heart rate",
+            "valueQuantity": {
+              "value": 120,
+              "unit": "beats/minute",
+              "system": "http://unitsofmeasure.org",
+              "code": "/min"
+            }
+          }
+        ]
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "defaultValueCode": "preliminary"
+      }
+    ]
+  }
+}

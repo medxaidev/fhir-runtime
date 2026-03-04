@@ -1,0 +1,37 @@
+{
+  "description": "Base loading: base SD already has snapshot — no recursive generation needed",
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.id", "min": 0, "max": "1" },
+        { "path": "Patient.name", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/MyPatient",
+    "name": "MyPatient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "expected": {
+    "success": true,
+    "snapshotElementCount": 3,
+    "nameMin": 1
+  }
+}

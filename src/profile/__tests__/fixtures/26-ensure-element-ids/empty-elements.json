@@ -1,0 +1,7 @@
+{
+  "description": "Empty element array — no-op",
+  "elements": [],
+  "expected": {
+    "ids": []
+  }
+}

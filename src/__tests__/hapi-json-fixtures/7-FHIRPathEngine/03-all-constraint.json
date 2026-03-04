@@ -1,0 +1,29 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "all-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/AllConstraint",
+  "name": "AllConstraint",
+  "title": "FHIRPath: identifier.all(system.exists()) — universal quantifier",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "constraint": [
+          {
+            "key": "fp-all-1",
+            "severity": "error",
+            "human": "All identifiers must have a system",
+            "expression": "system.exists()"
+          }
+        ]
+      }
+    ]
+  }
+}

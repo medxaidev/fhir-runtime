@@ -1,0 +1,15 @@
+{
+  "description": "Base traceability: inherited elements get base.path/min/max set",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.active", "min": 0, "max": "1" }
+  ],
+  "diff": [],
+  "expected": {
+    "elementCount": 2,
+    "activeHasBase": true,
+    "activeBasePath": "Patient.active",
+    "activeBaseMin": 0,
+    "activeBaseMax": "1"
+  }
+}

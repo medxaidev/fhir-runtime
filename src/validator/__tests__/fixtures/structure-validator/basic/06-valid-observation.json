@@ -1,0 +1,24 @@
+{
+  "description": "Valid Observation with valueQuantity — passes all checks",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "bp-obs",
+    "status": "final",
+    "code": { "coding": [{ "system": "http://loinc.org", "code": "85354-9" }] },
+    "valueQuantity": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" }
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+    "name": "Observation",
+    "kind": "resource",
+    "type": "Observation",
+    "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }] }
+    ]
+  },
+  "expectedValid": true,
+  "expectedIssueCount": 0
+}

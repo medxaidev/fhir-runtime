@@ -1,0 +1,20 @@
+{
+  "description": "Valid: concrete resource type compatible with Resource base",
+  "base": {
+    "path": "Bundle.entry.resource",
+    "type": [
+      { "code": "Resource" }
+    ]
+  },
+  "diff": {
+    "path": "Bundle.entry.resource",
+    "type": [
+      { "code": "Patient" }
+    ]
+  },
+  "expected": {
+    "typeCount": 1,
+    "typeCodes": ["Patient"],
+    "issueCount": 0
+  }
+}

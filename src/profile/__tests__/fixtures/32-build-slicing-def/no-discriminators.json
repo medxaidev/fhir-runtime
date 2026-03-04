@@ -1,0 +1,11 @@
+{
+  "description": "Slicing with no discriminators → empty discriminators array",
+  "input": {
+    "rules": "openAtEnd"
+  },
+  "expected": {
+    "discriminators": [],
+    "rules": "openAtEnd",
+    "ordered": false
+  }
+}

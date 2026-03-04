@@ -1,0 +1,9 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/SerializerMinimal",
+  "name": "SerializerMinimal",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient"
+}

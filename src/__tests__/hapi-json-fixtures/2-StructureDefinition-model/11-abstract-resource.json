@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "abstract-resource",
+  "url": "http://example.org/fhir/StructureDefinition/AbstractClinicalResource",
+  "name": "AbstractClinicalResource",
+  "title": "abstract=true — Abstract base profile",
+  "status": "active",
+  "kind": "resource",
+  "abstract": true,
+  "type": "DomainResource",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DomainResource.text",
+        "path": "DomainResource.text",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "description": "Resource property navigation and function calls",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "example-1",
+    "name": [
+      { "given": ["Alice", "Marie"], "family": "Smith" },
+      { "given": ["Bob"], "family": "Jones" }
+    ],
+    "identifier": [
+      { "system": "http://example.org/mrn", "value": "12345" },
+      { "system": "http://example.org/ssn", "value": "999-99-9999" }
+    ],
+    "telecom": [
+      { "system": "phone", "value": "555-1234" },
+      { "system": "email", "value": "alice@example.com" }
+    ],
+    "active": true,
+    "birthDate": "1990-01-15"
+  },
+  "cases": [
+    { "expression": "Patient.id", "expected": ["example-1"] },
+    { "expression": "Patient.active", "expected": [true] },
+    { "expression": "Patient.birthDate", "expected": ["1990-01-15"] },
+    { "expression": "Patient.name.family", "expected": ["Smith", "Jones"] },
+    { "expression": "Patient.name[0].family", "expected": ["Smith"] },
+    { "expression": "Patient.name[1].family", "expected": ["Jones"] },
+    { "expression": "Patient.name.given", "expected": ["Alice", "Marie", "Bob"] },
+    { "expression": "Patient.name.count()", "expected": [2] },
+    { "expression": "Patient.name.exists()", "expected": [true] },
+    { "expression": "Patient.deceased.exists()", "expected": [false] },
+    { "expression": "Patient.telecom.where(system = 'email').value", "expected": ["alice@example.com"] },
+    { "expression": "Patient.identifier.where(system = 'http://example.org/mrn').value", "expected": ["12345"] }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "description": "Post-processing: element IDs are generated from path",
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.name", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/IdTest",
+    "name": "IdTest",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "expected": {
+    "success": true,
+    "allElementsHaveIds": true
+  }
+}

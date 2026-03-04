@@ -1,0 +1,33 @@
+{
+  "description": "Basic SD with snapshot → CanonicalProfile with correct metadata",
+  "input": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/fhir/StructureDefinition/TestPatient",
+    "version": "1.0.0",
+    "name": "TestPatient",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "derivation": "constraint",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "id": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.id", "id": "Patient.id", "min": 0, "max": "1" },
+        { "path": "Patient.name", "id": "Patient.name", "min": 1, "max": "*" }
+      ]
+    }
+  },
+  "expected": {
+    "url": "http://example.org/fhir/StructureDefinition/TestPatient",
+    "version": "1.0.0",
+    "name": "TestPatient",
+    "kind": "resource",
+    "type": "Patient",
+    "baseProfile": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "abstract": false,
+    "derivation": "constraint",
+    "elementCount": 3,
+    "elementPaths": ["Patient", "Patient.id", "Patient.name"]
+  }
+}

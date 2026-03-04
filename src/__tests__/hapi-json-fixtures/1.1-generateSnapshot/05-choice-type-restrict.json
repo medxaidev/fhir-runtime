@@ -1,0 +1,24 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "choice-type-restrict",
+  "url": "http://example.org/fhir/StructureDefinition/ChoiceTypeRestrict",
+  "name": "ChoiceTypeRestrict",
+  "title": "Restrict Patient.deceased[x] to boolean only",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "type": [
+          { "code": "boolean" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "exists-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/ExistsConstraint",
+  "name": "ExistsConstraint",
+  "title": "FHIRPath: name.exists() — basic existence check",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "constraint": [
+          {
+            "key": "fp-exists-1",
+            "severity": "error",
+            "human": "Patient must have at least one name",
+            "expression": "name.exists()"
+          }
+        ]
+      }
+    ]
+  }
+}

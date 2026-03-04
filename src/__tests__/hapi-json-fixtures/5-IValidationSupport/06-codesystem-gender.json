@@ -1,0 +1,16 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "administrative-gender",
+  "url": "http://hl7.org/fhir/administrative-gender",
+  "version": "4.0.1",
+  "name": "AdministrativeGender",
+  "title": "AdministrativeGender CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "concept": [
+    { "code": "male", "display": "Male", "definition": "Male." },
+    { "code": "female", "display": "Female", "definition": "Female." },
+    { "code": "other", "display": "Other", "definition": "Other." },
+    { "code": "unknown", "display": "Unknown", "definition": "Unknown." }
+  ]
+}

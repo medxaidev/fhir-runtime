@@ -1,0 +1,13 @@
+{
+  "description": "Simple inherit: base element with no diff match is copied as-is",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.id", "min": 0, "max": "1" },
+    { "path": "Patient.name", "min": 0, "max": "*" }
+  ],
+  "diff": [],
+  "expected": {
+    "elementCount": 3,
+    "paths": ["Patient", "Patient.id", "Patient.name"]
+  }
+}

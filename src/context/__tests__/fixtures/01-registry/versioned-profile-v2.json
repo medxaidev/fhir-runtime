@@ -1,0 +1,13 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/ChinesePatient",
+  "version": "2.0.0",
+  "name": "ChinesePatient",
+  "title": "Chinese Patient Profile v2",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint"
+}

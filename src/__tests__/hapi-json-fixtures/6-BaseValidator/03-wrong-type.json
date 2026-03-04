@@ -1,0 +1,13 @@
+{
+  "resourceType": "Patient",
+  "id": "wrong-type",
+  "_comment": "ERROR: 'active' should be boolean, not string; 'birthDate' should be date, not number",
+  "active": "yes",
+  "name": [
+    {
+      "family": "Smith",
+      "given": ["John"]
+    }
+  ],
+  "birthDate": 19900115
+}

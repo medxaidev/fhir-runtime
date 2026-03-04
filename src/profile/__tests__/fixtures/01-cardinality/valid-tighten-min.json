@@ -1,0 +1,17 @@
+{
+  "description": "Valid: tighten min from 0 to 1",
+  "base": {
+    "path": "Patient.identifier",
+    "min": 0,
+    "max": "*"
+  },
+  "diff": {
+    "path": "Patient.identifier",
+    "min": 1
+  },
+  "expected": {
+    "min": 1,
+    "max": "*",
+    "issueCount": 0
+  }
+}

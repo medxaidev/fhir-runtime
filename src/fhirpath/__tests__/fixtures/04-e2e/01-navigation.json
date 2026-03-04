@@ -1,0 +1,51 @@
+{
+  "description": "End-to-end: Property navigation and path resolution",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "nav-test",
+    "active": true,
+    "gender": "male",
+    "birthDate": "1990-05-15",
+    "name": [
+      { "use": "official", "family": "Anderson", "given": ["Thomas", "A."] },
+      { "use": "nickname", "given": ["Tom"] }
+    ],
+    "telecom": [
+      { "system": "phone", "value": "555-0101", "use": "home" },
+      { "system": "phone", "value": "555-0102", "use": "work" },
+      { "system": "email", "value": "tom@example.com" }
+    ],
+    "address": [
+      {
+        "use": "home",
+        "line": ["123 Main St", "Apt 4"],
+        "city": "Springfield",
+        "state": "IL",
+        "postalCode": "62701"
+      }
+    ],
+    "contact": [
+      {
+        "name": { "family": "Anderson", "given": ["Jane"] },
+        "telecom": [{ "system": "phone", "value": "555-0200" }]
+      }
+    ]
+  },
+  "tests": [
+    { "expression": "Patient.id", "expected": ["nav-test"] },
+    { "expression": "Patient.active", "expected": [true] },
+    { "expression": "Patient.gender", "expected": ["male"] },
+    { "expression": "Patient.birthDate", "expected": ["1990-05-15"] },
+    { "expression": "Patient.name.family", "expected": ["Anderson"] },
+    { "expression": "Patient.name.given", "expected": ["Thomas", "A.", "Tom"] },
+    { "expression": "Patient.name[0].family", "expected": ["Anderson"] },
+    { "expression": "Patient.name[1].given", "expected": ["Tom"] },
+    { "expression": "Patient.telecom.value", "expected": ["555-0101", "555-0102", "tom@example.com"] },
+    { "expression": "Patient.address.city", "expected": ["Springfield"] },
+    { "expression": "Patient.address.line", "expected": ["123 Main St", "Apt 4"] },
+    { "expression": "Patient.contact.name.family", "expected": ["Anderson"] },
+    { "expression": "Patient.contact.telecom.value", "expected": ["555-0200"] },
+    { "expression": "Patient.deceased", "expected": [] },
+    { "expression": "Patient.maritalStatus", "expected": [] }
+  ]
+}

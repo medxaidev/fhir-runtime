@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "abstract-base",
+  "url": "http://example.org/fhir/StructureDefinition/AbstractBase",
+  "name": "AbstractBase",
+  "title": "Profile on DomainResource (abstract base type)",
+  "status": "active",
+  "kind": "resource",
+  "abstract": true,
+  "type": "DomainResource",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DomainResource.text",
+        "path": "DomainResource.text",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

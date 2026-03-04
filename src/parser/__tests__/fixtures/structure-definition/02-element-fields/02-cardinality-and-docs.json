@@ -1,0 +1,44 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/CardinalityAndDocs",
+  "name": "CardinalityAndDocs",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1,
+        "max": "3",
+        "short": "Patient official name(s)",
+        "definition": "The name(s) by which the patient is officially known.",
+        "comment": "At least one name must be provided for identification.",
+        "requirements": "Need to track the patient by name for clinical and administrative purposes.",
+        "alias": ["full name", "legal name", "preferred name"],
+        "meaningWhenMissing": "If no name is provided, the patient cannot be identified by name.",
+        "orderMeaning": "Names are ordered by preference, with the most preferred name first."
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "min": 1,
+        "max": "1",
+        "short": "Date of birth",
+        "definition": "The date of birth for the individual.",
+        "comment": "Partial dates are allowed (year only, year-month)."
+      },
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "min": 0,
+        "max": "1",
+        "meaningWhenMissing": "This resource is generally assumed to be active if no value is provided for the active element."
+      }
+    ]
+  }
+}

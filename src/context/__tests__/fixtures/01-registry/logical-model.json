@@ -1,0 +1,12 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/ChineseMedicineFormula",
+  "version": "1.0.0",
+  "name": "ChineseMedicineFormula",
+  "title": "中医方剂逻辑模型",
+  "status": "draft",
+  "kind": "logical",
+  "abstract": false,
+  "type": "http://example.org/fhir/StructureDefinition/ChineseMedicineFormula",
+  "description": "A logical model representing a traditional Chinese medicine formula (方剂)."
+}

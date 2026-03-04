@@ -1,0 +1,13 @@
+{
+  "description": "Slice name match: finds specific slice by path + sliceName",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.identifier", "slicing": { "rules": "open" } },
+    { "path": "Patient.identifier", "sliceName": "MRN" },
+    { "path": "Patient.identifier", "sliceName": "SSN" },
+    { "path": "Patient.name" }
+  ],
+  "path": "Patient.identifier",
+  "sliceName": "SSN",
+  "expected": { "index": 3 }
+}

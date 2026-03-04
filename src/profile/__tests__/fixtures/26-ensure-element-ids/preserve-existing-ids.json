@@ -1,0 +1,11 @@
+{
+  "description": "Existing IDs are preserved, only missing ones are generated",
+  "elements": [
+    { "path": "Patient", "id": "Patient" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.name", "id": "custom-id" }
+  ],
+  "expected": {
+    "ids": ["Patient", "Patient.identifier", "custom-id"]
+  }
+}

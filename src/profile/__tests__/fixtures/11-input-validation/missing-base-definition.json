@@ -1,0 +1,17 @@
+{
+  "description": "Input validation: non-root SD with missing baseDefinition should produce error",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/NoBase",
+    "name": "NoBase",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient"
+  },
+  "expected": {
+    "success": false,
+    "hasError": true,
+    "errorCode": "BASE_NOT_FOUND"
+  }
+}

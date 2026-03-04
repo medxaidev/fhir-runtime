@@ -1,0 +1,33 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "paths-out-of-order",
+  "url": "http://example.org/fhir/StructureDefinition/PathsOutOfOrder",
+  "name": "PathsOutOfOrder",
+  "title": "EDGE CASE: Differential paths not in base snapshot order",
+  "description": "HAPI requires differential elements to be in the same order as the base snapshot. This fixture tests what happens when they are not.",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "min": 1
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "min": 1
+      }
+    ]
+  }
+}

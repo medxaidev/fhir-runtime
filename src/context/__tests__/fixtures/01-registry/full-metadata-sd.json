@@ -1,0 +1,31 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/FullMetadata",
+  "version": "3.1.0",
+  "name": "FullMetadata",
+  "title": "Full Metadata StructureDefinition",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-02-11",
+  "publisher": "MedXAI",
+  "contact": [
+    {
+      "name": "MedXAI Team",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://medxai.example.org"
+        }
+      ]
+    }
+  ],
+  "description": "A StructureDefinition with all metadata fields populated for registry testing.",
+  "purpose": "Testing registry storage of complex metadata",
+  "copyright": "Copyright 2026 MedXAI",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint"
+}

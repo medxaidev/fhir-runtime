@@ -1,0 +1,20 @@
+{
+  "description": "Valid: uri is compatible with string (historical workaround)",
+  "base": {
+    "path": "CapabilityStatement.url",
+    "type": [
+      { "code": "string" }
+    ]
+  },
+  "diff": {
+    "path": "CapabilityStatement.url",
+    "type": [
+      { "code": "uri" }
+    ]
+  },
+  "expected": {
+    "typeCount": 1,
+    "typeCodes": ["uri"],
+    "issueCount": 0
+  }
+}

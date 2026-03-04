@@ -1,0 +1,43 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-min-max-value",
+  "url": "http://example.org/fhir/StructureDefinition/EDMinMaxValue",
+  "name": "EDMinMaxValue",
+  "title": "ElementDefinition: minValue[x], maxValue[x], maxLength",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "type": [{ "code": "Quantity" }],
+        "minValueQuantity": {
+          "value": 0,
+          "unit": "beats/minute",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        },
+        "maxValueQuantity": {
+          "value": 300,
+          "unit": "beats/minute",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      {
+        "id": "Observation.note",
+        "path": "Observation.note"
+      },
+      {
+        "id": "Observation.note.text",
+        "path": "Observation.note.text",
+        "maxLength": 500
+      }
+    ]
+  }
+}

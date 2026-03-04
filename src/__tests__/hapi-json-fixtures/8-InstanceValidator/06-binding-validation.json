@@ -1,0 +1,46 @@
+{
+  "resourceType": "Bundle",
+  "id": "binding-validation",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/BoundPatient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "bound-patient",
+        "url": "http://example.org/fhir/StructureDefinition/BoundPatient",
+        "name": "BoundPatient",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.gender",
+              "path": "Patient.gender",
+              "min": 1,
+              "binding": {
+                "strength": "required",
+                "valueSet": "http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Patient/binding-invalid",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "binding-invalid",
+        "_comment": "ERROR: gender 'non-binary' is not in required ValueSet",
+        "meta": { "profile": ["http://example.org/fhir/StructureDefinition/BoundPatient"] },
+        "name": [{ "family": "Smith" }],
+        "gender": "non-binary"
+      }
+    }
+  ]
+}

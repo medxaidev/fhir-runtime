@@ -1,0 +1,80 @@
+{
+  "description": "Reference with multiple allowed target profiles",
+  "scenarios": [
+    {
+      "label": "Patient reference matches [Patient, Group] → valid",
+      "element": {
+        "path": "Observation.subject",
+        "id": "Observation.subject",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Reference", "targetProfiles": [
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/Group"
+        ]}],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "reference": "Patient/123" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "Group reference matches [Patient, Group] → valid",
+      "element": {
+        "path": "Observation.subject",
+        "id": "Observation.subject",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Reference", "targetProfiles": [
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/Group"
+        ]}],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "reference": "Group/456" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "Device reference does NOT match [Patient, Group] → error",
+      "element": {
+        "path": "Observation.subject",
+        "id": "Observation.subject",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Reference", "targetProfiles": [
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/Group"
+        ]}],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "reference": "Device/789" },
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "REFERENCE_TARGET_MISMATCH" }]
+    },
+    {
+      "label": "absolute URL reference to Patient → valid",
+      "element": {
+        "path": "Observation.subject",
+        "id": "Observation.subject",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Reference", "targetProfiles": [
+          "http://hl7.org/fhir/StructureDefinition/Patient"
+        ]}],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "reference": "http://example.org/fhir/Patient/123" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "fragment reference cannot be validated → warning",
+      "element": {
+        "path": "Observation.subject",
+        "id": "Observation.subject",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Reference", "targetProfiles": [
+          "http://hl7.org/fhir/StructureDefinition/Patient"
+        ]}],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": { "reference": "#contained-patient" },
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "REFERENCE_TARGET_MISMATCH", "severity": "warning" }]
+    }
+  ]
+}

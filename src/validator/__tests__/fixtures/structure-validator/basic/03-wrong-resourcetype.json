@@ -1,0 +1,21 @@
+{
+  "description": "Resource type mismatch — Observation validated against Patient profile → RESOURCE_TYPE_MISMATCH",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "obs-1",
+    "status": "final"
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "kind": "resource",
+    "type": "Patient",
+    "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCount": 1,
+  "expectedIssueCodes": ["RESOURCE_TYPE_MISMATCH"]
+}

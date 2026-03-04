@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Questionnaire",
+  "url": "http://hl7.org/fhir/StructureDefinition/Questionnaire",
+  "version": "4.0.1",
+  "name": "Questionnaire",
+  "title": "Questionnaire",
+  "status": "active",
+  "description": "A structured set of questions intended to guide the collection of answers from end-users.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Questionnaire",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Questionnaire", "path": "Questionnaire", "min": 0, "max": "*", "base": { "path": "Questionnaire", "min": 0, "max": "*" } },
+      { "id": "Questionnaire.url", "path": "Questionnaire.url", "min": 0, "max": "1", "base": { "path": "Questionnaire.url", "min": 0, "max": "1" }, "type": [{ "code": "uri" }], "isSummary": true },
+      { "id": "Questionnaire.status", "path": "Questionnaire.status", "min": 1, "max": "1", "base": { "path": "Questionnaire.status", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/publication-status|4.0.1" } },
+      { "id": "Questionnaire.item", "path": "Questionnaire.item", "min": 0, "max": "*", "base": { "path": "Questionnaire.item", "min": 0, "max": "*" } },
+      { "id": "Questionnaire.item.linkId", "path": "Questionnaire.item.linkId", "min": 1, "max": "1", "base": { "path": "Questionnaire.item.linkId", "min": 1, "max": "1" }, "type": [{ "code": "string" }] },
+      { "id": "Questionnaire.item.type", "path": "Questionnaire.item.type", "min": 1, "max": "1", "base": { "path": "Questionnaire.item.type", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/item-type|4.0.1" } },
+      { "id": "Questionnaire.item.item", "path": "Questionnaire.item.item", "min": 0, "max": "*", "contentReference": "#Questionnaire.item", "base": { "path": "Questionnaire.item.item", "min": 0, "max": "*" } }
+    ]
+  }
+}

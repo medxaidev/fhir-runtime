@@ -1,0 +1,23 @@
+{
+  "description": "Unbounded max (min=1, max=unbounded) with various counts — only min=0 should fail",
+  "element": {
+    "path": "Patient.name",
+    "id": "Patient.name",
+    "min": 1,
+    "max": "unbounded",
+    "types": [{ "code": "HumanName" }],
+    "constraints": [],
+    "mustSupport": false,
+    "isModifier": false,
+    "isSummary": true
+  },
+  "scenarios": [
+    { "label": "0 values → min violation", "values": [], "expectedIssueCount": 1 },
+    { "label": "1 value → valid", "values": [{ "family": "Smith" }], "expectedIssueCount": 0 },
+    { "label": "5 values → valid", "values": [
+      { "family": "A" }, { "family": "B" }, { "family": "C" },
+      { "family": "D" }, { "family": "E" }
+    ], "expectedIssueCount": 0 },
+    { "label": "100 values → valid", "valueCount": 100, "expectedIssueCount": 0 }
+  ]
+}

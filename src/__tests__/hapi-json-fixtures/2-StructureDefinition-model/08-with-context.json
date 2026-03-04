@@ -1,0 +1,42 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "with-context",
+  "url": "http://example.org/fhir/StructureDefinition/Severity",
+  "name": "Severity",
+  "title": "Extension with context — where it can be used",
+  "status": "active",
+  "kind": "complex-type",
+  "abstract": false,
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "context": [
+    { "type": "element", "expression": "Condition" },
+    { "type": "element", "expression": "AllergyIntolerance" },
+    { "type": "fhirpath", "expression": "Observation.component" }
+  ],
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Severity rating"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://example.org/fhir/StructureDefinition/Severity"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [{ "code": "code" }],
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://example.org/fhir/ValueSet/severity"
+        }
+      }
+    ]
+  }
+}

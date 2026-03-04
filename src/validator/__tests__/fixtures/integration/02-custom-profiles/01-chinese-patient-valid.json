@@ -1,0 +1,22 @@
+{
+  "description": "Valid ChinesePatient — has required identifier with Chinese ID system",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "cn-patient-1",
+    "identifier": [{ "system": "urn:oid:2.16.156.10011.1.2", "value": "110101199001011234" }],
+    "name": [{ "family": "张", "given": ["三"] }],
+    "gender": "male"
+  },
+  "profile": {
+    "url": "http://medxai.org/fhir/StructureDefinition/ChinesePatient",
+    "name": "ChinesePatient", "kind": "resource", "type": "Patient", "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.identifier", "id": "Patient.identifier", "min": 1, "max": "unbounded", "types": [{ "code": "Identifier" }] },
+      { "path": "Patient.name", "id": "Patient.name", "min": 1, "max": "unbounded", "types": [{ "code": "HumanName" }] },
+      { "path": "Patient.gender", "id": "Patient.gender", "min": 1, "max": 1, "types": [{ "code": "code" }] }
+    ]
+  },
+  "expectedValid": true,
+  "expectedErrorCount": 0
+}

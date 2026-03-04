@@ -1,0 +1,36 @@
+{
+  "description": "Base loading: empty differential — snapshot cloned from base",
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.id", "min": 0, "max": "1" },
+        { "path": "Patient.name", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/EmptyDiff",
+    "name": "EmptyDiff",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": []
+    }
+  },
+  "expected": {
+    "success": true,
+    "snapshotElementCount": 3
+  }
+}

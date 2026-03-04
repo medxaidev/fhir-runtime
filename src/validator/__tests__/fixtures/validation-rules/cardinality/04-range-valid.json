@@ -1,0 +1,20 @@
+{
+  "description": "Range cardinality (min=2, max=5) with 3 values — should be valid",
+  "element": {
+    "path": "Questionnaire.item",
+    "id": "Questionnaire.item",
+    "min": 2,
+    "max": 5,
+    "types": [{ "code": "BackboneElement" }],
+    "constraints": [],
+    "mustSupport": false,
+    "isModifier": false,
+    "isSummary": false
+  },
+  "values": [
+    { "linkId": "q1" },
+    { "linkId": "q2" },
+    { "linkId": "q3" }
+  ],
+  "expectedIssueCount": 0
+}

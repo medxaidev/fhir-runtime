@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Practitioner",
+  "url": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+  "version": "4.0.1",
+  "name": "Practitioner",
+  "title": "Practitioner",
+  "status": "active",
+  "description": "A person who is directly or indirectly involved in the provisioning of healthcare.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Practitioner",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Practitioner", "path": "Practitioner", "min": 0, "max": "*", "base": { "path": "Practitioner", "min": 0, "max": "*" } },
+      { "id": "Practitioner.identifier", "path": "Practitioner.identifier", "min": 0, "max": "*", "base": { "path": "Practitioner.identifier", "min": 0, "max": "*" }, "type": [{ "code": "Identifier" }], "isSummary": true },
+      { "id": "Practitioner.active", "path": "Practitioner.active", "min": 0, "max": "1", "base": { "path": "Practitioner.active", "min": 0, "max": "1" }, "type": [{ "code": "boolean" }], "isSummary": true },
+      { "id": "Practitioner.name", "path": "Practitioner.name", "min": 0, "max": "*", "base": { "path": "Practitioner.name", "min": 0, "max": "*" }, "type": [{ "code": "HumanName" }], "isSummary": true },
+      { "id": "Practitioner.telecom", "path": "Practitioner.telecom", "min": 0, "max": "*", "base": { "path": "Practitioner.telecom", "min": 0, "max": "*" }, "type": [{ "code": "ContactPoint" }], "isSummary": true },
+      { "id": "Practitioner.gender", "path": "Practitioner.gender", "min": 0, "max": "1", "base": { "path": "Practitioner.gender", "min": 0, "max": "1" }, "type": [{ "code": "code" }], "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1" } },
+      { "id": "Practitioner.birthDate", "path": "Practitioner.birthDate", "min": 0, "max": "1", "base": { "path": "Practitioner.birthDate", "min": 0, "max": "1" }, "type": [{ "code": "date" }], "isSummary": true }
+    ]
+  }
+}

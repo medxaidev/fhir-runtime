@@ -1,0 +1,25 @@
+{
+  "description": "String escape sequences per FHIRPath spec",
+  "cases": [
+    {
+      "input": "'\\n'",
+      "expected": [{ "id": "String", "value": "\n" }]
+    },
+    {
+      "input": "'\\t'",
+      "expected": [{ "id": "String", "value": "\t" }]
+    },
+    {
+      "input": "'\\r'",
+      "expected": [{ "id": "String", "value": "\r" }]
+    },
+    {
+      "input": "'\\\\'",
+      "expected": [{ "id": "String", "value": "\\" }]
+    },
+    {
+      "input": "'\\u002a'",
+      "expected": [{ "id": "String", "value": "*" }]
+    }
+  ]
+}

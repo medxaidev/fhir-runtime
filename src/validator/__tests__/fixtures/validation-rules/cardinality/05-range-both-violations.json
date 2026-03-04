@@ -1,0 +1,45 @@
+{
+  "description": "Two scenarios: min=2 with 1 value (min violation), and max=3 with 5 values (max violation)",
+  "scenarios": [
+    {
+      "label": "below minimum",
+      "element": {
+        "path": "Bundle.entry",
+        "id": "Bundle.entry",
+        "min": 2,
+        "max": 5,
+        "types": [{ "code": "BackboneElement" }],
+        "constraints": [],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      "values": [{ "resource": {} }],
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "CARDINALITY_MIN_VIOLATION" }]
+    },
+    {
+      "label": "above maximum",
+      "element": {
+        "path": "Patient.identifier",
+        "id": "Patient.identifier",
+        "min": 0,
+        "max": 3,
+        "types": [{ "code": "Identifier" }],
+        "constraints": [],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      "values": [
+        { "system": "a", "value": "1" },
+        { "system": "b", "value": "2" },
+        { "system": "c", "value": "3" },
+        { "system": "d", "value": "4" },
+        { "system": "e", "value": "5" }
+      ],
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "CARDINALITY_MAX_VIOLATION" }]
+    }
+  ]
+}

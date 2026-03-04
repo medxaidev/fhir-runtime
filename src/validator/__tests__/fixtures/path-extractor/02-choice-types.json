@@ -1,0 +1,68 @@
+{
+  "description": "Observation resource with choice type fields (value[x]) for choice type path extraction",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "obs-1",
+    "status": "final",
+    "code": {
+      "coding": [
+        {
+          "system": "http://loinc.org",
+          "code": "8480-6",
+          "display": "Systolic blood pressure"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 120,
+      "unit": "mmHg",
+      "system": "http://unitsofmeasure.org",
+      "code": "mm[Hg]"
+    },
+    "effectiveDateTime": "2026-01-15T10:30:00Z",
+    "component": [
+      {
+        "code": {
+          "coding": [{ "system": "http://loinc.org", "code": "8480-6" }]
+        },
+        "valueQuantity": {
+          "value": 120,
+          "unit": "mmHg"
+        }
+      },
+      {
+        "code": {
+          "coding": [{ "system": "http://loinc.org", "code": "8462-4" }]
+        },
+        "valueQuantity": {
+          "value": 80,
+          "unit": "mmHg"
+        }
+      }
+    ]
+  },
+  "expectations": {
+    "Observation.value[x]": {
+      "count": 1,
+      "description": "Resolves to valueQuantity",
+      "firstValue": { "value": 120, "unit": "mmHg" }
+    },
+    "Observation.effective[x]": {
+      "count": 1,
+      "description": "Resolves to effectiveDateTime",
+      "values": ["2026-01-15T10:30:00Z"]
+    },
+    "Observation.component": {
+      "count": 2,
+      "description": "Two component entries"
+    },
+    "Observation.component.value[x]": {
+      "count": 2,
+      "description": "Choice type inside array elements"
+    },
+    "Observation.bodySite": {
+      "count": 0,
+      "description": "Missing optional field"
+    }
+  }
+}

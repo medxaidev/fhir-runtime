@@ -1,0 +1,49 @@
+{
+  "description": "Exists discriminator — match by presence of a field",
+  "slicingRoot": {
+    "path": "Observation.component",
+    "id": "Observation.component",
+    "min": 0, "max": "unbounded",
+    "types": [{ "code": "BackboneElement" }],
+    "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+    "slicing": {
+      "discriminators": [{ "type": "exists", "path": "valueQuantity" }],
+      "rules": "open",
+      "ordered": false
+    }
+  },
+  "slices": [
+    {
+      "path": "Observation.component",
+      "id": "Observation.component:withQuantity",
+      "min": 0, "max": "unbounded",
+      "types": [{ "code": "BackboneElement" }],
+      "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+      "sliceName": "withQuantity"
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "value with valueQuantity field → matches withQuantity slice",
+      "values": [
+        { "code": { "text": "systolic" }, "valueQuantity": { "value": 120, "unit": "mmHg" } }
+      ],
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "value without valueQuantity → unmatched (open slicing, still valid)",
+      "values": [
+        { "code": { "text": "note" }, "valueString": "normal" }
+      ],
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "mixed values → both valid in open slicing",
+      "values": [
+        { "code": { "text": "systolic" }, "valueQuantity": { "value": 120, "unit": "mmHg" } },
+        { "code": { "text": "note" }, "valueString": "normal" }
+      ],
+      "expectedIssueCount": 0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "description": "Invalid: relax REQUIRED binding to extensible",
+  "base": {
+    "path": "Patient.gender",
+    "binding": {
+      "strength": "required",
+      "valueSet": "http://hl7.org/fhir/ValueSet/administrative-gender"
+    }
+  },
+  "diff": {
+    "path": "Patient.gender",
+    "binding": {
+      "strength": "extensible",
+      "valueSet": "http://example.org/ValueSet/custom-gender"
+    }
+  },
+  "expected": {
+    "strength": "extensible",
+    "issueCount": 1,
+    "issueCode": "BINDING_VIOLATION"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "description": "No diff constraints: base constraints preserved as-is",
+  "base": {
+    "path": "Patient.name",
+    "constraint": [
+      { "key": "ele-1", "severity": "error", "human": "All FHIR elements must have a @value or children" },
+      { "key": "pat-1", "severity": "warning", "human": "Name should have family" }
+    ]
+  },
+  "diff": {
+    "path": "Patient.name"
+  },
+  "expected": {
+    "constraintCount": 2,
+    "constraintKeys": ["ele-1", "pat-1"]
+  }
+}

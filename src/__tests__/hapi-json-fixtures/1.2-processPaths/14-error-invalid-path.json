@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-invalid-path",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorInvalidPath",
+  "name": "ErrorInvalidPath",
+  "title": "ERROR CASE: Non-existent path in differential",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.nonExistentField",
+        "path": "Patient.nonExistentField",
+        "min": 1
+      }
+    ]
+  }
+}

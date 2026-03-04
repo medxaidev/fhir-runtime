@@ -1,0 +1,19 @@
+{
+  "description": "Invalid Observation — missing required status (min=1)",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "no-status-obs",
+    "code": { "coding": [{ "system": "http://loinc.org", "code": "85354-9" }] }
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+    "name": "Observation", "kind": "resource", "type": "Observation", "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["CARDINALITY_MIN_VIOLATION"]
+}

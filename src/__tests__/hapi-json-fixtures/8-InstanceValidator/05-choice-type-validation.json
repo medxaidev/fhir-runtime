@@ -1,0 +1,43 @@
+{
+  "resourceType": "Bundle",
+  "id": "choice-type-validation",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/QuantityObs",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "quantity-obs",
+        "url": "http://example.org/fhir/StructureDefinition/QuantityObs",
+        "name": "QuantityObs",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Observation",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Observation.value[x]",
+              "path": "Observation.value[x]",
+              "min": 1,
+              "type": [{ "code": "Quantity" }]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Observation/choice-valid",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "choice-valid",
+        "meta": { "profile": ["http://example.org/fhir/StructureDefinition/QuantityObs"] },
+        "status": "final",
+        "code": { "coding": [{ "system": "http://loinc.org", "code": "8867-4" }] },
+        "valueQuantity": { "value": 72, "unit": "/min", "system": "http://unitsofmeasure.org", "code": "/min" }
+      }
+    }
+  ]
+}

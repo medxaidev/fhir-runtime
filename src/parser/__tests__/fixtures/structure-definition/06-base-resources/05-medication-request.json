@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "MedicationRequest",
+  "url": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+  "version": "4.0.1",
+  "name": "MedicationRequest",
+  "title": "MedicationRequest",
+  "status": "active",
+  "description": "An order or request for both supply of the medication and the instructions for administration of the medication to a patient.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationRequest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "MedicationRequest", "path": "MedicationRequest", "min": 0, "max": "*", "base": { "path": "MedicationRequest", "min": 0, "max": "*" } },
+      { "id": "MedicationRequest.status", "path": "MedicationRequest.status", "min": 1, "max": "1", "base": { "path": "MedicationRequest.status", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/medicationrequest-status|4.0.1" } },
+      { "id": "MedicationRequest.intent", "path": "MedicationRequest.intent", "min": 1, "max": "1", "base": { "path": "MedicationRequest.intent", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/medicationrequest-intent|4.0.1" } },
+      { "id": "MedicationRequest.medication[x]", "path": "MedicationRequest.medication[x]", "min": 1, "max": "1", "base": { "path": "MedicationRequest.medication[x]", "min": 1, "max": "1" }, "type": [{ "code": "CodeableConcept" }, { "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Medication"] }], "isSummary": true },
+      { "id": "MedicationRequest.subject", "path": "MedicationRequest.subject", "min": 1, "max": "1", "base": { "path": "MedicationRequest.subject", "min": 1, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient", "http://hl7.org/fhir/StructureDefinition/Group"] }], "isSummary": true },
+      { "id": "MedicationRequest.authoredOn", "path": "MedicationRequest.authoredOn", "min": 0, "max": "1", "base": { "path": "MedicationRequest.authoredOn", "min": 0, "max": "1" }, "type": [{ "code": "dateTime" }], "isSummary": true },
+      { "id": "MedicationRequest.dosageInstruction", "path": "MedicationRequest.dosageInstruction", "min": 0, "max": "*", "base": { "path": "MedicationRequest.dosageInstruction", "min": 0, "max": "*" }, "type": [{ "code": "Dosage" }] }
+    ]
+  }
+}

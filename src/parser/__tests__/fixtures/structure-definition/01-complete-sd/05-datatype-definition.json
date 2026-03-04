@@ -1,0 +1,28 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/SimpleQuantity",
+  "name": "SimpleQuantity",
+  "title": "SimpleQuantity",
+  "status": "active",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "type": "Quantity",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Quantity",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Quantity",
+        "path": "Quantity",
+        "short": "A fixed quantity (no comparator)",
+        "definition": "A quantity where the comparator is not used."
+      },
+      {
+        "id": "Quantity.comparator",
+        "path": "Quantity.comparator",
+        "max": "0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhir-version-mismatch",
+  "url": "http://example.org/fhir/StructureDefinition/FhirVersionMismatch",
+  "name": "FhirVersionMismatch",
+  "title": "EDGE CASE: SD declares fhirVersion 3.0.2 (STU3) but we expect R4",
+  "status": "active",
+  "fhirVersion": "3.0.2",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      { "id": "Patient.name", "path": "Patient.name", "min": 1 }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/BaseAndType",
+  "name": "BaseAndType",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Resource", "min": 0, "max": "*" }
+      },
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.deceased[x]", "min": 0, "max": "1" },
+        "type": [
+          { "code": "boolean" },
+          { "code": "dateTime" }
+        ]
+      },
+      {
+        "id": "Patient.generalPractitioner",
+        "path": "Patient.generalPractitioner",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.generalPractitioner", "min": 0, "max": "*" },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
+            ],
+            "aggregation": ["referenced", "bundled"],
+            "versioning": "either"
+          }
+        ]
+      },
+      {
+        "id": "Patient.managingOrganization",
+        "path": "Patient.managingOrganization",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.managingOrganization", "min": 0, "max": "1" },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Organization"],
+            "aggregation": ["referenced"],
+            "versioning": "independent"
+          }
+        ]
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.name", "min": 0, "max": "*" },
+        "type": [
+          {
+            "code": "HumanName",
+            "profile": ["http://hl7.org/fhir/StructureDefinition/HumanName"]
+          }
+        ]
+      }
+    ]
+  }
+}

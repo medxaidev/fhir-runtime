@@ -1,0 +1,52 @@
+{
+  "resourceType": "Bundle",
+  "id": "slice-validation",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/SlicedPatient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "sliced-patient",
+        "url": "http://example.org/fhir/StructureDefinition/SlicedPatient",
+        "name": "SlicedPatient",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.identifier",
+              "path": "Patient.identifier",
+              "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "closed" },
+              "min": 1
+            },
+            {
+              "id": "Patient.identifier:mrn",
+              "path": "Patient.identifier",
+              "sliceName": "mrn",
+              "min": 1,
+              "max": "1",
+              "patternIdentifier": { "system": "http://hospital.example.org/mrn" }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Patient/sliced-valid",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "sliced-valid",
+        "meta": { "profile": ["http://example.org/fhir/StructureDefinition/SlicedPatient"] },
+        "identifier": [
+          { "system": "http://hospital.example.org/mrn", "value": "MRN-12345" }
+        ],
+        "name": [{ "family": "Smith" }]
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "modifier-extension-path",
+  "url": "http://example.org/fhir/StructureDefinition/ModifierExtensionPath",
+  "name": "ModifierExtensionPath",
+  "title": "Profile constraining modifierExtension — special handling required",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.modifierExtension",
+        "path": "Patient.modifierExtension",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "url" }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.modifierExtension:doNotContact",
+        "path": "Patient.modifierExtension",
+        "sliceName": "doNotContact",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/do-not-contact"
+            ]
+          }
+        ],
+        "isModifier": true,
+        "isModifierReason": "If true, no contact should be attempted"
+      }
+    ]
+  }
+}

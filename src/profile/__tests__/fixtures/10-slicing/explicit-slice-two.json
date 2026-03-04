@@ -1,0 +1,19 @@
+{
+  "description": "Explicit slicing: two slices on identifier with slicing definition",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.identifier", "min": 0, "max": "*" }
+  ],
+  "diff": [
+    { "path": "Patient.identifier", "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "open" } },
+    { "path": "Patient.identifier", "sliceName": "MRN", "min": 1, "max": "1" },
+    { "path": "Patient.identifier", "sliceName": "SSN", "min": 0, "max": "1" }
+  ],
+  "expected": {
+    "elementCount": 4,
+    "hasSlicingRoot": true,
+    "sliceNames": ["MRN", "SSN"],
+    "mrnMin": 1,
+    "ssnMin": 0
+  }
+}

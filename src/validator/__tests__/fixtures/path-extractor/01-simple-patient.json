@@ -1,0 +1,47 @@
+{
+  "description": "Simple Patient resource with scalar and array fields for basic path extraction",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "example-1",
+    "active": true,
+    "gender": "male",
+    "birthDate": "1990-01-15",
+    "name": [
+      {
+        "use": "official",
+        "family": "Smith",
+        "given": ["John", "James"]
+      },
+      {
+        "use": "nickname",
+        "family": "Doe",
+        "given": ["Johnny"]
+      }
+    ],
+    "identifier": [
+      {
+        "system": "urn:oid:1.2.3.4",
+        "value": "MRN-001"
+      },
+      {
+        "system": "http://example.org/ssn",
+        "value": "123-45-6789"
+      }
+    ]
+  },
+  "expectations": {
+    "Patient": { "count": 1, "description": "Root returns the whole resource" },
+    "Patient.id": { "count": 1, "values": ["example-1"] },
+    "Patient.active": { "count": 1, "values": [true] },
+    "Patient.gender": { "count": 1, "values": ["male"] },
+    "Patient.birthDate": { "count": 1, "values": ["1990-01-15"] },
+    "Patient.name": { "count": 2, "description": "Two HumanName entries" },
+    "Patient.name.family": { "count": 2, "values": ["Smith", "Doe"] },
+    "Patient.name.given": { "count": 3, "values": ["John", "James", "Johnny"] },
+    "Patient.name.use": { "count": 2, "values": ["official", "nickname"] },
+    "Patient.identifier": { "count": 2, "description": "Two Identifier entries" },
+    "Patient.identifier.system": { "count": 2 },
+    "Patient.identifier.value": { "count": 2, "values": ["MRN-001", "123-45-6789"] },
+    "Patient.nonExistent": { "count": 0, "description": "Missing path returns empty" }
+  }
+}

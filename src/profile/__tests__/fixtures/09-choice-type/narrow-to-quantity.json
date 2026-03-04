@@ -1,0 +1,17 @@
+{
+  "description": "Choice type: narrow value[x] to valueQuantity",
+  "base": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.value[x]", "min": 0, "max": "1", "type": [{ "code": "Quantity" }, { "code": "string" }, { "code": "CodeableConcept" }] }
+  ],
+  "diff": [
+    { "path": "Observation.valueQuantity", "min": 1 }
+  ],
+  "expected": {
+    "elementCount": 2,
+    "valueMin": 1,
+    "valueTypeCount": 1,
+    "valueTypeCode": "Quantity",
+    "issueCount": 0
+  }
+}

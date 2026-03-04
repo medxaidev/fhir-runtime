@@ -1,0 +1,21 @@
+{
+  "description": "Input validation: minimal valid profile passes validation",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ValidProfile",
+    "name": "ValidProfile",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [
+        { "path": "Patient.name", "min": 1 }
+      ]
+    }
+  },
+  "expected": {
+    "passesValidation": true
+  }
+}

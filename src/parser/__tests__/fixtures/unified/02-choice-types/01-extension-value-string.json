@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/ExtValueString",
+  "name": "ExtValueString",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.extension:nickname",
+        "path": "Patient.extension",
+        "sliceName": "nickname",
+        "type": [{ "code": "Extension", "profile": ["http://example.org/fhir/StructureDefinition/nickname"] }],
+        "fixedUri": "http://example.org/fhir/StructureDefinition/nickname"
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "description": "Simple FHIRPath invariant expressions on single elements",
+  "tests": [
+    {
+      "description": "name.exists() — Patient has name",
+      "expression": "name.exists()",
+      "value": { "resourceType": "Patient", "name": [{ "family": "Smith" }] },
+      "expected": true
+    },
+    {
+      "description": "name.exists() — Patient missing name",
+      "expression": "name.exists()",
+      "value": { "resourceType": "Patient" },
+      "expected": false
+    },
+    {
+      "description": "active.exists() — active present",
+      "expression": "active.exists()",
+      "value": { "resourceType": "Patient", "active": true },
+      "expected": true
+    },
+    {
+      "description": "active.exists() — active missing",
+      "expression": "active.exists()",
+      "value": { "resourceType": "Patient" },
+      "expected": false
+    },
+    {
+      "description": "status = 'final' — Observation status check",
+      "expression": "status = 'final'",
+      "value": { "resourceType": "Observation", "status": "final" },
+      "expected": true
+    },
+    {
+      "description": "status = 'final' — Observation status mismatch",
+      "expression": "status = 'final'",
+      "value": { "resourceType": "Observation", "status": "preliminary" },
+      "expected": false
+    }
+  ]
+}

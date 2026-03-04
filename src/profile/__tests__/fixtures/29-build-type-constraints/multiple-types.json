@@ -1,0 +1,13 @@
+{
+  "description": "Multiple types (choice type element)",
+  "input": [
+    { "code": "string" },
+    { "code": "Quantity" },
+    { "code": "CodeableConcept" }
+  ],
+  "expected": [
+    { "code": "string" },
+    { "code": "Quantity" },
+    { "code": "CodeableConcept" }
+  ]
+}

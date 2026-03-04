@@ -1,0 +1,20 @@
+{
+  "description": "Append: multiple new constraints added",
+  "base": {
+    "path": "Observation.value[x]",
+    "constraint": [
+      { "key": "ele-1", "severity": "error", "human": "Base constraint" }
+    ]
+  },
+  "diff": {
+    "path": "Observation.value[x]",
+    "constraint": [
+      { "key": "obs-1", "severity": "error", "human": "Value must be present" },
+      { "key": "obs-2", "severity": "warning", "human": "Value should have units" }
+    ]
+  },
+  "expected": {
+    "constraintCount": 3,
+    "constraintKeys": ["ele-1", "obs-1", "obs-2"]
+  }
+}

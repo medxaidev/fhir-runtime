@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "binding-tighten-extensible-to-required",
+  "url": "http://example.org/fhir/StructureDefinition/BindingTighten",
+  "name": "BindingTighten",
+  "title": "Tighten binding: Patient.maritalStatus extensible→required",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.maritalStatus",
+        "path": "Patient.maritalStatus",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/marital-status"
+        }
+      }
+    ]
+  }
+}

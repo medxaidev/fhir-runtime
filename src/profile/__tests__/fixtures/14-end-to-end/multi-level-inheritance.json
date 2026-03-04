@@ -1,0 +1,58 @@
+{
+  "description": "End-to-end: multi-level inheritance A→B→Patient with cumulative constraints",
+  "patientSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.identifier", "min": 0, "max": "*" },
+        { "path": "Patient.name", "min": 0, "max": "*" },
+        { "path": "Patient.birthDate", "min": 0, "max": "1" }
+      ]
+    }
+  },
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/BasePatient",
+    "name": "BasePatient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [
+        { "path": "Patient.identifier", "min": 1 },
+        { "path": "Patient.name", "min": 1 }
+      ]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/DerivedPatient",
+    "name": "DerivedPatient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/BasePatient",
+    "differential": {
+      "element": [
+        { "path": "Patient.birthDate", "min": 1, "mustSupport": true }
+      ]
+    }
+  },
+  "expected": {
+    "success": true,
+    "identifierMin": 1,
+    "nameMin": 1,
+    "birthDateMin": 1,
+    "birthDateMustSupport": true
+  }
+}

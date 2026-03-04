@@ -1,0 +1,7 @@
+{
+  "description": "Single root element — always valid",
+  "snapshot": [
+    { "path": "Patient" }
+  ],
+  "expected": { "valid": true, "issueCount": 0 }
+}

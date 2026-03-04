@@ -1,0 +1,82 @@
+{
+  "resourceType": "Bundle",
+  "id": "three-level-inheritance",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/Level1Patient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "level1-patient",
+        "url": "http://example.org/fhir/StructureDefinition/Level1Patient",
+        "name": "Level1Patient",
+        "title": "Level 1: Requires name",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.name",
+              "path": "Patient.name",
+              "min": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/Level2Patient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "level2-patient",
+        "url": "http://example.org/fhir/StructureDefinition/Level2Patient",
+        "name": "Level2Patient",
+        "title": "Level 2: Adds birthDate, inherits name requirement",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://example.org/fhir/StructureDefinition/Level1Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.birthDate",
+              "path": "Patient.birthDate",
+              "min": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/Level3Patient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "level3-patient",
+        "url": "http://example.org/fhir/StructureDefinition/Level3Patient",
+        "name": "Level3Patient",
+        "title": "Level 3: Adds gender, inherits name + birthDate",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://example.org/fhir/StructureDefinition/Level2Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.gender",
+              "path": "Patient.gender",
+              "min": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

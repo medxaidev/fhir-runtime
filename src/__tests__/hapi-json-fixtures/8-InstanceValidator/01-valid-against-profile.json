@@ -1,0 +1,40 @@
+{
+  "resourceType": "Bundle",
+  "id": "valid-against-profile",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/RequiredNamePatient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "required-name-patient",
+        "url": "http://example.org/fhir/StructureDefinition/RequiredNamePatient",
+        "name": "RequiredNamePatient",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.name", "path": "Patient.name", "min": 1, "mustSupport": true },
+            { "id": "Patient.birthDate", "path": "Patient.birthDate", "min": 1, "mustSupport": true }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Patient/valid-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "valid-1",
+        "meta": {
+          "profile": ["http://example.org/fhir/StructureDefinition/RequiredNamePatient"]
+        },
+        "name": [{ "family": "Smith", "given": ["John"] }],
+        "birthDate": "1990-01-15"
+      }
+    }
+  ]
+}

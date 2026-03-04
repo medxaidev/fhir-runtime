@@ -1,0 +1,14 @@
+{
+  "description": "Valid: deeply nested elements in correct order",
+  "snapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.contact" },
+    { "path": "Patient.contact.name" },
+    { "path": "Patient.contact.name.given" },
+    { "path": "Patient.contact.name.family" },
+    { "path": "Patient.contact.telecom" },
+    { "path": "Patient.contact.telecom.system" },
+    { "path": "Patient.contact.telecom.value" }
+  ],
+  "expected": { "valid": true, "issueCount": 0 }
+}

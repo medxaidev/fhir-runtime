@@ -1,0 +1,35 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "nested-element-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/NestedElementConstraint",
+  "name": "NestedElementConstraint",
+  "title": "Constrain nested element Patient.name.family to required",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      },
+      {
+        "id": "Patient.name.family",
+        "path": "Patient.name.family",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.name.given",
+        "path": "Patient.name.given",
+        "min": 1,
+        "max": "5",
+        "mustSupport": true
+      }
+    ]
+  }
+}

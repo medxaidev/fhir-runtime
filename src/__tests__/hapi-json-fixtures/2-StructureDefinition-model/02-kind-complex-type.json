@@ -1,0 +1,40 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kind-complex-type",
+  "url": "http://example.org/fhir/StructureDefinition/BirthSex",
+  "name": "BirthSex",
+  "title": "kind=complex-type — Extension definition",
+  "status": "active",
+  "kind": "complex-type",
+  "abstract": false,
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "context": [
+    { "type": "element", "expression": "Patient" }
+  ],
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Birth sex of patient"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://example.org/fhir/StructureDefinition/BirthSex"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [{ "code": "code" }],
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/core/ValueSet/birthsex"
+        }
+      }
+    ]
+  }
+}

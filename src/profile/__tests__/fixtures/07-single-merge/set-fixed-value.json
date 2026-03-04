@@ -1,0 +1,15 @@
+{
+  "description": "Single merge: set fixed value on element",
+  "base": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.status", "min": 1, "max": "1" }
+  ],
+  "diff": [
+    { "path": "Observation.status", "fixed": "final" }
+  ],
+  "expected": {
+    "elementCount": 2,
+    "statusFixed": "final",
+    "issueCount": 0
+  }
+}

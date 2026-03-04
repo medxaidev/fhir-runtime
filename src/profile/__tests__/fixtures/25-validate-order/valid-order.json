@@ -1,0 +1,14 @@
+{
+  "description": "Valid snapshot order — parents before children, no interleaving",
+  "snapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.id" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.identifier.system" },
+    { "path": "Patient.identifier.value" },
+    { "path": "Patient.name" },
+    { "path": "Patient.name.given" },
+    { "path": "Patient.name.family" }
+  ],
+  "expected": { "valid": true, "issueCount": 0 }
+}

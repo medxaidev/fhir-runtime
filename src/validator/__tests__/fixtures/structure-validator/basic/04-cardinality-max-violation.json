@@ -1,0 +1,22 @@
+{
+  "description": "Cardinality max violation — max=1 but 2 values present → CARDINALITY_MAX_VIOLATION",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "multi-gender",
+    "gender": ["male", "female"]
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "kind": "resource",
+    "type": "Patient",
+    "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.gender", "id": "Patient.gender", "min": 0, "max": 1, "types": [{ "code": "code" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCount": 1,
+  "expectedIssueCodes": ["CARDINALITY_MAX_VIOLATION"]
+}

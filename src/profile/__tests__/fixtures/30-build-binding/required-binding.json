@@ -1,0 +1,13 @@
+{
+  "description": "Required binding with valueSet and description",
+  "input": {
+    "strength": "required",
+    "valueSet": "http://hl7.org/fhir/ValueSet/administrative-gender",
+    "description": "The gender of a person used for administrative purposes"
+  },
+  "expected": {
+    "strength": "required",
+    "valueSetUrl": "http://hl7.org/fhir/ValueSet/administrative-gender",
+    "description": "The gender of a person used for administrative purposes"
+  }
+}

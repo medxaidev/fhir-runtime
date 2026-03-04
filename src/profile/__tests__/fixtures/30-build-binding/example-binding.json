@@ -1,0 +1,13 @@
+{
+  "description": "Example binding strength",
+  "input": {
+    "strength": "example",
+    "valueSet": "http://hl7.org/fhir/ValueSet/observation-codes",
+    "description": "Codes identifying names of simple observations"
+  },
+  "expected": {
+    "strength": "example",
+    "valueSetUrl": "http://hl7.org/fhir/ValueSet/observation-codes",
+    "description": "Codes identifying names of simple observations"
+  }
+}

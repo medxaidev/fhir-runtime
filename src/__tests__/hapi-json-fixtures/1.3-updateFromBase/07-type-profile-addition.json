@@ -1,0 +1,29 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "type-profile-addition",
+  "url": "http://example.org/fhir/StructureDefinition/TypeProfileAddition",
+  "name": "TypeProfileAddition",
+  "title": "Narrow Reference targetProfile: generalPractitioner→Practitioner only",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.generalPractitioner",
+        "path": "Patient.generalPractitioner",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Practitioner"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

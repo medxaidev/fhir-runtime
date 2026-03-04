@@ -1,0 +1,49 @@
+{
+  "resourceType": "Bundle",
+  "id": "circular-dependency",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/ProfileA",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "profile-a",
+        "url": "http://example.org/fhir/StructureDefinition/ProfileA",
+        "name": "ProfileA",
+        "title": "ERROR CASE: ProfileA depends on ProfileB",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://example.org/fhir/StructureDefinition/ProfileB",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.name", "path": "Patient.name", "min": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/ProfileB",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "profile-b",
+        "url": "http://example.org/fhir/StructureDefinition/ProfileB",
+        "name": "ProfileB",
+        "title": "ERROR CASE: ProfileB depends on ProfileA (circular!)",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://example.org/fhir/StructureDefinition/ProfileA",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.birthDate", "path": "Patient.birthDate", "min": 1 }
+          ]
+        }
+      }
+    }
+  ]
+}

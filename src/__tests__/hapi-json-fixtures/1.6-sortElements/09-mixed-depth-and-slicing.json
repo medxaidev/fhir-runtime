@@ -1,0 +1,57 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "mixed-depth-and-slicing",
+  "url": "http://example.org/fhir/StructureDefinition/MixedDepthAndSlicing",
+  "name": "MixedDepthAndSlicing",
+  "title": "Complex: nested elements + slicing — combined ordering rules",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "system" }],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:mrn.system",
+        "path": "Patient.identifier.system",
+        "fixedUri": "http://hospital.example.org/mrn"
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      },
+      {
+        "id": "Patient.name.family",
+        "path": "Patient.name.family",
+        "min": 1
+      },
+      {
+        "id": "Patient.contact",
+        "path": "Patient.contact",
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.contact.name",
+        "path": "Patient.contact.name",
+        "min": 1
+      }
+    ]
+  }
+}

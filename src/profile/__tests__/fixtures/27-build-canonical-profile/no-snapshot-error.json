@@ -1,0 +1,15 @@
+{
+  "description": "SD without snapshot → throws error",
+  "input": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/fhir/StructureDefinition/NoSnapshot",
+    "name": "NoSnapshot",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient"
+  },
+  "expected": {
+    "throws": true,
+    "errorContains": "no snapshot"
+  }
+}

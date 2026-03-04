@@ -1,0 +1,23 @@
+{
+  "resourceType": "Patient",
+  "id": "primitive-ext-test",
+  "birthDate": "1970-03-30",
+  "_birthDate": {
+    "id": "bd-314159",
+    "extension": [
+      {
+        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+        "valueDateTime": "1970-03-30T14:25:00Z"
+      }
+    ]
+  },
+  "language": "en",
+  "_language": {
+    "extension": [
+      {
+        "url": "http://example.org/fhir/StructureDefinition/language-confidence",
+        "valueDecimal": 0.95
+      }
+    ]
+  }
+}

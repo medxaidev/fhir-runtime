@@ -1,0 +1,44 @@
+{
+  "resourceType": "Bundle",
+  "id": "reference-validation",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/StrictRefObs",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "strict-ref-obs",
+        "url": "http://example.org/fhir/StructureDefinition/StrictRefObs",
+        "name": "StrictRefObs",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Observation",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Observation.subject",
+              "path": "Observation.subject",
+              "min": 1,
+              "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient"] }]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Observation/ref-invalid",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ref-invalid",
+        "_comment": "ERROR: subject references Device but only Patient is allowed",
+        "meta": { "profile": ["http://example.org/fhir/StructureDefinition/StrictRefObs"] },
+        "status": "final",
+        "code": { "coding": [{ "system": "http://loinc.org", "code": "8867-4" }] },
+        "subject": { "reference": "Device/123" }
+      }
+    }
+  ]
+}

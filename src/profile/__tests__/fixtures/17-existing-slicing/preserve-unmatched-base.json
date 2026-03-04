@@ -1,0 +1,21 @@
+{
+  "description": "Case B: Unmatched base slices are preserved as-is",
+  "baseElements": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.identifier", "min": 0, "max": "*", "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "open" } },
+    { "path": "Patient.identifier", "sliceName": "MRN", "min": 0, "max": "1" },
+    { "path": "Patient.identifier", "sliceName": "SSN", "min": 0, "max": "1" },
+    { "path": "Patient.identifier", "sliceName": "DL", "min": 0, "max": "1" },
+    { "path": "Patient.name", "min": 0, "max": "*" }
+  ],
+  "diffElements": [
+    { "path": "Patient.identifier", "sliceName": "SSN", "min": 1 }
+  ],
+  "expected": {
+    "sliceCount": 3,
+    "sliceNames": ["MRN", "SSN", "DL"],
+    "mrnMin": 0,
+    "ssnMin": 1,
+    "dlMin": 0
+  }
+}

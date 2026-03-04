@@ -1,0 +1,16 @@
+{
+  "description": "Choice type: narrow value[x] to valueString",
+  "base": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.value[x]", "min": 0, "max": "1", "type": [{ "code": "Quantity" }, { "code": "string" }, { "code": "boolean" }] }
+  ],
+  "diff": [
+    { "path": "Observation.valueString", "short": "Text value" }
+  ],
+  "expected": {
+    "valueTypeCount": 1,
+    "valueTypeCode": "string",
+    "valueShort": "Text value",
+    "issueCount": 0
+  }
+}

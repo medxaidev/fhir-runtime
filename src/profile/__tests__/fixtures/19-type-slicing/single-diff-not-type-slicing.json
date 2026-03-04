@@ -1,0 +1,9 @@
+{
+  "description": "Not type slicing: only one diff match",
+  "basePath": "Observation.value[x]",
+  "baseTypes": [{ "code": "Quantity" }, { "code": "string" }],
+  "diffMatches": [
+    { "path": "Observation.valueQuantity", "type": [{ "code": "Quantity" }] }
+  ],
+  "expected": { "isTypeSlicing": false }
+}

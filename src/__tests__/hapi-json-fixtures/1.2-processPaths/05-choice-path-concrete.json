@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "choice-path-concrete",
+  "url": "http://example.org/fhir/StructureDefinition/ChoicePathConcrete",
+  "name": "ChoicePathConcrete",
+  "title": "Use concrete choice path — Observation.valueQuantity",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]:valueQuantity",
+        "path": "Observation.valueQuantity",
+        "min": 1,
+        "type": [
+          { "code": "Quantity" }
+        ]
+      }
+    ]
+  }
+}

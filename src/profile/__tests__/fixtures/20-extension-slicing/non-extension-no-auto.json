@@ -1,0 +1,7 @@
+{
+  "description": "Non-extension path does NOT get auto extension slicing",
+  "path": "Patient.identifier",
+  "expected": {
+    "noAutoSlicing": true
+  }
+}

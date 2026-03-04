@@ -1,0 +1,16 @@
+{
+  "description": "Diff only: base has no constraints, diff adds them",
+  "base": {
+    "path": "Patient.birthDate"
+  },
+  "diff": {
+    "path": "Patient.birthDate",
+    "constraint": [
+      { "key": "bd-1", "severity": "warning", "human": "Birth date should be in the past" }
+    ]
+  },
+  "expected": {
+    "constraintCount": 1,
+    "constraintKeys": ["bd-1"]
+  }
+}

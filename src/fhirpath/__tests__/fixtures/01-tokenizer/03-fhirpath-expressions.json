@@ -1,0 +1,57 @@
+{
+  "description": "FHIRPath expression tokenization: paths, functions, indexers",
+  "cases": [
+    {
+      "input": "Patient.name.given",
+      "expected": [
+        { "id": "Symbol", "value": "Patient" },
+        { "id": ".", "value": "." },
+        { "id": "Symbol", "value": "name" },
+        { "id": ".", "value": "." },
+        { "id": "Symbol", "value": "given" }
+      ]
+    },
+    {
+      "input": "Patient.name[0]",
+      "expected": [
+        { "id": "Symbol", "value": "Patient" },
+        { "id": ".", "value": "." },
+        { "id": "Symbol", "value": "name" },
+        { "id": "[", "value": "[" },
+        { "id": "Number", "value": "0" },
+        { "id": "]", "value": "]" }
+      ]
+    },
+    {
+      "input": "Patient.telecom.where(system='email')",
+      "expected": [
+        { "id": "Symbol", "value": "Patient" },
+        { "id": ".", "value": "." },
+        { "id": "Symbol", "value": "telecom" },
+        { "id": ".", "value": "." },
+        { "id": "Symbol", "value": "where" },
+        { "id": "(", "value": "(" },
+        { "id": "Symbol", "value": "system" },
+        { "id": "=", "value": "=" },
+        { "id": "String", "value": "email" },
+        { "id": ")", "value": ")" }
+      ]
+    },
+    {
+      "input": "Practitioner.name | Patient.name",
+      "expected": [
+        { "id": "Symbol", "value": "Practitioner" },
+        { "id": ".", "value": "." },
+        { "id": "Symbol", "value": "name" },
+        { "id": "|", "value": "|" },
+        { "id": "Symbol", "value": "Patient" },
+        { "id": ".", "value": "." },
+        { "id": "Symbol", "value": "name" }
+      ]
+    },
+    {
+      "input": "$this",
+      "expected": [{ "id": "Symbol", "value": "$this" }]
+    }
+  ]
+}

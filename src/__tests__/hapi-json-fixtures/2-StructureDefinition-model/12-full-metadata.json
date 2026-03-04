@@ -1,0 +1,63 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "full-metadata",
+  "url": "http://example.org/fhir/StructureDefinition/FullMetadata",
+  "version": "1.0.0",
+  "name": "FullMetadata",
+  "title": "Complete StructureDefinition with all metadata fields",
+  "status": "active",
+  "experimental": false,
+  "date": "2026-02-09",
+  "publisher": "Example Organization",
+  "contact": [
+    {
+      "name": "FHIR Team",
+      "telecom": [
+        { "system": "url", "value": "https://example.org/fhir" },
+        { "system": "email", "value": "fhir@example.org" }
+      ]
+    }
+  ],
+  "description": "A fully populated StructureDefinition demonstrating all metadata fields.",
+  "useContext": [
+    {
+      "code": { "system": "http://terminology.hl7.org/CodeSystem/usage-context-type", "code": "focus" },
+      "valueCodeableConcept": {
+        "coding": [{ "system": "http://snomed.info/sct", "code": "116154003" }]
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [{ "system": "urn:iso:std:iso:3166", "code": "US", "display": "United States of America" }]
+    }
+  ],
+  "purpose": "Demonstrate all metadata fields in a StructureDefinition.",
+  "copyright": "Copyright 2026 Example Organization. All rights reserved.",
+  "keyword": [
+    { "system": "http://example.org/tags", "code": "demo" }
+  ],
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

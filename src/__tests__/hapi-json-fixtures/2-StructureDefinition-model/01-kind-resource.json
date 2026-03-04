@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kind-resource",
+  "url": "http://example.org/fhir/StructureDefinition/KindResource",
+  "name": "KindResource",
+  "title": "kind=resource — Standard Patient profile",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      }
+    ]
+  }
+}

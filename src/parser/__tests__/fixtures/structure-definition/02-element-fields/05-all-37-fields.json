@@ -1,0 +1,104 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/All37Fields",
+  "name": "All37Fields",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Observation.value[x]",
+        "extension": [
+          { "url": "http://example.org/fhir/StructureDefinition/element-note", "valueString": "test extension" }
+        ],
+        "modifierExtension": [
+          { "url": "http://example.org/fhir/StructureDefinition/must-understand", "valueBoolean": true }
+        ],
+        "path": "Observation.value[x]",
+        "representation": ["xmlAttr"],
+        "sliceName": "valueQuantity",
+        "sliceIsConstraining": false,
+        "label": "Observation Value",
+        "code": [
+          { "system": "http://loinc.org", "code": "29463-7", "display": "Body Weight" }
+        ],
+        "slicing": {
+          "discriminator": [{ "type": "type", "path": "$this" }],
+          "rules": "closed"
+        },
+        "short": "Actual result",
+        "definition": "The information determined as a result of making the observation.",
+        "comment": "Normally, an observation will have either a value or a set of related observations.",
+        "requirements": "An observation exists to have a value, though it might not if it is in error.",
+        "alias": ["result", "answer"],
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Observation.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "contentReference": "#Observation.component.value[x]",
+        "type": [
+          {
+            "code": "Quantity",
+            "profile": ["http://hl7.org/fhir/StructureDefinition/SimpleQuantity"],
+            "targetProfile": [],
+            "aggregation": ["contained"],
+            "versioning": "specific"
+          }
+        ],
+        "defaultValueQuantity": { "value": 0, "unit": "kg" },
+        "meaningWhenMissing": "No observation value was recorded.",
+        "orderMeaning": "N/A for single values",
+        "fixedString": "fixed-test",
+        "patternQuantity": { "unit": "kg" },
+        "example": [
+          {
+            "label": "Normal weight",
+            "valueQuantity": { "value": 70, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg" }
+          }
+        ],
+        "minValueInteger": 0,
+        "maxValueInteger": 1000,
+        "maxLength": 256,
+        "condition": ["obs-7"],
+        "constraint": [
+          {
+            "key": "obs-7",
+            "severity": "error",
+            "human": "If Observation.code is the same as a component code then the value element associated with the code SHALL NOT be present.",
+            "expression": "value.empty() or component.code.where(coding.intersect(%resource.code.coding).exists()).empty()",
+            "xpath": "not(f:*[starts-with(local-name(.), 'value')])",
+            "source": "http://hl7.org/fhir/StructureDefinition/Observation"
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false,
+        "isModifierReason": "N/A",
+        "isSummary": true,
+        "binding": {
+          "strength": "extensible",
+          "description": "Codes for observation values",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "language": "application/fhir",
+            "map": "OBX-5",
+            "comment": "Maps to OBX segment field 5"
+          },
+          {
+            "identity": "rim",
+            "map": ".value"
+          }
+        ]
+      }
+    ]
+  }
+}

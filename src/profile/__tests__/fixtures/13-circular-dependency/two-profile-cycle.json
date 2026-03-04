@@ -1,0 +1,32 @@
+{
+  "description": "Circular dependency: A→B→A cycle — should throw on second generate",
+  "sdA": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ProfileA",
+    "name": "ProfileA",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/ProfileB",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "sdB": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ProfileB",
+    "name": "ProfileB",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/ProfileA",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "expected": {
+    "throws": "SnapshotCircularDependencyError"
+  }
+}

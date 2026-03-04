@@ -1,0 +1,21 @@
+{
+  "description": "Single merge: multiple elements constrained in one diff",
+  "base": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.status", "min": 1, "max": "1" },
+    { "path": "Observation.code", "min": 1, "max": "1", "short": "Type of observation" },
+    { "path": "Observation.subject", "min": 0, "max": "1" },
+    { "path": "Observation.effective[x]", "min": 0, "max": "1" }
+  ],
+  "diff": [
+    { "path": "Observation.code", "short": "Vital sign code" },
+    { "path": "Observation.subject", "min": 1 }
+  ],
+  "expected": {
+    "elementCount": 5,
+    "codeShort": "Vital sign code",
+    "subjectMin": 1,
+    "statusMin": 1,
+    "issueCount": 0
+  }
+}

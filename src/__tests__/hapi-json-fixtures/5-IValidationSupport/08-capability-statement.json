@@ -1,0 +1,36 @@
+{
+  "resourceType": "CapabilityStatement",
+  "id": "example-server",
+  "url": "http://example.org/fhir/CapabilityStatement/example-server",
+  "version": "1.0.0",
+  "name": "ExampleServer",
+  "status": "active",
+  "date": "2026-02-09",
+  "kind": "instance",
+  "fhirVersion": "4.0.1",
+  "format": ["json", "xml"],
+  "rest": [
+    {
+      "mode": "server",
+      "resource": [
+        {
+          "type": "Patient",
+          "profile": "http://example.org/fhir/StructureDefinition/CorePatient",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ]
+        },
+        {
+          "type": "Observation",
+          "profile": "http://example.org/fhir/StructureDefinition/CoreObservation",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" },
+            { "code": "create" }
+          ]
+        }
+      ]
+    }
+  ]
+}

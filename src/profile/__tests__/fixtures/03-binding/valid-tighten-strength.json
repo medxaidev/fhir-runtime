@@ -1,0 +1,22 @@
+{
+  "description": "Valid: tighten binding from extensible to required",
+  "base": {
+    "path": "Observation.code",
+    "binding": {
+      "strength": "extensible",
+      "valueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+    }
+  },
+  "diff": {
+    "path": "Observation.code",
+    "binding": {
+      "strength": "required",
+      "valueSet": "http://example.org/ValueSet/my-codes"
+    }
+  },
+  "expected": {
+    "strength": "required",
+    "valueSet": "http://example.org/ValueSet/my-codes",
+    "issueCount": 0
+  }
+}

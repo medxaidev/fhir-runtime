@@ -1,0 +1,15 @@
+{
+  "description": "Datatype expansion error: element has no type, cannot expand",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.extension", "min": 0, "max": "*" }
+  ],
+  "diff": [
+    { "path": "Patient.extension.url", "min": 1 }
+  ],
+  "datatypeCache": {},
+  "expected": {
+    "hasIssue": true,
+    "issueCode": "INTERNAL_ERROR"
+  }
+}

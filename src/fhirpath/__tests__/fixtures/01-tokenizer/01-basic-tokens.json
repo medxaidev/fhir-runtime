@@ -1,0 +1,37 @@
+{
+  "description": "Basic token types: numbers, strings, symbols, operators",
+  "cases": [
+    {
+      "input": "42",
+      "expected": [{ "id": "Number", "value": "42" }]
+    },
+    {
+      "input": "3.14",
+      "expected": [{ "id": "Number", "value": "3.14" }]
+    },
+    {
+      "input": "'hello world'",
+      "expected": [{ "id": "String", "value": "hello world" }]
+    },
+    {
+      "input": "name",
+      "expected": [{ "id": "Symbol", "value": "name" }]
+    },
+    {
+      "input": "true",
+      "expected": [{ "id": "true", "value": "true" }]
+    },
+    {
+      "input": "false",
+      "expected": [{ "id": "false", "value": "false" }]
+    },
+    {
+      "input": "+",
+      "expected": [{ "id": "+", "value": "+" }]
+    },
+    {
+      "input": "!=",
+      "expected": [{ "id": "!=", "value": "!=" }]
+    }
+  ]
+}

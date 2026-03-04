@@ -1,0 +1,22 @@
+{
+  "description": "Dedup: derived constraint with same key replaces base",
+  "base": {
+    "path": "Patient.name",
+    "constraint": [
+      { "key": "ele-1", "severity": "error", "human": "Original message" },
+      { "key": "pat-1", "severity": "warning", "human": "Name should have family" }
+    ]
+  },
+  "diff": {
+    "path": "Patient.name",
+    "constraint": [
+      { "key": "ele-1", "severity": "error", "human": "Updated message" }
+    ]
+  },
+  "expected": {
+    "constraintCount": 2,
+    "constraintKeys": ["ele-1", "pat-1"],
+    "updatedKey": "ele-1",
+    "updatedHuman": "Updated message"
+  }
+}

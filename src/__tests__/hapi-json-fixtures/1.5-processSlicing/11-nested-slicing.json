@@ -1,0 +1,70 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "nested-slicing",
+  "url": "http://example.org/fhir/StructureDefinition/NestedSlicing",
+  "name": "NestedSlicing",
+  "title": "Nested slicing (reslicing) — slice within a slice",
+  "description": "Reslice the 'mrn' slice of identifier by adding sub-slices based on type.coding",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "system" }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1,
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "type.coding.code" }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn/inpatient",
+        "path": "Patient.identifier",
+        "sliceName": "mrn/inpatient",
+        "min": 0,
+        "max": "1",
+        "patternIdentifier": {
+          "type": {
+            "coding": [
+              { "system": "http://example.org/id-type", "code": "inpatient" }
+            ]
+          },
+          "system": "http://hospital.example.org/mrn"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn/outpatient",
+        "path": "Patient.identifier",
+        "sliceName": "mrn/outpatient",
+        "min": 0,
+        "max": "1",
+        "patternIdentifier": {
+          "type": {
+            "coding": [
+              { "system": "http://example.org/id-type", "code": "outpatient" }
+            ]
+          },
+          "system": "http://hospital.example.org/mrn"
+        }
+      }
+    ]
+  }
+}

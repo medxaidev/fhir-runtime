@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "overwrite-definition",
+  "url": "http://example.org/fhir/StructureDefinition/OverwriteDefinition",
+  "name": "OverwriteDefinition",
+  "title": "Override definition text on Patient.birthDate",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "definition": "The date of birth for the patient. Must be a complete date (YYYY-MM-DD) in this profile.",
+        "min": 1
+      }
+    ]
+  }
+}

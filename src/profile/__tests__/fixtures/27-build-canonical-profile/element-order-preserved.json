@@ -1,0 +1,24 @@
+{
+  "description": "Elements Map preserves snapshot insertion order",
+  "input": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/fhir/StructureDefinition/OrderTest",
+    "name": "OrderTest",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Observation",
+    "snapshot": {
+      "element": [
+        { "path": "Observation", "id": "Observation", "min": 0, "max": "*" },
+        { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": "1" },
+        { "path": "Observation.value[x]", "id": "Observation.value[x]", "min": 0, "max": "1" },
+        { "path": "Observation.component", "id": "Observation.component", "min": 0, "max": "*" },
+        { "path": "Observation.component.code", "id": "Observation.component.code", "min": 1, "max": "1" }
+      ]
+    }
+  },
+  "expected": {
+    "elementCount": 5,
+    "elementPaths": ["Observation", "Observation.code", "Observation.value[x]", "Observation.component", "Observation.component.code"]
+  }
+}

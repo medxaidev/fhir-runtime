@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "set-max-length",
+  "url": "http://example.org/fhir/StructureDefinition/SetMaxLength",
+  "name": "SetMaxLength",
+  "title": "Set maxLength on Patient.name.family",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name.family",
+        "path": "Patient.name.family",
+        "maxLength": 100
+      }
+    ]
+  }
+}

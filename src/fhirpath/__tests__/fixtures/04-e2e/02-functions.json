@@ -1,0 +1,42 @@
+{
+  "description": "End-to-end: FHIRPath function calls on realistic resources",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "func-test",
+    "active": true,
+    "name": [
+      { "use": "official", "family": "Martinez", "given": ["Carlos", "Eduardo"] },
+      { "use": "nickname", "given": ["Charlie"] },
+      { "use": "old", "family": "Garcia" }
+    ],
+    "telecom": [
+      { "system": "phone", "value": "555-0301", "use": "home", "rank": 1 },
+      { "system": "phone", "value": "555-0302", "use": "work", "rank": 2 },
+      { "system": "email", "value": "carlos@example.com", "use": "home" }
+    ],
+    "gender": "male",
+    "birthDate": "1985-03-22"
+  },
+  "tests": [
+    { "expression": "Patient.name.count()", "expected": [3] },
+    { "expression": "Patient.name.first().family", "expected": ["Martinez"] },
+    { "expression": "Patient.name.last().family", "expected": ["Garcia"] },
+    { "expression": "Patient.name.tail().count()", "expected": [2] },
+    { "expression": "Patient.name.take(2).count()", "expected": [2] },
+    { "expression": "Patient.name.skip(1).count()", "expected": [2] },
+    { "expression": "Patient.name.exists()", "expected": [true] },
+    { "expression": "Patient.deceased.exists()", "expected": [false] },
+    { "expression": "Patient.name.empty()", "expected": [false] },
+    { "expression": "Patient.deceased.empty()", "expected": [true] },
+    { "expression": "Patient.name.where(use = 'official').family", "expected": ["Martinez"] },
+    { "expression": "Patient.name.where(use = 'nickname').given", "expected": ["Charlie"] },
+    { "expression": "Patient.telecom.where(system = 'email').value", "expected": ["carlos@example.com"] },
+    { "expression": "Patient.telecom.where(system = 'phone').count()", "expected": [2] },
+    { "expression": "Patient.name.select(family)", "expected": ["Martinez", "Garcia"] },
+    { "expression": "Patient.name.select(given)", "expected": ["Carlos", "Eduardo", "Charlie"] },
+    { "expression": "Patient.name.all(use.exists())", "expected": [true] },
+    { "expression": "Patient.telecom.all(system.exists())", "expected": [true] },
+    { "expression": "Patient.name.exists(use = 'official')", "expected": [true] },
+    { "expression": "Patient.name.exists(use = 'temp')", "expected": [false] }
+  ]
+}

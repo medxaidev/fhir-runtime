@@ -1,0 +1,42 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-representation",
+  "url": "http://example.org/fhir/StructureDefinition/EDRepresentation",
+  "name": "EDRepresentation",
+  "title": "ElementDefinition: representation, alias, code fields",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "alias": ["full name", "patient name", "legal name"],
+        "code": [
+          {
+            "system": "http://loinc.org",
+            "code": "54125-0",
+            "display": "Patient name"
+          }
+        ],
+        "min": 1
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "alias": ["DOB", "date of birth"],
+        "code": [
+          {
+            "system": "http://loinc.org",
+            "code": "21112-8",
+            "display": "Birth date"
+          }
+        ]
+      }
+    ]
+  }
+}

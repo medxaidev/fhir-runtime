@@ -1,0 +1,45 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-flags",
+  "url": "http://example.org/fhir/StructureDefinition/EDFlags",
+  "name": "EDFlags",
+  "title": "ElementDefinition: mustSupport, isModifier, isSummary flags",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "mustSupport": true,
+        "isSummary": true
+      },
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "isModifier": true,
+        "isModifierReason": "When false, the patient record may not be valid",
+        "isSummary": true,
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "mustSupport": true,
+        "isSummary": true,
+        "min": 1
+      },
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "isModifier": true,
+        "isModifierReason": "Deceased patients require different clinical handling",
+        "mustSupport": true
+      }
+    ]
+  }
+}

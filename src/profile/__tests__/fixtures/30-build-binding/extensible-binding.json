@@ -1,0 +1,11 @@
+{
+  "description": "Extensible binding with valueSet only",
+  "input": {
+    "strength": "extensible",
+    "valueSet": "http://hl7.org/fhir/ValueSet/condition-code"
+  },
+  "expected": {
+    "strength": "extensible",
+    "valueSetUrl": "http://hl7.org/fhir/ValueSet/condition-code"
+  }
+}

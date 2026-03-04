@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "exact-path-match",
+  "url": "http://example.org/fhir/StructureDefinition/ExactPathMatch",
+  "name": "ExactPathMatch",
+  "title": "Single element exact path match — Patient.active",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

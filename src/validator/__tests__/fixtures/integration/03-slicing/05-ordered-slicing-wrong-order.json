@@ -1,0 +1,29 @@
+{
+  "description": "Ordered slicing with wrong order → SLICING_ORDER_VIOLATION",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "wrong-order",
+    "identifier": [
+      { "system": "http://hl7.org/fhir/sid/us-ssn", "value": "123-45-6789" },
+      { "system": "http://hospital.example.org/mrn", "value": "MRN-001" }
+    ]
+  },
+  "profile": {
+    "url": "http://example.org/StructureDefinition/OrderedSlicedPatient",
+    "name": "OrderedSlicedPatient", "kind": "resource", "type": "Patient", "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.identifier", "id": "Patient.identifier", "min": 0, "max": "unbounded", "types": [{ "code": "Identifier" }],
+        "slicing": { "discriminators": [{ "type": "value", "path": "system" }], "rules": "open", "ordered": true }
+      },
+      { "path": "Patient.identifier", "id": "Patient.identifier:MRN", "min": 0, "max": 1, "types": [{ "code": "Identifier" }],
+        "sliceName": "MRN", "fixed": { "system": "http://hospital.example.org/mrn" }
+      },
+      { "path": "Patient.identifier", "id": "Patient.identifier:SSN", "min": 0, "max": 1, "types": [{ "code": "Identifier" }],
+        "sliceName": "SSN", "fixed": { "system": "http://hl7.org/fhir/sid/us-ssn" }
+      }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["SLICING_ORDER_VIOLATION"]
+}

@@ -1,0 +1,35 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "count-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/CountConstraint",
+  "name": "CountConstraint",
+  "title": "FHIRPath: name.count() >= 1 and identifier.count() <= 5",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "constraint": [
+          {
+            "key": "fp-count-1",
+            "severity": "error",
+            "human": "Patient must have 1-3 names",
+            "expression": "name.count() >= 1 and name.count() <= 3"
+          },
+          {
+            "key": "fp-count-2",
+            "severity": "warning",
+            "human": "Patient should have no more than 5 identifiers",
+            "expression": "identifier.count() <= 5"
+          }
+        ]
+      }
+    ]
+  }
+}

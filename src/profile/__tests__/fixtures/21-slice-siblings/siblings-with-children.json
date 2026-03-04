@@ -1,0 +1,14 @@
+{
+  "description": "getSliceSiblings: slices with child elements included",
+  "elements": [
+    { "path": "Patient.identifier", "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "open" } },
+    { "path": "Patient.identifier", "sliceName": "MRN" },
+    { "path": "Patient.identifier.system", "fixedUri": "http://hospital.org/mrn" },
+    { "path": "Patient.identifier.value" },
+    { "path": "Patient.identifier", "sliceName": "SSN" },
+    { "path": "Patient.identifier.system", "fixedUri": "http://hl7.org/fhir/sid/us-ssn" },
+    { "path": "Patient.name" }
+  ],
+  "slicingRootIndex": 0,
+  "expected": { "siblingCount": 5, "sliceNames": ["MRN", "SSN"] }
+}

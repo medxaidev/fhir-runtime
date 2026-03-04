@@ -1,0 +1,32 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-type-simple",
+  "url": "http://example.org/fhir/StructureDefinition/EDTypeSimple",
+  "name": "EDTypeSimple",
+  "title": "ElementDefinition: single type definitions",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "type": [{ "code": "boolean" }]
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "type": [{ "code": "date" }]
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "type": [{ "code": "HumanName" }]
+      }
+    ]
+  }
+}

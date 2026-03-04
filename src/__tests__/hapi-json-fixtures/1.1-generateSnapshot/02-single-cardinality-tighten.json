@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "single-cardinality-tighten",
+  "url": "http://example.org/fhir/StructureDefinition/SingleCardinalityTighten",
+  "name": "SingleCardinalityTighten",
+  "title": "Tighten Patient.name from 0..* to 1..*",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

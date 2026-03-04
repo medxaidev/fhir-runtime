@@ -1,0 +1,10 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/BooleanValues",
+  "name": "BooleanValues",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": true,
+  "type": "Patient",
+  "experimental": true
+}

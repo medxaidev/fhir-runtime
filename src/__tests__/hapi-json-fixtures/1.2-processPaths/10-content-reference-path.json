@@ -1,0 +1,32 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "content-reference-path",
+  "url": "http://example.org/fhir/StructureDefinition/ContentReferencePath",
+  "name": "ContentReferencePath",
+  "title": "Constrain element that uses contentReference (Questionnaire.item.item)",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Questionnaire",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Questionnaire",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Questionnaire.item",
+        "path": "Questionnaire.item",
+        "min": 1
+      },
+      {
+        "id": "Questionnaire.item.linkId",
+        "path": "Questionnaire.item.linkId",
+        "min": 1
+      },
+      {
+        "id": "Questionnaire.item.text",
+        "path": "Questionnaire.item.text",
+        "min": 1
+      }
+    ]
+  }
+}

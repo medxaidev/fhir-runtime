@@ -1,0 +1,13 @@
+{
+  "description": "Type slicing: diffs constrain different types on same path",
+  "basePath": "Observation.value[x]",
+  "baseTypes": [
+    { "code": "Quantity" },
+    { "code": "string" }
+  ],
+  "diffMatches": [
+    { "path": "Observation.value[x]", "type": [{ "code": "Quantity" }] },
+    { "path": "Observation.value[x]", "type": [{ "code": "string" }] }
+  ],
+  "expected": { "isTypeSlicing": true }
+}

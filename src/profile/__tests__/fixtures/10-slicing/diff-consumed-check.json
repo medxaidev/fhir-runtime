@@ -1,0 +1,17 @@
+{
+  "description": "Diff consumed: all diff elements should be marked consumed after merge",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.identifier", "min": 0, "max": "*" },
+    { "path": "Patient.name", "min": 0, "max": "*" }
+  ],
+  "diff": [
+    { "path": "Patient.identifier", "min": 1 },
+    { "path": "Patient.name", "min": 1 }
+  ],
+  "expected": {
+    "elementCount": 3,
+    "allConsumed": true,
+    "issueCount": 0
+  }
+}

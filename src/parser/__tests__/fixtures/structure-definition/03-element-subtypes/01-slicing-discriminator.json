@@ -1,0 +1,65 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/SlicingDiscriminator",
+  "name": "SlicingDiscriminator",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "system" }
+          ],
+          "description": "Slice identifiers by system",
+          "ordered": false,
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.extension",
+        "path": "Patient.extension",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "url" }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.telecom",
+        "path": "Patient.telecom",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "system" },
+            { "type": "value", "path": "use" }
+          ],
+          "description": "Slice by system and use",
+          "ordered": true,
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Patient.telecom:phone-home",
+        "path": "Patient.telecom",
+        "sliceName": "phone-home",
+        "min": 0,
+        "max": "1"
+      }
+    ]
+  }
+}

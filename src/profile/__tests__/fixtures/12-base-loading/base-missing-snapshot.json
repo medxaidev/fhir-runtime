@@ -1,0 +1,49 @@
+{
+  "description": "Base loading: base SD has no snapshot — recursive generation triggered",
+  "grandBaseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.name", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/BaseProfile",
+    "name": "BaseProfile",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/DerivedProfile",
+    "name": "DerivedProfile",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/BaseProfile",
+    "differential": {
+      "element": [{ "path": "Patient.name", "short": "Required name" }]
+    }
+  },
+  "expected": {
+    "success": true,
+    "nameMin": 1,
+    "nameShort": "Required name"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "combined-and",
+  "url": "http://example.org/fhir/StructureDefinition/CombinedAnd",
+  "name": "CombinedAnd",
+  "title": "FHIRPath: system.exists() and value.exists() — logical AND",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "constraint": [
+          {
+            "key": "fp-and-1",
+            "severity": "error",
+            "human": "Identifier must have both system and value",
+            "expression": "system.exists() and value.exists()"
+          }
+        ]
+      }
+    ]
+  }
+}

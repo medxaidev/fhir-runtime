@@ -1,0 +1,42 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "nested-depth-first",
+  "url": "http://example.org/fhir/StructureDefinition/NestedDepthFirst",
+  "name": "NestedDepthFirst",
+  "title": "Nested elements — parent before children (depth-first)",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      },
+      {
+        "id": "Patient.name.family",
+        "path": "Patient.name.family",
+        "min": 1
+      },
+      {
+        "id": "Patient.name.given",
+        "path": "Patient.name.given",
+        "min": 1
+      },
+      {
+        "id": "Patient.address",
+        "path": "Patient.address",
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.address.city",
+        "path": "Patient.address.city",
+        "mustSupport": true
+      }
+    ]
+  }
+}

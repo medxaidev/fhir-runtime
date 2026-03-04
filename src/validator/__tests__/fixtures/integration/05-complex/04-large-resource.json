@@ -1,0 +1,101 @@
+{
+  "description": "Large resource with many elements — performance test (should complete quickly)",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "large-patient",
+    "active": true,
+    "name": [{ "family": "Smith", "given": ["John"] }],
+    "telecom": [
+      { "system": "phone", "value": "555-0001", "use": "home" },
+      { "system": "phone", "value": "555-0002", "use": "work" },
+      { "system": "email", "value": "john@example.com" }
+    ],
+    "address": [
+      {
+        "line": ["123 Main St"],
+        "city": "Springfield",
+        "state": "IL",
+        "postalCode": "62701"
+      },
+      {
+        "line": ["456 Oak Ave"],
+        "city": "Chicago",
+        "state": "IL",
+        "postalCode": "60601"
+      }
+    ],
+    "contact": [
+      {
+        "name": { "family": "Smith", "given": ["Jane"] },
+        "telecom": [{ "system": "phone", "value": "555-0003" }]
+      }
+    ],
+    "communication": [
+      {
+        "language": {
+          "coding": [{ "system": "urn:ietf:bcp:47", "code": "en" }]
+        }
+      },
+      {
+        "language": {
+          "coding": [{ "system": "urn:ietf:bcp:47", "code": "zh" }]
+        }
+      }
+    ]
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "kind": "resource",
+    "type": "Patient",
+    "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      {
+        "path": "Patient.active",
+        "id": "Patient.active",
+        "min": 0,
+        "max": 1,
+        "types": [{ "code": "boolean" }]
+      },
+      {
+        "path": "Patient.name",
+        "id": "Patient.name",
+        "min": 0,
+        "max": "unbounded",
+        "types": [{ "code": "HumanName" }]
+      },
+      {
+        "path": "Patient.telecom",
+        "id": "Patient.telecom",
+        "min": 0,
+        "max": "unbounded",
+        "types": []
+      },
+      {
+        "path": "Patient.address",
+        "id": "Patient.address",
+        "min": 0,
+        "max": "unbounded",
+        "types": []
+      },
+      {
+        "path": "Patient.contact",
+        "id": "Patient.contact",
+        "min": 0,
+        "max": "unbounded",
+        "types": [{ "code": "BackboneElement" }]
+      },
+      {
+        "path": "Patient.communication",
+        "id": "Patient.communication",
+        "min": 0,
+        "max": "unbounded",
+        "types": [{ "code": "BackboneElement" }]
+      }
+    ]
+  },
+  "expectedValid": true,
+  "expectedErrorCount": 0,
+  "maxDurationMs": 100
+}

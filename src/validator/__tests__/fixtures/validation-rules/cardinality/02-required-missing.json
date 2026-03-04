@@ -1,0 +1,22 @@
+{
+  "description": "Required element (min=1, max=1) with no values — should produce CARDINALITY_MIN_VIOLATION",
+  "element": {
+    "path": "Patient.name",
+    "id": "Patient.name",
+    "min": 1,
+    "max": "unbounded",
+    "types": [{ "code": "HumanName" }],
+    "constraints": [],
+    "mustSupport": false,
+    "isModifier": false,
+    "isSummary": true
+  },
+  "values": [],
+  "expectedIssueCount": 1,
+  "expectedIssues": [
+    {
+      "code": "CARDINALITY_MIN_VIOLATION",
+      "severity": "error"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/Constraints",
+  "name": "Constraints",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "constraint": [
+          {
+            "key": "pat-1",
+            "severity": "error",
+            "human": "Patient.name or Patient.identifier SHALL be present",
+            "expression": "name.exists() or identifier.exists()",
+            "xpath": "f:name or f:identifier",
+            "source": "http://hl7.org/fhir/StructureDefinition/Patient"
+          },
+          {
+            "key": "pat-custom-1",
+            "severity": "warning",
+            "human": "Birth date should be in the past",
+            "expression": "birthDate.empty() or birthDate <= today()",
+            "requirements": "Ensures data quality"
+          }
+        ]
+      },
+      {
+        "id": "Patient.contact",
+        "path": "Patient.contact",
+        "constraint": [
+          {
+            "key": "pat-2",
+            "severity": "error",
+            "human": "SHALL at least contain a contact's details or a reference to an organization",
+            "expression": "name.exists() or telecom.exists() or address.exists() or organization.exists()",
+            "xpath": "f:name or f:telecom or f:address or f:organization",
+            "source": "http://hl7.org/fhir/StructureDefinition/Patient"
+          }
+        ]
+      },
+      {
+        "id": "Patient.link",
+        "path": "Patient.link",
+        "constraint": [
+          {
+            "key": "link-1",
+            "severity": "error",
+            "human": "Link type must be valid",
+            "expression": "type.exists()"
+          },
+          {
+            "key": "link-2",
+            "severity": "warning",
+            "human": "Other patient reference should resolve",
+            "expression": "other.resolve().exists()"
+          },
+          {
+            "key": "link-3",
+            "severity": "error",
+            "human": "Cannot link to self",
+            "expression": "other.reference != %resource.id"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/MappingTest",
+  "name": "MappingTest",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping",
+      "comment": "Mapping to HL7 v2 segments and fields"
+    },
+    {
+      "identity": "cda",
+      "uri": "http://hl7.org/v3/cda",
+      "name": "CDA (R2)"
+    }
+  ],
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "PID-3",
+            "comment": "Maps to PID segment field 3"
+          },
+          {
+            "identity": "rim",
+            "map": ".id",
+            "language": "application/xml"
+          },
+          {
+            "identity": "cda",
+            "map": ".id"
+          }
+        ]
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "PID-5, PID-9"
+          },
+          {
+            "identity": "rim",
+            "map": ".name"
+          }
+        ]
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "PID-7"
+          }
+        ]
+      }
+    ]
+  }
+}

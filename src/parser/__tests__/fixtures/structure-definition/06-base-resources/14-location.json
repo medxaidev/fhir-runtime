@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Location",
+  "url": "http://hl7.org/fhir/StructureDefinition/Location",
+  "version": "4.0.1",
+  "name": "Location",
+  "title": "Location",
+  "status": "active",
+  "description": "Details and position information for a physical place where services are provided and resources and participants may be stored, found, contained, or accommodated.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Location",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Location", "path": "Location", "min": 0, "max": "*", "base": { "path": "Location", "min": 0, "max": "*" } },
+      { "id": "Location.status", "path": "Location.status", "min": 0, "max": "1", "base": { "path": "Location.status", "min": 0, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/location-status|4.0.1" } },
+      { "id": "Location.name", "path": "Location.name", "min": 0, "max": "1", "base": { "path": "Location.name", "min": 0, "max": "1" }, "type": [{ "code": "string" }], "isSummary": true },
+      { "id": "Location.description", "path": "Location.description", "min": 0, "max": "1", "base": { "path": "Location.description", "min": 0, "max": "1" }, "type": [{ "code": "string" }], "isSummary": true },
+      { "id": "Location.mode", "path": "Location.mode", "min": 0, "max": "1", "base": { "path": "Location.mode", "min": 0, "max": "1" }, "type": [{ "code": "code" }], "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/location-mode|4.0.1" } },
+      { "id": "Location.address", "path": "Location.address", "min": 0, "max": "1", "base": { "path": "Location.address", "min": 0, "max": "1" }, "type": [{ "code": "Address" }] },
+      { "id": "Location.managingOrganization", "path": "Location.managingOrganization", "min": 0, "max": "1", "base": { "path": "Location.managingOrganization", "min": 0, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Organization"] }], "isSummary": true }
+    ]
+  }
+}

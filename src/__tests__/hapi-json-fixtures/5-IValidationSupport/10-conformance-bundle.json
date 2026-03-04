@@ -1,0 +1,42 @@
+{
+  "resourceType": "Bundle",
+  "id": "conformance-bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/CorePatient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "core-patient",
+        "url": "http://example.org/fhir/StructureDefinition/CorePatient",
+        "name": "CorePatient",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.name", "path": "Patient.name", "min": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/ValueSet/custom-marital-status",
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "custom-marital-status",
+        "url": "http://example.org/fhir/ValueSet/custom-marital-status",
+        "name": "CustomMaritalStatus",
+        "status": "active",
+        "compose": {
+          "include": [
+            { "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus", "concept": [{ "code": "M" }, { "code": "S" }, { "code": "D" }, { "code": "W" }] }
+          ]
+        }
+      }
+    }
+  ]
+}

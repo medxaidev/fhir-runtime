@@ -1,0 +1,31 @@
+{
+  "resourceType": "Bundle",
+  "id": "meta-profile-declaration",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/Patient/with-meta-profile",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "with-meta-profile",
+        "_comment": "Instance declares conformance to two profiles via meta.profile. Validator should check both.",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+            "http://example.org/fhir/StructureDefinition/HospitalPatient"
+          ],
+          "lastUpdated": "2026-02-09T00:00:00Z",
+          "versionId": "1"
+        },
+        "identifier": [
+          { "system": "http://hospital.example.org/mrn", "value": "MRN-12345" }
+        ],
+        "name": [
+          { "use": "official", "family": "Smith", "given": ["John"] }
+        ],
+        "gender": "male",
+        "birthDate": "1990-01-15"
+      }
+    }
+  ]
+}

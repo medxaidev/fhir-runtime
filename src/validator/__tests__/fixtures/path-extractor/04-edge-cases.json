@@ -1,0 +1,67 @@
+{
+  "description": "Edge cases: empty arrays, null values, missing fields, single-element arrays, primitive-only resource",
+  "resources": {
+    "emptyArrays": {
+      "resourceType": "Patient",
+      "id": "edge-1",
+      "name": [],
+      "identifier": []
+    },
+    "nullValues": {
+      "resourceType": "Patient",
+      "id": "edge-2",
+      "name": [
+        { "family": null, "given": ["John"] }
+      ]
+    },
+    "primitivesOnly": {
+      "resourceType": "Patient",
+      "id": "edge-3",
+      "active": false,
+      "gender": "unknown",
+      "birthDate": "2000-12-31"
+    },
+    "singleElementArray": {
+      "resourceType": "Patient",
+      "id": "edge-4",
+      "name": [
+        { "family": "Solo", "given": ["Han"] }
+      ]
+    },
+    "deeplyEmpty": {
+      "resourceType": "Patient",
+      "id": "edge-5",
+      "contact": [
+        {
+          "name": {}
+        }
+      ]
+    }
+  },
+  "expectations": {
+    "emptyArrays": {
+      "Patient.name": { "count": 0, "description": "Empty array returns no values" },
+      "Patient.name.family": { "count": 0, "description": "Nested path on empty array" },
+      "Patient.identifier": { "count": 0 }
+    },
+    "nullValues": {
+      "Patient.name.family": { "count": 1, "description": "null is still extracted as a value" },
+      "Patient.name.given": { "count": 1, "values": ["John"] }
+    },
+    "primitivesOnly": {
+      "Patient.active": { "count": 1, "values": [false] },
+      "Patient.gender": { "count": 1, "values": ["unknown"] },
+      "Patient.birthDate": { "count": 1, "values": ["2000-12-31"] }
+    },
+    "singleElementArray": {
+      "Patient.name": { "count": 1 },
+      "Patient.name.family": { "count": 1, "values": ["Solo"] },
+      "Patient.name.given": { "count": 1, "values": ["Han"] }
+    },
+    "deeplyEmpty": {
+      "Patient.contact": { "count": 1 },
+      "Patient.contact.name": { "count": 1, "description": "Empty object is still a value" },
+      "Patient.contact.name.family": { "count": 0, "description": "Missing property in empty object" }
+    }
+  }
+}

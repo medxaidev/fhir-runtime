@@ -1,0 +1,41 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ed-slicing-definition",
+  "url": "http://example.org/fhir/StructureDefinition/EDSlicingDefinition",
+  "name": "EDSlicingDefinition",
+  "title": "ElementDefinition: slicing structure with all discriminator types",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "system" }
+          ],
+          "description": "Slice identifiers by system",
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension",
+        "path": "Patient.extension",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "url" }
+          ],
+          "description": "Slice extensions by URL",
+          "ordered": false,
+          "rules": "open"
+        }
+      }
+    ]
+  }
+}

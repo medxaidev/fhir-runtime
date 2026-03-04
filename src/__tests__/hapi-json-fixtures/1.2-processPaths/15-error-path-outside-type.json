@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-path-outside-type",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorPathOutsideType",
+  "name": "ErrorPathOutsideType",
+  "title": "ERROR CASE: Path belongs to Observation but type is Patient",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "min": 1
+      }
+    ]
+  }
+}

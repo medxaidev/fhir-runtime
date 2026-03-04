@@ -1,0 +1,32 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "deep-nested-path",
+  "url": "http://example.org/fhir/StructureDefinition/DeepNestedPath",
+  "name": "DeepNestedPath",
+  "title": "3-level deep path — Patient.contact.name.family",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.contact",
+        "path": "Patient.contact",
+        "min": 1
+      },
+      {
+        "id": "Patient.contact.name",
+        "path": "Patient.contact.name",
+        "min": 1
+      },
+      {
+        "id": "Patient.contact.name.family",
+        "path": "Patient.contact.name.family",
+        "min": 1
+      }
+    ]
+  }
+}

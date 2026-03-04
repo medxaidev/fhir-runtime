@@ -1,0 +1,5 @@
+{
+  "description": "Single type with code only",
+  "input": [{ "code": "string" }],
+  "expected": [{ "code": "string" }]
+}

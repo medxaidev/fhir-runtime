@@ -1,0 +1,32 @@
+{
+  "description": "Slice cardinality max exceeded — too many values matching one slice",
+  "slicingRoot": {
+    "path": "Patient.identifier",
+    "id": "Patient.identifier",
+    "min": 0, "max": "unbounded",
+    "types": [{ "code": "Identifier" }],
+    "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+    "slicing": {
+      "discriminators": [{ "type": "value", "path": "system" }],
+      "rules": "open",
+      "ordered": false
+    }
+  },
+  "slices": [
+    {
+      "path": "Patient.identifier",
+      "id": "Patient.identifier:MRN",
+      "min": 0, "max": 1,
+      "types": [{ "code": "Identifier" }],
+      "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+      "sliceName": "MRN",
+      "fixed": { "system": "http://hospital.example.org/mrn" }
+    }
+  ],
+  "values": [
+    { "system": "http://hospital.example.org/mrn", "value": "12345" },
+    { "system": "http://hospital.example.org/mrn", "value": "67890" }
+  ],
+  "expectedIssueCount": 1,
+  "expectedIssueCodes": ["CARDINALITY_MAX_VIOLATION"]
+}

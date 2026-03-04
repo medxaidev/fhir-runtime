@@ -1,0 +1,12 @@
+{
+  "description": "Exact path match returns correct index",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.id" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.name" },
+    { "path": "Patient.gender" }
+  ],
+  "path": "Patient.name",
+  "expected": { "index": 3 }
+}

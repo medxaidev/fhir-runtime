@@ -1,0 +1,49 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/MinMaxValue",
+  "name": "MinMaxValue",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "type": [{ "code": "Quantity" }],
+        "minValueQuantity": { "value": 0, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg" },
+        "maxValueQuantity": { "value": 500, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg" }
+      },
+      {
+        "id": "Observation.component:heartRate.value[x]",
+        "path": "Observation.component.value[x]",
+        "type": [{ "code": "Quantity" }],
+        "minValueInteger": 20,
+        "maxValueInteger": 300
+      },
+      {
+        "id": "Observation.component:temperature.value[x]",
+        "path": "Observation.component.value[x]",
+        "type": [{ "code": "Quantity" }],
+        "minValueDecimal": 30.0,
+        "maxValueDecimal": 45.0
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "type": [{ "code": "dateTime" }],
+        "minValueDate": "2020-01-01",
+        "maxValueDate": "2030-12-31"
+      },
+      {
+        "id": "Observation.issued",
+        "path": "Observation.issued",
+        "minValueInstant": "2020-01-01T00:00:00Z",
+        "maxValueInstant": "2030-12-31T23:59:59Z"
+      }
+    ]
+  }
+}

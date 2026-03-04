@@ -1,0 +1,50 @@
+{
+  "description": "Pattern with nested objects — recursive subset matching",
+  "scenarios": [
+    {
+      "label": "nested pattern match → valid",
+      "element": {
+        "path": "Observation.component.valueQuantity",
+        "id": "Observation.component.valueQuantity",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+        "pattern": { "system": "http://unitsofmeasure.org" }
+      },
+      "value": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "nested pattern mismatch → PATTERN_VALUE_MISMATCH",
+      "element": {
+        "path": "Observation.component.valueQuantity",
+        "id": "Observation.component.valueQuantity",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+        "pattern": { "system": "http://unitsofmeasure.org" }
+      },
+      "value": { "value": 120, "unit": "mmHg", "system": "http://other.org", "code": "mm[Hg]" },
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "PATTERN_VALUE_MISMATCH" }]
+    },
+    {
+      "label": "deeply nested pattern match → valid",
+      "element": {
+        "path": "Extension.valueCodeableConcept",
+        "id": "Extension.valueCodeableConcept",
+        "min": 0, "max": 1,
+        "types": [{ "code": "CodeableConcept" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+        "pattern": {
+          "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB" }]
+        }
+      },
+      "value": {
+        "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB", "display": "ambulatory" }],
+        "text": "Ambulatory"
+      },
+      "expectedIssueCount": 0
+    }
+  ]
+}

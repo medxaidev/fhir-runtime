@@ -1,0 +1,57 @@
+{
+  "resourceType": "Bundle",
+  "id": "two-level-inheritance",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/BasePatientProfile",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "base-patient-profile",
+        "url": "http://example.org/fhir/StructureDefinition/BasePatientProfile",
+        "name": "BasePatientProfile",
+        "title": "Level 1: Base Patient Profile (requires name)",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.name",
+              "path": "Patient.name",
+              "min": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/DerivedPatientProfile",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "derived-patient-profile",
+        "url": "http://example.org/fhir/StructureDefinition/DerivedPatientProfile",
+        "name": "DerivedPatientProfile",
+        "title": "Level 2: Derived profile (adds birthDate requirement)",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://example.org/fhir/StructureDefinition/BasePatientProfile",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.birthDate",
+              "path": "Patient.birthDate",
+              "min": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

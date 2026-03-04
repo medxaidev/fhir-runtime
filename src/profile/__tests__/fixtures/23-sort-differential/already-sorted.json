@@ -1,0 +1,21 @@
+{
+  "description": "Differential already in correct base order — no reordering needed",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.id" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.name" },
+    { "path": "Patient.gender" },
+    { "path": "Patient.birthDate" }
+  ],
+  "differential": [
+    { "path": "Patient" },
+    { "path": "Patient.identifier", "min": 1 },
+    { "path": "Patient.name", "min": 1 },
+    { "path": "Patient.gender", "min": 1 }
+  ],
+  "expected": {
+    "order": ["Patient", "Patient.identifier", "Patient.name", "Patient.gender"],
+    "issueCount": 0
+  }
+}

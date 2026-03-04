@@ -1,0 +1,19 @@
+{
+  "description": "Partial diff: some elements have diff, others inherited as-is",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.id", "min": 0, "max": "1" },
+    { "path": "Patient.name", "min": 0, "max": "*", "short": "Base name" },
+    { "path": "Patient.birthDate", "min": 0, "max": "1" }
+  ],
+  "diff": [
+    { "path": "Patient.name", "min": 1, "short": "Required name" }
+  ],
+  "expected": {
+    "elementCount": 4,
+    "paths": ["Patient", "Patient.id", "Patient.name", "Patient.birthDate"],
+    "nameMin": 1,
+    "nameShort": "Required name",
+    "birthDateMin": 0
+  }
+}

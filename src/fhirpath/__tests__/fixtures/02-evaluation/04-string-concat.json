@@ -1,0 +1,13 @@
+{
+  "description": "String concatenation and literal evaluation",
+  "cases": [
+    { "expression": "'hello'", "expected": ["hello"] },
+    { "expression": "'a' & 'b'", "expected": ["ab"] },
+    { "expression": "'hello' & ' ' & 'world'", "expected": ["hello world"] },
+    { "expression": "true", "expected": [true] },
+    { "expression": "false", "expected": [false] },
+    { "expression": "42", "expected": [42] },
+    { "expression": "3.14", "expected": [3.14] },
+    { "expression": "{}", "expected": [] }
+  ]
+}

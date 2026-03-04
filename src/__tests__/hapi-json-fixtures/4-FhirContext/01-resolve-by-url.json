@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "resolve-by-url",
+  "url": "http://example.org/fhir/StructureDefinition/ResolveByUrl",
+  "name": "ResolveByUrl",
+  "title": "Basic SD with canonical URL for context resolution",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      }
+    ]
+  }
+}

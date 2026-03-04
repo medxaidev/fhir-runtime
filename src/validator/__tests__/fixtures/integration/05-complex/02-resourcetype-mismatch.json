@@ -1,0 +1,19 @@
+{
+  "description": "Resource type mismatch — Encounter validated against Patient profile → RESOURCE_TYPE_MISMATCH",
+  "resource": {
+    "resourceType": "Encounter",
+    "id": "enc-1",
+    "status": "finished",
+    "class": { "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB" }
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient", "kind": "resource", "type": "Patient", "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.name", "id": "Patient.name", "min": 0, "max": "unbounded", "types": [{ "code": "HumanName" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["RESOURCE_TYPE_MISMATCH"]
+}

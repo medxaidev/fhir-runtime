@@ -1,0 +1,9 @@
+{
+  "description": "Binding with strength but no valueSet",
+  "input": {
+    "strength": "preferred"
+  },
+  "expected": {
+    "strength": "preferred"
+  }
+}

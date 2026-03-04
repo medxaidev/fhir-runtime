@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "choice-type-rename",
+  "url": "http://example.org/fhir/StructureDefinition/ChoiceTypeRename",
+  "name": "ChoiceTypeRename",
+  "title": "Restrict Observation.value[x] to Quantity — path becomes valueQuantity",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "type": [
+          { "code": "Quantity" }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

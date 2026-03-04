@@ -1,0 +1,5 @@
+{
+  "description": "Undefined binding → returns undefined",
+  "input": null,
+  "expected": null
+}

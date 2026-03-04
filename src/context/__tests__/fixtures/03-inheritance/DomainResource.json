@@ -1,0 +1,44 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "version": "4.0.1",
+  "name": "DomainResource",
+  "title": "DomainResource",
+  "status": "active",
+  "kind": "resource",
+  "abstract": true,
+  "type": "DomainResource",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Resource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "DomainResource",
+        "path": "DomainResource",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "DomainResource.text",
+        "path": "DomainResource.text",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "Narrative" }]
+      },
+      {
+        "id": "DomainResource.contained",
+        "path": "DomainResource.contained",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "Resource" }]
+      },
+      {
+        "id": "DomainResource.extension",
+        "path": "DomainResource.extension",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "Extension" }]
+      }
+    ]
+  }
+}

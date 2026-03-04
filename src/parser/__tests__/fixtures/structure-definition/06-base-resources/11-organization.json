@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Organization",
+  "url": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "version": "4.0.1",
+  "name": "Organization",
+  "title": "Organization",
+  "status": "active",
+  "description": "A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Organization", "path": "Organization", "min": 0, "max": "*", "base": { "path": "Organization", "min": 0, "max": "*" }, "constraint": [{ "key": "org-1", "severity": "error", "human": "The organization SHALL at least have a name or an identifier, and possibly more than one", "expression": "(identifier.count() + name.count()) > 0" }] },
+      { "id": "Organization.identifier", "path": "Organization.identifier", "min": 0, "max": "*", "base": { "path": "Organization.identifier", "min": 0, "max": "*" }, "type": [{ "code": "Identifier" }], "condition": ["org-1"], "isSummary": true },
+      { "id": "Organization.active", "path": "Organization.active", "min": 0, "max": "1", "base": { "path": "Organization.active", "min": 0, "max": "1" }, "type": [{ "code": "boolean" }], "isModifier": true, "isSummary": true },
+      { "id": "Organization.type", "path": "Organization.type", "min": 0, "max": "*", "base": { "path": "Organization.type", "min": 0, "max": "*" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "example", "valueSet": "http://hl7.org/fhir/ValueSet/organization-type" } },
+      { "id": "Organization.name", "path": "Organization.name", "min": 0, "max": "1", "base": { "path": "Organization.name", "min": 0, "max": "1" }, "type": [{ "code": "string" }], "condition": ["org-1"], "isSummary": true },
+      { "id": "Organization.telecom", "path": "Organization.telecom", "min": 0, "max": "*", "base": { "path": "Organization.telecom", "min": 0, "max": "*" }, "type": [{ "code": "ContactPoint" }] },
+      { "id": "Organization.address", "path": "Organization.address", "min": 0, "max": "*", "base": { "path": "Organization.address", "min": 0, "max": "*" }, "type": [{ "code": "Address" }] }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Basic slicing with discriminator, rules, ordered",
+  "input": {
+    "discriminator": [{ "type": "value", "path": "url" }],
+    "rules": "open",
+    "ordered": false,
+    "description": "Extensions are always sliced by url"
+  },
+  "expected": {
+    "discriminators": [{ "type": "value", "path": "url" }],
+    "rules": "open",
+    "ordered": false,
+    "description": "Extensions are always sliced by url"
+  }
+}

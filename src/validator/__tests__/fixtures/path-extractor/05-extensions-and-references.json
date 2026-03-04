@@ -1,0 +1,55 @@
+{
+  "description": "Resource with extensions (value[x] inside extension arrays) and references for complex path extraction",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "ext-ref-1",
+    "extension": [
+      {
+        "url": "http://example.org/fhir/StructureDefinition/ethnicity",
+        "valueCodeableConcept": {
+          "coding": [
+            { "system": "urn:oid:2.16.840.1.113883.6.238", "code": "2106-3", "display": "White" }
+          ]
+        }
+      },
+      {
+        "url": "http://example.org/fhir/StructureDefinition/birthPlace",
+        "valueAddress": {
+          "city": "Beijing",
+          "country": "CN"
+        }
+      },
+      {
+        "url": "http://example.org/fhir/StructureDefinition/score",
+        "valueInteger": 42
+      }
+    ],
+    "generalPractitioner": [
+      {
+        "reference": "Practitioner/doc-1",
+        "display": "Dr. Smith"
+      },
+      {
+        "reference": "Practitioner/doc-2",
+        "display": "Dr. Jones"
+      }
+    ],
+    "managingOrganization": {
+      "reference": "Organization/org-1",
+      "display": "General Hospital"
+    }
+  },
+  "expectations": {
+    "Patient.extension": { "count": 3 },
+    "Patient.extension.url": { "count": 3 },
+    "Patient.extension.value[x]": {
+      "count": 3,
+      "description": "Three different value[x] types across extension array elements"
+    },
+    "Patient.generalPractitioner": { "count": 2 },
+    "Patient.generalPractitioner.reference": { "count": 2, "values": ["Practitioner/doc-1", "Practitioner/doc-2"] },
+    "Patient.generalPractitioner.display": { "count": 2, "values": ["Dr. Smith", "Dr. Jones"] },
+    "Patient.managingOrganization": { "count": 1 },
+    "Patient.managingOrganization.reference": { "count": 1, "values": ["Organization/org-1"] }
+  }
+}

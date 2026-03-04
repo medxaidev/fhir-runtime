@@ -1,0 +1,23 @@
+{
+  "description": "Differential with nested children — children stay under parent",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.identifier.system" },
+    { "path": "Patient.identifier.value" },
+    { "path": "Patient.name" },
+    { "path": "Patient.name.given" },
+    { "path": "Patient.name.family" }
+  ],
+  "differential": [
+    { "path": "Patient" },
+    { "path": "Patient.name", "min": 1 },
+    { "path": "Patient.name.family", "min": 1 },
+    { "path": "Patient.identifier", "min": 1 },
+    { "path": "Patient.identifier.system", "min": 1 }
+  ],
+  "expected": {
+    "order": ["Patient", "Patient.identifier", "Patient.identifier.system", "Patient.name", "Patient.name.family"],
+    "issueCount": 0
+  }
+}

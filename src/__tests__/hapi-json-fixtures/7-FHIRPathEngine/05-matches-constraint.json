@@ -1,0 +1,38 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "matches-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/MatchesConstraint",
+  "name": "MatchesConstraint",
+  "title": "FHIRPath: value.matches('^[0-9]+$') — regex matching",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "system" }],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.identifier:ssn",
+        "path": "Patient.identifier",
+        "sliceName": "ssn",
+        "constraint": [
+          {
+            "key": "fp-matches-1",
+            "severity": "error",
+            "human": "SSN must be 9 digits (no dashes)",
+            "expression": "value.matches('^[0-9]{9}$')"
+          }
+        ]
+      }
+    ]
+  }
+}

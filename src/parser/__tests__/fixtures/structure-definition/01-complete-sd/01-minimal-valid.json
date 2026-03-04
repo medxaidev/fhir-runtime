@@ -1,0 +1,9 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/MinimalValid",
+  "name": "MinimalValid",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient"
+}

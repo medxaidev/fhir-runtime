@@ -1,0 +1,77 @@
+{
+  "description": "Real FHIR Patient invariants from the core specification",
+  "tests": [
+    {
+      "description": "pat-1: contact SHALL have name or telecom or organization — valid with name",
+      "invariant": {
+        "key": "pat-1",
+        "severity": "error",
+        "human": "SHALL at least contain a contact's details or a reference to an organization",
+        "expression": "name.exists() or telecom.exists() or organization.exists()"
+      },
+      "value": { "name": { "family": "Emergency Contact" } },
+      "resource": { "resourceType": "Patient", "contact": [{ "name": { "family": "Emergency Contact" } }] },
+      "expectedValid": true
+    },
+    {
+      "description": "pat-1: contact without name, telecom, or organization — invalid",
+      "invariant": {
+        "key": "pat-1",
+        "severity": "error",
+        "human": "SHALL at least contain a contact's details or a reference to an organization",
+        "expression": "name.exists() or telecom.exists() or organization.exists()"
+      },
+      "value": { "relationship": [{ "coding": [{ "code": "emergency" }] }] },
+      "resource": { "resourceType": "Patient", "contact": [{ "relationship": [{ "coding": [{ "code": "emergency" }] }] }] },
+      "expectedValid": false
+    },
+    {
+      "description": "pat-1: contact with telecom — valid",
+      "invariant": {
+        "key": "pat-1",
+        "severity": "error",
+        "human": "SHALL at least contain a contact's details or a reference to an organization",
+        "expression": "name.exists() or telecom.exists() or organization.exists()"
+      },
+      "value": { "telecom": [{ "system": "phone", "value": "555-0100" }] },
+      "resource": { "resourceType": "Patient" },
+      "expectedValid": true
+    },
+    {
+      "description": "pat-1: contact with organization — valid",
+      "invariant": {
+        "key": "pat-1",
+        "severity": "error",
+        "human": "SHALL at least contain a contact's details or a reference to an organization",
+        "expression": "name.exists() or telecom.exists() or organization.exists()"
+      },
+      "value": { "organization": { "reference": "Organization/1" } },
+      "resource": { "resourceType": "Patient" },
+      "expectedValid": true
+    },
+    {
+      "description": "name.family.exists() — Patient name must have family",
+      "invariant": {
+        "key": "custom-1",
+        "severity": "warning",
+        "human": "Patient name should have a family name",
+        "expression": "family.exists()"
+      },
+      "value": { "given": ["John"] },
+      "resource": { "resourceType": "Patient", "name": [{ "given": ["John"] }] },
+      "expectedValid": false
+    },
+    {
+      "description": "name.family.exists() — has family name",
+      "invariant": {
+        "key": "custom-1",
+        "severity": "warning",
+        "human": "Patient name should have a family name",
+        "expression": "family.exists()"
+      },
+      "value": { "family": "Smith", "given": ["John"] },
+      "resource": { "resourceType": "Patient", "name": [{ "family": "Smith", "given": ["John"] }] },
+      "expectedValid": true
+    }
+  ]
+}

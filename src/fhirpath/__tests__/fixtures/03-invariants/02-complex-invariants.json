@@ -1,0 +1,70 @@
+{
+  "description": "Complex FHIRPath invariant expressions with chained functions",
+  "tests": [
+    {
+      "description": "telecom.all(system.exists() and value.exists()) — all telecom valid",
+      "expression": "telecom.all(system.exists() and value.exists())",
+      "value": {
+        "resourceType": "Patient",
+        "telecom": [
+          { "system": "phone", "value": "555-1234" },
+          { "system": "email", "value": "test@example.com" }
+        ]
+      },
+      "expected": true
+    },
+    {
+      "description": "telecom.all(system.exists() and value.exists()) — missing value",
+      "expression": "telecom.all(system.exists() and value.exists())",
+      "value": {
+        "resourceType": "Patient",
+        "telecom": [
+          { "system": "phone", "value": "555-1234" },
+          { "system": "email" }
+        ]
+      },
+      "expected": false
+    },
+    {
+      "description": "name.where(use = 'official').exists() — has official name",
+      "expression": "name.where(use = 'official').exists()",
+      "value": {
+        "resourceType": "Patient",
+        "name": [
+          { "use": "official", "family": "Smith" },
+          { "use": "nickname", "given": ["Johnny"] }
+        ]
+      },
+      "expected": true
+    },
+    {
+      "description": "name.where(use = 'official').exists() — no official name",
+      "expression": "name.where(use = 'official').exists()",
+      "value": {
+        "resourceType": "Patient",
+        "name": [{ "use": "nickname", "given": ["Johnny"] }]
+      },
+      "expected": false
+    },
+    {
+      "description": "identifier.exists() implies identifier.all(system.exists() and value.exists())",
+      "expression": "identifier.exists() implies identifier.all(system.exists() and value.exists())",
+      "value": {
+        "resourceType": "Patient",
+        "identifier": [
+          { "system": "http://example.org", "value": "12345" }
+        ]
+      },
+      "expected": true
+    },
+    {
+      "description": "identifier implies — missing system",
+      "expression": "identifier.exists() implies identifier.all(system.exists() and value.exists())",
+      "value": {
+        "resourceType": "Patient",
+        "identifier": [{ "value": "12345" }]
+      },
+      "expected": false
+    }
+  ]
+}

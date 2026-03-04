@@ -1,0 +1,64 @@
+{
+  "description": "Multiple discriminators — match requires ALL discriminators to match",
+  "slicingRoot": {
+    "path": "Observation.component",
+    "id": "Observation.component",
+    "min": 0, "max": "unbounded",
+    "types": [{ "code": "BackboneElement" }],
+    "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+    "slicing": {
+      "discriminators": [
+        { "type": "value", "path": "code.coding.system" },
+        { "type": "value", "path": "code.coding.code" }
+      ],
+      "rules": "open",
+      "ordered": false
+    }
+  },
+  "slices": [
+    {
+      "path": "Observation.component",
+      "id": "Observation.component:systolic",
+      "min": 1, "max": 1,
+      "types": [{ "code": "BackboneElement" }],
+      "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+      "sliceName": "systolic",
+      "fixed": { "code": { "coding": [{ "system": "http://loinc.org", "code": "8480-6" }] } }
+    },
+    {
+      "path": "Observation.component",
+      "id": "Observation.component:diastolic",
+      "min": 1, "max": 1,
+      "types": [{ "code": "BackboneElement" }],
+      "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+      "sliceName": "diastolic",
+      "fixed": { "code": { "coding": [{ "system": "http://loinc.org", "code": "8462-4" }] } }
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "both systolic and diastolic present → valid",
+      "values": [
+        { "code": { "coding": [{ "system": "http://loinc.org", "code": "8480-6" }] }, "valueQuantity": { "value": 120 } },
+        { "code": { "coding": [{ "system": "http://loinc.org", "code": "8462-4" }] }, "valueQuantity": { "value": 80 } }
+      ],
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "only systolic present, diastolic missing (min=1) → CARDINALITY_MIN_VIOLATION",
+      "values": [
+        { "code": { "coding": [{ "system": "http://loinc.org", "code": "8480-6" }] }, "valueQuantity": { "value": 120 } }
+      ],
+      "expectedIssueCount": 1,
+      "expectedIssueCodes": ["CARDINALITY_MIN_VIOLATION"]
+    },
+    {
+      "label": "wrong system — no match for either slice → both min violations",
+      "values": [
+        { "code": { "coding": [{ "system": "http://snomed.info/sct", "code": "271649006" }] }, "valueQuantity": { "value": 120 } }
+      ],
+      "expectedIssueCount": 2,
+      "expectedIssueCodes": ["CARDINALITY_MIN_VIOLATION", "CARDINALITY_MIN_VIOLATION"]
+    }
+  ]
+}

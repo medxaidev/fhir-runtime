@@ -1,0 +1,11 @@
+{
+  "description": "Choice type: valueString matches value[x]",
+  "baseSnapshot": [
+    { "path": "Observation" },
+    { "path": "Observation.code" },
+    { "path": "Observation.value[x]" },
+    { "path": "Observation.component" }
+  ],
+  "path": "Observation.valueString",
+  "expected": { "index": 2 }
+}

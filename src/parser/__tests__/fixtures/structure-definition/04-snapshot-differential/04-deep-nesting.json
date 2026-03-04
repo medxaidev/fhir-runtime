@@ -1,0 +1,93 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/DeepNesting",
+  "name": "DeepNesting",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Resource", "min": 0, "max": "*" }
+      },
+      {
+        "id": "Patient.contact",
+        "path": "Patient.contact",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.contact", "min": 0, "max": "*" }
+      },
+      {
+        "id": "Patient.contact.relationship",
+        "path": "Patient.contact.relationship",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "CodeableConcept" }],
+        "base": { "path": "Patient.contact.relationship", "min": 0, "max": "*" },
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/ValueSet/patient-contactrelationship"
+        }
+      },
+      {
+        "id": "Patient.contact.name",
+        "path": "Patient.contact.name",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "HumanName" }],
+        "base": { "path": "Patient.contact.name", "min": 0, "max": "1" }
+      },
+      {
+        "id": "Patient.contact.name.family",
+        "path": "Patient.contact.name.family",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "string" }],
+        "base": { "path": "HumanName.family", "min": 0, "max": "1" }
+      },
+      {
+        "id": "Patient.contact.name.given",
+        "path": "Patient.contact.name.given",
+        "min": 1,
+        "max": "*",
+        "type": [{ "code": "string" }],
+        "base": { "path": "HumanName.given", "min": 0, "max": "*" }
+      },
+      {
+        "id": "Patient.contact.telecom",
+        "path": "Patient.contact.telecom",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "ContactPoint" }],
+        "base": { "path": "Patient.contact.telecom", "min": 0, "max": "*" }
+      },
+      {
+        "id": "Patient.contact.telecom.system",
+        "path": "Patient.contact.telecom.system",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "code" }],
+        "base": { "path": "ContactPoint.system", "min": 0, "max": "1" },
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/contact-point-system|4.0.1"
+        }
+      },
+      {
+        "id": "Patient.contact.telecom.value",
+        "path": "Patient.contact.telecom.value",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "string" }],
+        "base": { "path": "ContactPoint.value", "min": 0, "max": "1" }
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Type with profile constraint",
+  "input": [
+    {
+      "code": "Reference",
+      "profile": ["http://hl7.org/fhir/StructureDefinition/Reference"],
+      "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient"]
+    }
+  ],
+  "expected": [
+    {
+      "code": "Reference",
+      "profiles": ["http://hl7.org/fhir/StructureDefinition/Reference"],
+      "targetProfiles": ["http://hl7.org/fhir/StructureDefinition/Patient"]
+    }
+  ]
+}

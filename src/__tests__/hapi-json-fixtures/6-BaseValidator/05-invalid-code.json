@@ -1,0 +1,10 @@
+{
+  "resourceType": "Patient",
+  "id": "invalid-code",
+  "_comment": "ERROR: 'gender' value 'invalid-gender' is not in required ValueSet administrative-gender",
+  "name": [
+    { "family": "Smith" }
+  ],
+  "gender": "invalid-gender",
+  "birthDate": "1990-01-15"
+}

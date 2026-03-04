@@ -1,0 +1,22 @@
+{
+  "description": "failFast mode — throws ValidationFailedError on first error",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "bad-patient",
+    "gender": ["male", "female"]
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "kind": "resource",
+    "type": "Patient",
+    "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.name", "id": "Patient.name", "min": 1, "max": "unbounded", "types": [{ "code": "HumanName" }] },
+      { "path": "Patient.gender", "id": "Patient.gender", "min": 0, "max": 1, "types": [{ "code": "code" }] }
+    ]
+  },
+  "options": { "failFast": true },
+  "expectThrows": "ValidationFailedError"
+}

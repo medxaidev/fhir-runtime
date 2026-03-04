@@ -1,0 +1,12 @@
+{
+  "description": "max='*' converts to 'unbounded'",
+  "input": {
+    "path": "Patient.identifier",
+    "id": "Patient.identifier",
+    "min": 0,
+    "max": "*"
+  },
+  "expected": {
+    "max": "unbounded"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "description": "validateChoiceType suffix validation: allowed vs disallowed type suffixes",
+  "scenarios": [
+    {
+      "label": "Quantity suffix allowed in [string, Quantity]",
+      "element": {
+        "path": "Observation.value[x]",
+        "id": "Observation.value[x]",
+        "min": 0, "max": 1,
+        "types": [{ "code": "string" }, { "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "suffix": "Quantity",
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "String suffix allowed in [string, Quantity]",
+      "element": {
+        "path": "Observation.value[x]",
+        "id": "Observation.value[x]",
+        "min": 0, "max": 1,
+        "types": [{ "code": "string" }, { "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "suffix": "string",
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "Boolean suffix NOT allowed in [string, Quantity] → INVALID_CHOICE_TYPE",
+      "element": {
+        "path": "Observation.value[x]",
+        "id": "Observation.value[x]",
+        "min": 0, "max": 1,
+        "types": [{ "code": "string" }, { "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "suffix": "Boolean",
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "INVALID_CHOICE_TYPE" }]
+    },
+    {
+      "label": "CodeableConcept suffix allowed in [CodeableConcept, Reference, Quantity]",
+      "element": {
+        "path": "Extension.value[x]",
+        "id": "Extension.value[x]",
+        "min": 0, "max": 1,
+        "types": [{ "code": "CodeableConcept" }, { "code": "Reference" }, { "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "suffix": "CodeableConcept",
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "DateTime suffix NOT allowed in [CodeableConcept, Reference] → INVALID_CHOICE_TYPE",
+      "element": {
+        "path": "Extension.value[x]",
+        "id": "Extension.value[x]",
+        "min": 0, "max": 1,
+        "types": [{ "code": "CodeableConcept" }, { "code": "Reference" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "suffix": "DateTime",
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "INVALID_CHOICE_TYPE" }]
+    }
+  ]
+}

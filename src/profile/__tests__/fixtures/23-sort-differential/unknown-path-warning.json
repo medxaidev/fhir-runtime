@@ -1,0 +1,18 @@
+{
+  "description": "Differential contains path not in base — warning issued, placed at end",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.name" }
+  ],
+  "differential": [
+    { "path": "Patient" },
+    { "path": "Patient.nonExistent", "min": 1 },
+    { "path": "Patient.identifier", "min": 1 }
+  ],
+  "expected": {
+    "order": ["Patient", "Patient.identifier", "Patient.nonExistent"],
+    "issueCount": 1,
+    "issueCode": "PATH_NOT_FOUND"
+  }
+}

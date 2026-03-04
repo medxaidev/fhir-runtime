@@ -1,0 +1,22 @@
+{
+  "description": "Full merge: fixed, pattern, maxLength overwritten",
+  "base": {
+    "path": "Patient.identifier.system",
+    "min": 0,
+    "max": "1",
+    "type": [{ "code": "uri" }]
+  },
+  "diff": {
+    "path": "Patient.identifier.system",
+    "min": 1,
+    "fixed": "http://hospital.example.org/mrn",
+    "maxLength": 255
+  },
+  "expected": {
+    "min": 1,
+    "max": "1",
+    "fixed": "http://hospital.example.org/mrn",
+    "maxLength": 255,
+    "issueCount": 0
+  }
+}

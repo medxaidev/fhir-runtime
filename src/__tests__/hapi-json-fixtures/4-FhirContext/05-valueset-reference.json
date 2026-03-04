@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "valueset-reference",
+  "url": "http://example.org/fhir/StructureDefinition/ValueSetReference",
+  "name": "ValueSetReference",
+  "title": "Profile with binding referencing external ValueSet",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.maritalStatus",
+        "path": "Patient.maritalStatus",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://example.org/fhir/ValueSet/custom-marital-status|1.0.0"
+        }
+      }
+    ]
+  }
+}

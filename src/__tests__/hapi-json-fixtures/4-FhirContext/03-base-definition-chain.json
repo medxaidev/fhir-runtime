@@ -1,0 +1,49 @@
+{
+  "resourceType": "Bundle",
+  "id": "base-definition-chain",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/Level1",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "level1",
+        "url": "http://example.org/fhir/StructureDefinition/Level1",
+        "name": "Level1",
+        "title": "Level 1 profile",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.name", "path": "Patient.name", "min": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/Level2",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "level2",
+        "url": "http://example.org/fhir/StructureDefinition/Level2",
+        "name": "Level2",
+        "title": "Level 2 profile — depends on Level1",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://example.org/fhir/StructureDefinition/Level1",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.birthDate", "path": "Patient.birthDate", "min": 1 }
+          ]
+        }
+      }
+    }
+  ]
+}

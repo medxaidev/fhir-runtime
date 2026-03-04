@@ -1,0 +1,30 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "add-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/AddConstraint",
+  "name": "AddConstraint",
+  "title": "Add FHIRPath constraint — name must have family or given",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1,
+        "constraint": [
+          {
+            "key": "custom-name-1",
+            "severity": "error",
+            "human": "Name must have at least family or given",
+            "expression": "family.exists() or given.exists()"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "description": "Circular dependency: SD references itself as base — should throw",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/SelfRef",
+    "name": "SelfRef",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/SelfRef",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "expected": {
+    "throws": "SnapshotCircularDependencyError"
+  }
+}

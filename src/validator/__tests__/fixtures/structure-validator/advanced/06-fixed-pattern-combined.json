@@ -1,0 +1,23 @@
+{
+  "description": "Both fixed and pattern constraints — fixed matches, pattern matches → valid",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "combined-obs",
+    "status": "final",
+    "category": [{ "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs", "display": "Vital Signs" }] }]
+  },
+  "profile": {
+    "url": "http://example.org/StructureDefinition/VitalSignObservation",
+    "name": "VitalSignObservation",
+    "kind": "resource",
+    "type": "Observation",
+    "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }], "fixed": "final" },
+      { "path": "Observation.category", "id": "Observation.category", "min": 1, "max": "unbounded", "types": [{ "code": "CodeableConcept" }], "pattern": { "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs" }] } }
+    ]
+  },
+  "expectedValid": true,
+  "expectedIssueCount": 0
+}

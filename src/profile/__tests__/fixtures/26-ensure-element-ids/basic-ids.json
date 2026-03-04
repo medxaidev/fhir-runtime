@@ -1,0 +1,12 @@
+{
+  "description": "Basic ID generation from path",
+  "elements": [
+    { "path": "Patient" },
+    { "path": "Patient.id" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.name" }
+  ],
+  "expected": {
+    "ids": ["Patient", "Patient.id", "Patient.identifier", "Patient.name"]
+  }
+}

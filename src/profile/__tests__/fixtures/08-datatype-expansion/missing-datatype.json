@@ -1,0 +1,15 @@
+{
+  "description": "Datatype expansion warning: datatype not in cache",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.contact", "min": 0, "max": "*", "type": [{ "code": "BackboneElement" }] }
+  ],
+  "diff": [
+    { "path": "Patient.contact.name", "min": 1 }
+  ],
+  "datatypeCache": {},
+  "expected": {
+    "hasIssue": true,
+    "issueCode": "BASE_NOT_FOUND"
+  }
+}

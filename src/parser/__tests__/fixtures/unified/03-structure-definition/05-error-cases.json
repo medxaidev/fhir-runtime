@@ -1,0 +1,73 @@
+{
+  "_comment": "This file contains multiple error case objects for testing. Load and use individually.",
+  "cases": {
+    "missing-url": {
+      "resourceType": "StructureDefinition",
+      "name": "MissingUrl",
+      "status": "draft",
+      "kind": "resource",
+      "abstract": false,
+      "type": "Patient"
+    },
+    "missing-name": {
+      "resourceType": "StructureDefinition",
+      "url": "http://example.org/test",
+      "status": "draft",
+      "kind": "resource",
+      "abstract": false,
+      "type": "Patient"
+    },
+    "missing-status": {
+      "resourceType": "StructureDefinition",
+      "url": "http://example.org/test",
+      "name": "Test",
+      "kind": "resource",
+      "abstract": false,
+      "type": "Patient"
+    },
+    "missing-kind": {
+      "resourceType": "StructureDefinition",
+      "url": "http://example.org/test",
+      "name": "Test",
+      "status": "draft",
+      "abstract": false,
+      "type": "Patient"
+    },
+    "missing-abstract": {
+      "resourceType": "StructureDefinition",
+      "url": "http://example.org/test",
+      "name": "Test",
+      "status": "draft",
+      "kind": "resource",
+      "type": "Patient"
+    },
+    "missing-type": {
+      "resourceType": "StructureDefinition",
+      "url": "http://example.org/test",
+      "name": "Test",
+      "status": "draft",
+      "kind": "resource",
+      "abstract": false
+    },
+    "wrong-resource-type": {
+      "resourceType": "Patient",
+      "url": "http://example.org/test",
+      "name": "Test",
+      "status": "draft",
+      "kind": "resource",
+      "abstract": false,
+      "type": "Patient"
+    },
+    "unknown-properties": {
+      "resourceType": "StructureDefinition",
+      "url": "http://example.org/test",
+      "name": "Test",
+      "status": "draft",
+      "kind": "resource",
+      "abstract": false,
+      "type": "Patient",
+      "customField1": "value1",
+      "customField2": 42
+    }
+  }
+}

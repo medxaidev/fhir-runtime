@@ -1,0 +1,194 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Patient",
+  "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "version": "4.0.1",
+  "name": "Patient",
+  "title": "Patient",
+  "status": "active",
+  "publisher": "Health Level Seven International (Patient Administration)",
+  "description": "Demographics and other administrative information about an individual or animal receiving care or other health-related services.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "mapping": [
+    { "identity": "rim", "uri": "http://hl7.org/v3", "name": "RIM Mapping" },
+    { "identity": "v2", "uri": "http://hl7.org/v2", "name": "HL7 v2 Mapping" },
+    { "identity": "cda", "uri": "http://hl7.org/v3/cda", "name": "CDA (R2)" }
+  ],
+  "snapshot": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "short": "Information about an individual or animal receiving health care services",
+        "definition": "Demographics and other administrative information about an individual or animal receiving care.",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient", "min": 0, "max": "*" },
+        "constraint": [
+          { "key": "dom-2", "severity": "error", "human": "If the resource is contained in another resource, it SHALL NOT contain nested Resources", "expression": "contained.contained.empty()" }
+        ]
+      },
+      {
+        "id": "Patient.id",
+        "path": "Patient.id",
+        "short": "Logical id of this artifact",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Resource.id", "min": 0, "max": "1" },
+        "type": [{ "code": "http://hl7.org/fhirpath/System.String", "extension": [{ "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type", "valueUrl": "id" }] }],
+        "isSummary": true
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "short": "An identifier for this patient",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.identifier", "min": 0, "max": "*" },
+        "type": [{ "code": "Identifier" }],
+        "isSummary": true,
+        "mapping": [{ "identity": "v2", "map": "PID-3" }]
+      },
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "short": "Whether this patient's record is in active use",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.active", "min": 0, "max": "1" },
+        "type": [{ "code": "boolean" }],
+        "meaningWhenMissing": "This resource is generally assumed to be active if no value is provided for the active element",
+        "isModifier": true,
+        "isModifierReason": "This element is labelled as a modifier because it is a status element that can indicate that a record should not be treated as valid",
+        "isSummary": true
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "short": "A name associated with the patient",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.name", "min": 0, "max": "*" },
+        "type": [{ "code": "HumanName" }],
+        "isSummary": true,
+        "mapping": [{ "identity": "v2", "map": "PID-5, PID-9" }]
+      },
+      {
+        "id": "Patient.telecom",
+        "path": "Patient.telecom",
+        "short": "A contact detail for the individual",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.telecom", "min": 0, "max": "*" },
+        "type": [{ "code": "ContactPoint" }],
+        "isSummary": true
+      },
+      {
+        "id": "Patient.gender",
+        "path": "Patient.gender",
+        "short": "male | female | other | unknown",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.gender", "min": 0, "max": "1" },
+        "type": [{ "code": "code" }],
+        "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1" },
+        "isSummary": true
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "short": "The date of birth for the individual",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.birthDate", "min": 0, "max": "1" },
+        "type": [{ "code": "date" }],
+        "isSummary": true
+      },
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "short": "Indicates if the individual is deceased or not",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.deceased[x]", "min": 0, "max": "1" },
+        "type": [{ "code": "boolean" }, { "code": "dateTime" }],
+        "isModifier": true,
+        "isModifierReason": "Once a patient is marked as deceased, the actions that are appropriate to perform on the patient may be significantly different",
+        "isSummary": true
+      },
+      {
+        "id": "Patient.address",
+        "path": "Patient.address",
+        "short": "An address for the individual",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.address", "min": 0, "max": "*" },
+        "type": [{ "code": "Address" }],
+        "isSummary": true
+      },
+      {
+        "id": "Patient.maritalStatus",
+        "path": "Patient.maritalStatus",
+        "short": "Marital (civil) status of a patient",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.maritalStatus", "min": 0, "max": "1" },
+        "type": [{ "code": "CodeableConcept" }],
+        "binding": { "strength": "extensible", "valueSet": "http://hl7.org/fhir/ValueSet/marital-status" }
+      },
+      {
+        "id": "Patient.multipleBirth[x]",
+        "path": "Patient.multipleBirth[x]",
+        "short": "Whether patient is part of a multiple birth",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.multipleBirth[x]", "min": 0, "max": "1" },
+        "type": [{ "code": "boolean" }, { "code": "integer" }]
+      },
+      {
+        "id": "Patient.contact",
+        "path": "Patient.contact",
+        "short": "A contact party for the patient",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.contact", "min": 0, "max": "*" },
+        "constraint": [{ "key": "pat-1", "severity": "error", "human": "SHALL at least contain a contact's details or a reference to an organization", "expression": "name.exists() or telecom.exists() or address.exists() or organization.exists()" }]
+      },
+      {
+        "id": "Patient.generalPractitioner",
+        "path": "Patient.generalPractitioner",
+        "short": "Patient's nominated primary care provider",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.generalPractitioner", "min": 0, "max": "*" },
+        "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Organization", "http://hl7.org/fhir/StructureDefinition/Practitioner", "http://hl7.org/fhir/StructureDefinition/PractitionerRole"] }]
+      },
+      {
+        "id": "Patient.managingOrganization",
+        "path": "Patient.managingOrganization",
+        "short": "Organization that is the custodian of the patient record",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.managingOrganization", "min": 0, "max": "1" },
+        "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Organization"] }],
+        "isSummary": true
+      },
+      {
+        "id": "Patient.link",
+        "path": "Patient.link",
+        "short": "Link to another patient resource that concerns the same actual person",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.link", "min": 0, "max": "*" },
+        "isModifier": true,
+        "isModifierReason": "This element is labelled as a modifier because it might not be the main Patient resource, and the referenced patient should be used instead of this Patient record",
+        "isSummary": true
+      }
+    ]
+  }
+}

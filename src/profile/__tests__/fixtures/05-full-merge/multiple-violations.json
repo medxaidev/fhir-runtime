@@ -1,0 +1,22 @@
+{
+  "description": "Full merge: multiple violations (min loosened + max widened)",
+  "base": {
+    "path": "Patient.name",
+    "min": 1,
+    "max": "3",
+    "short": "A name associated with the patient"
+  },
+  "diff": {
+    "path": "Patient.name",
+    "min": 0,
+    "max": "*",
+    "short": "Updated short"
+  },
+  "expected": {
+    "min": 0,
+    "max": "*",
+    "short": "Updated short",
+    "issueCount": 2,
+    "issueCodes": ["CARDINALITY_VIOLATION", "CARDINALITY_VIOLATION"]
+  }
+}

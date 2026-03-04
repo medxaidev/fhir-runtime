@@ -1,0 +1,52 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "slice-children-order",
+  "url": "http://example.org/fhir/StructureDefinition/SliceChildrenOrder",
+  "name": "SliceChildrenOrder",
+  "title": "Slice with children — children follow their slice before next slice",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "system" }],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:mrn.system",
+        "path": "Patient.identifier.system",
+        "fixedUri": "http://hospital.example.org/mrn"
+      },
+      {
+        "id": "Patient.identifier:mrn.value",
+        "path": "Patient.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:ssn",
+        "path": "Patient.identifier",
+        "sliceName": "ssn",
+        "min": 0
+      },
+      {
+        "id": "Patient.identifier:ssn.system",
+        "path": "Patient.identifier.system",
+        "fixedUri": "http://hl7.org/fhir/sid/us-ssn"
+      }
+    ]
+  }
+}

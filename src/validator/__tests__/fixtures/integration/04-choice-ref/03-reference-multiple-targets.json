@@ -1,0 +1,22 @@
+{
+  "description": "Reference with multiple allowed targets — Practitioner matches one of [Patient, Practitioner]",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "multi-ref",
+    "status": "final",
+    "code": { "coding": [{ "system": "http://loinc.org", "code": "85354-9" }] },
+    "performer": [{ "reference": "Practitioner/dr-smith" }]
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+    "name": "Observation", "kind": "resource", "type": "Observation", "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }] },
+      { "path": "Observation.performer", "id": "Observation.performer", "min": 0, "max": "unbounded", "types": [{ "code": "Reference", "targetProfiles": ["http://hl7.org/fhir/StructureDefinition/Patient", "http://hl7.org/fhir/StructureDefinition/Practitioner"] }] }
+    ]
+  },
+  "expectedValid": true,
+  "expectedErrorCount": 0
+}

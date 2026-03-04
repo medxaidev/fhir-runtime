@@ -1,0 +1,28 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "add-example",
+  "url": "http://example.org/fhir/StructureDefinition/AddExample",
+  "name": "AddExample",
+  "title": "Add example value to Patient.birthDate",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "min": 1,
+        "example": [
+          {
+            "label": "Standard birth date",
+            "valueDate": "1990-01-15"
+          }
+        ]
+      }
+    ]
+  }
+}

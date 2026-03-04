@@ -1,0 +1,19 @@
+{
+  "description": "Append: new constraint added to base constraints",
+  "base": {
+    "path": "Patient.identifier",
+    "constraint": [
+      { "key": "ele-1", "severity": "error", "human": "All FHIR elements must have a @value or children" }
+    ]
+  },
+  "diff": {
+    "path": "Patient.identifier",
+    "constraint": [
+      { "key": "mrn-1", "severity": "error", "human": "MRN must have a system" }
+    ]
+  },
+  "expected": {
+    "constraintCount": 2,
+    "constraintKeys": ["ele-1", "mrn-1"]
+  }
+}

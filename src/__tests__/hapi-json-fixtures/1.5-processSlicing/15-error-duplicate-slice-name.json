@@ -1,0 +1,48 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-duplicate-slice-name",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorDuplicateSliceName",
+  "name": "ErrorDuplicateSliceName",
+  "title": "ERROR CASE: Two slices with the same sliceName",
+  "description": "Two slices named 'mrn' on Patient.identifier. HAPI should reject this as duplicate.",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "system" }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1,
+        "max": "1",
+        "patternIdentifier": {
+          "system": "http://hospital.example.org/mrn"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn-dup",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 0,
+        "max": "1",
+        "patternIdentifier": {
+          "system": "http://hospital.example.org/mrn-v2"
+        }
+      }
+    ]
+  }
+}

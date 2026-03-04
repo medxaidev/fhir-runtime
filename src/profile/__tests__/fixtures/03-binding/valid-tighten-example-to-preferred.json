@@ -1,0 +1,22 @@
+{
+  "description": "Valid: tighten from example to preferred",
+  "base": {
+    "path": "Observation.category",
+    "binding": {
+      "strength": "example",
+      "valueSet": "http://hl7.org/fhir/ValueSet/observation-category"
+    }
+  },
+  "diff": {
+    "path": "Observation.category",
+    "binding": {
+      "strength": "preferred",
+      "valueSet": "http://example.org/ValueSet/my-categories"
+    }
+  },
+  "expected": {
+    "strength": "preferred",
+    "valueSet": "http://example.org/ValueSet/my-categories",
+    "issueCount": 0
+  }
+}

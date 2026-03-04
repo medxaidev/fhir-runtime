@@ -1,0 +1,37 @@
+{
+  "description": "Post-processing: throwOnError mode throws UnconsumedDifferentialError",
+  "baseSd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "name": "Patient",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "min": 0, "max": "*" },
+        { "path": "Patient.name", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ThrowUnconsumed",
+    "name": "ThrowUnconsumed",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+    "differential": {
+      "element": [
+        { "path": "Patient.nonExistent", "min": 1 }
+      ]
+    }
+  },
+  "options": { "throwOnError": true },
+  "expected": {
+    "throws": "UnconsumedDifferentialError"
+  }
+}

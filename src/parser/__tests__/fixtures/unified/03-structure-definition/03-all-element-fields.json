@@ -1,0 +1,137 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/AllElementFields",
+  "name": "AllElementFields",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "short": "Patient resource",
+        "definition": "Demographics and other administrative information about an individual.",
+        "comment": "Root element",
+        "requirements": "Tracking patient is fundamental",
+        "alias": ["Person", "Individual"],
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Resource", "min": 0, "max": "*" },
+        "condition": ["dom-1"],
+        "constraint": [
+          {
+            "key": "pat-1",
+            "severity": "error",
+            "human": "Patient.name or Patient.identifier SHALL be present",
+            "expression": "name.exists() or identifier.exists()",
+            "xpath": "f:name or f:identifier",
+            "source": "http://hl7.org/fhir/StructureDefinition/Patient"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          { "identity": "rim", "map": "Entity. Role, or Act" }
+        ]
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "label": "Medical Record Number",
+        "short": "An identifier for this patient",
+        "definition": "An identifier for this patient.",
+        "comment": "At least one identifier is required.",
+        "requirements": "Patients are almost always assigned specific identifiers.",
+        "alias": ["MRN"],
+        "min": 1,
+        "max": "*",
+        "base": { "path": "Patient.identifier", "min": 0, "max": "*" },
+        "type": [{ "code": "Identifier" }],
+        "meaningWhenMissing": "No identifier available",
+        "orderMeaning": "Identifiers ordered by priority",
+        "condition": ["pat-1"],
+        "constraint": [
+          {
+            "key": "ident-1",
+            "severity": "warning",
+            "human": "Identifier should have a system",
+            "expression": "system.exists()"
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false,
+        "isModifierReason": null,
+        "isSummary": true,
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "system" }],
+          "description": "Slice by identifier system",
+          "ordered": false,
+          "rules": "open"
+        },
+        "binding": {
+          "strength": "extensible",
+          "description": "Identifier type codes",
+          "valueSet": "http://hl7.org/fhir/ValueSet/identifier-type"
+        },
+        "mapping": [
+          { "identity": "v2", "map": "PID-3" },
+          { "identity": "rim", "map": ".id" }
+        ]
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "short": "A name associated with the patient",
+        "min": 1,
+        "max": "*",
+        "base": { "path": "Patient.name", "min": 0, "max": "*" },
+        "type": [
+          { "code": "HumanName", "profile": ["http://hl7.org/fhir/StructureDefinition/HumanName"] }
+        ],
+        "mustSupport": true,
+        "isSummary": true,
+        "maxLength": 500
+      },
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "short": "Indicates if the patient is deceased",
+        "min": 0,
+        "max": "1",
+        "base": { "path": "Patient.deceased[x]", "min": 0, "max": "1" },
+        "type": [
+          { "code": "boolean" },
+          { "code": "dateTime" }
+        ],
+        "isModifier": true,
+        "isModifierReason": "This element is labeled as a modifier because once a patient is marked as deceased, the actions that are appropriate to perform on the patient may be significantly different.",
+        "isSummary": true
+      },
+      {
+        "id": "Patient.generalPractitioner",
+        "path": "Patient.generalPractitioner",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient.generalPractitioner", "min": 0, "max": "*" },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner"
+            ],
+            "aggregation": ["referenced"],
+            "versioning": "either"
+          }
+        ],
+        "contentReference": "#Patient.contact"
+      }
+    ]
+  }
+}

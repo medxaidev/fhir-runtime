@@ -1,0 +1,31 @@
+{
+  "description": "Comment token handling: single-line and multi-line",
+  "cases": [
+    {
+      "input": "2 + 2 // line comment",
+      "expected": [
+        { "id": "Number", "value": "2" },
+        { "id": "+", "value": "+" },
+        { "id": "Number", "value": "2" },
+        { "id": "Comment", "value": "// line comment" }
+      ]
+    },
+    {
+      "input": "/* block */ 1",
+      "expectedLength": 2,
+      "expectedLast": { "id": "Number", "value": "1" }
+    },
+    {
+      "input": "",
+      "expected": []
+    },
+    {
+      "input": "   ",
+      "expected": []
+    },
+    {
+      "input": "// only a comment",
+      "expectedLength": 1
+    }
+  ]
+}

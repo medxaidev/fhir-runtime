@@ -1,0 +1,65 @@
+{
+  "description": "Primitive type validation: string, boolean, integer, decimal values against their expected types",
+  "scenarios": [
+    {
+      "label": "string value matches string type",
+      "element": {
+        "path": "Patient.gender",
+        "id": "Patient.gender",
+        "min": 0, "max": 1,
+        "types": [{ "code": "code" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": "male",
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "boolean value matches boolean type",
+      "element": {
+        "path": "Patient.active",
+        "id": "Patient.active",
+        "min": 0, "max": 1,
+        "types": [{ "code": "boolean" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": true,
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "integer value matches integer type",
+      "element": {
+        "path": "ElementDefinition.min",
+        "id": "ElementDefinition.min",
+        "min": 0, "max": 1,
+        "types": [{ "code": "integer" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": 5,
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "decimal value matches decimal type",
+      "element": {
+        "path": "Quantity.value",
+        "id": "Quantity.value",
+        "min": 0, "max": 1,
+        "types": [{ "code": "decimal" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": 3.14,
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "integer is compatible with decimal type",
+      "element": {
+        "path": "Quantity.value",
+        "id": "Quantity.value",
+        "min": 0, "max": 1,
+        "types": [{ "code": "decimal" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false
+      },
+      "value": 42,
+      "expectedIssueCount": 0
+    }
+  ]
+}

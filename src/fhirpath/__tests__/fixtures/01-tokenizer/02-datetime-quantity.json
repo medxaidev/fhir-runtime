@@ -1,0 +1,29 @@
+{
+  "description": "DateTime and Quantity token parsing",
+  "cases": [
+    {
+      "input": "@2024-01-15",
+      "expected": [{ "id": "DateTime", "value": "2024-01-15" }]
+    },
+    {
+      "input": "@2024-01-15T10:30:00Z",
+      "expected": [{ "id": "DateTime", "value": "2024-01-15T10:30:00Z" }]
+    },
+    {
+      "input": "@2012-04-15T15:00:00+02:00",
+      "expected": [{ "id": "DateTime", "value": "2012-04-15T15:00:00+02:00" }]
+    },
+    {
+      "input": "1 'mg'",
+      "expected": [{ "id": "Quantity", "value": "1 'mg'" }]
+    },
+    {
+      "input": "7 days",
+      "expected": [{ "id": "Quantity", "value": "7 days" }]
+    },
+    {
+      "input": "1.5 'kg'",
+      "expected": [{ "id": "Quantity", "value": "1.5 'kg'" }]
+    }
+  ]
+}

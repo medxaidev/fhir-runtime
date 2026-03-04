@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-unresolvable-base",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorUnresolvableBase",
+  "name": "ErrorUnresolvableBase",
+  "title": "ERROR CASE: baseDefinition points to non-existent profile",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://example.org/fhir/StructureDefinition/DoesNotExist",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      }
+    ]
+  }
+}

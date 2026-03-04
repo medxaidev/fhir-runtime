@@ -1,0 +1,20 @@
+{
+  "description": "Base loading: base SD cannot be found — should produce BASE_NOT_FOUND error",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/MyProfile",
+    "name": "MyProfile",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/NonExistent",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "expected": {
+    "success": false,
+    "errorCode": "BASE_NOT_FOUND"
+  }
+}

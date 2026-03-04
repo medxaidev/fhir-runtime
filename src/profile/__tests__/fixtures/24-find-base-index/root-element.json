@@ -1,0 +1,10 @@
+{
+  "description": "Root element path returns index 0",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.id" },
+    { "path": "Patient.identifier" }
+  ],
+  "path": "Patient",
+  "expected": { "index": 0 }
+}

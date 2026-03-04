@@ -1,0 +1,23 @@
+{
+  "description": "Pattern value mismatch — code must match pattern but has different system → PATTERN_VALUE_MISMATCH",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "obs-2",
+    "status": "final",
+    "code": { "coding": [{ "system": "http://snomed.info/sct", "code": "12345" }] }
+  },
+  "profile": {
+    "url": "http://example.org/StructureDefinition/LoincObservation",
+    "name": "LoincObservation",
+    "kind": "resource",
+    "type": "Observation",
+    "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }], "pattern": { "coding": [{ "system": "http://loinc.org" }] } }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["PATTERN_VALUE_MISMATCH"]
+}

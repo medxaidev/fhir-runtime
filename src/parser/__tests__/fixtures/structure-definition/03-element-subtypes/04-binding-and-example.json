@@ -1,0 +1,70 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/BindingAndExample",
+  "name": "BindingAndExample",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "binding": {
+          "strength": "required",
+          "description": "Codes providing the status of an observation.",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1"
+        }
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "binding": {
+          "strength": "extensible",
+          "description": "Codes identifying names of simple observations.",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+        }
+      },
+      {
+        "id": "Observation.category",
+        "path": "Observation.category",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-category"
+        }
+      },
+      {
+        "id": "Observation.interpretation",
+        "path": "Observation.interpretation",
+        "binding": {
+          "strength": "example",
+          "description": "Codes identifying interpretations of observations.",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+        }
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "example": [
+          {
+            "label": "Normal heart rate",
+            "valueQuantity": { "value": 72, "unit": "/min", "system": "http://unitsofmeasure.org", "code": "/min" }
+          },
+          {
+            "label": "Blood type",
+            "valueCodeableConcept": {
+              "coding": [{ "system": "http://loinc.org", "code": "882-1", "display": "ABO group" }]
+            }
+          },
+          {
+            "label": "Simple text result",
+            "valueString": "Normal findings"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Medication",
+  "url": "http://hl7.org/fhir/StructureDefinition/Medication",
+  "version": "4.0.1",
+  "name": "Medication",
+  "title": "Medication",
+  "status": "active",
+  "description": "This resource is primarily used for the identification and definition of a medication for the purposes of prescribing, dispensing, and administering a medication as well as for making statements about medication use.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Medication",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Medication", "path": "Medication", "min": 0, "max": "*", "base": { "path": "Medication", "min": 0, "max": "*" } },
+      { "id": "Medication.code", "path": "Medication.code", "min": 0, "max": "1", "base": { "path": "Medication.code", "min": 0, "max": "1" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "example", "valueSet": "http://hl7.org/fhir/ValueSet/medication-codes" } },
+      { "id": "Medication.status", "path": "Medication.status", "min": 0, "max": "1", "base": { "path": "Medication.status", "min": 0, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/medication-status|4.0.1" } },
+      { "id": "Medication.manufacturer", "path": "Medication.manufacturer", "min": 0, "max": "1", "base": { "path": "Medication.manufacturer", "min": 0, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Organization"] }], "isSummary": true },
+      { "id": "Medication.form", "path": "Medication.form", "min": 0, "max": "1", "base": { "path": "Medication.form", "min": 0, "max": "1" }, "type": [{ "code": "CodeableConcept" }], "binding": { "strength": "example", "valueSet": "http://hl7.org/fhir/ValueSet/medication-form-codes" } },
+      { "id": "Medication.amount", "path": "Medication.amount", "min": 0, "max": "1", "base": { "path": "Medication.amount", "min": 0, "max": "1" }, "type": [{ "code": "Ratio" }], "isSummary": true }
+    ]
+  }
+}

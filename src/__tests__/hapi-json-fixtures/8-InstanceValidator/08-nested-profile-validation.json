@@ -1,0 +1,47 @@
+{
+  "resourceType": "Bundle",
+  "id": "nested-profile-validation",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/DeepPatient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "deep-patient",
+        "url": "http://example.org/fhir/StructureDefinition/DeepPatient",
+        "name": "DeepPatient",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            { "id": "Patient.name", "path": "Patient.name", "min": 1 },
+            { "id": "Patient.name.family", "path": "Patient.name.family", "min": 1 },
+            { "id": "Patient.name.given", "path": "Patient.name.given", "min": 1 },
+            { "id": "Patient.contact", "path": "Patient.contact", "min": 1 },
+            { "id": "Patient.contact.name", "path": "Patient.contact.name", "min": 1 },
+            { "id": "Patient.contact.telecom", "path": "Patient.contact.telecom", "min": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Patient/deep-valid",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "deep-valid",
+        "meta": { "profile": ["http://example.org/fhir/StructureDefinition/DeepPatient"] },
+        "name": [{ "family": "Smith", "given": ["John"] }],
+        "contact": [
+          {
+            "name": { "family": "Smith", "given": ["Jane"] },
+            "telecom": [{ "system": "phone", "value": "+1-555-0100" }]
+          }
+        ]
+      }
+    }
+  ]
+}

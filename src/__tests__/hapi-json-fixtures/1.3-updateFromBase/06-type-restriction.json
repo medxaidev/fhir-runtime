@@ -1,0 +1,24 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "type-restriction",
+  "url": "http://example.org/fhir/StructureDefinition/TypeRestriction",
+  "name": "TypeRestriction",
+  "title": "Restrict types: Patient.deceased[x] from [boolean,dateTime]→[boolean]",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "type": [
+          { "code": "boolean" }
+        ]
+      }
+    ]
+  }
+}

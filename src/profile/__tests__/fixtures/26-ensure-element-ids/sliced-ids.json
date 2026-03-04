@@ -1,0 +1,13 @@
+{
+  "description": "Sliced elements get path:sliceName IDs",
+  "elements": [
+    { "path": "Patient" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.identifier", "sliceName": "MRN" },
+    { "path": "Patient.identifier", "sliceName": "SSN" },
+    { "path": "Patient.name" }
+  ],
+  "expected": {
+    "ids": ["Patient", "Patient.identifier", "Patient.identifier:MRN", "Patient.identifier:SSN", "Patient.name"]
+  }
+}

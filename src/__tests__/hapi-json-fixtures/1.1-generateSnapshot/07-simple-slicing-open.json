@@ -1,0 +1,35 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "simple-slicing-open",
+  "url": "http://example.org/fhir/StructureDefinition/SimpleSlicingOpen",
+  "name": "SimpleSlicingOpen",
+  "title": "Slice Patient.name by use with open rules",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "use" }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Patient.name:official",
+        "path": "Patient.name",
+        "sliceName": "official",
+        "min": 1,
+        "max": "1"
+      }
+    ]
+  }
+}

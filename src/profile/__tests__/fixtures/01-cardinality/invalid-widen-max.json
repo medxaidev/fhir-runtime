@@ -1,0 +1,18 @@
+{
+  "description": "Invalid: widen max from 1 to *",
+  "base": {
+    "path": "Patient.name",
+    "min": 0,
+    "max": "1"
+  },
+  "diff": {
+    "path": "Patient.name",
+    "max": "*"
+  },
+  "expected": {
+    "min": 0,
+    "max": "*",
+    "issueCount": 1,
+    "issueCode": "CARDINALITY_VIOLATION"
+  }
+}

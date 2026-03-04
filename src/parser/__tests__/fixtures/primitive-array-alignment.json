@@ -1,0 +1,20 @@
+{
+  "resourceType": "Patient",
+  "id": "array-align-1",
+  "name": [
+    {
+      "given": ["John", "Michael"],
+      "_given": [
+        null,
+        {
+          "extension": [
+            {
+              "url": "http://example.org/fhir/StructureDefinition/preferred-name",
+              "valueBoolean": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "description": "Full merge: documentation fields overwritten from diff",
+  "base": {
+    "path": "Patient.identifier",
+    "min": 0,
+    "max": "*",
+    "short": "An identifier for this patient",
+    "definition": "An identifier - identifies some entity uniquely",
+    "comment": "Base comment",
+    "mustSupport": false
+  },
+  "diff": {
+    "path": "Patient.identifier",
+    "short": "MRN or other identifier",
+    "definition": "Must be an MRN identifier",
+    "comment": "Profile-specific comment",
+    "mustSupport": true
+  },
+  "expected": {
+    "short": "MRN or other identifier",
+    "definition": "Must be an MRN identifier",
+    "comment": "Profile-specific comment",
+    "mustSupport": true,
+    "min": 0,
+    "max": "*",
+    "issueCount": 0
+  }
+}

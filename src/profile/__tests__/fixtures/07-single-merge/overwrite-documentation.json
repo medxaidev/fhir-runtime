@@ -1,0 +1,16 @@
+{
+  "description": "Single merge: overwrite short and definition",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.name", "min": 0, "max": "*", "short": "A name", "definition": "Base definition" }
+  ],
+  "diff": [
+    { "path": "Patient.name", "short": "Patient full name", "definition": "Must include family name" }
+  ],
+  "expected": {
+    "elementCount": 2,
+    "nameShort": "Patient full name",
+    "nameDefinition": "Must include family name",
+    "issueCount": 0
+  }
+}

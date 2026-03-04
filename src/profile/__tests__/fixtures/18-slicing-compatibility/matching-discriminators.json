@@ -1,0 +1,14 @@
+{
+  "description": "Compatible: discriminators match exactly",
+  "baseSlicing": {
+    "discriminator": [{ "type": "value", "path": "system" }],
+    "rules": "open",
+    "ordered": false
+  },
+  "diffSlicing": {
+    "discriminator": [{ "type": "value", "path": "system" }],
+    "rules": "open",
+    "ordered": false
+  },
+  "expected": { "compatible": true, "issueCount": 0 }
+}

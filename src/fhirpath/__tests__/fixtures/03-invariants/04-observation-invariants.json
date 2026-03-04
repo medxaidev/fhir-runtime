@@ -1,0 +1,88 @@
+{
+  "description": "Real FHIR Observation invariants from the core specification",
+  "tests": [
+    {
+      "description": "obs-6: dataAbsentReason SHALL only be present if value is not present",
+      "invariant": {
+        "key": "obs-6",
+        "severity": "error",
+        "human": "dataAbsentReason SHALL only be present if Observation.value[x] is not present",
+        "expression": "dataAbsentReason.empty() or value.empty()"
+      },
+      "value": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": { "text": "test" },
+        "dataAbsentReason": { "text": "unknown" }
+      },
+      "resource": { "resourceType": "Observation" },
+      "expectedValid": true
+    },
+    {
+      "description": "obs-6: both value and dataAbsentReason present — invalid",
+      "invariant": {
+        "key": "obs-6",
+        "severity": "error",
+        "human": "dataAbsentReason SHALL only be present if Observation.value[x] is not present",
+        "expression": "dataAbsentReason.empty() or value.empty()"
+      },
+      "value": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": { "text": "test" },
+        "value": "42",
+        "dataAbsentReason": { "text": "unknown" }
+      },
+      "resource": { "resourceType": "Observation" },
+      "expectedValid": false
+    },
+    {
+      "description": "obs-7: component value or dataAbsentReason — valid with value",
+      "invariant": {
+        "key": "obs-7",
+        "severity": "error",
+        "human": "If Observation.component.code is the same as Observation.code, then value SHALL NOT be present",
+        "expression": "value.exists() or dataAbsentReason.exists()"
+      },
+      "value": { "code": { "text": "BP" }, "value": "120/80" },
+      "resource": { "resourceType": "Observation" },
+      "expectedValid": true
+    },
+    {
+      "description": "obs-7: component without value or dataAbsentReason — invalid",
+      "invariant": {
+        "key": "obs-7",
+        "severity": "error",
+        "human": "Component SHALL have value or dataAbsentReason",
+        "expression": "value.exists() or dataAbsentReason.exists()"
+      },
+      "value": { "code": { "text": "BP" } },
+      "resource": { "resourceType": "Observation" },
+      "expectedValid": false
+    },
+    {
+      "description": "status check — status in allowed values",
+      "invariant": {
+        "key": "obs-status",
+        "severity": "error",
+        "human": "Status must be final or amended",
+        "expression": "status = 'final' or status = 'amended'"
+      },
+      "value": { "resourceType": "Observation", "status": "final", "code": { "text": "test" } },
+      "resource": { "resourceType": "Observation" },
+      "expectedValid": true
+    },
+    {
+      "description": "status check — status not in allowed values",
+      "invariant": {
+        "key": "obs-status",
+        "severity": "error",
+        "human": "Status must be final or amended",
+        "expression": "status = 'final' or status = 'amended'"
+      },
+      "value": { "resourceType": "Observation", "status": "preliminary", "code": { "text": "test" } },
+      "resource": { "resourceType": "Observation" },
+      "expectedValid": false
+    }
+  ]
+}

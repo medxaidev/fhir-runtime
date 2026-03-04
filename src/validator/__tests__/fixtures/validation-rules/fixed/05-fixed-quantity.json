@@ -1,0 +1,46 @@
+{
+  "description": "Fixed Quantity — matching and mismatching scenarios",
+  "scenarios": [
+    {
+      "label": "exact match → valid",
+      "element": {
+        "path": "Observation.valueQuantity",
+        "id": "Observation.valueQuantity",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+        "fixed": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" }
+      },
+      "value": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" },
+      "expectedIssueCount": 0
+    },
+    {
+      "label": "different value → FIXED_VALUE_MISMATCH",
+      "element": {
+        "path": "Observation.valueQuantity",
+        "id": "Observation.valueQuantity",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+        "fixed": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" }
+      },
+      "value": { "value": 80, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" },
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "FIXED_VALUE_MISMATCH" }]
+    },
+    {
+      "label": "extra field in value → FIXED_VALUE_MISMATCH (fixed requires exact match)",
+      "element": {
+        "path": "Observation.valueQuantity",
+        "id": "Observation.valueQuantity",
+        "min": 0, "max": 1,
+        "types": [{ "code": "Quantity" }],
+        "constraints": [], "mustSupport": false, "isModifier": false, "isSummary": false,
+        "fixed": { "value": 120, "unit": "mmHg" }
+      },
+      "value": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org" },
+      "expectedIssueCount": 1,
+      "expectedIssues": [{ "code": "FIXED_VALUE_MISMATCH" }]
+    }
+  ]
+}

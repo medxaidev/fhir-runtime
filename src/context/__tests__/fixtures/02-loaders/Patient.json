@@ -1,0 +1,31 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "version": "4.0.1",
+  "name": "Patient",
+  "title": "Patient",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Patient", "min": 0, "max": "*" }
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "HumanName" }]
+      }
+    ]
+  }
+}

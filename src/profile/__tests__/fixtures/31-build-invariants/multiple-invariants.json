@@ -1,0 +1,29 @@
+{
+  "description": "Multiple constraints → multiple invariants",
+  "input": [
+    {
+      "key": "pat-1",
+      "severity": "error",
+      "human": "SHALL at least contain a contact's details or a reference to an organization"
+    },
+    {
+      "key": "ele-1",
+      "severity": "error",
+      "human": "All FHIR elements must have a @value or children",
+      "expression": "hasValue() or (children().count() > id.count())"
+    }
+  ],
+  "expected": [
+    {
+      "key": "pat-1",
+      "severity": "error",
+      "human": "SHALL at least contain a contact's details or a reference to an organization"
+    },
+    {
+      "key": "ele-1",
+      "severity": "error",
+      "human": "All FHIR elements must have a @value or children",
+      "expression": "hasValue() or (children().count() > id.count())"
+    }
+  ]
+}

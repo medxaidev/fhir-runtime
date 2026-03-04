@@ -1,0 +1,14 @@
+{
+  "resourceType": "Patient",
+  "id": "primitive-ext-1",
+  "birthDate": "1970-03-30",
+  "_birthDate": {
+    "id": "birth-date-id",
+    "extension": [
+      {
+        "url": "http://example.org/fhir/StructureDefinition/text",
+        "valueString": "Easter 1970"
+      }
+    ]
+  }
+}

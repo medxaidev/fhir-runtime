@@ -1,0 +1,45 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/MinMaxAllTypes",
+  "name": "MinMaxAllTypes",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.value[x]:integer",
+        "path": "Observation.value[x]",
+        "minValueInteger": -100,
+        "maxValueInteger": 100
+      },
+      {
+        "id": "Observation.value[x]:decimal",
+        "path": "Observation.value[x]",
+        "minValueDecimal": 0.001,
+        "maxValueDecimal": 999.999
+      },
+      {
+        "id": "Observation.value[x]:date",
+        "path": "Observation.value[x]",
+        "minValueDate": "1900-01-01",
+        "maxValueDate": "2099-12-31"
+      },
+      {
+        "id": "Observation.value[x]:dateTime",
+        "path": "Observation.value[x]",
+        "minValueDateTime": "2020-01-01T00:00:00Z",
+        "maxValueDateTime": "2030-12-31T23:59:59Z"
+      },
+      {
+        "id": "Observation.value[x]:quantity",
+        "path": "Observation.value[x]",
+        "minValueQuantity": { "value": 0, "unit": "kg" },
+        "maxValueQuantity": { "value": 500, "unit": "kg" }
+      }
+    ]
+  }
+}

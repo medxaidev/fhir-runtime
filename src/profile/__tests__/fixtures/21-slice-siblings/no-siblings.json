@@ -1,0 +1,9 @@
+{
+  "description": "getSliceSiblings: slicing root with no slice siblings",
+  "elements": [
+    { "path": "Patient.identifier", "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "open" } },
+    { "path": "Patient.name" }
+  ],
+  "slicingRootIndex": 0,
+  "expected": { "siblingCount": 0, "sliceNames": [] }
+}

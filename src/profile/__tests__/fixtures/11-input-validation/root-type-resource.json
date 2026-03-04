@@ -1,0 +1,18 @@
+{
+  "description": "Input validation: root type 'Resource' has no baseDefinition — should not error",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://hl7.org/fhir/StructureDefinition/Resource",
+    "name": "Resource",
+    "status": "active",
+    "kind": "resource",
+    "abstract": true,
+    "type": "Resource",
+    "differential": {
+      "element": []
+    }
+  },
+  "expected": {
+    "noBaseDefinitionError": true
+  }
+}

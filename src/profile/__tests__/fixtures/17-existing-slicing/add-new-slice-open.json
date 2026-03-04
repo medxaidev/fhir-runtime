@@ -1,0 +1,18 @@
+{
+  "description": "Case B: Diff adds a new slice to an open slicing",
+  "baseElements": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.identifier", "min": 0, "max": "*", "slicing": { "discriminator": [{ "type": "value", "path": "system" }], "rules": "open" } },
+    { "path": "Patient.identifier", "sliceName": "MRN", "min": 0, "max": "1" },
+    { "path": "Patient.name", "min": 0, "max": "*" }
+  ],
+  "diffElements": [
+    { "path": "Patient.identifier", "sliceName": "SSN", "min": 0, "max": "1" }
+  ],
+  "expected": {
+    "hasSlicingRoot": true,
+    "sliceCount": 2,
+    "sliceNames": ["MRN", "SSN"],
+    "noErrors": true
+  }
+}

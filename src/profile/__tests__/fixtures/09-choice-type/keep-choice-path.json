@@ -1,0 +1,15 @@
+{
+  "description": "Choice type: diff uses [x] path — no narrowing, just merge",
+  "base": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.value[x]", "min": 0, "max": "1", "type": [{ "code": "Quantity" }, { "code": "string" }] }
+  ],
+  "diff": [
+    { "path": "Observation.value[x]", "min": 1 }
+  ],
+  "expected": {
+    "valueMin": 1,
+    "valueTypeCount": 2,
+    "issueCount": 0
+  }
+}

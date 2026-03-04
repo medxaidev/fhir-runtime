@@ -1,0 +1,66 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/MultipleChoiceFields",
+  "name": "MultipleChoiceFields",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Observation",
+        "path": "Observation",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Observation", "min": 0, "max": "*" }
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "Quantity" }],
+        "base": { "path": "Observation.value[x]", "min": 0, "max": "1" },
+        "defaultValueQuantity": { "value": 0, "unit": "mmHg" },
+        "fixedQuantity": { "system": "http://unitsofmeasure.org", "code": "mm[Hg]" },
+        "patternQuantity": { "unit": "mmHg" },
+        "minValueInteger": 0,
+        "maxValueInteger": 400,
+        "example": [
+          {
+            "label": "Systolic BP",
+            "valueQuantity": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" }
+          }
+        ]
+      },
+      {
+        "id": "Observation.component.value[x]",
+        "path": "Observation.component.value[x]",
+        "min": 0,
+        "max": "1",
+        "type": [
+          { "code": "Quantity" },
+          { "code": "CodeableConcept" },
+          { "code": "string" }
+        ],
+        "base": { "path": "Observation.component.value[x]", "min": 0, "max": "1" },
+        "patternQuantity": { "system": "http://unitsofmeasure.org" },
+        "example": [
+          {
+            "label": "Systolic value",
+            "valueQuantity": { "value": 120, "unit": "mmHg" }
+          },
+          {
+            "label": "Coded result",
+            "valueCodeableConcept": {
+              "coding": [{ "system": "http://snomed.info/sct", "code": "260385009", "display": "Negative" }]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

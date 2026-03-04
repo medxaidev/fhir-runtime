@@ -1,0 +1,19 @@
+{
+  "description": "Warning severity constraint",
+  "input": [
+    {
+      "key": "dom-6",
+      "severity": "warning",
+      "human": "A resource should have narrative for robust management",
+      "expression": "text.`div`.exists()"
+    }
+  ],
+  "expected": [
+    {
+      "key": "dom-6",
+      "severity": "warning",
+      "human": "A resource should have narrative for robust management",
+      "expression": "text.`div`.exists()"
+    }
+  ]
+}

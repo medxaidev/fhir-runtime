@@ -1,0 +1,59 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "all-metadata",
+  "meta": { "versionId": "3", "lastUpdated": "2026-02-10T00:00:00Z" },
+  "implicitRules": "http://example.org/rules",
+  "language": "en",
+  "url": "http://example.org/fhir/StructureDefinition/AllMetadata",
+  "identifier": [
+    { "system": "urn:ietf:rfc:3986", "value": "urn:oid:1.2.3.4" },
+    { "system": "http://example.org/ids", "value": "SD-001" }
+  ],
+  "version": "3.1.0",
+  "name": "AllMetadata",
+  "title": "All Metadata Fields Test",
+  "status": "active",
+  "experimental": false,
+  "date": "2026-02-10",
+  "publisher": "MedXAI Test Suite",
+  "contact": [
+    {
+      "name": "Primary Contact",
+      "telecom": [
+        { "system": "email", "value": "primary@example.org" },
+        { "system": "phone", "value": "+1-555-0100" }
+      ]
+    },
+    {
+      "name": "Secondary Contact",
+      "telecom": [{ "system": "url", "value": "https://example.org" }]
+    }
+  ],
+  "description": "A comprehensive test fixture with every metadata field populated.",
+  "useContext": [
+    {
+      "code": { "system": "http://terminology.hl7.org/CodeSystem/usage-context-type", "code": "focus" },
+      "valueCodeableConcept": { "coding": [{ "system": "http://snomed.info/sct", "code": "394802001" }] }
+    },
+    {
+      "code": { "system": "http://terminology.hl7.org/CodeSystem/usage-context-type", "code": "venue" },
+      "valueCodeableConcept": { "coding": [{ "system": "http://snomed.info/sct", "code": "440655000" }] }
+    }
+  ],
+  "jurisdiction": [
+    { "coding": [{ "system": "urn:iso:std:iso:3166", "code": "US" }] },
+    { "coding": [{ "system": "urn:iso:std:iso:3166", "code": "CN" }] }
+  ],
+  "purpose": "Comprehensive metadata coverage testing.",
+  "copyright": "CC-BY-4.0",
+  "keyword": [
+    { "system": "http://example.org/tags", "code": "test" },
+    { "system": "http://example.org/tags", "code": "metadata" }
+  ],
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint"
+}

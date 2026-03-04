@@ -1,0 +1,22 @@
+{
+  "description": "Base loading: throwOnError mode — BaseNotFoundError thrown",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ThrowProfile",
+    "name": "ThrowProfile",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/NonExistent",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "options": {
+    "throwOnError": true
+  },
+  "expected": {
+    "throws": "BaseNotFoundError"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "description": "Incompatible: discriminator type differs",
+  "baseSlicing": {
+    "discriminator": [{ "type": "value", "path": "system" }],
+    "rules": "open",
+    "ordered": false
+  },
+  "diffSlicing": {
+    "discriminator": [{ "type": "pattern", "path": "system" }],
+    "rules": "open",
+    "ordered": false
+  },
+  "expected": { "compatible": false, "issueCount": 1, "issueCode": "SLICING_ERROR" }
+}

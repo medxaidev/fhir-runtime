@@ -1,0 +1,49 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rules-closed",
+  "url": "http://example.org/fhir/StructureDefinition/RulesClosed",
+  "name": "RulesClosed",
+  "title": "Closed slicing rules — only defined slices allowed",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "use" }
+          ],
+          "rules": "closed"
+        },
+        "min": 1,
+        "max": "2"
+      },
+      {
+        "id": "Patient.name:official",
+        "path": "Patient.name",
+        "sliceName": "official",
+        "min": 1,
+        "max": "1",
+        "patternHumanName": {
+          "use": "official"
+        }
+      },
+      {
+        "id": "Patient.name:nickname",
+        "path": "Patient.name",
+        "sliceName": "nickname",
+        "min": 0,
+        "max": "1",
+        "patternHumanName": {
+          "use": "nickname"
+        }
+      }
+    ]
+  }
+}

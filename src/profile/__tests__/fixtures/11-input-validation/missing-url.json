@@ -1,0 +1,17 @@
+{
+  "description": "Input validation: SD with missing url should produce error",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "name": "NoUrl",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient"
+  },
+  "expected": {
+    "success": false,
+    "hasError": true,
+    "errorCode": "INTERNAL_ERROR"
+  }
+}

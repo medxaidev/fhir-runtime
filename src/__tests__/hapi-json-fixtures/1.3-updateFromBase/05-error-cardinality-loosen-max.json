@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-cardinality-loosen-max",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorCardinalityLoosenMax",
+  "name": "ErrorCardinalityLoosenMax",
+  "title": "ERROR CASE: Loosen max cardinality — Patient.active 0..1→0..*",
+  "description": "Patient.active has base max=1. Setting max=* is loosening, which should fail.",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "max": "*"
+      }
+    ]
+  }
+}

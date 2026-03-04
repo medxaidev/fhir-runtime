@@ -1,0 +1,14 @@
+{
+  "description": "Incompatible: rules relaxed from closed to open",
+  "baseSlicing": {
+    "discriminator": [{ "type": "value", "path": "system" }],
+    "rules": "closed",
+    "ordered": false
+  },
+  "diffSlicing": {
+    "discriminator": [{ "type": "value", "path": "system" }],
+    "rules": "open",
+    "ordered": false
+  },
+  "expected": { "compatible": false, "issueCount": 1, "issueCode": "SLICING_ERROR" }
+}

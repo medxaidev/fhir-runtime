@@ -1,0 +1,173 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "complex-round-trip",
+  "url": "http://example.org/fhir/StructureDefinition/ComplexRoundTrip",
+  "version": "2.0.0",
+  "name": "ComplexRoundTrip",
+  "title": "Complex Round-Trip Test",
+  "status": "active",
+  "experimental": true,
+  "date": "2026-02-10",
+  "publisher": "MedXAI",
+  "description": "A complex profile for round-trip testing with all sub-types.",
+  "purpose": "Round-trip fidelity testing",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "mapping": [
+    { "identity": "rim", "uri": "http://hl7.org/v3", "name": "RIM Mapping" }
+  ],
+  "snapshot": {
+    "element": [
+      {
+        "id": "Observation",
+        "path": "Observation",
+        "short": "Measurements and simple assertions",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Observation", "min": 0, "max": "*" },
+        "constraint": [
+          {
+            "key": "obs-7",
+            "severity": "error",
+            "human": "If Observation.code is the same as an Observation.component.code then the value element associated with the code SHALL NOT be present",
+            "expression": "value.empty() or component.code.where(coding.intersect(%resource.code.coding).exists()).empty()"
+          }
+        ]
+      },
+      {
+        "id": "Observation.identifier",
+        "path": "Observation.identifier",
+        "min": 0,
+        "max": "*",
+        "base": { "path": "Observation.identifier", "min": 0, "max": "*" },
+        "type": [{ "code": "Identifier" }],
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "system" }],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "code" }],
+        "base": { "path": "Observation.status", "min": 1, "max": "1" },
+        "fixedCode": "final",
+        "mustSupport": true,
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-status"
+        }
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "min": 1,
+        "max": "1",
+        "type": [{ "code": "CodeableConcept" }],
+        "base": { "path": "Observation.code", "min": 1, "max": "1" },
+        "patternCodeableConcept": {
+          "coding": [{ "system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel" }]
+        },
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+        }
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient"],
+            "aggregation": ["referenced"],
+            "versioning": "independent"
+          }
+        ],
+        "base": { "path": "Observation.subject", "min": 0, "max": "1" },
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "Quantity" }],
+        "base": { "path": "Observation.value[x]", "min": 0, "max": "1" },
+        "minValueQuantity": { "value": 0, "unit": "mmHg" },
+        "maxValueQuantity": { "value": 400, "unit": "mmHg" },
+        "example": [
+          {
+            "label": "Systolic BP",
+            "valueQuantity": { "value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" }
+          },
+          {
+            "label": "Diastolic BP",
+            "valueQuantity": { "value": 80, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]" }
+          }
+        ],
+        "mapping": [
+          { "identity": "rim", "map": ".value" }
+        ]
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "slicing": {
+          "discriminator": [{ "type": "pattern", "path": "code" }],
+          "ordered": false,
+          "rules": "open"
+        },
+        "min": 2,
+        "max": "*",
+        "base": { "path": "Observation.component", "min": 0, "max": "*" }
+      }
+    ]
+  },
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "fixedCode": "final"
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "patternCodeableConcept": {
+          "coding": [{ "system": "http://loinc.org", "code": "85354-9" }]
+        }
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient"]
+          }
+        ]
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "slicing": {
+          "discriminator": [{ "type": "pattern", "path": "code" }],
+          "rules": "open"
+        },
+        "min": 2
+      }
+    ]
+  }
+}

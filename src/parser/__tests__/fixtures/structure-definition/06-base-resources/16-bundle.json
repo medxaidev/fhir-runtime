@@ -1,0 +1,26 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Bundle",
+  "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+  "version": "4.0.1",
+  "name": "Bundle",
+  "title": "Bundle",
+  "status": "active",
+  "description": "A container for a collection of resources.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Resource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Bundle", "path": "Bundle", "min": 0, "max": "*", "base": { "path": "Bundle", "min": 0, "max": "*" }, "constraint": [{ "key": "bdl-1", "severity": "error", "human": "total only when a search or history", "expression": "total.empty() or (type = 'searchset') or (type = 'history')" }] },
+      { "id": "Bundle.type", "path": "Bundle.type", "min": 1, "max": "1", "base": { "path": "Bundle.type", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/bundle-type|4.0.1" } },
+      { "id": "Bundle.timestamp", "path": "Bundle.timestamp", "min": 0, "max": "1", "base": { "path": "Bundle.timestamp", "min": 0, "max": "1" }, "type": [{ "code": "instant" }], "isSummary": true },
+      { "id": "Bundle.total", "path": "Bundle.total", "min": 0, "max": "1", "base": { "path": "Bundle.total", "min": 0, "max": "1" }, "type": [{ "code": "unsignedInt" }], "condition": ["bdl-1"], "isSummary": true },
+      { "id": "Bundle.link", "path": "Bundle.link", "min": 0, "max": "*", "base": { "path": "Bundle.link", "min": 0, "max": "*" }, "isSummary": true },
+      { "id": "Bundle.entry", "path": "Bundle.entry", "min": 0, "max": "*", "base": { "path": "Bundle.entry", "min": 0, "max": "*" }, "isSummary": true }
+    ]
+  }
+}

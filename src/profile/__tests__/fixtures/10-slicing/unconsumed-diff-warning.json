@@ -1,0 +1,14 @@
+{
+  "description": "Unconsumed diff: diff element with non-matching path produces warning",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.name", "min": 0, "max": "*" }
+  ],
+  "diff": [
+    { "path": "Patient.nonExistent", "min": 1 }
+  ],
+  "expected": {
+    "elementCount": 2,
+    "hasUnconsumedWarning": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-cardinality-loosen-min",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorCardinalityLoosenMin",
+  "name": "ErrorCardinalityLoosenMin",
+  "title": "ERROR CASE: Loosen min cardinality — Observation.status 1→0",
+  "description": "Observation.status has base min=1. Setting min=0 is loosening, which should fail.",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "min": 0
+      }
+    ]
+  }
+}

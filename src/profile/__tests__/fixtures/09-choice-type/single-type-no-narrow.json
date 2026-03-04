@@ -1,0 +1,16 @@
+{
+  "description": "Choice type: base has single type — no narrowing needed",
+  "base": [
+    { "path": "Observation", "min": 0, "max": "*" },
+    { "path": "Observation.value[x]", "min": 0, "max": "1", "type": [{ "code": "Quantity" }] }
+  ],
+  "diff": [
+    { "path": "Observation.valueQuantity", "min": 1 }
+  ],
+  "expected": {
+    "valueMin": 1,
+    "valueTypeCount": 1,
+    "valueTypeCode": "Quantity",
+    "issueCount": 0
+  }
+}

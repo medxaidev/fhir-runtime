@@ -1,0 +1,24 @@
+{
+  "description": "Datatype expansion: diff constrains HumanName.family via Patient.name.family",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.name", "min": 0, "max": "*", "type": [{ "code": "HumanName" }] }
+  ],
+  "diff": [
+    { "path": "Patient.name", "min": 1 },
+    { "path": "Patient.name.family", "min": 1 }
+  ],
+  "datatypeCache": {
+    "http://hl7.org/fhir/StructureDefinition/HumanName": [
+      { "path": "HumanName", "min": 0, "max": "*" },
+      { "path": "HumanName.use", "min": 0, "max": "1" },
+      { "path": "HumanName.family", "min": 0, "max": "1" },
+      { "path": "HumanName.given", "min": 0, "max": "*" }
+    ]
+  },
+  "expected": {
+    "nameMin": 1,
+    "hasFamilyElement": true,
+    "familyMin": 1
+  }
+}

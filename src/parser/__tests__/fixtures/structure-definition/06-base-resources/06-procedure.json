@@ -1,0 +1,26 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Procedure",
+  "url": "http://hl7.org/fhir/StructureDefinition/Procedure",
+  "version": "4.0.1",
+  "name": "Procedure",
+  "title": "Procedure",
+  "status": "active",
+  "description": "An action that is or was performed on or for a patient.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Procedure",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Procedure", "path": "Procedure", "min": 0, "max": "*", "base": { "path": "Procedure", "min": 0, "max": "*" } },
+      { "id": "Procedure.status", "path": "Procedure.status", "min": 1, "max": "1", "base": { "path": "Procedure.status", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/event-status|4.0.1" } },
+      { "id": "Procedure.code", "path": "Procedure.code", "min": 0, "max": "1", "base": { "path": "Procedure.code", "min": 0, "max": "1" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "example", "valueSet": "http://hl7.org/fhir/ValueSet/procedure-code" } },
+      { "id": "Procedure.subject", "path": "Procedure.subject", "min": 1, "max": "1", "base": { "path": "Procedure.subject", "min": 1, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient", "http://hl7.org/fhir/StructureDefinition/Group"] }], "isSummary": true },
+      { "id": "Procedure.performed[x]", "path": "Procedure.performed[x]", "min": 0, "max": "1", "base": { "path": "Procedure.performed[x]", "min": 0, "max": "1" }, "type": [{ "code": "dateTime" }, { "code": "Period" }, { "code": "string" }, { "code": "Age" }, { "code": "Range" }], "isSummary": true },
+      { "id": "Procedure.bodySite", "path": "Procedure.bodySite", "min": 0, "max": "*", "base": { "path": "Procedure.bodySite", "min": 0, "max": "*" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "example", "valueSet": "http://hl7.org/fhir/ValueSet/body-site" } }
+    ]
+  }
+}

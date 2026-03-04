@@ -1,0 +1,14 @@
+{
+  "resourceType": "Patient",
+  "id": "array-null-test",
+  "name": [
+    {
+      "given": ["John", null, "Michael"],
+      "_given": [
+        null,
+        { "extension": [{ "url": "http://example.org/redacted", "valueBoolean": true }] },
+        null
+      ]
+    }
+  ]
+}

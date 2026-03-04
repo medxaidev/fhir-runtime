@@ -1,0 +1,17 @@
+{
+  "description": "Constraint without expression — expression omitted in output",
+  "input": [
+    {
+      "key": "custom-1",
+      "severity": "error",
+      "human": "Custom constraint without FHIRPath"
+    }
+  ],
+  "expected": [
+    {
+      "key": "custom-1",
+      "severity": "error",
+      "human": "Custom constraint without FHIRPath"
+    }
+  ]
+}

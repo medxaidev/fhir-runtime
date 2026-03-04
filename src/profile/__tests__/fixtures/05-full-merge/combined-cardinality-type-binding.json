@@ -1,0 +1,29 @@
+{
+  "description": "Full merge: cardinality + type + binding all constrained",
+  "base": {
+    "path": "Observation.code",
+    "min": 1,
+    "max": "1",
+    "type": [{ "code": "CodeableConcept" }],
+    "binding": {
+      "strength": "example",
+      "valueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+    }
+  },
+  "diff": {
+    "path": "Observation.code",
+    "type": [{ "code": "CodeableConcept" }],
+    "binding": {
+      "strength": "required",
+      "valueSet": "http://example.org/ValueSet/vital-signs"
+    }
+  },
+  "expected": {
+    "min": 1,
+    "max": "1",
+    "typeCount": 1,
+    "bindingStrength": "required",
+    "bindingValueSet": "http://example.org/ValueSet/vital-signs",
+    "issueCount": 0
+  }
+}

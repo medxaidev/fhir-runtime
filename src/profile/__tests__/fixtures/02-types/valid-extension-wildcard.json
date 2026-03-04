@@ -1,0 +1,20 @@
+{
+  "description": "Valid: Extension type is always compatible (universal wildcard)",
+  "base": {
+    "path": "Patient.extension",
+    "type": [
+      { "code": "Extension" }
+    ]
+  },
+  "diff": {
+    "path": "Patient.extension",
+    "type": [
+      { "code": "Extension", "profile": ["http://example.org/my-extension"] }
+    ]
+  },
+  "expected": {
+    "typeCount": 1,
+    "typeCodes": ["Extension"],
+    "issueCount": 0
+  }
+}

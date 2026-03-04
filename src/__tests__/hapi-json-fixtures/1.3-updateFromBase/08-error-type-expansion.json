@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "error-type-expansion",
+  "url": "http://example.org/fhir/StructureDefinition/ErrorTypeExpansion",
+  "name": "ErrorTypeExpansion",
+  "title": "ERROR CASE: Add type not in base — Patient.deceased[x] add integer",
+  "description": "Base Patient.deceased[x] allows [boolean, dateTime]. Adding integer is expansion, which should fail.",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "type": [
+          { "code": "boolean" },
+          { "code": "dateTime" },
+          { "code": "integer" }
+        ]
+      }
+    ]
+  }
+}

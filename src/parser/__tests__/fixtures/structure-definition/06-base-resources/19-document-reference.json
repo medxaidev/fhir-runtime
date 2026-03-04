@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "DocumentReference",
+  "url": "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+  "version": "4.0.1",
+  "name": "DocumentReference",
+  "title": "DocumentReference",
+  "status": "active",
+  "description": "A reference to a document of any kind for any purpose.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DocumentReference",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "DocumentReference", "path": "DocumentReference", "min": 0, "max": "*", "base": { "path": "DocumentReference", "min": 0, "max": "*" } },
+      { "id": "DocumentReference.status", "path": "DocumentReference.status", "min": 1, "max": "1", "base": { "path": "DocumentReference.status", "min": 1, "max": "1" }, "type": [{ "code": "code" }], "isModifier": true, "isSummary": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/document-reference-status|4.0.1" } },
+      { "id": "DocumentReference.type", "path": "DocumentReference.type", "min": 0, "max": "1", "base": { "path": "DocumentReference.type", "min": 0, "max": "1" }, "type": [{ "code": "CodeableConcept" }], "isSummary": true, "binding": { "strength": "preferred", "valueSet": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes" } },
+      { "id": "DocumentReference.subject", "path": "DocumentReference.subject", "min": 0, "max": "1", "base": { "path": "DocumentReference.subject", "min": 0, "max": "1" }, "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient", "http://hl7.org/fhir/StructureDefinition/Practitioner", "http://hl7.org/fhir/StructureDefinition/Group", "http://hl7.org/fhir/StructureDefinition/Device"] }], "isSummary": true },
+      { "id": "DocumentReference.date", "path": "DocumentReference.date", "min": 0, "max": "1", "base": { "path": "DocumentReference.date", "min": 0, "max": "1" }, "type": [{ "code": "instant" }], "isSummary": true },
+      { "id": "DocumentReference.content", "path": "DocumentReference.content", "min": 1, "max": "*", "base": { "path": "DocumentReference.content", "min": 1, "max": "*" }, "isSummary": true },
+      { "id": "DocumentReference.content.attachment", "path": "DocumentReference.content.attachment", "min": 1, "max": "1", "base": { "path": "DocumentReference.content.attachment", "min": 1, "max": "1" }, "type": [{ "code": "Attachment" }], "isSummary": true }
+    ]
+  }
+}

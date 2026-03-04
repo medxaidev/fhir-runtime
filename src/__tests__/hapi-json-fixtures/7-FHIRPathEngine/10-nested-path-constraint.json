@@ -1,0 +1,41 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "nested-path-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/NestedPathConstraint",
+  "name": "NestedPathConstraint",
+  "title": "FHIRPath: deep path navigation in constraints",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "constraint": [
+          {
+            "key": "fp-nested-1",
+            "severity": "error",
+            "human": "If contact exists, contact must have a name with family",
+            "expression": "contact.exists() implies contact.all(name.family.exists())"
+          },
+          {
+            "key": "fp-nested-2",
+            "severity": "warning",
+            "human": "All telecom entries should have a value",
+            "expression": "telecom.all(value.exists())"
+          },
+          {
+            "key": "fp-nested-3",
+            "severity": "warning",
+            "human": "If address exists, it should have at least city or postalCode",
+            "expression": "address.all(city.exists() or postalCode.exists())"
+          }
+        ]
+      }
+    ]
+  }
+}

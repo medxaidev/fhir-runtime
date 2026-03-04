@@ -1,0 +1,14 @@
+{
+  "resourceType": "Observation",
+  "id": "missing-required-field",
+  "_comment": "ERROR: Missing required 'status' (min=1) and 'code' (min=1)",
+  "subject": {
+    "reference": "Patient/123"
+  },
+  "valueQuantity": {
+    "value": 72,
+    "unit": "beats/minute",
+    "system": "http://unitsofmeasure.org",
+    "code": "/min"
+  }
+}

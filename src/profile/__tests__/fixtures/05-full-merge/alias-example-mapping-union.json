@@ -1,0 +1,32 @@
+{
+  "description": "Full merge: alias, example, mapping union-merged",
+  "base": {
+    "path": "Patient.name",
+    "alias": ["name", "fullName"],
+    "example": [
+      { "label": "General", "value": "John Doe" }
+    ],
+    "mapping": [
+      { "identity": "v2", "map": "PID-5" }
+    ]
+  },
+  "diff": {
+    "path": "Patient.name",
+    "alias": ["patientName", "name"],
+    "example": [
+      { "label": "Chinese", "value": "张三" }
+    ],
+    "mapping": [
+      { "identity": "rim", "map": "EN" },
+      { "identity": "v2", "map": "PID-5" }
+    ]
+  },
+  "expected": {
+    "aliasCount": 3,
+    "aliases": ["name", "fullName", "patientName"],
+    "exampleCount": 2,
+    "exampleLabels": ["General", "Chinese"],
+    "mappingCount": 2,
+    "mappingIdentities": ["v2", "rim"]
+  }
+}

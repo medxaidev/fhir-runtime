@@ -1,0 +1,15 @@
+{
+  "description": "Comparison and equality operator evaluation",
+  "cases": [
+    { "expression": "1 < 2", "expected": [true] },
+    { "expression": "2 < 1", "expected": [false] },
+    { "expression": "3 <= 3", "expected": [true] },
+    { "expression": "5 > 3", "expected": [true] },
+    { "expression": "3 >= 4", "expected": [false] },
+    { "expression": "1 = 1", "expected": [true] },
+    { "expression": "1 = 2", "expected": [false] },
+    { "expression": "'abc' = 'abc'", "expected": [true] },
+    { "expression": "1 != 2", "expected": [true] },
+    { "expression": "1 != 1", "expected": [false] }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/SelfRef",
+  "name": "SelfRef",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Basic",
+  "baseDefinition": "http://example.org/fhir/StructureDefinition/SelfRef"
+}

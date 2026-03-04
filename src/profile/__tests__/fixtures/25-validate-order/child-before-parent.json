@@ -1,0 +1,9 @@
+{
+  "description": "Invalid: child appears before parent",
+  "snapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.name.given" },
+    { "path": "Patient.name" }
+  ],
+  "expected": { "valid": false, "issueCount": 1 }
+}

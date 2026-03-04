@@ -1,0 +1,17 @@
+{
+  "description": "Single merge: tighten cardinality on one element",
+  "base": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.identifier", "min": 0, "max": "*", "short": "An identifier" },
+    { "path": "Patient.name", "min": 0, "max": "*" }
+  ],
+  "diff": [
+    { "path": "Patient.identifier", "min": 1 }
+  ],
+  "expected": {
+    "elementCount": 3,
+    "identifierMin": 1,
+    "identifierShort": "An identifier",
+    "issueCount": 0
+  }
+}

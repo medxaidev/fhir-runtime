@@ -1,0 +1,67 @@
+{
+  "description": "Patient resource with deeply nested structures (contact, address, extension) for deep path extraction",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "deep-1",
+    "contact": [
+      {
+        "relationship": [
+          {
+            "coding": [
+              { "system": "http://terminology.hl7.org/CodeSystem/v2-0131", "code": "N" }
+            ]
+          }
+        ],
+        "name": {
+          "family": "Johnson",
+          "given": ["Mary"]
+        },
+        "address": {
+          "line": ["123 Main St", "Apt 4B"],
+          "city": "Springfield",
+          "state": "IL",
+          "postalCode": "62701"
+        }
+      },
+      {
+        "relationship": [
+          {
+            "coding": [
+              { "system": "http://terminology.hl7.org/CodeSystem/v2-0131", "code": "E" }
+            ]
+          }
+        ],
+        "name": {
+          "family": "Williams",
+          "given": ["Bob", "Robert"]
+        },
+        "address": {
+          "line": ["456 Oak Ave"],
+          "city": "Chicago",
+          "state": "IL"
+        }
+      }
+    ],
+    "address": [
+      {
+        "use": "home",
+        "line": ["789 Elm St"],
+        "city": "Peoria",
+        "state": "IL",
+        "postalCode": "61602"
+      }
+    ]
+  },
+  "expectations": {
+    "Patient.contact": { "count": 2 },
+    "Patient.contact.name": { "count": 2 },
+    "Patient.contact.name.family": { "count": 2, "values": ["Johnson", "Williams"] },
+    "Patient.contact.name.given": { "count": 3, "values": ["Mary", "Bob", "Robert"] },
+    "Patient.contact.address.city": { "count": 2, "values": ["Springfield", "Chicago"] },
+    "Patient.contact.address.line": { "count": 3, "values": ["123 Main St", "Apt 4B", "456 Oak Ave"] },
+    "Patient.contact.address.postalCode": { "count": 1, "values": ["62701"] },
+    "Patient.address": { "count": 1 },
+    "Patient.address.city": { "count": 1, "values": ["Peoria"] },
+    "Patient.contact.relationship": { "count": 2 }
+  }
+}

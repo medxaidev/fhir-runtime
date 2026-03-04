@@ -1,0 +1,13 @@
+{
+  "resourceType": "Patient",
+  "id": "cardinality-violation-max",
+  "_comment": "ERROR: 'active' has max=1 but provided as array; 'gender' has max=1 but two values",
+  "active": [true, false],
+  "name": [
+    { "family": "Smith" }
+  ],
+  "gender": "male",
+  "birthDate": "1990-01-15",
+  "multipleBirthBoolean": true,
+  "multipleBirthInteger": 2
+}

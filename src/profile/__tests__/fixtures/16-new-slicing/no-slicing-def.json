@@ -1,0 +1,18 @@
+{
+  "description": "Case A: Multiple diffs with sliceNames but no explicit slicing definition — synthesize slicing",
+  "baseElements": [
+    { "path": "Patient", "min": 0, "max": "*" },
+    { "path": "Patient.identifier", "min": 0, "max": "*" },
+    { "path": "Patient.name", "min": 0, "max": "*" }
+  ],
+  "diffElements": [
+    { "path": "Patient.identifier", "sliceName": "MRN", "min": 1 },
+    { "path": "Patient.identifier", "sliceName": "SSN", "min": 0 }
+  ],
+  "expected": {
+    "hasSlicingRoot": true,
+    "slicingRules": "open",
+    "sliceCount": 2,
+    "sliceNames": ["MRN", "SSN"]
+  }
+}

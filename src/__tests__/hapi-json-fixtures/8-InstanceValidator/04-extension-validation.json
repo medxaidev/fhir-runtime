@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "id": "extension-validation",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/StructureDefinition/ExtPatient",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "ext-patient",
+        "url": "http://example.org/fhir/StructureDefinition/ExtPatient",
+        "name": "ExtPatient",
+        "status": "active",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Patient",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Patient.extension",
+              "path": "Patient.extension",
+              "slicing": { "discriminator": [{ "type": "value", "path": "url" }], "rules": "open" }
+            },
+            {
+              "id": "Patient.extension:birthSex",
+              "path": "Patient.extension",
+              "sliceName": "birthSex",
+              "min": 1,
+              "max": "1",
+              "type": [{ "code": "Extension", "profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex"] }]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Patient/ext-valid",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "ext-valid",
+        "meta": { "profile": ["http://example.org/fhir/StructureDefinition/ExtPatient"] },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+            "valueCode": "M"
+          }
+        ],
+        "name": [{ "family": "Smith" }]
+      }
+    }
+  ]
+}

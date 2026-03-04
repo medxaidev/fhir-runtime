@@ -1,0 +1,73 @@
+{
+  "resourceType": "Patient",
+  "id": "chinese-char-test",
+  "name": [
+    {
+      "use": "official",
+      "family": "张",
+      "given": ["三", "李四"]
+    },
+    {
+      "use": "nickname",
+      "text": "小张"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1990-01-01",
+  "_birthDate": {
+    "extension": [
+      {
+        "url": "http://example.org/fhir/StructureDefinition/birth-place",
+        "valueString": "北京市朝阳区"
+      }
+    ]
+  },
+  "address": [
+    {
+      "use": "home",
+      "text": "北京市朝阳区建国路88号",
+      "city": "北京",
+      "district": "朝阳区",
+      "postalCode": "100020",
+      "country": "中国"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "13800138000",
+      "use": "mobile"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://medxai.org/fhir/NamingSystem/cn-national-id",
+      "value": "110101199001011234",
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "NI",
+            "display": "身份证"
+          }
+        ],
+        "text": "居民身份证"
+      }
+    }
+  ],
+  "communication": [
+    {
+      "language": {
+        "coding": [
+          {
+            "system": "urn:ietf:bcp:47",
+            "code": "zh-CN",
+            "display": "中文（简体）"
+          }
+        ],
+        "text": "普通话"
+      },
+      "preferred": true
+    }
+  ]
+}

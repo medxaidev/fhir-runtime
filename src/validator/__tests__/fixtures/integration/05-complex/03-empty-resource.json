@@ -1,0 +1,18 @@
+{
+  "description": "Minimal resource with only resourceType — missing all required fields",
+  "resource": {
+    "resourceType": "Observation"
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+    "name": "Observation", "kind": "resource", "type": "Observation", "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedMinErrorCount": 2,
+  "expectedIssueCodes": ["CARDINALITY_MIN_VIOLATION"]
+}

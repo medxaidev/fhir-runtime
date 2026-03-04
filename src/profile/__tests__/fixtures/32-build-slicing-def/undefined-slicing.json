@@ -1,0 +1,5 @@
+{
+  "description": "Undefined slicing → returns undefined",
+  "input": null,
+  "expected": null
+}

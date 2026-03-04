@@ -1,0 +1,21 @@
+{
+  "description": "Differential elements out of base order — should be reordered",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.id" },
+    { "path": "Patient.identifier" },
+    { "path": "Patient.name" },
+    { "path": "Patient.gender" },
+    { "path": "Patient.birthDate" }
+  ],
+  "differential": [
+    { "path": "Patient" },
+    { "path": "Patient.gender", "min": 1 },
+    { "path": "Patient.identifier", "min": 1 },
+    { "path": "Patient.name", "min": 1 }
+  ],
+  "expected": {
+    "order": ["Patient", "Patient.identifier", "Patient.name", "Patient.gender"],
+    "issueCount": 0
+  }
+}

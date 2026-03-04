@@ -1,0 +1,18 @@
+{
+  "description": "Choice type paths sorted by base value[x] position",
+  "baseSnapshot": [
+    { "path": "Observation" },
+    { "path": "Observation.code" },
+    { "path": "Observation.value[x]" },
+    { "path": "Observation.component" }
+  ],
+  "differential": [
+    { "path": "Observation" },
+    { "path": "Observation.component", "min": 1 },
+    { "path": "Observation.valueQuantity", "type": [{ "code": "Quantity" }] }
+  ],
+  "expected": {
+    "order": ["Observation", "Observation.valueQuantity", "Observation.component"],
+    "issueCount": 0
+  }
+}

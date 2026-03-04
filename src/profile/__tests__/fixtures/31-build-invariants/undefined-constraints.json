@@ -1,0 +1,5 @@
+{
+  "description": "Undefined constraints → empty array",
+  "input": null,
+  "expected": []
+}

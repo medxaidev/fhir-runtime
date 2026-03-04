@@ -1,0 +1,8 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/NoName",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Basic"
+}

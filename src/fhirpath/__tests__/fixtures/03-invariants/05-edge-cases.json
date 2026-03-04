@@ -1,0 +1,41 @@
+{
+  "description": "Edge cases for invariant validation: empty values, error handling, severity levels",
+  "tests": [
+    {
+      "description": "Empty collection — exists() returns false",
+      "expression": "telecom.exists()",
+      "value": { "resourceType": "Patient" },
+      "expected": false
+    },
+    {
+      "description": "Nested empty — deep path returns empty",
+      "expression": "name.family.exists()",
+      "value": { "resourceType": "Patient" },
+      "expected": false
+    },
+    {
+      "description": "Boolean true literal — always passes",
+      "expression": "true",
+      "value": { "resourceType": "Patient" },
+      "expected": true
+    },
+    {
+      "description": "Boolean false literal — always fails",
+      "expression": "false",
+      "value": { "resourceType": "Patient" },
+      "expected": false
+    },
+    {
+      "description": "Count check — count() = 0 on empty",
+      "expression": "name.count() = 0",
+      "value": { "resourceType": "Patient" },
+      "expected": true
+    },
+    {
+      "description": "Count check — count() > 0 on non-empty",
+      "expression": "name.count() > 0",
+      "value": { "resourceType": "Patient", "name": [{ "family": "Test" }] },
+      "expected": true
+    }
+  ]
+}

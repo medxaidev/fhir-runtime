@@ -1,0 +1,22 @@
+{
+  "description": "Custom profile with pattern on category — resource has wrong category → PATTERN_VALUE_MISMATCH",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "wrong-category",
+    "status": "final",
+    "category": [{ "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory" }] }],
+    "code": { "coding": [{ "system": "http://loinc.org", "code": "85354-9" }] }
+  },
+  "profile": {
+    "url": "http://medxai.org/fhir/StructureDefinition/VitalSignObservation",
+    "name": "VitalSignObservation", "kind": "resource", "type": "Observation", "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Observation.category", "id": "Observation.category", "min": 1, "max": "unbounded", "types": [{ "code": "CodeableConcept" }], "pattern": { "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs" }] } },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["PATTERN_VALUE_MISMATCH"]
+}

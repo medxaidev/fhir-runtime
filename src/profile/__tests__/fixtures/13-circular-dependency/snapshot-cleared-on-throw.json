@@ -1,0 +1,19 @@
+{
+  "description": "Error handling: snapshot is cleared (set to undefined) when generation throws",
+  "sd": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/ClearSnapshot",
+    "name": "ClearSnapshot",
+    "status": "active",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "baseDefinition": "http://example.org/ClearSnapshot",
+    "differential": {
+      "element": [{ "path": "Patient.name", "min": 1 }]
+    }
+  },
+  "expected": {
+    "snapshotUndefinedAfterThrow": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "description": "Valid: derived types are a subset of base types",
+  "base": {
+    "path": "Observation.value[x]",
+    "type": [
+      { "code": "Quantity" },
+      { "code": "string" },
+      { "code": "CodeableConcept" }
+    ]
+  },
+  "diff": {
+    "path": "Observation.value[x]",
+    "type": [
+      { "code": "Quantity" }
+    ]
+  },
+  "expected": {
+    "typeCount": 1,
+    "typeCodes": ["Quantity"],
+    "issueCount": 0
+  }
+}

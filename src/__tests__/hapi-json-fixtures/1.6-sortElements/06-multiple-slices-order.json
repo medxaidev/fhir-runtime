@@ -1,0 +1,47 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "multiple-slices-order",
+  "url": "http://example.org/fhir/StructureDefinition/MultipleSlicesOrder",
+  "name": "MultipleSlicesOrder",
+  "title": "3 slices — verify sequence preservation in snapshot",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "slicing": {
+          "discriminator": [{ "type": "value", "path": "use" }],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Patient.name:official",
+        "path": "Patient.name",
+        "sliceName": "official",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.name:usual",
+        "path": "Patient.name",
+        "sliceName": "usual",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Patient.name:nickname",
+        "path": "Patient.name",
+        "sliceName": "nickname",
+        "min": 0,
+        "max": "*"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "set-default-value",
+  "url": "http://example.org/fhir/StructureDefinition/SetDefaultValue",
+  "name": "SetDefaultValue",
+  "title": "Set defaultValueString on Patient.communication.preferred",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.communication.preferred",
+        "path": "Patient.communication.preferred",
+        "defaultValueBoolean": true,
+        "meaningWhenMissing": "If not specified, this is assumed to be the preferred communication language."
+      }
+    ]
+  }
+}

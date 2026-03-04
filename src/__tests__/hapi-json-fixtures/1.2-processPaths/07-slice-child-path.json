@@ -1,0 +1,45 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "slice-child-path",
+  "url": "http://example.org/fhir/StructureDefinition/SliceChildPath",
+  "name": "SliceChildPath",
+  "title": "Constrain child of sliced element — identifier:mrn.system",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            { "type": "value", "path": "system" }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.identifier:mrn",
+        "path": "Patient.identifier",
+        "sliceName": "mrn",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:mrn.system",
+        "path": "Patient.identifier.system",
+        "min": 1,
+        "fixedUri": "http://hospital.example.org/mrn"
+      },
+      {
+        "id": "Patient.identifier:mrn.value",
+        "path": "Patient.identifier.value",
+        "min": 1
+      }
+    ]
+  }
+}

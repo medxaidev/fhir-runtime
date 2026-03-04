@@ -1,0 +1,22 @@
+{
+  "description": "Reference with no targetProfile constraint — any reference type is valid",
+  "resource": {
+    "resourceType": "Observation",
+    "id": "any-ref",
+    "status": "final",
+    "code": { "coding": [{ "system": "http://loinc.org", "code": "85354-9" }] },
+    "subject": { "reference": "Organization/hospital-1" }
+  },
+  "profile": {
+    "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+    "name": "Observation", "kind": "resource", "type": "Observation", "abstract": false,
+    "elements": [
+      { "path": "Observation", "id": "Observation", "min": 0, "max": 1, "types": [] },
+      { "path": "Observation.status", "id": "Observation.status", "min": 1, "max": 1, "types": [{ "code": "code" }] },
+      { "path": "Observation.code", "id": "Observation.code", "min": 1, "max": 1, "types": [{ "code": "CodeableConcept" }] },
+      { "path": "Observation.subject", "id": "Observation.subject", "min": 0, "max": 1, "types": [{ "code": "Reference" }] }
+    ]
+  },
+  "expectedValid": true,
+  "expectedErrorCount": 0
+}

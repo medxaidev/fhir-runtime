@@ -1,0 +1,21 @@
+{
+  "description": "Invalid ChinesePatient — missing required identifier (min=1)",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "cn-patient-no-id",
+    "name": [{ "family": "李", "given": ["四"] }],
+    "gender": "female"
+  },
+  "profile": {
+    "url": "http://medxai.org/fhir/StructureDefinition/ChinesePatient",
+    "name": "ChinesePatient", "kind": "resource", "type": "Patient", "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      { "path": "Patient.identifier", "id": "Patient.identifier", "min": 1, "max": "unbounded", "types": [{ "code": "Identifier" }] },
+      { "path": "Patient.name", "id": "Patient.name", "min": 1, "max": "unbounded", "types": [{ "code": "HumanName" }] },
+      { "path": "Patient.gender", "id": "Patient.gender", "min": 1, "max": 1, "types": [{ "code": "code" }] }
+    ]
+  },
+  "expectedValid": false,
+  "expectedIssueCodes": ["CARDINALITY_MIN_VIOLATION"]
+}

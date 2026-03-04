@@ -1,0 +1,50 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "with-keyword-and-jurisdiction",
+  "url": "http://example.org/fhir/StructureDefinition/WithMetadata",
+  "name": "WithMetadata",
+  "title": "SD with useContext, jurisdiction, and keyword metadata",
+  "status": "active",
+  "experimental": false,
+  "date": "2026-02-09",
+  "publisher": "Example Hospital",
+  "contact": [
+    {
+      "name": "IT Department",
+      "telecom": [
+        { "system": "email", "value": "fhir@hospital.example.org" }
+      ]
+    }
+  ],
+  "description": "A Patient profile with full metadata fields populated.",
+  "useContext": [
+    {
+      "code": { "system": "http://terminology.hl7.org/CodeSystem/usage-context-type", "code": "focus" },
+      "valueCodeableConcept": {
+        "coding": [{ "system": "http://snomed.info/sct", "code": "116154003", "display": "Patient" }]
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [{ "system": "urn:iso:std:iso:3166", "code": "US" }]
+    }
+  ],
+  "keyword": [
+    { "system": "http://example.org/tags", "code": "patient-core" }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "min": 1
+      }
+    ]
+  }
+}

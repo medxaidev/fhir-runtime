@@ -1,0 +1,5 @@
+{
+  "description": "Empty types array → empty array",
+  "input": [],
+  "expected": []
+}

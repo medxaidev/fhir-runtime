@@ -1,0 +1,22 @@
+{
+  "description": "Invalid: derived type not compatible with any base type",
+  "base": {
+    "path": "Observation.value[x]",
+    "type": [
+      { "code": "Quantity" },
+      { "code": "string" }
+    ]
+  },
+  "diff": {
+    "path": "Observation.value[x]",
+    "type": [
+      { "code": "Reference" }
+    ]
+  },
+  "expected": {
+    "typeCount": 1,
+    "typeCodes": ["Reference"],
+    "issueCount": 1,
+    "issueCode": "TYPE_INCOMPATIBLE"
+  }
+}

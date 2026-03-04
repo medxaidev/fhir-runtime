@@ -1,0 +1,29 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "type-profile-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/TypeProfileConstraint",
+  "name": "TypeProfileConstraint",
+  "title": "Constrain Patient.generalPractitioner Reference to only Practitioner",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.generalPractitioner",
+        "path": "Patient.generalPractitioner",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Practitioner"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "Patient",
+  "id": "invalid-primitive-format",
+  "_comment": "ERROR: birthDate not valid date format; identifier.system not valid URI",
+  "name": [
+    { "family": "Smith" }
+  ],
+  "birthDate": "not-a-date",
+  "identifier": [
+    {
+      "system": "not a valid uri",
+      "value": "12345"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "+1-555-0100",
+      "period": {
+        "start": "invalid-datetime"
+      }
+    }
+  ]
+}

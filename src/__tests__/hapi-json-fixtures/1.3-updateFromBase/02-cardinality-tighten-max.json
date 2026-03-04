@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "cardinality-tighten-max",
+  "url": "http://example.org/fhir/StructureDefinition/CardinalityTightenMax",
+  "name": "CardinalityTightenMax",
+  "title": "Tighten max cardinality: Patient.name *→3",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "max": "3"
+      }
+    ]
+  }
+}

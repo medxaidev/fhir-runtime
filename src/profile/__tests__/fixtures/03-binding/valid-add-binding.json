@@ -1,0 +1,18 @@
+{
+  "description": "Valid: add binding where base has none",
+  "base": {
+    "path": "Patient.maritalStatus"
+  },
+  "diff": {
+    "path": "Patient.maritalStatus",
+    "binding": {
+      "strength": "preferred",
+      "valueSet": "http://example.org/ValueSet/marital-status"
+    }
+  },
+  "expected": {
+    "strength": "preferred",
+    "valueSet": "http://example.org/ValueSet/marital-status",
+    "issueCount": 0
+  }
+}

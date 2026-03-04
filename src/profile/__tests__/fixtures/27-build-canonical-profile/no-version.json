@@ -1,0 +1,22 @@
+{
+  "description": "SD without version → version is undefined in CanonicalProfile",
+  "input": {
+    "resourceType": "StructureDefinition",
+    "url": "http://example.org/fhir/StructureDefinition/NoVersion",
+    "name": "NoVersion",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Patient",
+    "snapshot": {
+      "element": [
+        { "path": "Patient", "id": "Patient", "min": 0, "max": "*" }
+      ]
+    }
+  },
+  "expected": {
+    "url": "http://example.org/fhir/StructureDefinition/NoVersion",
+    "version": null,
+    "name": "NoVersion",
+    "elementCount": 1
+  }
+}

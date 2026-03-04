@@ -1,0 +1,10 @@
+{
+  "description": "Extension slicing: auto-generated for .modifierExtension path",
+  "path": "Patient.modifierExtension",
+  "expected": {
+    "discriminatorType": "value",
+    "discriminatorPath": "url",
+    "rules": "open",
+    "ordered": false
+  }
+}

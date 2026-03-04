@@ -1,0 +1,47 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "test-sd-1",
+  "url": "http://example.org/fhir/StructureDefinition/test",
+  "name": "TestStructureDefinition",
+  "status": "draft",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Patient",
+          "min": 0,
+          "max": "*"
+        }
+      },
+      {
+        "id": "Patient.id",
+        "path": "Patient.id",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "http://hl7.org/fhirpath/System.String",
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type",
+                "valueUrl": "id"
+              }
+            ]
+          }
+        ],
+        "base": {
+          "path": "Resource.id",
+          "min": 0,
+          "max": "1"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "description": "Type slicing: diffs use concrete choice type paths (valueString, valueQuantity)",
+  "basePath": "Observation.value[x]",
+  "baseTypes": [
+    { "code": "Quantity" },
+    { "code": "string" },
+    { "code": "CodeableConcept" }
+  ],
+  "diffMatches": [
+    { "path": "Observation.valueQuantity", "type": [{ "code": "Quantity" }] },
+    { "path": "Observation.valueString", "type": [{ "code": "string" }] }
+  ],
+  "expected": { "isTypeSlicing": true }
+}

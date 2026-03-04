@@ -1,0 +1,18 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "string-values-test",
+  "url": "http://example.org/fhir/StructureDefinition/StringValues",
+  "name": "StringValues",
+  "title": "String Values Test",
+  "status": "draft",
+  "description": "Tests string primitive parsing with various content",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "publisher": "Example Publisher",
+  "purpose": "Testing string primitives",
+  "copyright": "CC0",
+  "fhirVersion": "4.0.1"
+}

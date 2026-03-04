@@ -1,0 +1,10 @@
+{
+  "description": "Path not in base returns -1",
+  "baseSnapshot": [
+    { "path": "Patient" },
+    { "path": "Patient.id" },
+    { "path": "Patient.identifier" }
+  ],
+  "path": "Patient.nonExistent",
+  "expected": { "index": -1 }
+}

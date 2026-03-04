@@ -1,0 +1,35 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/Element",
+  "version": "4.0.1",
+  "name": "Element",
+  "title": "Element",
+  "status": "active",
+  "kind": "complex-type",
+  "abstract": true,
+  "type": "Element",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Element",
+        "path": "Element",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "Element.id",
+        "path": "Element.id",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "http://hl7.org/fhirpath/System.String" }]
+      },
+      {
+        "id": "Element.extension",
+        "path": "Element.extension",
+        "min": 0,
+        "max": "*",
+        "type": [{ "code": "Extension" }]
+      }
+    ]
+  }
+}

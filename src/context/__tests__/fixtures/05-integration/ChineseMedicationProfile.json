@@ -1,0 +1,28 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/ChineseMedicationRequest",
+  "version": "1.0.0",
+  "name": "ChineseMedicationRequest",
+  "title": "中药处方",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationRequest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "MedicationRequest",
+        "path": "MedicationRequest"
+      },
+      {
+        "id": "MedicationRequest.category",
+        "path": "MedicationRequest.category",
+        "min": 1,
+        "max": "1",
+        "comment": "Must specify traditional Chinese medicine category"
+      }
+    ]
+  }
+}

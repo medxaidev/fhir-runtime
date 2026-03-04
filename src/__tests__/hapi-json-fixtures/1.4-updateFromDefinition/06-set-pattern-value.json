@@ -1,0 +1,30 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "set-pattern-value",
+  "url": "http://example.org/fhir/StructureDefinition/SetPatternValue",
+  "name": "SetPatternValue",
+  "title": "Set patternCodeableConcept on Observation.code",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

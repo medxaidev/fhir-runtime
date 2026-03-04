@@ -1,0 +1,24 @@
+{
+  "description": "Boolean flags: mustSupport/isModifier/isSummary normalize to boolean",
+  "inputs": [
+    {
+      "path": "Patient.identifier",
+      "id": "Patient.identifier",
+      "min": 0,
+      "max": "*",
+      "mustSupport": true,
+      "isModifier": false,
+      "isSummary": true
+    },
+    {
+      "path": "Patient.name",
+      "id": "Patient.name",
+      "min": 0,
+      "max": "*"
+    }
+  ],
+  "expected": [
+    { "mustSupport": true, "isModifier": false, "isSummary": true },
+    { "mustSupport": false, "isModifier": false, "isSummary": false }
+  ]
+}

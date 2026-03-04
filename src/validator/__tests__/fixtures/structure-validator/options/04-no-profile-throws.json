@@ -1,0 +1,9 @@
+{
+  "description": "No profile provided → throws ProfileNotFoundError",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "no-profile"
+  },
+  "profile": null,
+  "expectThrows": "ProfileNotFoundError"
+}

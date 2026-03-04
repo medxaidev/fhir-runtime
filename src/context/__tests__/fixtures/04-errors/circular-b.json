@@ -1,0 +1,10 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/CircularB",
+  "name": "CircularB",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Basic",
+  "baseDefinition": "http://example.org/fhir/StructureDefinition/CircularA"
+}

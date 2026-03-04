@@ -1,0 +1,17 @@
+{
+  "description": "Missing fields get defaults: min=0, max=1, id=path, empty arrays",
+  "input": {
+    "path": "Patient.name"
+  },
+  "expected": {
+    "path": "Patient.name",
+    "id": "Patient.name",
+    "min": 0,
+    "max": 1,
+    "mustSupport": false,
+    "isModifier": false,
+    "isSummary": false,
+    "typesCount": 0,
+    "constraintsCount": 0
+  }
+}

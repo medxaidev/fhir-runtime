@@ -1,0 +1,26 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Observation",
+  "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "version": "4.0.1",
+  "name": "Observation",
+  "title": "Observation — Base resource StructureDefinition (minimal snapshot)",
+  "status": "active",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      { "id": "Observation", "path": "Observation", "min": 0, "max": "*" },
+      { "id": "Observation.id", "path": "Observation.id", "min": 0, "max": "1" },
+      { "id": "Observation.status", "path": "Observation.status", "min": 1, "max": "1", "type": [{ "code": "code" }], "isModifier": true, "binding": { "strength": "required", "valueSet": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1" } },
+      { "id": "Observation.code", "path": "Observation.code", "min": 1, "max": "1", "type": [{ "code": "CodeableConcept" }] },
+      { "id": "Observation.subject", "path": "Observation.subject", "min": 0, "max": "1", "type": [{ "code": "Reference", "targetProfile": ["http://hl7.org/fhir/StructureDefinition/Patient", "http://hl7.org/fhir/StructureDefinition/Group"] }] },
+      { "id": "Observation.value[x]", "path": "Observation.value[x]", "min": 0, "max": "1", "type": [{ "code": "Quantity" }, { "code": "CodeableConcept" }, { "code": "string" }, { "code": "boolean" }, { "code": "integer" }, { "code": "Range" }, { "code": "Ratio" }, { "code": "SampledData" }, { "code": "time" }, { "code": "dateTime" }, { "code": "Period" }] },
+      { "id": "Observation.component", "path": "Observation.component", "min": 0, "max": "*" }
+    ]
+  }
+}

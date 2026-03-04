@@ -1,0 +1,39 @@
+{
+  "description": "validateSlicing=false — closed slicing violation is NOT reported",
+  "resource": {
+    "resourceType": "Patient",
+    "id": "skip-slicing",
+    "identifier": [
+      { "system": "http://hospital.example.org/mrn", "value": "12345" },
+      { "system": "http://unknown.org", "value": "99999" }
+    ]
+  },
+  "profile": {
+    "url": "http://example.org/StructureDefinition/SlicedPatient",
+    "name": "SlicedPatient",
+    "kind": "resource",
+    "type": "Patient",
+    "abstract": false,
+    "elements": [
+      { "path": "Patient", "id": "Patient", "min": 0, "max": 1, "types": [] },
+      {
+        "path": "Patient.identifier", "id": "Patient.identifier",
+        "min": 0, "max": "unbounded", "types": [{ "code": "Identifier" }],
+        "slicing": {
+          "discriminators": [{ "type": "value", "path": "system" }],
+          "rules": "closed",
+          "ordered": false
+        }
+      },
+      {
+        "path": "Patient.identifier", "id": "Patient.identifier:MRN",
+        "min": 0, "max": 1, "types": [{ "code": "Identifier" }],
+        "sliceName": "MRN",
+        "fixed": { "system": "http://hospital.example.org/mrn" }
+      }
+    ]
+  },
+  "options": { "validateSlicing": false },
+  "expectedValid": true,
+  "expectedIssueCount": 0
+}

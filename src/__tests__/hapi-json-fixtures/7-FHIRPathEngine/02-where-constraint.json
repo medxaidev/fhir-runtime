@@ -1,0 +1,29 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "where-constraint",
+  "url": "http://example.org/fhir/StructureDefinition/WhereConstraint",
+  "name": "WhereConstraint",
+  "title": "FHIRPath: telecom.where(system='phone').exists() — filtered existence",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient",
+        "path": "Patient",
+        "constraint": [
+          {
+            "key": "fp-where-1",
+            "severity": "warning",
+            "human": "Patient should have a phone number",
+            "expression": "telecom.where(system='phone').exists()"
+          }
+        ]
+      }
+    ]
+  }
+}
