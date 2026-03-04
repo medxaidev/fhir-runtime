@@ -55,7 +55,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc && node ./scripts/esbuild.mjs",
-    "prepublishOnly": "npm run build"
+    "test": "vitest run",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "dependencies": {},
   "devDependencies": {
@@ -63,7 +64,9 @@
     "@types/node": "25.2.0",
     "rimraf": "6.1.2",
     "esbuild": "0.27.2",
-    "@microsoft/api-extractor": "7.56.1"
+    "@microsoft/api-extractor": "7.56.1",
+    "vitest": "4.0.18",
+    "tsx": "4.21.0"
   },
   "peerDependencies": {},
   "engines": {
