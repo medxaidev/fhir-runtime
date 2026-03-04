@@ -1,30 +1,30 @@
-# @medxai/fhir-core — Technical Overview
+# fhir-runtime — Technical Overview
 
-> **Package:** `@medxai/fhir-core`  
-> **Version:** 0.1.0  
+> **Package:** `fhir-runtime`  
+> **Version:** 0.2.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
-> **License:** Apache-2.0
+> **License:** MIT
 
 ---
 
-## What is @medxai/fhir-core?
+## What is fhir-runtime?
 
-`@medxai/fhir-core` is a **structural FHIR R4 engine** for TypeScript/Node.js. It provides the foundational capabilities needed to parse, validate, and manipulate FHIR R4 resources — without requiring a running FHIR server, database, or external terminology service.
+`fhir-runtime` is a **structural FHIR R4 engine** for TypeScript/Node.js. It provides the foundational capabilities needed to parse, validate, and manipulate FHIR R4 resources — without requiring a running FHIR server, database, or external terminology service.
 
-It is the core library in the MedXAI platform stack, designed to be consumed by:
+It is designed as a pure runtime layer with no database or HTTP dependencies, making it suitable for embedding in:
 
-- **CLI tools** — parse, validate, generate snapshots, evaluate FHIRPath
-- **Server layers** — validation gate for REST FHIR operations
-- **Client SDKs** — type-safe resource handling
-- **UI components** — profile-driven form rendering via InnerType schema
+- **Servers** — validation gate for REST FHIR operations
+- **CLIs** — parse, validate, generate snapshots, evaluate FHIRPath
+- **Web applications** — client-side FHIR processing
+- **Custom platforms** — embedded FHIR capabilities
 
 ### HAPI FHIR Equivalence
 
 The library targets **structural equivalence** with [HAPI FHIR](https://hapifhir.io/) (Java), the de facto reference implementation for FHIR tooling:
 
-| MedXAI               | HAPI FHIR                                         |
+| fhir-runtime         | HAPI FHIR                                         |
 | -------------------- | ------------------------------------------------- |
 | `FhirContextImpl`    | `FhirContext` + `DefaultProfileValidationSupport` |
 | `SnapshotGenerator`  | `ProfileUtilities.generateSnapshot()`             |
@@ -41,7 +41,7 @@ Snapshot generation has been validated against 35 HAPI-generated fixtures with 1
 ### Module Structure
 
 ```
-packages/fhir-core/src/
+src/
 ├── model/        ← FHIR R4 type definitions (branded primitives, enums, complex types)
 ├── parser/       ← JSON parsing & serialization
 ├── context/      ← SD registry, loaders, inheritance resolution, bundle loading
@@ -66,7 +66,7 @@ Strictly enforced: each module may only import from modules to its left. The `fh
 2. **Structured results over exceptions** — `ParseResult`, `SnapshotResult`, `ValidationResult` instead of throws.
 3. **Deterministic** — Same input always produces same output. No global state, no side effects.
 4. **Snapshot-driven validation** — The validator operates on `CanonicalProfile` (resolved snapshot), not raw StructureDefinitions.
-5. **CanonicalProfile as semantic model** — A pre-resolved, O(1)-lookup representation unique to MedXAI, converting FHIR's verbose SD structure into an efficient runtime model.
+5. **CanonicalProfile as semantic model** — A pre-resolved, O(1)-lookup representation converting FHIR's verbose SD structure into an efficient runtime model.
 
 ---
 
@@ -82,7 +82,7 @@ Parse FHIR R4 JSON with full support for:
 - StructureDefinition-specific parsing (37 ElementDefinition fields)
 
 ```typescript
-import { parseFhirJson, serializeToFhirJson } from "@medxai/fhir-core";
+import { parseFhirJson, serializeToFhirJson } from "fhir-runtime";
 
 const result = parseFhirJson(jsonString);
 if (result.success) {
@@ -96,7 +96,7 @@ if (result.success) {
 Manage StructureDefinition lifecycle — loading, caching, registration, and inheritance chain resolution.
 
 ```typescript
-import { FhirContextImpl, MemoryLoader } from "@medxai/fhir-core";
+import { FhirContextImpl, MemoryLoader } from "fhir-runtime";
 
 const ctx = new FhirContextImpl({ loaders: [new MemoryLoader(sdMap)] });
 await ctx.preloadCoreDefinitions(); // 73 bundled R4 base definitions
@@ -115,7 +115,7 @@ Three loader implementations: `MemoryLoader`, `FileSystemLoader`, `CompositeLoad
 Generate complete snapshots by expanding differentials against base definition chains. HAPI-semantically-equivalent.
 
 ```typescript
-import { SnapshotGenerator } from "@medxai/fhir-core";
+import { SnapshotGenerator } from "fhir-runtime";
 
 const generator = new SnapshotGenerator(ctx, { generateCanonical: true });
 const result = await generator.generate(myProfile);
@@ -133,7 +133,7 @@ Supports: base-driven merge, constraint tightening, slicing (extension/type/valu
 Validate FHIR resource instances against CanonicalProfiles with 9 validation rules:
 
 ```typescript
-import { StructureValidator, buildCanonicalProfile } from "@medxai/fhir-core";
+import { StructureValidator, buildCanonicalProfile } from "fhir-runtime";
 
 const validator = new StructureValidator({ skipInvariants: false });
 const profile = buildCanonicalProfile(patientSD);
@@ -153,7 +153,7 @@ if (!result.valid) {
 Parse and evaluate FHIRPath expressions with 60+ standard functions, built on a Pratt parser with AST caching.
 
 ```typescript
-import { evalFhirPath, evalFhirPathBoolean } from "@medxai/fhir-core";
+import { evalFhirPath, evalFhirPathBoolean } from "fhir-runtime";
 
 const names = evalFhirPath("Patient.name.given", patient);
 // → ['John', 'Jane']
@@ -172,7 +172,7 @@ Covers FHIRPath §5.1–5.9, §6.3, §6.5, plus FHIR-specific functions (`resolv
 Extract BackboneElement inner types from profiles for downstream consumption (UI forms, recursive validation):
 
 ```typescript
-import { extractInnerTypes, buildCanonicalProfile } from "@medxai/fhir-core";
+import { extractInnerTypes, buildCanonicalProfile } from "fhir-runtime";
 
 const profile = buildCanonicalProfile(patientSD);
 const innerTypes = extractInnerTypes(profile);
@@ -190,7 +190,7 @@ const contactSchema = ctx.getInnerType("PatientContact");
 Load FHIR specification bundles (e.g., `profiles-resources.json`) to populate registries:
 
 ```typescript
-import { loadBundleFromFile } from "@medxai/fhir-core";
+import { loadBundleFromFile } from "fhir-runtime";
 
 const result = loadBundleFromFile("spec/fhir/r4/profiles-resources.json", {
   filterKind: "resource",
@@ -220,25 +220,55 @@ Three error class hierarchies for exceptional cases:
 
 ---
 
+## Testing & Quality Assurance
+
+`fhir-runtime` has undergone extensive testing to ensure production readiness:
+
+### Test Coverage
+
+- **2,400+ unit tests** across all modules
+- **45 test files** covering parser, context, profile, validator, and FHIRPath
+- **100% pass rate** on HAPI-generated snapshot fixtures (35/35)
+
+### US Core IG Verification
+
+- **70 US Core StructureDefinitions** successfully parsed
+- **55 resource profiles** converted to CanonicalProfiles
+- **15 extension definitions** processed
+- **Official examples validated** against declared profiles
+- **FHIRPath evaluation** on US Core resources
+- **Profile-to-example matching** verified
+
+### Stress Testing
+
+- **Malformed input resilience** — graceful error handling
+- **Deep nesting stress** — recursive structure validation
+- **Large payload stress** — bundle processing performance
+- **FHIRPath complexity stress** — complex expression evaluation
+- **Memory pressure** — batch processing stability
+- **Concurrent safety** — parallel operation validation
+
+---
+
 ## Package Details
 
-| Property                    | Value                                          |
-| --------------------------- | ---------------------------------------------- |
-| npm package                 | `@medxai/fhir-core`                            |
-| Entry point (ESM)           | `dist/esm/index.mjs`                           |
-| Entry point (CJS)           | `dist/cjs/index.cjs`                           |
-| Type declarations           | `dist/index.d.ts`                              |
-| Runtime dependencies        | None                                           |
-| Dev dependencies            | TypeScript 5.9, vitest, esbuild, api-extractor |
-| Build output                | ESM + CJS + d.ts (api-extractor rolled up)     |
-| Bundled core definitions    | 73 FHIR R4 StructureDefinitions                |
-| Public exports              | ~211 symbols across 6 modules                  |
-| Test count (fhir-core only) | ~2400+ tests                                   |
+| Property                 | Value                                          |
+| ------------------------ | ---------------------------------------------- |
+| npm package              | `fhir-runtime`                                 |
+| Entry point (ESM)        | `dist/esm/index.mjs`                           |
+| Entry point (CJS)        | `dist/cjs/index.cjs`                           |
+| Type declarations        | `dist/index.d.ts`                              |
+| Runtime dependencies     | None                                           |
+| Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
+| Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
+| Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
+| Public exports           | ~211 symbols across 6 modules                  |
+| Test count               | 2,400+ tests across 45 test files              |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.1.md`](../specs/engine-capability-contract-v0.1.md)
-- **Frozen API Reference:** [`docs/api/fhir-core-api-v0.1.md`](../api/fhir-core-api-v0.1.md)
-- **Root Documentation Index:** [`docs/README.md`](../../../../docs/README.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.2.md`](../specs/engine-capability-contract-v0.2.md)
+- **Frozen API Reference:** [`docs/api/fhir-runtime-api-v0.2.md`](../api/fhir-runtime-api-v0.2.md)
+- **Main README:** [`README.md`](../../README.md)

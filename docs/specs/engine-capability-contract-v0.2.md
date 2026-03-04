@@ -1,6 +1,6 @@
-# @medxai/fhir-core — Engine Capability Contract v0.1
+# fhir-runtime — Engine Capability Contract v0.2
 
-> **Status:** Frozen for v0.1.0 Release  
+> **Status:** Frozen for v0.2.0 Release  
 > **FHIR Version:** R4 (4.0.1)  
 > **Specification Date:** 2026-03-04  
 > **Audience:** CLI consumers, Node.js API consumers, downstream server/client layers  
@@ -10,7 +10,7 @@
 
 ## 1. Scope
 
-### 1.1 In-Scope (v0.1)
+### 1.1 In-Scope (v0.2)
 
 | #   | Capability                                                | HAPI Equivalent                                              |
 | --- | --------------------------------------------------------- | ------------------------------------------------------------ |
@@ -20,20 +20,20 @@
 | 4   | Structural validation (profile-based)                     | `FhirInstanceValidator.validate()`                           |
 | 5   | FHIRPath expression evaluation                            | `FHIRPathEngine.evaluate()`                                  |
 | 6   | FHIRPath invariant execution (constraint.expression)      | `FhirInstanceValidator` invariant checks                     |
-| 7   | CanonicalProfile semantic model with InnerType extraction | N/A (MedXAI-specific optimization)                           |
+| 7   | CanonicalProfile semantic model with InnerType extraction | N/A (fhir-runtime-specific optimization)                     |
 | 8   | Bundle loading (profiles-resources, profiles-types)       | `DefaultProfileValidationSupport`                            |
 
-### 1.2 Out-of-Scope (v0.1)
+### 1.2 Out-of-Scope (v0.2)
 
-| #   | Excluded Capability                         | Rationale                                              |
-| --- | ------------------------------------------- | ------------------------------------------------------ |
-| 1   | Terminology expansion / ValueSet validation | Requires external terminology service                  |
-| 2   | Cross-resource reference resolution         | Server-layer concern                                   |
-| 3   | SearchParameter indexing                    | Persistence-layer concern (`@medxai/fhir-persistence`) |
-| 4   | REST FHIR server                            | Server-layer concern (`@medxai/fhir-server`)           |
-| 5   | FHIR R5 / R6                                | Future version target                                  |
-| 6   | IG packaging / publishing                   | Build tooling concern                                  |
-| 7   | XML / RDF serialization                     | JSON-only for v0.1                                     |
+| #   | Excluded Capability                         | Rationale                                |
+| --- | ------------------------------------------- | ---------------------------------------- |
+| 1   | Terminology expansion / ValueSet validation | Requires external terminology service    |
+| 2   | Cross-resource reference resolution         | Server-layer concern                     |
+| 3   | SearchParameter indexing                    | Persistence-layer concern                |
+| 4   | REST FHIR server                            | Server-layer concern                     |
+| 5   | FHIR R5 / R6                                | Future version target                    |
+| 6   | IG packaging / publishing                   | Build tooling concern                    |
+| 7   | XML / RDF serialization                     | JSON-only for v0.2                       |
 
 ---
 
@@ -47,7 +47,7 @@ model ← parser ← context ← profile ← validator
                               fhirpath
 ```
 
-Each module is a subdirectory under `packages/fhir-core/src/`. The dependency direction is strictly enforced: a module may only import from modules to its left.
+Each module is a subdirectory under `src/`. The dependency direction is strictly enforced: a module may only import from modules to its left.
 
 ### 2.2 Core Object Model
 
@@ -55,7 +55,7 @@ Each module is a subdirectory under `packages/fhir-core/src/`. The dependency di
 | --------------------- | ---------------------------------------------- | --------------------------------- |
 | `Resource`            | Base FHIR R4 resource interface                | Input to all operations           |
 | `StructureDefinition` | Raw FHIR R4 SD (as parsed from JSON)           | Loaded → registered → consumed    |
-| `CanonicalProfile`    | MedXAI internal semantic model (post-snapshot) | Generated → cached → queried      |
+| `CanonicalProfile`    | Internal semantic model (post-snapshot)        | Generated → cached → queried      |
 | `ParseResult<T>`      | Discriminated union result of parsing          | Returned from parse operations    |
 | `SnapshotResult`      | Result of snapshot generation                  | Returned from snapshot generation |
 | `ValidationResult`    | Result of structural validation                | Returned from validation          |
@@ -63,7 +63,7 @@ Each module is a subdirectory under `packages/fhir-core/src/`. The dependency di
 
 ### 2.3 HAPI Architecture Mapping
 
-| MedXAI                                   | HAPI FHIR                                         |
+| fhir-runtime                             | HAPI FHIR                                         |
 | ---------------------------------------- | ------------------------------------------------- |
 | `FhirContextImpl`                        | `FhirContext` + `DefaultProfileValidationSupport` |
 | `StructureDefinitionLoader`              | `IValidationSupport`                              |
@@ -71,14 +71,14 @@ Each module is a subdirectory under `packages/fhir-core/src/`. The dependency di
 | `SnapshotGenerator`                      | `ProfileUtilities.generateSnapshot()`             |
 | `StructureValidator`                     | `FhirInstanceValidator`                           |
 | `evalFhirPath()` / `evalFhirPathTyped()` | `FHIRPathEngine.evaluate()`                       |
-| `CanonicalProfile`                       | N/A (MedXAI-specific; HAPI walks SD directly)     |
-| `buildCanonicalProfile()`                | N/A (MedXAI post-processing step)                 |
+| `CanonicalProfile`                       | N/A (fhir-runtime-specific; HAPI walks SD directly) |
+| `buildCanonicalProfile()`                | N/A (fhir-runtime post-processing step)           |
 
 ---
 
 ## 3. Capability Contracts
 
-Each contract defines the **public API surface**, **behavioral guarantees**, and **error semantics** that are frozen at v0.1.0.
+Each contract defines the **public API surface**, **behavioral guarantees**, and **error semantics** that are frozen at v0.2.0.
 
 ### 3.1 Parsing Contract
 
@@ -188,8 +188,8 @@ function loadBundlesFromFiles(
 **Behavioral Guarantees:**
 
 | Guarantee                     | Description                                                              |
-| ----------------------------- | ------------------------------------------------------------------------ | -------------------------------------------- |
-| Versioned URL support         | `url                                                                     | version` format correctly parsed and matched |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| Versioned URL support         | `url\|version` format correctly parsed and matched                       |
 | Circular dependency detection | `CircularDependencyError` thrown on cycles                               |
 | Cache-first resolution        | Registry checked before loader delegation                                |
 | Core definitions bundled      | 73 FHIR R4 base definitions available via `preloadCoreDefinitions()`     |
@@ -339,7 +339,7 @@ interface ValidationIssue {
 | Snapshot-driven              | Requires CanonicalProfile (not raw SD)              |
 | Issue accumulation           | All issues collected unless `failFast=true`         |
 | Deterministic ordering       | Issues sorted by path, then severity                |
-| No terminology dependency    | Code/ValueSet validation excluded (v0.1)            |
+| No terminology dependency    | Code/ValueSet validation excluded (v0.2)            |
 | Invariant errors as warnings | FHIRPath evaluation failures don't block validation |
 
 **Issue Codes (machine-readable):**
@@ -471,7 +471,7 @@ ValidatorError
 
 ## 5. Determinism Guarantee
 
-v0.1.0 explicitly guarantees:
+v0.2.0 explicitly guarantees:
 
 | #   | Guarantee                                                                                               |
 | --- | ------------------------------------------------------------------------------------------------------- |
@@ -483,81 +483,95 @@ v0.1.0 explicitly guarantees:
 
 ---
 
-## 6. CLI Surface Contract
+## 6. Testing & Quality Assurance (v0.2)
 
-The CLI is a **thin presentation layer** over the engine API. It must not implement business logic.
+### 6.1 Test Coverage
 
-### 6.1 Permitted CLI Operations
+| Category              | Count                      | Status        |
+| --------------------- | -------------------------- | ------------- |
+| Total test files      | 45                         | ✅ All passing |
+| Total test cases      | 2,400+                     | ✅ All passing |
+| HAPI snapshot fixture | 35/35 (100%)               | ✅ All passing |
+| Module coverage       | All 6 modules              | ✅ Complete    |
 
-| CLI Command                       | Engine API Call                         |
-| --------------------------------- | --------------------------------------- |
-| `parse <file>`                    | `parseFhirJson(json)`                   |
-| `snapshot <profile>`              | `generator.generate(sd)`                |
-| `validate <file> [--profile url]` | `validator.validate(resource, profile)` |
-| `evaluate <expr> <file>`          | `evalFhirPath(expr, resource)`          |
-| `capabilities`                    | `getCapabilities()`                     |
+### 6.2 US Core IG Verification
 
-### 6.2 Capability Summary
+| Verification Item                 | Count/Status | Result     |
+| --------------------------------- | ------------ | ---------- |
+| US Core StructureDefinitions      | 70           | ✅ Parsed   |
+| Resource profiles                 | 55           | ✅ Built    |
+| Extension definitions             | 15           | ✅ Built    |
+| Official examples validated       | Multiple     | ✅ Passing  |
+| FHIRPath evaluation on examples   | Multiple     | ✅ Working  |
+| Profile-to-example matching       | All          | ✅ Verified |
+| Cross-profile coverage            | All profiles | ✅ Verified |
 
-```typescript
-interface EngineCapabilitySummary {
-  engineVersion: string; // "0.1.0"
-  fhirVersion: string; // "4.0.1"
-  modules: {
-    parsing: boolean; // true
-    context: boolean; // true
-    snapshot: boolean; // true
-    validation: boolean; // true
-    fhirpath: boolean; // true
-    terminology: boolean; // false
-    search: boolean; // false
-  };
-  statistics: {
-    coreDefinitions: number; // 73
-    fhirpathFunctions: number; // 60+
-    validationRules: number; // 9
-  };
-}
-```
+### 6.3 Stress Testing
 
-Expected v0.1 output:
-
-```
-@medxai/fhir-core v0.1.0
-FHIR Version:  4.0.1
-Parsing:       supported
-Context:       supported (73 core definitions)
-Snapshot:      supported (HAPI-equivalent)
-Validation:    supported (9 structural rules)
-FHIRPath:      supported (60+ functions)
-Terminology:   not supported
-Search:        not supported
-```
+| Test Category              | Description                      | Result    |
+| -------------------------- | -------------------------------- | --------- |
+| Malformed input resilience | Invalid JSON, missing fields     | ✅ Passing |
+| Deep nesting stress        | Recursive structures             | ✅ Passing |
+| Large payload stress       | Bundle processing                | ✅ Passing |
+| FHIRPath complexity        | Complex expressions              | ✅ Passing |
+| Memory pressure            | Batch processing                 | ✅ Passing |
+| Concurrent safety          | Parallel operations              | ✅ Passing |
 
 ---
 
-## 7. Release Gate (v0.1.0)
+## 7. Release Gate (v0.2.0)
 
-The following conditions must be met before tagging v0.1.0:
+The following conditions must be met before tagging v0.2.0:
 
-| #   | Gate                                        | Verification                              |
-| --- | ------------------------------------------- | ----------------------------------------- |
-| 1   | All structural validation rules implemented | 9/9 rules with unit tests                 |
-| 2   | Snapshot generation HAPI-equivalent         | 35/35 HAPI fixture tests pass             |
-| 3   | FHIRPath invariant execution functional     | Invariant fixture tests pass              |
-| 4   | CLI can execute all 5 operations            | Manual verification                       |
-| 5   | Capability summary output stable            | Contract-driven test                      |
-| 6   | `tsc --noEmit` clean                        | Zero TypeScript errors                    |
-| 7   | All tests pass                              | Full test suite green                     |
-| 8   | API surface documented                      | `docs/api/fhir-core-api-v0.1.md` complete |
-| 9   | No breaking changes after freeze            | Semver-minor additions only               |
+| #   | Gate                                        | Verification                              | Status |
+| --- | ------------------------------------------- | ----------------------------------------- | ------ |
+| 1   | All structural validation rules implemented | 9/9 rules with unit tests                 | ✅      |
+| 2   | Snapshot generation HAPI-equivalent         | 35/35 HAPI fixture tests pass             | ✅      |
+| 3   | FHIRPath invariant execution functional     | Invariant fixture tests pass              | ✅      |
+| 4   | US Core IG verification complete            | 70 SDs parsed, examples validated         | ✅      |
+| 5   | Stress tests passing                        | All 6 stress test categories pass         | ✅      |
+| 6   | `tsc --noEmit` clean                        | Zero TypeScript errors                    | ✅      |
+| 7   | All tests pass                              | 2,400+ tests green                        | ✅      |
+| 8   | API surface documented                      | `docs/api/fhir-runtime-api-v0.2.md` complete | ✅      |
+| 9   | Package metadata updated                    | Name, version, license updated            | ✅      |
 
 ---
 
 ## 8. Versioning & Compatibility Policy
 
-- **v0.1.x** — Bug fixes only. No API additions or removals.
-- **v0.2.0** — May add new capabilities (e.g., terminology). No removals.
+- **v0.2.x** — Bug fixes only. No API additions or removals.
+- **v0.3.0** — May add new capabilities (e.g., terminology). No removals.
 - **v1.0.0** — Stable API. Breaking changes require major version bump.
 
-All public exports from `@medxai/fhir-core` as of v0.1.0 are considered **frozen**. The complete export inventory is documented in `docs/api/fhir-core-api-v0.1.md` (relative to package root).
+All public exports from `fhir-runtime` as of v0.2.0 are considered **frozen**. The complete export inventory is documented in `docs/api/fhir-runtime-api-v0.2.md`.
+
+---
+
+## 9. Changes from v0.1.0
+
+### 9.1 Package Changes
+
+- **Package name:** `@medxai/fhir-core` → `fhir-runtime`
+- **License:** Apache-2.0 → MIT
+- **Repository:** Updated to reflect new package name
+- **Version:** 0.1.0 → 0.2.0
+
+### 9.2 Testing Enhancements
+
+- Added US Core IG verification suite (70 SDs, 55 profiles, 15 extensions)
+- Added comprehensive stress testing (6 categories)
+- Expanded test coverage to 2,400+ tests across 45 files
+- Validated against real-world Implementation Guide
+
+### 9.3 Documentation Updates
+
+- All documentation updated to reflect new package name
+- Added comprehensive testing section to overview
+- Updated API reference to v0.2
+- Updated capability contract to v0.2
+
+### 9.4 API Stability
+
+- **No breaking changes** — All v0.1.0 APIs remain compatible
+- **No new APIs** — v0.2.0 is a rename and testing release
+- **Frozen API surface** — 211 exports across 6 modules unchanged

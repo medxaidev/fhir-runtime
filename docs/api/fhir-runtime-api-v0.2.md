@@ -1,14 +1,14 @@
-# @medxai/fhir-core — Frozen API Reference v0.1
+# fhir-runtime — Frozen API Reference v0.2
 
-> **Package:** `@medxai/fhir-core@0.1.0`  
+> **Package:** `fhir-runtime@0.2.0`  
 > **FHIR Version:** R4 (4.0.1)  
 > **Frozen Date:** 2026-03-04  
-> **License:** Apache-2.0  
+> **License:** MIT  
 > **Node.js:** >=18.0.0  
 > **Module Format:** ESM (primary) + CJS (compatibility)  
-> **Companion Document:** `docs/specs/engine-capability-contract-v0.1.md`
+> **Companion Document:** `docs/specs/engine-capability-contract-v0.2.md`
 
-This document is the **authoritative inventory** of all public exports from `@medxai/fhir-core` at the v0.1.0 freeze point. Any symbol not listed here is considered internal and subject to change without notice.
+This document is the **authoritative inventory** of all public exports from `fhir-runtime` at the v0.2.0 freeze point. Any symbol not listed here is considered internal and subject to change without notice.
 
 ---
 
@@ -26,7 +26,7 @@ This document is the **authoritative inventory** of all public exports from `@me
 
 ## 1. Module: model
 
-**Source:** `packages/fhir-core/src/model/`  
+**Source:** `src/model/`  
 **Purpose:** FHIR R4 type definitions — branded primitives, enums, complex types, ElementDefinition, StructureDefinition, CanonicalProfile.
 
 All exports from this module are **type-only** (no runtime code).
@@ -135,7 +135,7 @@ All exports from this module are **type-only** (no runtime code).
 
 ## 2. Module: parser
 
-**Source:** `packages/fhir-core/src/parser/`  
+**Source:** `src/parser/`  
 **Purpose:** FHIR R4 JSON parsing, serialization, and error reporting.
 
 ### 2.1 Types
@@ -195,7 +195,7 @@ Check whether an issues array contains at least one error.
 
 ## 3. Module: context
 
-**Source:** `packages/fhir-core/src/context/`  
+**Source:** `src/context/`  
 **Purpose:** StructureDefinition registry, loader abstraction, inheritance resolution, bundle loading, InnerType extraction.
 
 ### 3.1 Types
@@ -309,7 +309,7 @@ Factory: create a zeroed statistics object.
 
 ## 4. Module: profile
 
-**Source:** `packages/fhir-core/src/profile/`  
+**Source:** `src/profile/`  
 **Purpose:** Snapshot generation, canonical profile building, element merging, constraint resolution, slicing handling.
 
 ### 4.1 Types
@@ -425,7 +425,7 @@ class SnapshotGenerator {
 
 ## 5. Module: validator
 
-**Source:** `packages/fhir-core/src/validator/`  
+**Source:** `src/validator/`  
 **Purpose:** Structural validation of FHIR resource instances against CanonicalProfiles.
 
 ### 5.1 Types
@@ -548,10 +548,10 @@ class StructureValidator {
 
 ## 6. Module: fhirpath
 
-**Source:** `packages/fhir-core/src/fhirpath/`  
+**Source:** `src/fhirpath/`  
 **Purpose:** FHIRPath expression parsing, evaluation, and caching. Pratt parser architecture.
 
-> **Note:** The fhirpath module exports are currently available from the module barrel (`fhirpath/index.ts`) but are **not** re-exported from the top-level `@medxai/fhir-core` entry point. They are accessed internally by the validator's invariant engine. Direct consumer access is via the top-level `evalFhirPath*` functions which are re-exported through the validator integration.
+> **Note:** The fhirpath module exports are currently available from the module barrel (`fhirpath/index.ts`) but are **not** re-exported from the top-level `fhir-runtime` entry point. They are accessed internally by the validator's invariant engine. Direct consumer access is via the top-level `evalFhirPath*` functions which are re-exported through the validator integration.
 
 ### 6.1 Core Types
 
@@ -683,7 +683,7 @@ class StructureValidator {
 
 ### 7.2 Top-Level Entry Point Exports
 
-The following symbols are re-exported from `@medxai/fhir-core` (the package entry point `src/index.ts`):
+The following symbols are re-exported from `fhir-runtime` (the package entry point `src/index.ts`):
 
 **From parser (16):**
 `ParseSeverity` · `ParseErrorCode` · `ParseIssue` · `ParseResult` · `ChoiceValue` · `ChoiceTypeField` · `parseFhirJson` · `parseFhirObject` · `parseStructureDefinition` · `parseElementDefinition` · `serializeToFhirJson` · `serializeToFhirObject` · `parseSuccess` · `parseFailure` · `createIssue` · `hasErrors`
@@ -704,6 +704,23 @@ All 20 branded primitives · 13 enums · 16 base complex types · 9 ElementDefin
 
 | Classification      | Meaning                               | Modules                                    |
 | ------------------- | ------------------------------------- | ------------------------------------------ |
-| **Frozen**          | No changes in v0.1.x                  | model, parser, context, profile, validator |
-| **Stable-Internal** | Used by validator; may refine in v0.2 | fhirpath                                   |
+| **Frozen**          | No changes in v0.2.x                  | model, parser, context, profile, validator |
+| **Stable-Internal** | Used by validator; may refine in v0.3 | fhirpath                                   |
 | **Type-Only**       | No runtime impact; safe to extend     | model (all type exports)                   |
+
+---
+
+## 8. Version History
+
+### v0.2.0 (2026-03-04)
+
+- Renamed from `@medxai/fhir-core` to `fhir-runtime`
+- Changed license from Apache-2.0 to MIT
+- Extensive testing added: US Core IG verification, stress tests, comprehensive pipeline tests
+- Updated package metadata and repository information
+- All API surface remains compatible with v0.1.0
+
+### v0.1.0 (Initial Release)
+
+- Initial release as `@medxai/fhir-core`
+- Complete FHIR R4 parsing, validation, snapshot generation, and FHIRPath support
