@@ -49,6 +49,21 @@ npm install fhir-runtime
 
 ---
 
+## 🎮 Try it Online
+
+**[FHIR Runtime Playground](https://medxai.com.cn/fhir-runtime-playground/)** — Interactive browser-based playground to experiment with fhir-runtime capabilities:
+
+- 🔍 **Parse FHIR Resources** — Test JSON parsing with real-time feedback
+- ✅ **Validate Resources** — Validate against profiles and see detailed issues
+- 📸 **Generate Snapshots** — Visualize differential expansion
+- 🧮 **Evaluate FHIRPath** — Interactive FHIRPath expression testing
+- 📚 **Example Library** — Pre-loaded examples and profiles
+- 💾 **Share & Export** — Save and share your experiments
+
+**Playground Repository:** [github.com/medxaidev/fhir-runtime-playground](https://github.com/medxaidev/fhir-runtime-playground)
+
+---
+
 ## 🚀 Quick Start
 
 ### Parse a FHIR Resource
@@ -243,6 +258,7 @@ Contributions are welcome! This project maintains:
 
 ## 🔗 Related Projects
 
+- **[FHIR Runtime Playground](https://medxai.com.cn/fhir-runtime-playground/)** — Interactive online playground ([GitHub](https://github.com/medxaidev/fhir-runtime-playground))
 - **[HAPI FHIR](https://hapifhir.io/)** — Reference Java implementation
 - **[HL7 FHIR Specification](https://hl7.org/fhir/R4/)** — Official FHIR R4 spec
 - **[US Core IG](https://www.hl7.org/fhir/us/core/)** — US Core Implementation Guide

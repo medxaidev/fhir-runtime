@@ -1,28 +1,38 @@
 {
   "name": "fhir-runtime",
   "version": "0.2.0",
-  "description": "FHIR R4 Core Library - TypeScript implementation with parser, validator, context, and profile support",
-  "homepage": "https://medxai.com.cn",
+  "description": "Production-ready FHIR R4 runtime engine for TypeScript/Node.js with zero dependencies. Includes parser, validator, snapshot generator, and FHIRPath engine.",
+  "homepage": "https://github.com/medxaidev/fhir-runtime#readme",
   "license": "MIT",
   "author": "Fangjun <fangjun20208@gmail.com>",
   "keywords": [
     "fhir",
     "fhir-r4",
+    "fhirpath",
     "healthcare",
     "hl7",
-    "typescript",
-    "parser",
-    "validator",
     "medical",
-    "interoperability"
+    "interoperability",
+    "validator",
+    "validation",
+    "parser",
+    "snapshot",
+    "profile",
+    "structuredefinition",
+    "typescript",
+    "ehr",
+    "emr",
+    "clinical",
+    "us-core",
+    "implementation-guide",
+    "zero-dependencies"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/medxaidev/medxai.git",
-    "directory": "packages/fhir-core"
+    "url": "git+https://github.com/medxaidev/fhir-runtime.git"
   },
   "bugs": {
-    "url": "https://github.com/medxaidev/medxai/issues"
+    "url": "https://github.com/medxaidev/fhir-runtime/issues"
   },
   "publishConfig": {
     "access": "public",
