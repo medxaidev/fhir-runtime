@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-03-07
+
+### Added
+
+#### Provider Abstraction Layer (STAGE-1)
+
+- **New module: `src/provider/`** — Provider abstraction interfaces and default implementations
+  - `TerminologyProvider` interface — `validateCode()`, `expandValueSet()`, `lookupCode()`
+  - `ReferenceResolver` interface — `resolve()`, `exists()`
+  - `NoOpTerminologyProvider` — default implementation, accepts all codes
+  - `NoOpReferenceResolver` — default implementation, assumes all references exist
+  - `OperationOutcomeBuilder` — converts `ValidationResult`, `ParseResult`, `SnapshotResult` to FHIR R4 OperationOutcome
+  - `OperationOutcome`, `OperationOutcomeIssue`, `OperationOutcomeIssueType` types
+
+- **Validator integration** — `ValidationOptions` extended with optional `terminologyProvider` and `referenceResolver` fields (backward compatible)
+
+- **New exports in `src/index.ts`** — 12 type exports + 5 value exports from provider module
+
+#### Testing
+
+- 97 new tests across 6 test files in `src/provider/__tests__/`
+  - `noop-terminology-provider.test.ts` (16 tests)
+  - `noop-reference-resolver.test.ts` (11 tests)
+  - `terminology-provider-interface.test.ts` (8 tests)
+  - `reference-resolver-interface.test.ts` (10 tests)
+  - `operation-outcome-builder.test.ts` (33 tests — 18 validation + 7 parse + 8 snapshot)
+  - `validator-provider-integration.test.ts` (19 tests)
+- All v0.2.0 tests remain 100% passing (backward compatibility verified)
+
+### Notes
+
+- This release enables `fhir-server` to begin development using NoOp providers as placeholders
+- Provider interfaces use `Promise`-based async API; actual terminology validation will be implemented in STAGE-2 (v0.4.0)
+- OperationOutcome types are self-contained in `src/provider/types.ts`, not added to the model module
+- This release remains backward compatible with v0.2.0 because all provider integration points are optional
+
+---
+
 ## [0.2.0] - 2026-03-04
 
 ### Changed
@@ -158,6 +196,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Release Notes
 
+### v0.3.0 Highlights
+
+This release focuses on **provider abstraction and integration readiness** for downstream services:
+
+- ✅ **Provider contracts released** — `TerminologyProvider` and `ReferenceResolver` are now public APIs
+- ✅ **NoOp defaults included** — Higher-level projects can integrate immediately without live terminology or persistence backends
+- ✅ **OperationOutcome builders added** — Engine result objects can now be translated into FHIR-native response payloads
+- ✅ **Validator hooks prepared** — Optional provider fields are available without breaking existing validation flows
+- ✅ **Ready for STAGE-2** — Terminology binding validation can now build on stable provider abstractions
+
 ### v0.2.0 Highlights
 
 This release focuses on **production readiness** through extensive testing and documentation improvements:
@@ -174,7 +222,7 @@ Initial release providing complete FHIR R4 structural capabilities:
 
 - ✅ **Parsing** — Full FHIR R4 JSON support
 - ✅ **Validation** — 9 structural rules + FHIRPath invariants
-- ✅ **Snapshot generation** — HAPI-equivalent differential expansion
+- ✅ **Snapshot generation** — HAPI-semantically-equivalent differential expansion
 - ✅ **FHIRPath** — 60+ functions with Pratt parser
 - ✅ **Context management** — Registry, loaders, inheritance resolution
 
@@ -182,12 +230,13 @@ Initial release providing complete FHIR R4 structural capabilities:
 
 ## Roadmap
 
-### Planned for v0.3.0
+### Planned for v0.4.0
 
-- Terminology service integration (ValueSet expansion, code validation)
-- Additional IG support (more Implementation Guides verified)
-- Performance optimizations
-- Enhanced error messages
+- Binding strength validation (`required`, `extensible`, `preferred`, `example`)
+- In-memory terminology provider for tests and embedded scenarios
+- CodeSystem / ValueSet registry support in context
+- Inline ValueSet membership checks
+- US Core terminology integration tests
 
 ### Planned for v1.0.0
 
@@ -200,12 +249,13 @@ Initial release providing complete FHIR R4 structural capabilities:
 
 ## Links
 
-- **Repository**: https://github.com/medxaidev/medxai
-- **Issues**: https://github.com/medxaidev/medxai/issues
+- **Repository**: https://github.com/medxaidev/fhir-runtime
+- **Issues**: https://github.com/medxaidev/fhir-runtime/issues
 - **Documentation**: [docs/](docs/)
 - **License**: [MIT](LICENSE)
 
 ---
 
-[0.2.0]: https://github.com/medxaidev/medxai/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/medxaidev/medxai/releases/tag/v0.1.0
+[0.3.0]: https://github.com/medxaidev/fhir-runtime/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/medxaidev/fhir-runtime/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/medxaidev/fhir-runtime/releases/tag/v0.1.0

@@ -261,3 +261,27 @@ export {
   evalFhirPathTyped,
   evalFhirPathString,
 } from './fhirpath/index.js';
+
+// ─── Provider module (STAGE-1: v0.3.0) ──────────────────────────────────
+export type {
+  TerminologyProvider,
+  ValidateCodeParams,
+  ValidateCodeResult,
+  ExpandValueSetParams,
+  ValueSetExpansion,
+  ValueSetExpansionContains,
+  LookupCodeParams,
+  LookupCodeResult,
+  ReferenceResolver,
+  OperationOutcome,
+  OperationOutcomeIssue,
+  OperationOutcomeIssueType,
+} from './provider/index.js';
+
+export {
+  NoOpTerminologyProvider,
+  NoOpReferenceResolver,
+  buildOperationOutcome,
+  buildOperationOutcomeFromParse,
+  buildOperationOutcomeFromSnapshot,
+} from './provider/index.js';

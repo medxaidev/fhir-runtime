@@ -15,6 +15,7 @@
  */
 
 import type { CanonicalProfile, Resource } from '../model/index.js';
+import type { TerminologyProvider, ReferenceResolver } from '../provider/types.js';
 
 // =============================================================================
 // Section 1: Validation Options
@@ -97,6 +98,28 @@ export interface ValidationOptions {
    * @default false
    */
   readonly skipInvariants?: boolean;
+
+  /**
+   * Optional terminology provider for binding validation.
+   *
+   * When provided, the validator will invoke the provider to check
+   * coded values against their declared bindings. When absent,
+   * binding validation is skipped (with a warning for required bindings).
+   *
+   * @default undefined
+   */
+  readonly terminologyProvider?: TerminologyProvider;
+
+  /**
+   * Optional reference resolver for reference existence checks.
+   *
+   * When provided, the validator may use it for additional reference
+   * validation beyond structural checks. When absent, reference
+   * existence is not verified.
+   *
+   * @default undefined
+   */
+  readonly referenceResolver?: ReferenceResolver;
 }
 
 // =============================================================================
@@ -351,6 +374,8 @@ export function createValidationContext(
       maxDepth: options?.maxDepth ?? 50,
       failFast: options?.failFast ?? false,
       skipInvariants: options?.skipInvariants ?? false,
+      terminologyProvider: options?.terminologyProvider ?? undefined as unknown as TerminologyProvider,
+      referenceResolver: options?.referenceResolver ?? undefined as unknown as ReferenceResolver,
     },
     depth: 0,
   };
@@ -374,6 +399,8 @@ export function resolveValidationOptions(
     maxDepth: options?.maxDepth ?? 50,
     failFast: options?.failFast ?? false,
     skipInvariants: options?.skipInvariants ?? false,
+    terminologyProvider: options?.terminologyProvider ?? undefined as unknown as TerminologyProvider,
+    referenceResolver: options?.referenceResolver ?? undefined as unknown as ReferenceResolver,
   };
 }
 

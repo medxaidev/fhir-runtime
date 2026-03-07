@@ -1,11 +1,28 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.2.0  
+> **Version:** 0.3.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
 > **License:** MIT
+
+---
+
+## v0.3.0 Update
+
+`v0.3.0` completes the **Provider Abstraction Layer (STAGE-1)**.
+
+This release adds:
+
+- `TerminologyProvider` and `ReferenceResolver` public interfaces
+- `NoOpTerminologyProvider` and `NoOpReferenceResolver` placeholder implementations
+- `OperationOutcomeBuilder` helpers for `ValidationResult`, `ParseResult`, and `SnapshotResult`
+- optional provider integration fields on `ValidationOptions`
+
+This release remains **backward compatible** with `v0.2.0` because all provider integration points are optional.
+
+Actual terminology validation is planned for **STAGE-2 (`v0.4.0`)**.
 
 ---
 
@@ -40,19 +57,20 @@ Snapshot generation has been validated against 35 HAPI-generated fixtures with 1
 
 ### Module Structure
 
-```
+```bash
 src/
 ├── model/        ← FHIR R4 type definitions (branded primitives, enums, complex types)
 ├── parser/       ← JSON parsing & serialization
 ├── context/      ← SD registry, loaders, inheritance resolution, bundle loading
 ├── profile/      ← Snapshot generation, canonical builder, constraint merging
 ├── validator/    ← Structural validation (9 rules + FHIRPath invariants)
-└── fhirpath/     ← FHIRPath expression engine (Pratt parser, 60+ functions)
+├── fhirpath/     ← FHIRPath expression engine (Pratt parser, 60+ functions)
+└── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcome builders
 ```
 
 ### Dependency Direction
 
-```
+```bash
 model ← parser ← context ← profile ← validator
                                   ↑
                               fhirpath
@@ -148,6 +166,8 @@ if (!result.valid) {
 
 **Validation rules:** cardinality, required elements, type compatibility, fixed values, pattern values, choice types, reference targets, slicing discriminators, FHIRPath invariants.
 
+In `v0.3.0`, the validator also supports optional provider integration through `ValidationOptions.terminologyProvider` and `ValidationOptions.referenceResolver`, while remaining backward compatible when these are omitted.
+
 ### 5. FHIRPath Expression Engine
 
 Parse and evaluate FHIRPath expressions with 60+ standard functions, built on a Pratt parser with AST caching.
@@ -212,6 +232,8 @@ All capabilities return structured results instead of throwing:
 | Snapshot   | `SnapshotResult`   | `.success`    |
 | Validation | `ValidationResult` | `.valid`      |
 
+`v0.3.0` also adds `OperationOutcomeBuilder` helpers for converting these result types into FHIR-native `OperationOutcome` resources.
+
 Three error class hierarchies for exceptional cases:
 
 - `ContextError` → `ResourceNotFoundError`, `CircularDependencyError`, `LoaderError`, `InvalidStructureDefinitionError`
@@ -226,9 +248,16 @@ Three error class hierarchies for exceptional cases:
 
 ### Test Coverage
 
-- **2,400+ unit tests** across all modules
-- **45 test files** covering parser, context, profile, validator, and FHIRPath
+- **2,847 tests** across all modules
+- **51 test files** covering model, parser, context, profile, validator, FHIRPath, and provider
 - **100% pass rate** on HAPI-generated snapshot fixtures (35/35)
+
+### v0.3 Provider Abstraction Coverage
+
+- **97 new tests** across 6 provider-focused test files
+- **Provider interface contracts verified** for terminology and reference abstractions
+- **NoOp provider behavior verified** for backward-compatible standalone usage
+- **OperationOutcomeBuilder conversions verified** for validation, parse, and snapshot results
 
 ### US Core IG Verification
 
@@ -262,13 +291,13 @@ Three error class hierarchies for exceptional cases:
 | Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
 | Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
-| Public exports           | ~211 symbols across 6 modules                  |
-| Test count               | 2,400+ tests across 45 test files              |
+| Public exports           | 228+ symbols across 7 modules                  |
+| Test count               | 2,847 tests across 51 test files               |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.2.md`](../specs/engine-capability-contract-v0.2.md)
-- **Frozen API Reference:** [`docs/api/fhir-runtime-api-v0.2.md`](../api/fhir-runtime-api-v0.2.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.3.md`](../specs/engine-capability-contract-v0.3.md)
+- **API Reference:** [`docs/api/fhir-runtime-api-v0.3.md`](../api/fhir-runtime-api-v0.3.md)
 - **Main README:** [`README.md`](../../README.md)
