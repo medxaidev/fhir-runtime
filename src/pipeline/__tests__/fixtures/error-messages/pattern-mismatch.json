@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "PATTERN_VALUE_MISMATCH",
+  "message": "Value does not match pattern at Observation.code",
+  "path": "Observation.code"
+}

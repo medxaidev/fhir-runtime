@@ -1,0 +1,5 @@
+{
+  "resourceType": "Condition",
+  "id": "cond-1",
+  "subject": { "reference": "Patient/valid-1" }
+}

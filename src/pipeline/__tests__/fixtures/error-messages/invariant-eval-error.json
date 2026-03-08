@@ -1,0 +1,7 @@
+{
+  "severity": "warning",
+  "code": "INVARIANT_EVALUATION_ERROR",
+  "message": "Failed to evaluate constraint 'test-1': Unknown function foo()",
+  "path": "Patient.name",
+  "expression": "foo()"
+}

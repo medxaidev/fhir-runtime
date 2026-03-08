@@ -5,6 +5,70 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-03-08
+
+### Added
+
+#### Validation Pipeline & DX Enhancement (STAGE-4)
+
+- **New module: `src/pipeline/`** — Composable validation pipeline with pluggable step architecture
+  - `ValidationPipeline` class — orchestrates steps with priority order, failFast, minSeverity filtering
+  - `ValidationStep` interface — pluggable validation step contract
+  - `PipelineContext` — shared state passed between steps with providers and abort control
+  - `PipelineOptions` — pipeline configuration (failFast, maxDepth, minSeverity, providers)
+  - `PipelineResult` / `StepResult` — structured validation output with per-step results
+
+- **Built-in validation steps**
+  - `StructuralValidationStep` — wraps existing `StructureValidator` (priority: 10)
+  - `TerminologyValidationStep` — validates coded elements via `TerminologyProvider` (priority: 20)
+  - `InvariantValidationStep` — evaluates FHIRPath constraints (priority: 30)
+
+- **Hook system**
+  - `HookManager` class for lifecycle event registration and emission
+  - Events: `beforeValidation`, `afterValidation`, `beforeStep`, `afterStep`, `onIssue`, `onError`
+  - `PipelineEventHandler` / `PipelineEventData` types
+
+- **Batch validation**
+  - `validateBatch()` for validating multiple resources in sequence
+  - `BatchEntry` / `BatchResult` / `BatchEntryResult` types
+  - Labels for identifying entries in batch results
+
+- **Enhanced error messages**
+  - `EnhancedValidationIssue` extending `ValidationIssue` with `suggestion`, `documentationUrl`, `expected`, `actual`
+  - `enhanceIssue()` and `enhanceIssues()` functions
+  - Enhancement rules for all 16+ `ValidationIssueCode` types
+
+- **Structured validation reports**
+  - `ValidationReport` / `ReportSummary` types
+  - `generateReport()` function with issue grouping by severity, path, and step
+
+- **New exports in `src/index.ts`** — 14 type exports + 8 value exports from pipeline module
+
+#### Testing
+
+- 110 new tests across 9 test files in `src/pipeline/__tests__/`
+  - `validation-pipeline.test.ts` (19 tests — basic flow, failFast, minSeverity)
+  - `structural-step.test.ts` (6 tests)
+  - `terminology-step.test.ts` (8 tests)
+  - `invariant-step.test.ts` (7 tests)
+  - `hook-manager.test.ts` (10 tests)
+  - `batch-validator.test.ts` (16 JSON fixture tests)
+  - `enhanced-messages.test.ts` (18 JSON fixture tests)
+  - `report-generator.test.ts` (9 tests)
+  - `pipeline-integration.test.ts` (17 end-to-end integration tests)
+- 24 JSON fixture files (8 resource fixtures + 16 error message fixtures)
+- All v0.3.0 tests remain 100% passing (backward compatibility verified)
+
+### Notes
+
+- This release enables composable, multi-step validation pipelines with lifecycle hooks
+- The pipeline wraps existing validation infrastructure; it does not replace `StructureValidator`
+- Terminology validation requires an external `TerminologyProvider` implementation
+- Batch validation is sequential (no concurrency control)
+- This release remains backward compatible with v0.3.0 because the pipeline is an optional enhancement layer
+
+---
+
 ## [0.3.0] - 2026-03-07
 
 ### Added
@@ -196,6 +260,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Release Notes
 
+### v0.4.0 Highlights
+
+This release focuses on **composable validation and developer experience** enhancements:
+
+- ✅ **Validation Pipeline** — Composable `ValidationPipeline` with pluggable steps, priority ordering, and failFast mode
+- ✅ **Built-in steps** — `StructuralValidationStep`, `TerminologyValidationStep`, `InvariantValidationStep`
+- ✅ **Hook system** — Lifecycle events for monitoring and customizing validation flow
+- ✅ **Batch validation** — Validate multiple resources in a single pipeline run
+- ✅ **Enhanced errors** — Fix suggestions, documentation links, expected/actual values
+- ✅ **Validation reports** — Structured reports with multi-axis issue grouping
+- ✅ **110 new tests** — 2,995 total across 65 test files
+
 ### v0.3.0 Highlights
 
 This release focuses on **provider abstraction and integration readiness** for downstream services:
@@ -204,7 +280,6 @@ This release focuses on **provider abstraction and integration readiness** for d
 - ✅ **NoOp defaults included** — Higher-level projects can integrate immediately without live terminology or persistence backends
 - ✅ **OperationOutcome builders added** — Engine result objects can now be translated into FHIR-native response payloads
 - ✅ **Validator hooks prepared** — Optional provider fields are available without breaking existing validation flows
-- ✅ **Ready for STAGE-2** — Terminology binding validation can now build on stable provider abstractions
 
 ### v0.2.0 Highlights
 
@@ -230,13 +305,12 @@ Initial release providing complete FHIR R4 structural capabilities:
 
 ## Roadmap
 
-### Planned for v0.4.0
+### Planned for v0.5.0
 
-- Binding strength validation (`required`, `extensible`, `preferred`, `example`)
-- In-memory terminology provider for tests and embedded scenarios
-- CodeSystem / ValueSet registry support in context
-- Inline ValueSet membership checks
-- US Core terminology integration tests
+- IG package loading (.tgz) and NpmPackageLoader
+- Dependency resolution for IG packages
+- Cross-package canonical resolution
+- Package registry support
 
 ### Planned for v1.0.0
 
@@ -256,6 +330,7 @@ Initial release providing complete FHIR R4 structural capabilities:
 
 ---
 
+[0.4.0]: https://github.com/medxaidev/fhir-runtime/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/medxaidev/fhir-runtime/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/medxaidev/fhir-runtime/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/medxaidev/fhir-runtime/releases/tag/v0.1.0

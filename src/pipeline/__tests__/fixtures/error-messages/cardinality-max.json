@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "CARDINALITY_MAX_VIOLATION",
+  "message": "Element 'Patient.active' allows at most 1 value(s), but found 3",
+  "path": "Patient.active"
+}

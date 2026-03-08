@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-green)](https://nodejs.org/)
-[![Tests](https://img.shields.io/badge/Tests-2847%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/Tests-2995%20passing-brightgreen)]()
 
 `fhir-runtime` is a **structural FHIR R4 engine** that provides comprehensive capabilities for parsing, validating, and manipulating FHIR resources — without requiring a running FHIR server, database, or external terminology service.
 
@@ -19,6 +19,7 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 
 - FHIR R4 JSON Parsing — Full support for primitives, choice types, extensions
 - Profile-Based Validation — 9 structural validation rules + FHIRPath invariants
+- Validation Pipeline (STAGE-4) — Composable multi-step pipeline with hooks, batch validation, and enhanced error messages
 - Provider Abstraction Layer (STAGE-1) — Terminology and reference contracts with default NoOp implementations
 - Snapshot Generation — HAPI-equivalent differential expansion
 - FHIRPath Engine — 60+ functions, Pratt parser with AST caching
@@ -29,8 +30,9 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 
 ### Quality & Testing
 
-- 2,847 tests across 51 test files — 100% passing
+- 2,995 tests across 65 test files — 100% passing
 - US Core IG verified — 70 StructureDefinitions, 55 profiles validated
+- Validation pipeline tested — 110 pipeline tests including 34 JSON fixture tests
 - HAPI-equivalent — 35/35 snapshot fixtures match HAPI output
 - Stress tested — Malformed input, deep nesting, large payloads, concurrency
 - Zero dependencies — Pure TypeScript, no external runtime deps
@@ -109,6 +111,31 @@ if (!result.valid) {
 }
 ```
 
+### Validate with Pipeline (v0.4.0)
+
+```typescript
+import {
+  ValidationPipeline,
+  StructuralValidationStep,
+  TerminologyValidationStep,
+  InvariantValidationStep,
+  generateReport,
+  enhanceIssues,
+} from "fhir-runtime";
+
+const pipeline = new ValidationPipeline({
+  failFast: true,
+  minSeverity: "warning",
+});
+pipeline.addStep(new StructuralValidationStep());
+pipeline.addStep(new TerminologyValidationStep());
+pipeline.addStep(new InvariantValidationStep());
+
+const result = await pipeline.validate(resource, profile);
+const report = generateReport(result);
+const enhanced = enhanceIssues(result.issues);
+```
+
 ### Generate a Snapshot
 
 ```typescript
@@ -149,9 +176,9 @@ const hasOfficial = evalFhirPathBoolean(
 ## 📚 Documentation
 
 - **[Technical Overview](docs/overview/fhir-runtime-overview.md)** — Architecture, design principles, capabilities
-- **[API Reference](docs/api/fhir-runtime-api-v0.3.md)** — Public API reference for the v0.3.0 release surface
-- **[Capability Contract](docs/specs/engine-capability-contract-v0.3.md)** — Behavioral guarantees and release contract for v0.3.0
-- **[STAGE-1 Provider Abstraction](devdocs/stage/STAGE-1-provider-abstraction.md)** — Completed v0.3.0 provider abstraction delivery plan
+- **[API Reference](docs/api/fhir-runtime-api-v0.4.md)** — Public API reference for the v0.4.0 release surface
+- **[Capability Contract](docs/specs/engine-capability-contract-v0.4.md)** — Behavioral guarantees and release contract for v0.4.0
+- **[Release Notes v0.4.0](docs/releases/v0.4.0.md)** — Detailed v0.4.0 release notes
 
 ---
 
@@ -160,19 +187,23 @@ const hasOfficial = evalFhirPathBoolean(
 ### Test Coverage
 
 ```
-✅ 2,847 tests across 51 test files
+✅ 2,995 tests across 65 test files
 ✅ 100% pass rate on HAPI snapshot fixtures (35/35)
-✅ All 7 modules fully tested (model, parser, context, profile, validator, fhirpath, provider)
+✅ All 8 modules fully tested (model, parser, context, profile, validator, fhirpath, provider, pipeline)
+✅ Validation pipeline tested — 110 pipeline tests including 34 JSON fixture tests
 ```
 
-### v0.3.0 Provider Abstraction Coverage
+### v0.4.0 Validation Pipeline Coverage
 
 ```
-✅ 97 new tests across 6 provider-focused test files
-✅ TerminologyProvider and ReferenceResolver interface contracts verified
-✅ NoOp providers validated for backward-compatible default behavior
-✅ OperationOutcomeBuilder conversions covered for validation, parse, and snapshot flows
-✅ Validator integration verified with optional provider hooks
+✅ 110 new tests across 9 pipeline-focused test files
+✅ ValidationPipeline — basic flow, failFast, minSeverity (19 tests)
+✅ Built-in steps — structural, terminology, invariant (21 tests)
+✅ Hook system — lifecycle events, async handlers (10 tests)
+✅ Batch validation — 16 JSON fixture tests
+✅ Enhanced messages — 18 JSON fixture tests
+✅ Report generator — 9 tests
+✅ End-to-end integration — 17 tests
 ```
 
 ### US Core IG Verification
@@ -211,7 +242,8 @@ src/
 ├── profile/      ← Snapshot generation, canonical builder, constraint merging
 ├── validator/    ← Structural validation (9 rules + FHIRPath invariants)
 ├── fhirpath/     ← FHIRPath expression engine (Pratt parser, 60+ functions)
-└── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcomeBuilder
+├── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcomeBuilder
+└── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
 ```
 
 ### HAPI FHIR Equivalence
@@ -249,18 +281,28 @@ MIT License - see [LICENSE](LICENSE) file for details.
 | Property                 | Value                           |
 | ------------------------ | ------------------------------- |
 | Package name             | `fhir-runtime`                  |
-| Version                  | 0.3.0                           |
+| Version                  | 0.4.0                           |
 | License                  | MIT                             |
 | FHIR Version             | R4 (4.0.1)                      |
 | Module formats           | ESM + CJS                       |
 | Runtime dependencies     | None (zero dependencies)        |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions |
-| Public exports           | 228+ symbols across 7 modules   |
-| Test coverage            | 2,847 tests across 51 files     |
+| Public exports           | 250+ symbols across 8 modules   |
+| Test coverage            | 2,995 tests across 65 files     |
 
 ---
 
 ## 🆕 Release Highlights
+
+### v0.4.0
+
+- **Validation Pipeline** — Composable `ValidationPipeline` with pluggable steps, priority ordering, and failFast mode
+- **Built-in steps** — `StructuralValidationStep`, `TerminologyValidationStep`, `InvariantValidationStep`
+- **Hook system** — Lifecycle events for monitoring and customizing validation flow
+- **Batch validation** — Validate multiple resources in a single pipeline run
+- **Enhanced errors** — Fix suggestions, documentation links, expected/actual values
+- **Validation reports** — Structured reports with multi-axis issue grouping
+- **110 new tests** — 2,995 total across 65 test files
 
 ### v0.3.0
 
@@ -268,7 +310,6 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **Default NoOp implementations** — Safe placeholders for higher-level services and integration work
 - **OperationOutcomeBuilder support** — Convert structured engine results into FHIR-native error payloads
 - **Backward compatible** — Existing validation flows continue to work with optional provider hooks
-- **Ready for STAGE-2** — Terminology binding validation can now build on the released provider contracts
 
 ---
 

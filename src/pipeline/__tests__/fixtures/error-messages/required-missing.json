@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "REQUIRED_ELEMENT_MISSING",
+  "message": "Required element 'Patient.identifier' is missing",
+  "path": "Patient.identifier"
+}

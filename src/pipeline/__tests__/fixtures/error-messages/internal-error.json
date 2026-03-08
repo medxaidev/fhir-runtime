@@ -1,0 +1,5 @@
+{
+  "severity": "error",
+  "code": "INTERNAL_ERROR",
+  "message": "Internal validator error occurred"
+}

@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "CARDINALITY_MIN_VIOLATION",
+  "message": "Element 'Patient.name' requires at least 1 value(s), but found 0",
+  "path": "Patient.name"
+}

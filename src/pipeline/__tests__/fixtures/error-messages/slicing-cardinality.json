@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "SLICING_CARDINALITY_VIOLATION",
+  "message": "Slice cardinality violation at Patient.identifier:MRN",
+  "path": "Patient.identifier"
+}

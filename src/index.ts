@@ -285,3 +285,32 @@ export {
   buildOperationOutcomeFromParse,
   buildOperationOutcomeFromSnapshot,
 } from './provider/index.js';
+
+// ─── Pipeline module (STAGE-4: v0.4.0) ──────────────────────────────────
+export type {
+  ValidationStep,
+  PipelineContext,
+  PipelineOptions,
+  PipelineResult,
+  StepResult,
+  BatchEntry,
+  BatchResult,
+  BatchEntryResult,
+  PipelineEvent,
+  PipelineEventHandler,
+  PipelineEventData,
+  EnhancedValidationIssue,
+  ValidationReport,
+  ReportSummary,
+} from './pipeline/index.js';
+
+export {
+  ValidationPipeline,
+  StructuralValidationStep,
+  TerminologyValidationStep,
+  InvariantValidationStep,
+  generateReport,
+  enhanceIssue,
+  enhanceIssues,
+  HookManager,
+} from './pipeline/index.js';

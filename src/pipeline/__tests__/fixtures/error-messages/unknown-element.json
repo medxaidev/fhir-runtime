@@ -1,0 +1,6 @@
+{
+  "severity": "warning",
+  "code": "UNKNOWN_ELEMENT",
+  "message": "Unknown element 'Patient.foo' not defined in profile",
+  "path": "Patient.foo"
+}

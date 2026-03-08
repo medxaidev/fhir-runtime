@@ -1,0 +1,7 @@
+{
+  "resourceType": "Observation",
+  "id": "obs-no-status",
+  "code": {
+    "coding": [{ "system": "http://loinc.org", "code": "12345-6" }]
+  }
+}

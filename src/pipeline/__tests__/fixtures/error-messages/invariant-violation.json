@@ -1,0 +1,7 @@
+{
+  "severity": "error",
+  "code": "INVARIANT_VIOLATION",
+  "message": "Constraint 'pat-1' failed",
+  "path": "Patient.contact",
+  "expression": "name.exists() or telecom.exists()"
+}

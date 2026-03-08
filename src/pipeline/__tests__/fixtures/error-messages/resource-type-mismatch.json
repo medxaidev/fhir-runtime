@@ -1,0 +1,7 @@
+{
+  "severity": "error",
+  "code": "RESOURCE_TYPE_MISMATCH",
+  "message": "Expected resourceType 'Observation', but found 'Patient'",
+  "path": null,
+  "diagnostics": "Expected: Observation, Actual: Patient"
+}

@@ -1,7 +1,7 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.3.0  
+> **Version:** 0.4.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
@@ -9,20 +9,22 @@
 
 ---
 
-## v0.3.0 Update
+## v0.4.0 Update
 
-`v0.3.0` completes the **Provider Abstraction Layer (STAGE-1)**.
+`v0.4.0` completes the **Validation Pipeline & DX Enhancement (STAGE-4)**.
 
 This release adds:
 
-- `TerminologyProvider` and `ReferenceResolver` public interfaces
-- `NoOpTerminologyProvider` and `NoOpReferenceResolver` placeholder implementations
-- `OperationOutcomeBuilder` helpers for `ValidationResult`, `ParseResult`, and `SnapshotResult`
-- optional provider integration fields on `ValidationOptions`
+- `ValidationPipeline` — composable validation orchestrator with pluggable steps
+- Built-in steps: `StructuralValidationStep`, `TerminologyValidationStep`, `InvariantValidationStep`
+- `HookManager` — lifecycle event system (`beforeValidation`, `afterValidation`, `beforeStep`, `afterStep`, `onIssue`, `onError`)
+- Batch validation for multiple resources via `validateBatch()`
+- `enhanceIssue()` / `enhanceIssues()` — DX-enhanced error messages with suggestions and documentation links
+- `generateReport()` — structured validation reports with multi-axis issue grouping
 
-This release remains **backward compatible** with `v0.2.0` because all provider integration points are optional.
+This release remains **backward compatible** with `v0.3.0`. The pipeline is an optional enhancement layer; existing `StructureValidator` flows are unaffected.
 
-Actual terminology validation is planned for **STAGE-2 (`v0.4.0`)**.
+IG package loading is planned for **STAGE-3 (`v0.5.0`)**.
 
 ---
 
@@ -65,7 +67,8 @@ src/
 ├── profile/      ← Snapshot generation, canonical builder, constraint merging
 ├── validator/    ← Structural validation (9 rules + FHIRPath invariants)
 ├── fhirpath/     ← FHIRPath expression engine (Pratt parser, 60+ functions)
-└── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcome builders
+├── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcome builders
+└── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
 ```
 
 ### Dependency Direction
@@ -74,9 +77,12 @@ src/
 model ← parser ← context ← profile ← validator
                                   ↑
                               fhirpath
+
+pipeline → model, validator, provider (wraps existing infrastructure)
+pipeline → fhirpath (via InvariantValidationStep)
 ```
 
-Strictly enforced: each module may only import from modules to its left. The `fhirpath` module is used by `validator` for invariant evaluation.
+Strictly enforced: each module may only import from modules to its left. The `fhirpath` module is used by `validator` for invariant evaluation. The `pipeline` module wraps validator, provider, and fhirpath as composable steps.
 
 ### Key Design Principles
 
@@ -166,7 +172,32 @@ if (!result.valid) {
 
 **Validation rules:** cardinality, required elements, type compatibility, fixed values, pattern values, choice types, reference targets, slicing discriminators, FHIRPath invariants.
 
-In `v0.3.0`, the validator also supports optional provider integration through `ValidationOptions.terminologyProvider` and `ValidationOptions.referenceResolver`, while remaining backward compatible when these are omitted.
+In `v0.3.0`, the validator supports optional provider integration through `ValidationOptions.terminologyProvider` and `ValidationOptions.referenceResolver`, while remaining backward compatible when these are omitted.
+
+In `v0.4.0`, the new `ValidationPipeline` wraps `StructureValidator` as a composable step alongside terminology and invariant validation:
+
+```typescript
+import {
+  ValidationPipeline,
+  StructuralValidationStep,
+  TerminologyValidationStep,
+  InvariantValidationStep,
+  generateReport,
+  enhanceIssues,
+} from "fhir-runtime";
+
+const pipeline = new ValidationPipeline({
+  failFast: true,
+  minSeverity: "warning",
+});
+pipeline.addStep(new StructuralValidationStep());
+pipeline.addStep(new TerminologyValidationStep());
+pipeline.addStep(new InvariantValidationStep());
+
+const result = await pipeline.validate(resource, profile);
+const report = generateReport(result);
+const enhanced = enhanceIssues(result.issues);
+```
 
 ### 5. FHIRPath Expression Engine
 
@@ -248,16 +279,20 @@ Three error class hierarchies for exceptional cases:
 
 ### Test Coverage
 
-- **2,847 tests** across all modules
-- **51 test files** covering model, parser, context, profile, validator, FHIRPath, and provider
+- **2,995 tests** across all modules
+- **65 test files** covering model, parser, context, profile, validator, FHIRPath, provider, and pipeline
 - **100% pass rate** on HAPI-generated snapshot fixtures (35/35)
 
-### v0.3 Provider Abstraction Coverage
+### v0.4 Pipeline Coverage
 
-- **97 new tests** across 6 provider-focused test files
-- **Provider interface contracts verified** for terminology and reference abstractions
-- **NoOp provider behavior verified** for backward-compatible standalone usage
-- **OperationOutcomeBuilder conversions verified** for validation, parse, and snapshot results
+- **110 new tests** across 9 pipeline-focused test files
+- **ValidationPipeline** — basic flow, failFast, minSeverity (19 tests)
+- **Built-in steps** — structural, terminology, invariant (21 tests)
+- **Hook system** — lifecycle events, async handlers (10 tests)
+- **Batch validation** — 16 JSON fixture tests
+- **Enhanced messages** — 18 JSON fixture tests
+- **Report generator** — 9 tests
+- **End-to-end integration** — 17 tests
 
 ### US Core IG Verification
 
@@ -291,13 +326,13 @@ Three error class hierarchies for exceptional cases:
 | Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
 | Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
-| Public exports           | 228+ symbols across 7 modules                  |
-| Test count               | 2,847 tests across 51 test files               |
+| Public exports           | 250+ symbols across 8 modules                  |
+| Test count               | 2,995 tests across 65 test files               |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.3.md`](../specs/engine-capability-contract-v0.3.md)
-- **API Reference:** [`docs/api/fhir-runtime-api-v0.3.md`](../api/fhir-runtime-api-v0.3.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.4.md`](../specs/engine-capability-contract-v0.4.md)
+- **API Reference:** [`docs/api/fhir-runtime-api-v0.4.md`](../api/fhir-runtime-api-v0.4.md)
 - **Main README:** [`README.md`](../../README.md)

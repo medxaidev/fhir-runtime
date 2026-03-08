@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "FIXED_VALUE_MISMATCH",
+  "message": "Value does not match fixed value at Patient.gender",
+  "path": "Patient.gender"
+}

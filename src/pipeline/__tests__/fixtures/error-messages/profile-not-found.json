@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "PROFILE_NOT_FOUND",
+  "message": "Profile 'http://example.org/fhir/StructureDefinition/MyProfile' not found",
+  "path": null
+}

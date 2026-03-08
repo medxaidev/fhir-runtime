@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "REFERENCE_TARGET_MISMATCH",
+  "message": "Reference target does not match allowed types at Observation.subject",
+  "path": "Observation.subject"
+}

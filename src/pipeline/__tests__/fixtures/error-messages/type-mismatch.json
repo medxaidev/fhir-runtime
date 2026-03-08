@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "TYPE_MISMATCH",
+  "message": "Value type does not match allowed types at Observation.value[x]",
+  "path": "Observation.value[x]"
+}

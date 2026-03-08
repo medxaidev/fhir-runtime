@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "INVALID_CHOICE_TYPE",
+  "message": "Choice type field uses unsupported type suffix",
+  "path": "Observation.value[x]"
+}

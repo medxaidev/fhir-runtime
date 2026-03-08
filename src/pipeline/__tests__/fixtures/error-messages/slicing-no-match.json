@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "code": "SLICING_NO_MATCH",
+  "message": "Value does not match any slice discriminator at Patient.identifier",
+  "path": "Patient.identifier"
+}
