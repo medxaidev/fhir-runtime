@@ -1,0 +1,13 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "test-category",
+  "url": "http://example.org/fhir/test-ig/CodeSystem/test-category",
+  "version": "1.0.0",
+  "name": "TestCategory",
+  "status": "active",
+  "content": "complete",
+  "concept": [
+    { "code": "lab", "display": "Laboratory" },
+    { "code": "vital", "display": "Vital Signs" }
+  ]
+}

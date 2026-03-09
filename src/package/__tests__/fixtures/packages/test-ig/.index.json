@@ -1,0 +1,44 @@
+{
+  "index-version": 2,
+  "files": [
+    {
+      "filename": "StructureDefinition-test-patient.json",
+      "resourceType": "StructureDefinition",
+      "id": "test-patient",
+      "url": "http://example.org/fhir/test-ig/StructureDefinition/test-patient",
+      "version": "1.0.0",
+      "kind": "resource",
+      "type": "Patient"
+    },
+    {
+      "filename": "StructureDefinition-test-observation.json",
+      "resourceType": "StructureDefinition",
+      "id": "test-observation",
+      "url": "http://example.org/fhir/test-ig/StructureDefinition/test-observation",
+      "version": "1.0.0",
+      "kind": "resource",
+      "type": "Observation"
+    },
+    {
+      "filename": "ValueSet-test-gender.json",
+      "resourceType": "ValueSet",
+      "id": "test-gender",
+      "url": "http://example.org/fhir/test-ig/ValueSet/test-gender",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "CodeSystem-test-category.json",
+      "resourceType": "CodeSystem",
+      "id": "test-category",
+      "url": "http://example.org/fhir/test-ig/CodeSystem/test-category",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "SearchParameter-test-name.json",
+      "resourceType": "SearchParameter",
+      "id": "test-name",
+      "url": "http://example.org/fhir/test-ig/SearchParameter/test-name",
+      "version": "1.0.0"
+    }
+  ]
+}

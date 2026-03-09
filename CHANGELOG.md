@@ -5,6 +5,70 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-03-09
+
+### Added
+
+#### IG Package & Canonical Resolution (STAGE-4)
+
+- **New module: `src/package/`** — FHIR IG NPM package loading and canonical resolution
+  - `NpmPackageLoader` class — implements `StructureDefinitionLoader` for CompositeLoader integration
+  - `PackageManager` class — multi-package management with dependency resolution
+  - `parsePackageManifest()` / `parsePackageManifestFromString()` — parse `package.json`
+  - `parsePackageIndex()` / `parsePackageIndexFromString()` — parse `.index.json`
+  - `filterIndexByResourceType()` — filter index entries by resource type
+  - `buildDependencyGraph()` — recursive dependency resolution with topological sorting
+  - `topologicalSort()` — dependency-order sorting
+  - `findMissingDependencies()` — detect unresolved dependencies
+  - `CircularPackageDependencyError` — thrown on circular dependency detection
+  - `parseCanonicalUrl()` — split `url|version` canonical format
+  - `resolveCanonical()` — version-aware cross-package canonical URL resolution
+  - `resolveAllByType()` — enumerate all resources of a type across packages
+  - `CONFORMANCE_RESOURCE_TYPES` constant
+
+- **NpmPackageLoader features**
+  - `.index.json` fast lookup with filesystem scan fallback
+  - `resourceTypes` filter for selective loading
+  - `loadAllStructureDefinitions()` / `loadAllValueSets()` / `loadAllCodeSystems()` bulk loading
+  - `loadResource()` — load any resource by canonical URL
+  - `resolveCanonical()` — resolve URL to file entry
+
+- **PackageManager features**
+  - `registerPackage()` — register extracted IG packages
+  - `discoverPackages()` — auto-discover packages in cache directory
+  - `resolveDependencies()` — build dependency graph with topological ordering
+  - `resolveCanonical()` / `resolveAllByType()` — cross-package resolution
+  - `createLoader()` — create CompositeLoader for FhirContext integration
+
+- **Type definitions** — 9 new type exports: `PackageManifest`, `PackageIndex`, `PackageIndexEntry`, `NpmPackageLoaderOptions`, `PackageManagerOptions`, `PackageInfo`, `DependencyGraph`, `DependencyNode`, `CanonicalResolution`
+
+- **New exports in `src/index.ts`** — 10 type exports + 16 value exports from package module
+
+#### Testing
+
+- 138 new tests across 7 test files in `src/package/__tests__/`
+  - `package-manifest-parser.test.ts` (13 tests)
+  - `package-index-parser.test.ts` (14 tests)
+  - `npm-package-loader.test.ts` (32 tests — index, scan, load, filter, bulk)
+  - `dependency-resolver.test.ts` (15 tests — graph, topo sort, cycle, diamond, missing)
+  - `canonical-resolver.test.ts` (22 tests — version, multi-loader, all types)
+  - `package-manager.test.ts` (17 tests — register, discover, resolve, create loader)
+  - `integration.test.ts` (25 tests — 11 mock + 14 real US Core v9.0.0)
+- 3 mock IG packages (test-ig, dep-ig, no-index-ig) with 11 JSON resource fixtures
+- Real US Core v9.0.0 package integration (214 files: 70 SDs, 20 ValueSets, 4 CodeSystems)
+- All v0.5.0 tests remain 100% passing (backward compatibility verified)
+- Total: 3,266 tests across 82 test files
+
+### Notes
+
+- `NpmPackageLoader` implements `StructureDefinitionLoader` — drop-in compatible with `CompositeLoader` and `FhirContextImpl`
+- Package extraction from `.tgz` must be done externally (no download/extraction support by design)
+- Version ranges in dependencies not supported (exact match only)
+- Browser compatibility requires abstracting `node:fs` calls
+- This release remains backward compatible with v0.5.0
+
+---
+
 ## [0.5.0] - 2026-03-09
 
 ### Added
@@ -325,6 +389,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## Release Notes
+
+### v0.6.0 Highlights
+
+This release completes **IG package loading and canonical resolution**:
+
+- **NpmPackageLoader** — Load FHIR IG packages from extracted NPM directories
+- **PackageManager** — Register, discover, manage multiple IG packages
+- **Canonical Resolution** — Version-aware cross-package `url|version` resolution
+- **Dependency Graph** — Topological sorting with circular dependency detection
+- **US Core verified** — Real US Core v9.0.0 loaded (70 SDs, 20 ValueSets, 4 CodeSystems)
+- **138 new tests** — 3,266 total across 82 test files
 
 ### v0.5.0 Highlights
 

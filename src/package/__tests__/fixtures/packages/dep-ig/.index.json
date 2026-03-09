@@ -1,0 +1,21 @@
+{
+  "index-version": 2,
+  "files": [
+    {
+      "filename": "StructureDefinition-dep-condition.json",
+      "resourceType": "StructureDefinition",
+      "id": "dep-condition",
+      "url": "http://example.org/fhir/dep-ig/StructureDefinition/dep-condition",
+      "version": "2.0.0",
+      "kind": "resource",
+      "type": "Condition"
+    },
+    {
+      "filename": "ValueSet-dep-status.json",
+      "resourceType": "ValueSet",
+      "id": "dep-status",
+      "url": "http://example.org/fhir/dep-ig/ValueSet/dep-status",
+      "version": "2.0.0"
+    }
+  ]
+}

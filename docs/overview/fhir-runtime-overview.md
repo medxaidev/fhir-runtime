@@ -1,7 +1,7 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.5.0  
+> **Version:** 0.6.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
@@ -9,22 +9,22 @@
 
 ---
 
-## v0.5.0 Update
+## v0.6.0 Update
 
-`v0.5.0` completes the **Terminology Binding Validation (STAGE-3)**.
+`v0.6.0` completes the **IG Package & Canonical Resolution (STAGE-4)**.
 
 This release adds:
 
-- `InMemoryTerminologyProvider` — fully functional local terminology validation implementing `TerminologyProvider`
-- `validateBinding()` — binding strength-aware code validation (required/extensible/preferred/example)
-- `CodeSystemRegistry` / `ValueSetRegistry` — in-memory terminology storage with hierarchical concept support
-- `isCodeInValueSet()` — ValueSet membership evaluation (expansion, compose, filters)
-- Binding strength utilities (`severityForBindingStrength`, `severityWhenNoProvider`, etc.)
-- Bundle loading for CodeSystem and ValueSet resources
+- `NpmPackageLoader` — load conformance resources from extracted FHIR IG NPM packages
+- `PackageManager` — register, discover, and manage multiple IG packages
+- Cross-package canonical URL resolution with version awareness (`url|version`)
+- Dependency graph resolution with topological sorting and circular dependency detection
+- `.index.json` fast lookup with filesystem scan fallback
+- US Core IG (v9.0.0) successfully loaded and validated
 
-This release remains **backward compatible** with `v0.4.0`. The `TerminologyValidationStep` in the pipeline is now fully functional when `InMemoryTerminologyProvider` is injected.
+This release remains **backward compatible** with `v0.5.0`. `NpmPackageLoader` implements `StructureDefinitionLoader` for drop-in integration with `CompositeLoader`.
 
-IG package loading is planned for **STAGE-4 (`v0.6.0`)**.
+Integration & API Freeze is planned for **STAGE-5 (`v1.0`)**.
 
 ---
 
@@ -69,6 +69,7 @@ src/
 ├── fhirpath/     ← FHIRPath expression engine (Pratt parser, 60+ functions)
 ├── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcome builders
 ├── terminology/  ← Binding validation, InMemoryTerminologyProvider, CS/VS registries
+├── package/      ← IG package loading, NpmPackageLoader, PackageManager, canonical resolution
 └── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
 ```
 
@@ -80,6 +81,7 @@ model ← parser ← context ← profile ← validator
                               fhirpath
 
 terminology → model, provider (binding validation, in-memory registries)
+package → model, parser, context (IG package loading)
 pipeline → model, validator, provider (wraps existing infrastructure)
 pipeline → fhirpath (via InvariantValidationStep)
 ```
@@ -281,20 +283,20 @@ Three error class hierarchies for exceptional cases:
 
 ### Test Coverage
 
-- **3,128 tests** across all modules
-- **75 test files** covering model, parser, context, profile, validator, FHIRPath, provider, terminology, and pipeline
+- **3,266 tests** across all modules
+- **82 test files** covering model, parser, context, profile, validator, FHIRPath, provider, terminology, package, and pipeline
 - **100% pass rate** on HAPI-generated snapshot fixtures (35/35)
 
-### v0.5 Terminology Coverage
+### v0.6 Package Coverage
 
-- **133 new tests** across 10 terminology-focused test files
-- **Binding strength** — 4 levels × 6 tests = 24 tests
-- **CodeSystem registry** — hierarchical lookup, is-a relationships (13 tests)
-- **ValueSet registry** — CRUD operations (7 tests)
-- **ValueSet membership** — expansion, compose, filters, exclude (21 tests)
-- **Binding validator** — all coded element types, all strengths (21 tests)
-- **InMemoryTerminologyProvider** — validateCode, expandValueSet, lookupCode (30 tests)
-- **End-to-end integration** — 17 tests
+- **138 new tests** across 7 package-focused test files
+- **Package manifest parser** — 13 tests
+- **Package index parser** — 14 tests
+- **NpmPackageLoader** — 32 tests (index, scan, load, filter, bulk)
+- **Dependency resolver** — 15 tests (graph, topo sort, cycle detection)
+- **Canonical resolver** — 22 tests (version-aware, multi-loader)
+- **PackageManager** — 17 tests (register, discover, resolve, create loader)
+- **Integration** — 25 tests (11 mock + 14 real US Core v9.0.0)
 
 ### US Core IG Verification
 
@@ -328,14 +330,14 @@ Three error class hierarchies for exceptional cases:
 | Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
 | Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
-| Public exports           | ~270 symbols across 9 modules                  |
-| Test count               | 3,128 tests across 75 test files               |
+| Public exports           | ~296 symbols across 10 modules                 |
+| Test count               | 3,266 tests across 82 test files               |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.5.md`](../specs/engine-capability-contract-v0.5.md)
-- **API Reference:** [`docs/api/fhir-runtime-api-v0.5.md`](../api/fhir-runtime-api-v0.5.md)
-- **Release Notes:** [`docs/releases/v0.5.0.md`](../releases/v0.5.0.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.6.md`](../specs/engine-capability-contract-v0.6.md)
+- **API Reference:** [`docs/api/fhir-runtime-api-v0.6.md`](../api/fhir-runtime-api-v0.6.md)
+- **Release Notes:** [`docs/releases/v0.6.0.md`](../releases/v0.6.0.md)
 - **Main README:** [`README.md`](../../README.md)

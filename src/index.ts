@@ -314,6 +314,37 @@ export {
   isCodeInValueSet,
 } from './terminology/index.js';
 
+// ─── Package module (STAGE-4: v0.6.0) ────────────────────────────────────
+export type {
+  PackageManifest,
+  PackageIndex,
+  PackageIndexEntry,
+  NpmPackageLoaderOptions,
+  PackageManagerOptions,
+  PackageInfo,
+  DependencyGraph,
+  DependencyNode,
+  CanonicalResolution,
+} from './package/index.js';
+
+export {
+  CONFORMANCE_RESOURCE_TYPES,
+  NpmPackageLoader,
+  PackageManager,
+  parsePackageManifest,
+  parsePackageManifestFromString,
+  parsePackageIndex,
+  parsePackageIndexFromString,
+  filterIndexByResourceType,
+  buildDependencyGraph,
+  topologicalSort,
+  findMissingDependencies,
+  CircularPackageDependencyError,
+  parseCanonicalUrl,
+  resolveCanonical,
+  resolveAllByType,
+} from './package/index.js';
+
 // ─── Pipeline module (STAGE-2: v0.4.0) ──────────────────────────────────
 export type {
   ValidationStep,

@@ -1,0 +1,8 @@
+{
+  "resourceType": "ValueSet",
+  "id": "noindex-vs",
+  "url": "http://example.org/fhir/noindex/ValueSet/noindex-vs",
+  "version": "1.0.0",
+  "name": "NoIndexVS",
+  "status": "active"
+}

@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-green)](https://nodejs.org/)
-[![Tests](https://img.shields.io/badge/Tests-3128%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/Tests-3266%20passing-brightgreen)]()
 
 `fhir-runtime` is a **structural FHIR R4 engine** that provides comprehensive capabilities for parsing, validating, and manipulating FHIR resources — without requiring a running FHIR server, database, or external terminology service.
 
@@ -21,6 +21,7 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 - Profile-Based Validation — 9 structural validation rules + FHIRPath invariants
 - Validation Pipeline (STAGE-2) — Composable multi-step pipeline with hooks, batch validation, and enhanced error messages
 - Terminology Binding (STAGE-3) — InMemoryTerminologyProvider, binding strength validation, CS/VS registries
+- IG Package Loading (STAGE-4) — NpmPackageLoader, PackageManager, cross-package canonical resolution
 - Provider Abstraction Layer (STAGE-1) — Terminology and reference contracts with default NoOp implementations
 - Snapshot Generation — HAPI-equivalent differential expansion
 - FHIRPath Engine — 60+ functions, Pratt parser with AST caching
@@ -31,9 +32,9 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 
 ### Quality & Testing
 
-- 3,128 tests across 75 test files — 100% passing
-- US Core IG verified — 70 StructureDefinitions, 55 profiles validated
-- Terminology tested — 133 terminology tests including binding strength, membership, and integration
+- 3,266 tests across 82 test files — 100% passing
+- US Core IG verified — 70 StructureDefinitions loaded from real US Core v9.0.0 package
+- IG package tested — 138 package tests including real US Core integration
 - HAPI-equivalent — 35/35 snapshot fixtures match HAPI output
 - Stress tested — Malformed input, deep nesting, large payloads, concurrency
 - Zero dependencies — Pure TypeScript, no external runtime deps
@@ -181,9 +182,9 @@ const hasOfficial = evalFhirPathBoolean(
 ## 📚 Documentation
 
 - **[Technical Overview](docs/overview/fhir-runtime-overview.md)** — Architecture, design principles, capabilities
-- **[API Reference](docs/api/fhir-runtime-api-v0.5.md)** — Public API reference for the v0.5.0 release surface
-- **[Capability Contract](docs/specs/engine-capability-contract-v0.5.md)** — Behavioral guarantees and release contract for v0.5.0
-- **[Release Notes v0.5.0](docs/releases/v0.5.0.md)** — Detailed v0.5.0 release notes
+- **[API Reference](docs/api/fhir-runtime-api-v0.6.md)** — Public API reference for the v0.6.0 release surface
+- **[Capability Contract](docs/specs/engine-capability-contract-v0.6.md)** — Behavioral guarantees and release contract for v0.6.0
+- **[Release Notes v0.6.0](docs/releases/v0.6.0.md)** — Detailed v0.6.0 release notes
 
 ---
 
@@ -192,23 +193,23 @@ const hasOfficial = evalFhirPathBoolean(
 ### Test Coverage
 
 ```
-✅ 3,128 tests across 75 test files
+✅ 3,266 tests across 82 test files
 ✅ 100% pass rate on HAPI snapshot fixtures (35/35)
-✅ All 9 modules fully tested (model, parser, context, profile, validator, fhirpath, provider, terminology, pipeline)
-✅ Terminology tested — 133 terminology tests including binding strength, membership, and integration
+✅ All 10 modules fully tested (model, parser, context, profile, validator, fhirpath, provider, terminology, package, pipeline)
+✅ IG package tested — 138 package tests including real US Core v9.0.0 integration
 ```
 
-### v0.5.0 Terminology Coverage
+### v0.6.0 Package Coverage
 
 ```
-✅ 133 new tests across 10 terminology-focused test files
-✅ Binding strength — 4 levels × 6 tests = 24 tests
-✅ CodeSystem registry — 13 tests
-✅ ValueSet registry — 7 tests
-✅ ValueSet membership — 21 JSON fixture tests
-✅ Binding validator — 21 tests
-✅ InMemoryTerminologyProvider — 30 tests
-✅ End-to-end integration — 17 tests
+✅ 138 new tests across 7 package-focused test files
+✅ Package manifest parser — 13 tests
+✅ Package index parser — 14 tests
+✅ NpmPackageLoader — 32 tests (index, scan, load, filter, bulk)
+✅ Dependency resolver — 15 tests (graph, topo sort, cycle detection)
+✅ Canonical resolver — 22 tests (version-aware, multi-loader)
+✅ PackageManager — 17 tests (register, discover, resolve)
+✅ Integration — 25 tests (11 mock + 14 real US Core v9.0.0)
 ```
 
 ### US Core IG Verification
@@ -249,6 +250,7 @@ src/
 ├── fhirpath/     ← FHIRPath expression engine (Pratt parser, 60+ functions)
 ├── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcomeBuilder
 ├── terminology/  ← Binding validation, InMemoryTerminologyProvider, CS/VS registries
+├── package/      ← IG package loading, NpmPackageLoader, PackageManager, canonical resolution
 └── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
 ```
 
@@ -287,27 +289,34 @@ MIT License - see [LICENSE](LICENSE) file for details.
 | Property                 | Value                           |
 | ------------------------ | ------------------------------- |
 | Package name             | `fhir-runtime`                  |
-| Version                  | 0.5.0                           |
+| Version                  | 0.6.0                           |
 | License                  | MIT                             |
 | FHIR Version             | R4 (4.0.1)                      |
 | Module formats           | ESM + CJS                       |
 | Runtime dependencies     | None (zero dependencies)        |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions |
-| Public exports           | ~270 symbols across 9 modules   |
-| Test coverage            | 3,128 tests across 75 files     |
+| Public exports           | ~296 symbols across 10 modules  |
+| Test coverage            | 3,266 tests across 82 files     |
 
 ---
 
 ## 🆕 Release Highlights
+
+### v0.6.0
+
+- **IG Package Loading** — `NpmPackageLoader` for loading FHIR IG packages from extracted NPM directories
+- **PackageManager** — Register, discover, and manage multiple IG packages with dependency resolution
+- **Canonical Resolution** — Version-aware cross-package canonical URL resolution (`url|version`)
+- **Dependency Graph** — Topological sorting with circular dependency detection
+- **US Core verified** — Real US Core v9.0.0 package loaded and validated (70 SDs, 20 ValueSets)
+- **138 new tests** — 3,266 total across 82 test files
 
 ### v0.5.0
 
 - **Terminology Binding Validation** — `InMemoryTerminologyProvider` with full `TerminologyProvider` interface
 - **Binding strength** — `required` / `extensible` / `preferred` / `example` validation
 - **Registries** — `CodeSystemRegistry` (hierarchical) + `ValueSetRegistry` for in-memory terminology storage
-- **ValueSet membership** — expansion, compose include/exclude, hierarchical filters (is-a, regex, etc.)
-- **Pipeline integration** — `TerminologyValidationStep` now fully functional with injected provider
-- **133 new tests** — 3,128 total across 75 test files
+- **ValueSet membership** — expansion, compose include/exclude, hierarchical filters
 
 ### v0.4.0
 

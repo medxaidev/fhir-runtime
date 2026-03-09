@@ -1,0 +1,18 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "dep-condition",
+  "url": "http://example.org/fhir/dep-ig/StructureDefinition/dep-condition",
+  "version": "2.0.0",
+  "name": "DepCondition",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Condition",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Condition",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      { "id": "Condition", "path": "Condition" }
+    ]
+  }
+}

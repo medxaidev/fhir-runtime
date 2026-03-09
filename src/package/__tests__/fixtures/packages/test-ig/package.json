@@ -1,0 +1,14 @@
+{
+  "name": "test.fhir.ig",
+  "version": "1.0.0",
+  "fhirVersions": ["4.0.1"],
+  "type": "fhir.ig",
+  "canonical": "http://example.org/fhir/test-ig",
+  "title": "Test IG",
+  "description": "A test implementation guide for unit testing",
+  "license": "MIT",
+  "author": "Test Author",
+  "dependencies": {
+    "hl7.fhir.r4.core": "4.0.1"
+  }
+}

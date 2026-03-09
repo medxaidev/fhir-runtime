@@ -1,0 +1,12 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "test-name",
+  "url": "http://example.org/fhir/test-ig/SearchParameter/test-name",
+  "version": "1.0.0",
+  "name": "TestName",
+  "status": "active",
+  "code": "name",
+  "base": ["Patient"],
+  "type": "string",
+  "expression": "Patient.name"
+}

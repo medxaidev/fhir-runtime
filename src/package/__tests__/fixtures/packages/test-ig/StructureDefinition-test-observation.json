@@ -1,0 +1,26 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "test-observation",
+  "url": "http://example.org/fhir/test-ig/StructureDefinition/test-observation",
+  "version": "1.0.0",
+  "name": "TestObservation",
+  "status": "active",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation",
+        "path": "Observation"
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "min": 1
+      }
+    ]
+  }
+}

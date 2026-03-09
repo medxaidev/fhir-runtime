@@ -1,0 +1,11 @@
+{
+  "name": "test.fhir.dep",
+  "version": "2.0.0",
+  "fhirVersions": ["4.0.1"],
+  "type": "fhir.ig",
+  "canonical": "http://example.org/fhir/dep-ig",
+  "dependencies": {
+    "test.fhir.ig": "1.0.0",
+    "hl7.fhir.r4.core": "4.0.1"
+  }
+}
