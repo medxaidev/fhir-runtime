@@ -286,7 +286,35 @@ export {
   buildOperationOutcomeFromSnapshot,
 } from './provider/index.js';
 
-// ─── Pipeline module (STAGE-4: v0.4.0) ──────────────────────────────────
+// ─── Terminology module (STAGE-3: v0.5.0) ────────────────────────────────
+export type {
+  CodeSystemDefinition,
+  CodeSystemConcept,
+  ValueSetDefinition,
+  ValueSetCompose,
+  ValueSetComposeInclude,
+  ValueSetComposeConcept,
+  ValueSetComposeFilter,
+  ValueSetExpansionDef,
+  ValueSetExpansionContainsDef,
+  BindingValidationResult,
+  BindingConstraintInput,
+} from './terminology/index.js';
+
+export {
+  InMemoryTerminologyProvider,
+  validateBinding,
+  extractCodedValues,
+  severityForBindingStrength,
+  severityWhenNoProvider,
+  requiresValidation,
+  bindingStrengthDescription,
+  CodeSystemRegistry,
+  ValueSetRegistry,
+  isCodeInValueSet,
+} from './terminology/index.js';
+
+// ─── Pipeline module (STAGE-2: v0.4.0) ──────────────────────────────────
 export type {
   ValidationStep,
   PipelineContext,

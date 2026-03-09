@@ -1,0 +1,31 @@
+{
+  "resourceType": "CodeSystem",
+  "url": "http://example.org/fhir/CodeSystem/condition-category",
+  "version": "1.0.0",
+  "name": "ConditionCategory",
+  "concepts": [
+    {
+      "code": "disease",
+      "display": "Disease",
+      "children": [
+        {
+          "code": "infectious",
+          "display": "Infectious Disease",
+          "children": [
+            { "code": "bacterial", "display": "Bacterial Infection" },
+            { "code": "viral", "display": "Viral Infection" }
+          ]
+        },
+        { "code": "chronic", "display": "Chronic Disease" }
+      ]
+    },
+    {
+      "code": "finding",
+      "display": "Finding",
+      "children": [
+        { "code": "symptom", "display": "Symptom" },
+        { "code": "sign", "display": "Clinical Sign" }
+      ]
+    }
+  ]
+}

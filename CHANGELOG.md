@@ -5,6 +5,72 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-03-09
+
+### Added
+
+#### Terminology Binding Validation (STAGE-3)
+
+- **New module: `src/terminology/`** — Terminology binding validation with in-memory provider
+  - `InMemoryTerminologyProvider` class — fully functional `TerminologyProvider` implementation
+  - `validateBinding()` — binding strength-aware code validation
+  - `extractCodedValues()` — extract codes from FHIR coded elements (code, Coding, CodeableConcept)
+  - `CodeSystemRegistry` — in-memory CodeSystem storage with hierarchical concept lookup
+  - `ValueSetRegistry` — in-memory ValueSet storage
+  - `isCodeInValueSet()` — ValueSet membership evaluation (expansion, compose, filters)
+
+- **Binding strength validation**
+  - `severityForBindingStrength()` — map strength to issue severity
+  - `severityWhenNoProvider()` — severity when no provider available
+  - `requiresValidation()` — whether binding needs validation
+  - `bindingStrengthDescription()` — human-readable strength description
+
+- **CodeSystem features**
+  - Hierarchical concept lookup with recursive traversal
+  - `isDescendantOf()` for is-a relationship checks in hierarchical CodeSystems
+  - `allCodes()` for flat enumeration of all codes
+
+- **ValueSet membership**
+  - Pre-expanded ValueSet evaluation (expansion.contains)
+  - Compose-based evaluation (include/exclude rules)
+  - Enumerated concept matching
+  - Filter operations: `is-a`, `is-not-a`, `in`, `not-in`, `=`, `regex`, `exists`
+  - CodeSystem hierarchy traversal for `is-a` filters
+
+- **Bundle loading**
+  - `loadFromBundle()` on InMemoryTerminologyProvider
+  - Automatic CodeSystem and ValueSet extraction from FHIR Bundles
+
+- **Type definitions** — 11 new type exports: `CodeSystemDefinition`, `CodeSystemConcept`, `ValueSetDefinition`, `ValueSetCompose`, `ValueSetComposeInclude`, `ValueSetComposeConcept`, `ValueSetComposeFilter`, `ValueSetExpansionDef`, `ValueSetExpansionContainsDef`, `BindingValidationResult`, `BindingConstraintInput`
+
+- **New exports in `src/index.ts`** — 11 type exports + 10 value exports from terminology module
+
+#### Testing
+
+- 133 new tests across 10 test files in `src/terminology/__tests__/`
+  - `binding-strength-required.test.ts` (6 tests)
+  - `binding-strength-extensible.test.ts` (6 tests)
+  - `binding-strength-preferred.test.ts` (6 tests)
+  - `binding-strength-example.test.ts` (6 tests)
+  - `codesystem-registry.test.ts` (13 tests)
+  - `valueset-registry.test.ts` (7 tests)
+  - `valueset-membership.test.ts` (21 JSON fixture tests)
+  - `binding-validator.test.ts` (21 tests)
+  - `inmemory-terminology-provider.test.ts` (30 JSON fixture tests)
+  - `terminology-integration.test.ts` (17 end-to-end integration tests)
+- 8 JSON fixture files (3 CodeSystems + 5 ValueSets)
+- All v0.4.0 tests remain 100% passing (backward compatibility verified)
+- Total: 3,128 tests across 75 test files
+
+### Notes
+
+- `TerminologyValidationStep` (STAGE-2 pipeline) is now fully functional with `InMemoryTerminologyProvider`
+- `InMemoryTerminologyProvider` is suitable for testing and small-scale embedded ValueSets, NOT for large CodeSystems like full SNOMED CT
+- No remote terminology server support by design (belongs to fhir-server layer)
+- This release remains backward compatible with v0.4.0
+
+---
+
 ## [0.4.0] - 2026-03-08
 
 ### Added
@@ -260,26 +326,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Release Notes
 
+### v0.5.0 Highlights
+
+This release completes **terminology binding validation**:
+
+- **InMemoryTerminologyProvider** — Full `TerminologyProvider` implementation for local validation
+- **Binding strength** — `required` / `extensible` / `preferred` / `example` validation
+- **Registries** — `CodeSystemRegistry` (hierarchical) + `ValueSetRegistry`
+- **ValueSet membership** — expansion, compose, filters (is-a, regex, etc.)
+- **Pipeline integration** — `TerminologyValidationStep` now fully functional
+- **133 new tests** — 3,128 total across 75 test files
+
 ### v0.4.0 Highlights
 
 This release focuses on **composable validation and developer experience** enhancements:
 
-- ✅ **Validation Pipeline** — Composable `ValidationPipeline` with pluggable steps, priority ordering, and failFast mode
-- ✅ **Built-in steps** — `StructuralValidationStep`, `TerminologyValidationStep`, `InvariantValidationStep`
-- ✅ **Hook system** — Lifecycle events for monitoring and customizing validation flow
-- ✅ **Batch validation** — Validate multiple resources in a single pipeline run
-- ✅ **Enhanced errors** — Fix suggestions, documentation links, expected/actual values
-- ✅ **Validation reports** — Structured reports with multi-axis issue grouping
-- ✅ **110 new tests** — 2,995 total across 65 test files
+- **Validation Pipeline** — Composable `ValidationPipeline` with pluggable steps, priority ordering, and failFast mode
+- **Built-in steps** — `StructuralValidationStep`, `TerminologyValidationStep`, `InvariantValidationStep`
+- **Hook system** — Lifecycle events for monitoring and customizing validation flow
+- **Batch validation** — Validate multiple resources in a single pipeline run
+- **Enhanced errors** — Fix suggestions, documentation links, expected/actual values
+- **Validation reports** — Structured reports with multi-axis issue grouping
+- **110 new tests** — 2,995 total across 65 test files
 
 ### v0.3.0 Highlights
 
 This release focuses on **provider abstraction and integration readiness** for downstream services:
 
-- ✅ **Provider contracts released** — `TerminologyProvider` and `ReferenceResolver` are now public APIs
-- ✅ **NoOp defaults included** — Higher-level projects can integrate immediately without live terminology or persistence backends
-- ✅ **OperationOutcome builders added** — Engine result objects can now be translated into FHIR-native response payloads
-- ✅ **Validator hooks prepared** — Optional provider fields are available without breaking existing validation flows
+- **Provider contracts released** — `TerminologyProvider` and `ReferenceResolver` are now public APIs
+- **NoOp defaults included** — Higher-level projects can integrate immediately without live terminology or persistence backends
+- **OperationOutcome builders added** — Engine result objects can now be translated into FHIR-native response payloads
+- **Validator hooks prepared** — Optional provider fields are available without breaking existing validation flows
 
 ### v0.2.0 Highlights
 

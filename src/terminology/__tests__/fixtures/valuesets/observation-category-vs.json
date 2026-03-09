@@ -1,0 +1,13 @@
+{
+  "resourceType": "ValueSet",
+  "url": "http://hl7.org/fhir/ValueSet/observation-category",
+  "version": "4.0.1",
+  "name": "ObservationCategoryCodes",
+  "compose": {
+    "include": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category"
+      }
+    ]
+  }
+}

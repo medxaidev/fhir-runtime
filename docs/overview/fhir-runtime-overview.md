@@ -1,7 +1,7 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.4.0  
+> **Version:** 0.5.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
@@ -9,22 +9,22 @@
 
 ---
 
-## v0.4.0 Update
+## v0.5.0 Update
 
-`v0.4.0` completes the **Validation Pipeline & DX Enhancement (STAGE-4)**.
+`v0.5.0` completes the **Terminology Binding Validation (STAGE-3)**.
 
 This release adds:
 
-- `ValidationPipeline` — composable validation orchestrator with pluggable steps
-- Built-in steps: `StructuralValidationStep`, `TerminologyValidationStep`, `InvariantValidationStep`
-- `HookManager` — lifecycle event system (`beforeValidation`, `afterValidation`, `beforeStep`, `afterStep`, `onIssue`, `onError`)
-- Batch validation for multiple resources via `validateBatch()`
-- `enhanceIssue()` / `enhanceIssues()` — DX-enhanced error messages with suggestions and documentation links
-- `generateReport()` — structured validation reports with multi-axis issue grouping
+- `InMemoryTerminologyProvider` — fully functional local terminology validation implementing `TerminologyProvider`
+- `validateBinding()` — binding strength-aware code validation (required/extensible/preferred/example)
+- `CodeSystemRegistry` / `ValueSetRegistry` — in-memory terminology storage with hierarchical concept support
+- `isCodeInValueSet()` — ValueSet membership evaluation (expansion, compose, filters)
+- Binding strength utilities (`severityForBindingStrength`, `severityWhenNoProvider`, etc.)
+- Bundle loading for CodeSystem and ValueSet resources
 
-This release remains **backward compatible** with `v0.3.0`. The pipeline is an optional enhancement layer; existing `StructureValidator` flows are unaffected.
+This release remains **backward compatible** with `v0.4.0`. The `TerminologyValidationStep` in the pipeline is now fully functional when `InMemoryTerminologyProvider` is injected.
 
-IG package loading is planned for **STAGE-3 (`v0.5.0`)**.
+IG package loading is planned for **STAGE-4 (`v0.6.0`)**.
 
 ---
 
@@ -68,6 +68,7 @@ src/
 ├── validator/    ← Structural validation (9 rules + FHIRPath invariants)
 ├── fhirpath/     ← FHIRPath expression engine (Pratt parser, 60+ functions)
 ├── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcome builders
+├── terminology/  ← Binding validation, InMemoryTerminologyProvider, CS/VS registries
 └── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
 ```
 
@@ -78,6 +79,7 @@ model ← parser ← context ← profile ← validator
                                   ↑
                               fhirpath
 
+terminology → model, provider (binding validation, in-memory registries)
 pipeline → model, validator, provider (wraps existing infrastructure)
 pipeline → fhirpath (via InvariantValidationStep)
 ```
@@ -279,19 +281,19 @@ Three error class hierarchies for exceptional cases:
 
 ### Test Coverage
 
-- **2,995 tests** across all modules
-- **65 test files** covering model, parser, context, profile, validator, FHIRPath, provider, and pipeline
+- **3,128 tests** across all modules
+- **75 test files** covering model, parser, context, profile, validator, FHIRPath, provider, terminology, and pipeline
 - **100% pass rate** on HAPI-generated snapshot fixtures (35/35)
 
-### v0.4 Pipeline Coverage
+### v0.5 Terminology Coverage
 
-- **110 new tests** across 9 pipeline-focused test files
-- **ValidationPipeline** — basic flow, failFast, minSeverity (19 tests)
-- **Built-in steps** — structural, terminology, invariant (21 tests)
-- **Hook system** — lifecycle events, async handlers (10 tests)
-- **Batch validation** — 16 JSON fixture tests
-- **Enhanced messages** — 18 JSON fixture tests
-- **Report generator** — 9 tests
+- **133 new tests** across 10 terminology-focused test files
+- **Binding strength** — 4 levels × 6 tests = 24 tests
+- **CodeSystem registry** — hierarchical lookup, is-a relationships (13 tests)
+- **ValueSet registry** — CRUD operations (7 tests)
+- **ValueSet membership** — expansion, compose, filters, exclude (21 tests)
+- **Binding validator** — all coded element types, all strengths (21 tests)
+- **InMemoryTerminologyProvider** — validateCode, expandValueSet, lookupCode (30 tests)
 - **End-to-end integration** — 17 tests
 
 ### US Core IG Verification
@@ -326,13 +328,14 @@ Three error class hierarchies for exceptional cases:
 | Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
 | Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
-| Public exports           | 250+ symbols across 8 modules                  |
-| Test count               | 2,995 tests across 65 test files               |
+| Public exports           | ~270 symbols across 9 modules                  |
+| Test count               | 3,128 tests across 75 test files               |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.4.md`](../specs/engine-capability-contract-v0.4.md)
-- **API Reference:** [`docs/api/fhir-runtime-api-v0.4.md`](../api/fhir-runtime-api-v0.4.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.5.md`](../specs/engine-capability-contract-v0.5.md)
+- **API Reference:** [`docs/api/fhir-runtime-api-v0.5.md`](../api/fhir-runtime-api-v0.5.md)
+- **Release Notes:** [`docs/releases/v0.5.0.md`](../releases/v0.5.0.md)
 - **Main README:** [`README.md`](../../README.md)

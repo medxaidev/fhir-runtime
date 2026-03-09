@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "url": "http://example.org/fhir/ValueSet/vital-signs-subset",
+  "version": "1.0.0",
+  "name": "VitalSignsSubset",
+  "compose": {
+    "include": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "concept": [
+          { "code": "vital-signs", "display": "Vital Signs" },
+          { "code": "laboratory", "display": "Laboratory" }
+        ]
+      }
+    ]
+  }
+}
