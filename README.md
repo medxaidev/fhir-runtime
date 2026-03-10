@@ -11,6 +11,8 @@
 
 Designed as a pure runtime layer with **zero dependencies**, it's suitable for embedding in servers, CLIs, web applications, or custom platforms.
 
+**🎮 Live Demo:** [medxai.github.io/fhir-runtime-tools](https://medxai.github.io/fhir-runtime-tools/) — Try fhir-runtime in your browser
+
 ---
 
 ## Features
@@ -59,16 +61,9 @@ npm install fhir-runtime
 
 ## 🎮 Try it Online
 
-**[FHIR Runtime Playground](https://medxai.com.cn/fhir-runtime-playground/)** — Interactive browser-based playground to experiment with fhir-runtime capabilities:
+**Live Demo:** [medxai.github.io/fhir-runtime-tools](https://medxai.github.io/fhir-runtime-tools/)
 
-- 🔍 **Parse FHIR Resources** — Test JSON parsing with real-time feedback
-- ✅ **Validate Resources** — Validate against profiles and see detailed issues
-- 📸 **Generate Snapshots** — Visualize differential expansion
-- 🧮 **Evaluate FHIRPath** — Interactive FHIRPath expression testing
-- 📚 **Example Library** — Pre-loaded examples and profiles
-- 💾 **Share & Export** — Save and share your experiments
-
-**Playground Repository:** [github.com/medxaidev/fhir-runtime-playground](https://github.com/medxaidev/fhir-runtime-playground)
+**[FHIR Runtime Tools](https://medxai.github.io/fhir-runtime-tools/)** — Developer toolset built on fhir-runtime, providing utilities for FHIR resource inspection, debugging, and development workflows.
 
 ---
 
@@ -364,7 +359,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🔗 Related Projects
 
-- **[FHIR Runtime Playground](https://medxai.com.cn/fhir-runtime-playground/)** — Interactive online playground ([GitHub](https://github.com/medxaidev/fhir-runtime-playground))
+- **[FHIR Runtime Tools](https://medxai.github.io/fhir-runtime-tools/)** — Developer toolset built on fhir-runtime ([GitHub](https://github.com/medxai/fhir-runtime-tools))
 - **[HAPI FHIR](https://hapifhir.io/)** — Reference Java implementation
 - **[HL7 FHIR Specification](https://hl7.org/fhir/R4/)** — Official FHIR R4 spec
 - **[US Core IG](https://www.hl7.org/fhir/us/core/)** — US Core Implementation Guide
