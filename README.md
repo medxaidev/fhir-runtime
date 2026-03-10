@@ -11,7 +11,7 @@
 
 Designed as a pure runtime layer with **zero dependencies**, it's suitable for embedding in servers, CLIs, web applications, or custom platforms.
 
-**🎮 Live Demo:** [medxai.github.io/fhir-runtime-tools](https://medxai.github.io/fhir-runtime-tools/) — Try fhir-runtime in your browser
+**🎮 Live Demo:** [medxaidev.github.io/fhir-runtime-tools/](https://medxaidev.github.io/fhir-runtime-tools/) — Try fhir-runtime in your browser
 
 ---
 
@@ -61,9 +61,9 @@ npm install fhir-runtime
 
 ## 🎮 Try it Online
 
-**Live Demo:** [medxai.github.io/fhir-runtime-tools](https://medxai.github.io/fhir-runtime-tools/)
+**Live Demo:** [medxai.github.io/fhir-runtime-tools](https://medxaidev.github.io/fhir-runtime-tools/)
 
-**[FHIR Runtime Tools](https://medxai.github.io/fhir-runtime-tools/)** — Developer toolset built on fhir-runtime, providing utilities for FHIR resource inspection, debugging, and development workflows.
+**[FHIR Runtime Tools](https://medxaidev.github.io/fhir-runtime-tools/)** — Developer toolset built on fhir-runtime, providing utilities for FHIR resource inspection, debugging, and development workflows.
 
 ---
 
@@ -359,7 +359,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🔗 Related Projects
 
-- **[FHIR Runtime Tools](https://medxai.github.io/fhir-runtime-tools/)** — Developer toolset built on fhir-runtime ([GitHub](https://github.com/medxai/fhir-runtime-tools))
+- **[FHIR Runtime Tools](https://medxaidev.github.io/fhir-runtime-tools/)** — Developer toolset built on fhir-runtime ([GitHub](https://github.com/medxai/fhir-runtime-tools))
 - **[HAPI FHIR](https://hapifhir.io/)** — Reference Java implementation
 - **[HL7 FHIR Specification](https://hl7.org/fhir/R4/)** — Official FHIR R4 spec
 - **[US Core IG](https://www.hl7.org/fhir/us/core/)** — US Core Implementation Guide
