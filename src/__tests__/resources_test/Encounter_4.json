@@ -1,0 +1,17 @@
+{
+  "resourceType": "Encounter",
+  "status": "in-progress",
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "EMER"
+  },
+  "subject": {
+    "reference": "urn:uuid:3f8e5eef-a99f-4ffa-8f1c-772ff18b2223"
+  },
+  "serviceProvider": {
+    "reference": "urn:uuid:ebda6e1b-5854-4a12-9195-a19250156d2e"
+  },
+  "period": {
+    "start": "2026-02-25T10:00:00Z"
+  }
+}

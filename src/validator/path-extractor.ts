@@ -141,6 +141,28 @@ export function extractValues(
 }
 
 /**
+ * Extract values from an object node using a relative dot-separated path.
+ *
+ * Unlike {@link extractValues}, this does NOT expect the first segment to be
+ * a resource type. It navigates directly from the given object.
+ *
+ * Used for per-instance cardinality validation where we need to extract
+ * child values from a single parent array item.
+ *
+ * @param node - The object to extract from.
+ * @param relativePath - Dot-separated path (e.g., `'code'` or `'coding.code'`).
+ * @returns Array of extracted values.
+ */
+export function extractValuesFromNode(
+  node: Record<string, unknown>,
+  relativePath: string,
+): unknown[] {
+  if (!node || typeof node !== 'object') return [];
+  const segments = relativePath.split('.');
+  return extractFromNode(node, segments, 0);
+}
+
+/**
  * Recursively extract values from a node following path segments.
  *
  * @internal

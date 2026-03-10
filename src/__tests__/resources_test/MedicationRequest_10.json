@@ -1,0 +1,90 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "1310a2d3-f888-4722-b4c4-a3c5911ac7f9",
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "med-1310a2d3-f888-4722-b4c4-a3c5911ac7f9",
+      "code": {
+        "coding": [
+          {
+            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+            "code": "847232",
+            "display": "3 ML insulin glargine 100 UNT/ML Pen Injector [Lantus]"
+          }
+        ],
+        "text": "3 ML insulin glargine 100 UNT/ML Pen Injector [Lantus]"
+      },
+      "extension": [
+        {
+          "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+          "valueString": "#MedicationName_6"
+        }
+      ],
+      "manufacturer": {
+        "display": "SANOFI-AVENTIS"
+      }
+    }
+  ],
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#Medication_6"
+    }
+  ],
+  "status": "active",
+  "intent": "order",
+  "medicationReference": {
+    "reference": "#med-1310a2d3-f888-4722-b4c4-a3c5911ac7f9"
+  },
+  "subject": {
+    "reference": "Patient/5adfedd2-3aaf-4a4f-aa35-5f6600b60c99",
+    "display": "Katherine Madison"
+  },
+  "dispenseRequest": {
+    "validityPeriod": {
+      "start": "2009-01-09T00:00:00Z"
+    }
+  },
+  "dosageInstruction": [
+    {
+      "extension": [
+        {
+          "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+          "valueString": "#MedicationSig_6"
+        }
+      ],
+      "route": {
+        "coding": [
+          {
+            "system": "http://ncithesaurus-stage.nci.nih.gov",
+            "code": "C38299",
+            "display": "Subcutaneous Route of Administration"
+          }
+        ],
+        "text": "Subcutaneous Route of Administration"
+      },
+      "timing": {
+        "repeat": {
+          "period": 12,
+          "periodUnit": "h"
+        }
+      },
+      "doseAndRate": [
+        {
+          "doseQuantity": {
+            "system": "http://unitsofmeasure.org",
+            "value": 40,
+            "code": "[IU]",
+            "unit": "[IU]"
+          }
+        }
+      ]
+    }
+  ]
+}

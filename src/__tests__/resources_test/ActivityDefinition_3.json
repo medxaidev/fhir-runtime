@@ -1,0 +1,34 @@
+{
+  "resourceType": "ActivityDefinition",
+  "status": "active",
+  "id": "lab-procedure-estradiol-e2-serum",
+  "name": "estradiol-e2-measurement-procedure",
+  "title": "Procedure - Estradiol (E2) measurement in in vitro serum",
+  "url": "http://example.org/lab-procedure-estradiol-e2-serum",
+  "identifier": [
+    {
+      "use": "official",
+      "value": "Estradiol_E2_test"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "14715-7",
+        "display": "Estradiol (E2) [Moles/volume] in Serum or Plasma"
+      }
+    ]
+  },
+  "kind": "ServiceRequest",
+  "observationResultRequirement": [
+    {
+      "reference": "ObservationDefinition/observation-serum-estradiol-e2"
+    }
+  ],
+  "specimenRequirement": [
+    {
+      "reference": "SpecimenDefinition/fingerprick-capillary-blood"
+    }
+  ]
+}

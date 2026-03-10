@@ -1,0 +1,18 @@
+{
+  "resourceType": "Practitioner",
+  "name": [
+    {
+      "family": "Williams-ae1101d1",
+      "given": [
+        "Robert"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/npi",
+      "value": "NPI-003-ae1101d1"
+    }
+  ],
+  "gender": "male"
+}

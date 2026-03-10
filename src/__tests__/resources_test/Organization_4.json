@@ -1,0 +1,20 @@
+{
+  "resourceType": "Organization",
+  "name": "Insurance Corp-ae1101d1",
+  "identifier": [
+    {
+      "system": "http://example.com/org",
+      "value": "ORG-004-ae1101d1"
+    }
+  ],
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "ins"
+        }
+      ]
+    }
+  ]
+}

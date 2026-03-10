@@ -1,0 +1,21 @@
+{
+  "resourceType": "PractitionerRole",
+  "practitioner": {
+    "reference": "urn:uuid:5ae0296d-c824-408f-8c7c-99a3bece18c6"
+  },
+  "organization": {
+    "reference": "urn:uuid:ebda6e1b-5854-4a12-9195-a19250156d2e"
+  },
+  "code": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "59058001",
+          "display": "GP-ae1101d1"
+        }
+      ]
+    }
+  ],
+  "active": true
+}

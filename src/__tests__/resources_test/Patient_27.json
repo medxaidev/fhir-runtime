@@ -1,0 +1,49 @@
+{
+  "resourceType": "Patient",
+  "id": "d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-ssn",
+      "value": "111223333"
+    }
+  ],
+  "name": [
+    {
+      "family": "Newman",
+      "given": [
+        "Alice",
+        "Jones"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-05-01",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2106-3",
+            "display": "White"
+          }
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2186-5",
+            "display": "Not Hispanic or Latino"
+          }
+        }
+      ]
+    }
+  ]
+}

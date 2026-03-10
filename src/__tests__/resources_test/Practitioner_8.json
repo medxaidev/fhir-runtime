@@ -1,0 +1,26 @@
+{
+  "resourceType": "Practitioner",
+  "active": true,
+  "name": [
+    {
+      "family": "Peyton",
+      "given": [
+        "Jackie"
+      ]
+    }
+  ],
+  "gender": "female",
+  "qualification": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+            "code": "RN",
+            "display": "Registered Nurse"
+          }
+        ]
+      }
+    }
+  ]
+}

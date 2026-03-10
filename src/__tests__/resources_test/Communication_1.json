@@ -1,0 +1,34 @@
+{
+  "resourceType": "Communication",
+  "status": "in-progress",
+  "recipient": [
+    {
+      "reference": "urn:uuid:ec42014b-63af-407e-ba31-c5b080c527a4",
+      "display": "Homer Simpson"
+    },
+    {
+      "reference": "urn:uuid:3bf50fa0-9c13-48ca-9cd7-1379dbf5f111",
+      "display": "Dr. Alice Smith"
+    }
+  ],
+  "sender": {
+    "reference": "urn:uuid:3bf50fa0-9c13-48ca-9cd7-1379dbf5f111",
+    "display": "Dr. Alice Smith"
+  },
+  "topic": {
+    "text": "Blood Test for Peanut Allergy"
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "display": "Lab Tests"
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "urn:uuid:ec42014b-63af-407e-ba31-c5b080c527a4",
+    "display": "Homer Simpson"
+  }
+}

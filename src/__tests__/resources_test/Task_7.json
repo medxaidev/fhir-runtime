@@ -1,0 +1,41 @@
+{
+  "resourceType": "Task",
+  "status": "ready",
+  "focus": {
+    "reference": "urn:uuid:e2b02def-3968-476c-b7be-d404b4a459ed"
+  },
+  "intent": "order",
+  "for": {
+    "reference": "urn:uuid:c9d3cba2-9db5-11ee-8c90-0242ac120002",
+    "display": "Jane California"
+  },
+  "performerType": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "158965000",
+          "display": "Doctor"
+        }
+      ]
+    }
+  ],
+  "businessStatus": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-example-app/task-status",
+        "code": "ready",
+        "display": "Ready"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-demo/task-type",
+        "code": "review-diagnostic-report",
+        "display": "Review Diagnostic Report"
+      }
+    ]
+  }
+}

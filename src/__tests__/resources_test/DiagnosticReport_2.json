@@ -1,0 +1,25 @@
+{
+  "resourceType": "DiagnosticReport",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "24323-8",
+        "display": "CMP-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:b22ec9fa-e688-45f5-8fbd-92f0135db1b2"
+  },
+  "result": [
+    {
+      "reference": "urn:uuid:12d3cc16-4459-4f64-8201-f512a0a70e09"
+    }
+  ],
+  "effectiveDateTime": "2025-02-01T11:00:00Z"
+}

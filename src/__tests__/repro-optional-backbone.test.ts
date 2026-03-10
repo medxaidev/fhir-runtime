@@ -139,6 +139,104 @@ describe('Regression: absent optional backbone children', () => {
 // Bug 2: FHIRPath System.String type mismatch
 // =============================================================================
 
+// =============================================================================
+// Bug 3: ContactPoint incorrectly inferred as Identifier
+// =============================================================================
+
+describe('Regression: ContactPoint vs Identifier type inference', () => {
+  it('Patient.telecom should not produce TYPE_MISMATCH', () => {
+    const validator = new StructureValidator();
+    const resource = {
+      resourceType: 'Patient',
+      id: 'telecom-test',
+      telecom: [
+        { system: 'phone', value: '+1-555-0123', use: 'home' },
+        { system: 'email', value: 'john.doe@example.com' },
+      ],
+    } as unknown as Resource;
+
+    const result = validator.validate(resource, profilesByType.get('Patient')!);
+
+    const telecomTypeErrors = result.issues.filter(
+      i => i.path === 'Patient.telecom' && i.code === 'TYPE_MISMATCH',
+    );
+    expect(telecomTypeErrors).toEqual([]);
+  });
+
+  it('Patient.telecom with all ContactPoint.system values infers correctly', () => {
+    const validator = new StructureValidator();
+    const systems = ['phone', 'fax', 'email', 'pager', 'url', 'sms', 'other'];
+
+    for (const sys of systems) {
+      const resource = {
+        resourceType: 'Patient',
+        id: `telecom-${sys}`,
+        telecom: [{ system: sys, value: 'test-value' }],
+      } as unknown as Resource;
+
+      const result = validator.validate(resource, profilesByType.get('Patient')!);
+      const telecomErrors = result.issues.filter(
+        i => i.path === 'Patient.telecom' && i.code === 'TYPE_MISMATCH',
+      );
+      expect(telecomErrors).toEqual([]);
+    }
+  });
+
+  it('Patient.identifier still infers as Identifier (not ContactPoint)', () => {
+    const validator = new StructureValidator();
+    const resource = {
+      resourceType: 'Patient',
+      id: 'id-test',
+      identifier: [
+        { system: 'http://hospital.example.org/patients', value: '12345' },
+      ],
+    } as unknown as Resource;
+
+    const result = validator.validate(resource, profilesByType.get('Patient')!);
+
+    const idTypeErrors = result.issues.filter(
+      i => i.path === 'Patient.identifier' && i.code === 'TYPE_MISMATCH',
+    );
+    expect(idTypeErrors).toEqual([]);
+  });
+
+  it('full Patient with telecom produces zero errors', () => {
+    const json = JSON.stringify({
+      resourceType: 'Patient',
+      id: 'example-patient',
+      meta: { versionId: '1', lastUpdated: '2024-01-15T10:30:00Z' },
+      text: {
+        status: 'generated',
+        div: '<div xmlns="http://www.w3.org/1999/xhtml">John Doe</div>',
+      },
+      identifier: [
+        { system: 'http://hospital.example.org/patients', value: '12345' },
+      ],
+      active: true,
+      name: [{ use: 'official', family: 'Doe', given: ['John', 'Michael'] }],
+      gender: 'male',
+      birthDate: '1990-06-15',
+      address: [{
+        use: 'home', line: ['123 Main St'], city: 'Springfield',
+        state: 'IL', postalCode: '62704', country: 'US',
+      }],
+      telecom: [
+        { system: 'phone', value: '+1-555-0123', use: 'home' },
+        { system: 'email', value: 'john.doe@example.com' },
+      ],
+    });
+
+    const parseResult = parseFhirJson(json);
+    expect(parseResult.success).toBe(true);
+
+    const validator = new StructureValidator();
+    const result = validator.validate(parseResult.data! as Resource, profilesByType.get('Patient')!);
+
+    const errors = result.issues.filter(i => i.severity === 'error');
+    expect(errors).toEqual([]);
+  });
+});
+
 describe('Regression: FHIRPath System type URLs', () => {
   it('Patient.id does not produce TYPE_MISMATCH', () => {
     const validator = new StructureValidator();

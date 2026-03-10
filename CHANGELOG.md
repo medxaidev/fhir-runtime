@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.2] - 2026-03-10
+
+### Fixed
+
+- **Per-instance cardinality for children of repeatable elements**
+  - Fixed a bug where cardinality validation on children of repeatable backbone
+    elements (e.g., `Observation.component.code` where `component` is `max=*`)
+    was applied globally across all array items instead of per parent instance.
+  - An Observation with 3 components each having one `code` no longer falsely
+    reports `CARDINALITY_MAX_VIOLATION` (3 found, max 1).
+  - Added `hasRepeatableAncestor` and `validateCardinalityPerInstance` helpers
+    to `StructureValidator` and a new `extractValuesFromNode` utility to
+    `path-extractor` for relative-path extraction within a single parent object.
+
+- **Resource generator: choice type `[x]` element support**
+  - The minimal resource generator now correctly handles choice type elements
+    (e.g., `MedicationRequest.medication[x]`) by generating concrete property
+    names like `medicationCodeableConcept` using the first allowed type.
+
+### Added
+
+- **Conformance test suites** — three new test suites for spec-driven validation:
+  - **Suite A** (`base-profile-conformance.test.ts`, 83 tests): generates minimal
+    valid resources from base R4 profiles and validates them with zero errors;
+    also smoke-tests bare `{ resourceType, id }` resources for all non-abstract types.
+  - **Suite B** (`uscore-example-conformance.test.ts`, 12 tests): validates all
+    236 official US Core examples against base R4 profiles, asserting zero
+    `TYPE_MISMATCH` and zero false `CARDINALITY` errors.
+  - **Suite C** (`infer-fhir-type-conformance.test.ts`, 61 tests): exhaustive
+    unit tests for `inferFhirType` covering all complex type shapes including
+    `ContactPoint`, `Identifier`, `Coding`, `CodeableConcept`, `Quantity`,
+    `Reference`, `HumanName`, `Address`, `Period`, `Ratio`, `Attachment`,
+    `Extension`, `Meta`, `Narrative`, and `BackboneElement` fallback.
+  - **Resource generator** (`resource-generator.ts`): helper that walks a
+    `CanonicalProfile` and produces a minimal valid resource by populating only
+    required elements (`min >= 1`) with structurally valid placeholder values.
+
+### Testing
+
+- Full test suite: 3,735 tests across 100 test files (3 pre-existing timeouts)
+
+### Notes
+
+- This is a patch release with no public API changes.
+
 ## [0.7.1] - 2026-03-10
 
 ### Fixed
@@ -25,14 +70,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - The validator now treats FHIRPath System primitive URLs as compatible with
     their corresponding JavaScript/FHIR primitive values.
 
+- **ContactPoint incorrectly inferred as Identifier**
+  - Fixed a bug where `Patient.telecom` (type `ContactPoint`) was incorrectly
+    reported as `TYPE_MISMATCH` with inferred type `Identifier`.
+  - Both `ContactPoint` and `Identifier` share the same `{ system, value }` shape.
+    The type inference heuristic now disambiguates using known `ContactPoint.system`
+    values (`phone`, `fax`, `email`, `pager`, `url`, `sms`, `other`) and
+    `ContactPoint.use` values (`home`, `work`, `temp`, `old`, `mobile`).
+  - Added a safety-net compatibility rule so that shape-ambiguous complex types
+    are not rejected when the profile already declares the expected type.
+
 ### Testing
 
-- Added 7 regression tests covering:
+- Added 11 regression tests covering:
   - absent optional backbone elements with required children
   - correct failure behavior when the parent backbone element is present but its
     required child fields are missing
   - FHIRPath System primitive URL compatibility for `Patient.id`
-- Full test suite passing: 3,578 tests across 97 test files
+  - ContactPoint vs Identifier type inference for all `ContactPoint.system` values
+  - full Patient resource with telecom producing zero errors
+- Full test suite passing: 3,582 tests across 97 test files
 
 ### Notes
 

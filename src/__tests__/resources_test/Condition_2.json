@@ -1,0 +1,32 @@
+{
+  "resourceType": "Condition",
+  "clinicalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "code": "active"
+      }
+    ]
+  },
+  "verificationStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+        "code": "confirmed"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "38341003",
+        "display": "Hypertension-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "onsetDateTime": "2018-06-15"
+}

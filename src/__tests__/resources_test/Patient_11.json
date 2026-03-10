@@ -1,0 +1,33 @@
+{
+  "resourceType": "Patient",
+  "name": [
+    {
+      "given": [
+        "Alex"
+      ],
+      "family": "Smith",
+      "prefix": [
+        "Ms."
+      ]
+    },
+    {
+      "given": [
+        "Alexis"
+      ],
+      "family": "Smith"
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01",
+  "address": [
+    {
+      "line": [
+        "456 Main Street."
+      ],
+      "city": "Pleasantville",
+      "state": "CA",
+      "postalCode": "94123"
+    }
+  ],
+  "active": true
+}

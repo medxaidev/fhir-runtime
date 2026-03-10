@@ -1,0 +1,20 @@
+{
+  "resourceType": "Procedure",
+  "status": "completed",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "232717009",
+        "display": "Coronography-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "performedPeriod": {
+    "start": "2025-02-04T08:00:00Z",
+    "end": "2025-02-04T10:00:00Z"
+  }
+}

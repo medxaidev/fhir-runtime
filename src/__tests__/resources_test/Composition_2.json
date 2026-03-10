@@ -1,0 +1,46 @@
+{
+  "resourceType": "Composition",
+  "id": "3db70aff-83f5-4caf-91dc-d23fcc5e03bb",
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "34133-9",
+        "display": "Summarization of Episode Note"
+      }
+    ],
+    "text": "Summarization of Episode Note"
+  },
+  "author": [
+    {
+      "display": "Medplum"
+    }
+  ],
+  "date": "2025-01-01T00:00:00-0500",
+  "title": "Medical Summary",
+  "section": [
+    {
+      "title": "ENCOUNTERS",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "46240-8",
+            "display": "History of Hospitalizations+Outpatient visits Narrative"
+          }
+        ],
+        "text": "History of Hospitalizations+Outpatient visits Narrative"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table border=\"1\" width=\"100%\"><thead><tr><th>Encounter Diagnosis</th><th>Location</th><th>Date</th></tr></thead><tbody><tr><td ID=\"Encounter1\">Fever (finding)</td><td>Neighborhood Physicians Practice</td><td>June 22, 2015</td></tr></tbody></table></div>"
+      },
+      "entry": [
+        {
+          "reference": "Encounter/2a620155-9d12-439e-92b3-5d9815ff4de8"
+        }
+      ]
+    }
+  ]
+}

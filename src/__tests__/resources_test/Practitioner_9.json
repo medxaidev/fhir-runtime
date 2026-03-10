@@ -1,0 +1,32 @@
+{
+  "resourceType": "Practitioner",
+  "meta": {
+    "project": "0c3ebe6d-8c67-419e-8971-f7f34e2de6c0",
+    "versionId": "6e7fbd8c-9996-449d-87f2-4364fa3b863c",
+    "lastUpdated": "2026-01-10T19:41:31.941Z",
+    "author": {
+      "reference": "system"
+    },
+    "compartment": [
+      {
+        "reference": "Project/0c3ebe6d-8c67-419e-8971-f7f34e2de6c0"
+      }
+    ]
+  },
+  "name": [
+    {
+      "given": [
+        "David"
+      ],
+      "family": "Yanez"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "use": "work",
+      "value": "david@medplum.com"
+    }
+  ],
+  "id": "ed6a2d0f-af13-4f98-9fe8-70d209a9d29a"
+}

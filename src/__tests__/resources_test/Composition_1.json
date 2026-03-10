@@ -1,0 +1,46 @@
+{
+  "resourceType": "Composition",
+  "id": "3db70aff-83f5-4caf-91dc-d23fcc5e03bb",
+  "language": "en-US",
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "34133-9",
+        "display": "Summarization of Episode Note"
+      }
+    ],
+    "text": "Summarization of Episode Note"
+  },
+  "author": [
+    {
+      "display": "Medplum"
+    }
+  ],
+  "date": "2025-01-01T00:00:00-05:00",
+  "title": "Medical Summary",
+  "section": [
+    {
+      "title": "Allergies, Adverse Reactions and Alerts",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "48765-2"
+          }
+        ]
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table><thead><tr><th>Allergen</th><th>Reaction</th><th>Reaction Severity</th><th>Documentation Date</th><th>Start Date</th></tr></thead><tbody><tr ID=\"allergy5\"><td ID=\"allergy5allergen\">Egg</td><td ID=\"allergy5reaction\">Hives</td><td ID=\"allergy5reactionseverity\">Moderate</td><td>Jan 4 2014</td><td>1998</td></tr></tbody></table></div>"
+      },
+      "entry": [
+        {
+          "reference": "AllergyIntolerance/0fffb34f-c1e0-47c2-92af-c414a3ff21ec",
+          "display": "Eggs (edible)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "resourceType": "MedicationRequest",
+  "status": "active",
+  "intent": "plan",
+  "medicationReference": {
+    "reference": "urn:uuid:79d9a21e-f23b-4aff-9e12-7893917c887a"
+  },
+  "subject": {
+    "reference": "urn:uuid:dce7c644-7578-4f45-b4b3-85bbadd805ae"
+  },
+  "encounter": {
+    "reference": "urn:uuid:041fee01-2381-407d-9768-b9d28c63933c"
+  },
+  "requester": {
+    "reference": "urn:uuid:ce34cc02-9302-4f1c-838d-26c6f7bcb69d"
+  },
+  "authoredOn": "2025-06-01"
+}

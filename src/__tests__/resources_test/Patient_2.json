@@ -1,0 +1,43 @@
+{
+  "resourceType": "Patient",
+  "active": true,
+  "gender": "female",
+  "birthDate": "1990-11-22",
+  "name": [
+    {
+      "use": "official",
+      "family": "Smith-ae1101d1",
+      "given": [
+        "Jane",
+        "Elizabeth"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/mrn",
+      "value": "MRN-002-ae1101d1"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "555-1002"
+    }
+  ],
+  "address": [
+    {
+      "use": "home",
+      "line": [
+        "456 Oak Ave"
+      ],
+      "city": "Chicago",
+      "state": "IL",
+      "postalCode": "60601",
+      "country": "US"
+    }
+  ],
+  "managingOrganization": {
+    "reference": "urn:uuid:ebda6e1b-5854-4a12-9195-a19250156d2e"
+  }
+}

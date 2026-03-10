@@ -1,0 +1,21 @@
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "718-7",
+        "display": "Hemoglobin-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:3f8e5eef-a99f-4ffa-8f1c-772ff18b2223"
+  },
+  "valueQuantity": {
+    "value": 14.2,
+    "unit": "g/dL"
+  },
+  "effectiveDateTime": "2025-04-01"
+}

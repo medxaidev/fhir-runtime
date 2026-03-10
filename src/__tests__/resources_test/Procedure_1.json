@@ -1,0 +1,27 @@
+{
+  "resourceType": "Procedure",
+  "status": "completed",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "80146002",
+        "display": "Appendectomy-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:b22ec9fa-e688-45f5-8fbd-92f0135db1b2"
+  },
+  "performedDateTime": "2025-02-03T14:00:00Z",
+  "performer": [
+    {
+      "actor": {
+        "reference": "urn:uuid:c8b24ca7-9716-40dd-a48a-13deb790a464"
+      }
+    }
+  ]
+}

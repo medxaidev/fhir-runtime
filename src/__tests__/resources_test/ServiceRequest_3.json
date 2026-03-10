@@ -1,0 +1,18 @@
+{
+  "resourceType": "ServiceRequest",
+  "status": "active",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "104001",
+        "display": "Excision-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:393e7ef3-6d97-429c-bdb4-aa70945a359a"
+  },
+  "authoredOn": "2025-03-15"
+}

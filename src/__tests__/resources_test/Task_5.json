@@ -1,0 +1,50 @@
+{
+  "resourceType": "Task",
+  "intent": "order",
+  "status": "completed",
+  "focus": {
+    "reference": "urn:uuid:d9d3cba2-9db5-11ee-8c90-0242ac120002"
+  },
+  "for": {
+    "reference": "urn:uuid:ba4a1ef7-c674-4acb-a506-6aac4a7aec53",
+    "display": "Tony Soprano"
+  },
+  "performerType": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "224535009",
+          "display": "Registered Nurse"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "768820003",
+          "display": "Care Coordinator"
+        }
+      ]
+    }
+  ],
+  "businessStatus": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-example-app/task-status",
+        "code": "ready",
+        "display": "Ready"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-demo/task-type",
+        "code": "respond-to-message",
+        "display": "Respond to Patient Message"
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "resourceType": "Observation",
+  "id": "24faa204-db62-4610-864f-cb50b650d0fa",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "vital-signs",
+          "display": "Vital Signs Observation"
+        }
+      ],
+      "text": "Vital Signs Observation"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "8310-5",
+        "display": "Body temperature"
+      }
+    ],
+    "text": "Body temperature"
+  },
+  "subject": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Katherine Madison"
+  },
+  "valueQuantity": {
+    "value": 37.2,
+    "unit": "Cel",
+    "system": "http://unitsofmeasure.org",
+    "code": "Cel"
+  },
+  "effectiveDateTime": "2014-05-20T19:36:05-05:00",
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#Temp_1"
+    }
+  ]
+}

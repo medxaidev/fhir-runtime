@@ -1,0 +1,40 @@
+{
+  "resourceType": "Practitioner",
+  "name": [
+    {
+      "family": "Smith-ae1101d1",
+      "given": [
+        "John",
+        "A"
+      ],
+      "prefix": [
+        "Dr."
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/npi",
+      "value": "NPI-001-ae1101d1"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1975-03-15",
+  "telecom": [
+    {
+      "system": "email",
+      "value": "john.smith-ae1101d1@hospital.com"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "100 Main St"
+      ],
+      "city": "Springfield",
+      "state": "IL",
+      "postalCode": "62701",
+      "country": "US"
+    }
+  ]
+}

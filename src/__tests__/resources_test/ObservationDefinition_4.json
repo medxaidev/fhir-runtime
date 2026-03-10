@@ -1,0 +1,41 @@
+{
+  "resourceType": "ObservationDefinition",
+  "id": "observation-blood-carbon-dioxide",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "20565-8",
+        "display": "Carbon dioxide, total [Moles/volume] in Blood"
+      }
+    ]
+  },
+  "preferredReportName": "Total CO2 Level",
+  "quantitativeDetails": {
+    "unit": {
+      "coding": [
+        {
+          "system": "http://unitsofmeasure.org",
+          "code": "mmol/L",
+          "display": "millimoles per liter"
+        }
+      ]
+    },
+    "decimalPrecision": 2
+  },
+  "qualifiedInterval": [
+    {
+      "condition": "Normal",
+      "range": {
+        "low": {
+          "value": 22,
+          "unit": "mmol/L"
+        },
+        "high": {
+          "value": 29,
+          "unit": "mmol/L"
+        }
+      }
+    }
+  ]
+}

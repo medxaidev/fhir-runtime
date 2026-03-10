@@ -1,0 +1,36 @@
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "29463-7",
+        "display": "BodyWeight-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:42fb56e6-8ab2-425c-8622-cd2d8c7d9621"
+  },
+  "valueQuantity": {
+    "value": 75.5,
+    "unit": "kg",
+    "system": "http://unitsofmeasure.org",
+    "code": "kg"
+  },
+  "effectiveDateTime": "2025-01-10T08:30:00Z",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "vital-signs"
+        }
+      ]
+    }
+  ]
+}

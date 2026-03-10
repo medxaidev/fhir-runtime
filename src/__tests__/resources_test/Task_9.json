@@ -1,0 +1,41 @@
+{
+  "resourceType": "Task",
+  "status": "ready",
+  "focus": {
+    "reference": "urn:uuid:569781a7-6ee9-42f1-88ac-ac4cacf721b8"
+  },
+  "intent": "order",
+  "for": {
+    "reference": "urn:uuid:3d9d2d9c-6648-4583-812b-d0d389facca2",
+    "display": "Walker Texas Ranger"
+  },
+  "performerType": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "768820003",
+          "display": "Care Coordinator"
+        }
+      ]
+    }
+  ],
+  "businessStatus": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-example-app/task-status",
+        "code": "ready",
+        "display": "Ready"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-demo/task-type",
+        "code": "verify-drivers-license",
+        "display": "Verify Drivers License"
+      }
+    ]
+  }
+}

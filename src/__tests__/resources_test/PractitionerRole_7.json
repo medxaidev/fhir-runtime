@@ -1,0 +1,10 @@
+{
+  "resourceType": "PractitionerRole",
+  "id": "27aa3679-130e-498b-bfde-3964a2a1605a",
+  "practitioner": {
+    "reference": "Practitioner/27aa3679-130e-498b-bfde-3964a2a1605a"
+  },
+  "organization": {
+    "reference": "Organization/27aa3679-130e-498b-bfde-3964a2a1605a"
+  }
+}

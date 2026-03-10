@@ -1,0 +1,32 @@
+{
+  "resourceType": "Practitioner",
+  "meta": {
+    "project": "0c3ebe6d-8c67-419e-8971-f7f34e2de6c0",
+    "versionId": "e0ce5a82-6b73-4f92-bf56-503f5074fcbb",
+    "lastUpdated": "2026-01-10T23:39:27.903Z",
+    "author": {
+      "reference": "system"
+    },
+    "compartment": [
+      {
+        "reference": "Project/0c3ebe6d-8c67-419e-8971-f7f34e2de6c0"
+      }
+    ]
+  },
+  "name": [
+    {
+      "given": [
+        "Kevin"
+      ],
+      "family": "Shaw"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "use": "work",
+      "value": "kevin@medplum.com"
+    }
+  ],
+  "id": "f7bd3abd-b597-4eaf-adbd-69481a43b645"
+}

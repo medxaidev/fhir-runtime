@@ -1,0 +1,57 @@
+{
+  "resourceType": "Questionnaire",
+  "url": "https://www.medplum.com/questionnaire/vital-signs-assessment",
+  "name": "Vital Signs Assessment",
+  "status": "active",
+  "item": [
+    {
+      "id": "id-8",
+      "linkId": "q8",
+      "type": "display",
+      "text": "Record vital signs in the \"Vitals\" section of the Patient Summary sidebar and copy here."
+    },
+    {
+      "id": "id-2",
+      "linkId": "q2",
+      "type": "text",
+      "text": "Blood Pressure (Systolic/Diastolic)"
+    },
+    {
+      "id": "id-3",
+      "linkId": "q3",
+      "type": "text",
+      "text": "Heart Rate"
+    },
+    {
+      "id": "id-4",
+      "linkId": "q4",
+      "type": "text",
+      "text": "Temperature"
+    },
+    {
+      "id": "id-1",
+      "linkId": "q1",
+      "type": "text",
+      "text": "Respiratory Rate"
+    },
+    {
+      "id": "id-5",
+      "linkId": "q5",
+      "type": "text",
+      "text": "Oxygen Saturation"
+    },
+    {
+      "id": "id-6",
+      "linkId": "q6",
+      "type": "text",
+      "text": "Weight"
+    },
+    {
+      "id": "id-7",
+      "linkId": "q7",
+      "type": "text",
+      "text": "Height"
+    }
+  ],
+  "title": "Vital Signs Assessment"
+}

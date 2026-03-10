@@ -1,0 +1,48 @@
+{
+  "resourceType": "Composition",
+  "id": "3db70aff-83f5-4caf-91dc-d23fcc5e03bb",
+  "language": "en-US",
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "34133-9",
+        "display": "Summarization of Episode Note"
+      }
+    ],
+    "text": "Summarization of Episode Note"
+  },
+  "author": [
+    {
+      "display": "Medplum"
+    }
+  ],
+  "date": "2025-01-01T00:00:00-05:00",
+  "title": "Medical Summary",
+  "section": [
+    {
+      "title": "Problem List",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "11450-4",
+            "display": "Problem List"
+          }
+        ],
+        "text": "Problem List"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table><thead><tr><th>Name</th><th>Dates</th><th>Status</th></tr></thead><tbody><tr ID=\"Problem1\"><td>Community Acquired Pneumonia</td><td><content>Onset: February 27 2014</content></td><td>Active</td></tr></tbody></table></div>"
+      },
+      "entry": [
+        {
+          "reference": "Condition/102ca2e9-884c-4523-a2b4-1b6c3469c397",
+          "display": "Community acquired pneumonia"
+        }
+      ]
+    }
+  ]
+}

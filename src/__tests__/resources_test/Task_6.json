@@ -1,0 +1,41 @@
+{
+  "resourceType": "Task",
+  "status": "ready",
+  "focus": {
+    "reference": "urn:uuid:ab308536-9e07-11ee-8c90-0242ac129872"
+  },
+  "intent": "order",
+  "for": {
+    "reference": "urn:uuid:ba4a1ef7-c674-4acb-a506-6aac4a7aec53",
+    "display": "Tony Soprano"
+  },
+  "performerType": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "768820003",
+          "display": "Care Coordinator"
+        }
+      ]
+    }
+  ],
+  "businessStatus": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-example-app/task-status",
+        "code": "ready",
+        "display": "Ready"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-demo/task-type",
+        "code": "schedule-appointment",
+        "display": "Schedule Appointment"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "35200-5",
+        "display": "Cholesterol [Mass or Moles/volume] in Serum or Plasma"
+      }
+    ],
+    "text": "Cholesterol"
+  },
+  "subject": {
+    "reference": "urn:uuid:c9d3cba2-9db5-11ee-8c90-0242ac120002",
+    "display": "Jane California"
+  },
+  "performer": [
+    {
+      "display": "Acme Laboratory, Inc"
+    }
+  ],
+  "valueQuantity": {
+    "value": 6.3,
+    "unit": "mmol/L",
+    "system": "http://unitsofmeasure.org",
+    "code": "mmol/L"
+  },
+  "referenceRange": [
+    {
+      "high": {
+        "value": 4.5,
+        "unit": "mmol/L",
+        "system": "http://unitsofmeasure.org",
+        "code": "mmol/L"
+      }
+    }
+  ]
+}

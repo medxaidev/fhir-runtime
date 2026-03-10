@@ -1,0 +1,24 @@
+{
+  "resourceType": "CarePlan",
+  "id": "3f8b4e4c-7abc-40eb-b8d0-df32e46c086a",
+  "status": "completed",
+  "intent": "plan",
+  "title": "CARE PLAN",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "409073007",
+          "display": "instruction"
+        }
+      ],
+      "text": "instruction"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/ce862cfe-6559-411e-92e9-e8d005b1c226",
+    "display": "Katherine Madison"
+  },
+  "description": "Admit Yourself to Community Health and Hospitals for Pnuemonia"
+}

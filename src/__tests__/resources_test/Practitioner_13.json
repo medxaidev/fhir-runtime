@@ -1,0 +1,36 @@
+{
+  "resourceType": "Practitioner",
+  "id": "b0ff47f4-ff49-43ee-8e46-43db7b57d986",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-npi",
+      "value": "99999999"
+    }
+  ],
+  "name": [
+    {
+      "family": "Seven",
+      "given": [
+        "Henry"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "555-555-1002"
+    }
+  ],
+  "qualification": [
+    {
+      "coding": [
+        {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "207Q00000X",
+          "display": "Allopathic & Osteopathic Physicians; Family Medicine"
+        }
+      ],
+      "text": "Allopathic & Osteopathic Physicians; Family Medicine"
+    }
+  ]
+}

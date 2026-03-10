@@ -1,0 +1,89 @@
+{
+  "resourceType": "Patient",
+  "active": true,
+  "gender": "female",
+  "birthDate": "1995-07-04",
+  "name": [
+    {
+      "use": "official",
+      "family": "Martinez-ae1101d1",
+      "given": [
+        "Sofia",
+        "Isabella"
+      ]
+    },
+    {
+      "use": "maiden",
+      "family": "Lopez-ae1101d1"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/mrn",
+      "value": "MRN-007-ae1101d1"
+    },
+    {
+      "system": "http://example.com/passport",
+      "value": "PP-007-ae1101d1"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "555-1007",
+      "use": "mobile"
+    },
+    {
+      "system": "phone",
+      "value": "555-1008",
+      "use": "home"
+    },
+    {
+      "system": "email",
+      "value": "sofia-ae1101d1@example.com"
+    }
+  ],
+  "address": [
+    {
+      "use": "home",
+      "line": [
+        "1000 Maple Dr"
+      ],
+      "city": "Capital City",
+      "state": "CA",
+      "postalCode": "90001",
+      "country": "US"
+    },
+    {
+      "use": "temp",
+      "city": "TempCity",
+      "state": "NY"
+    }
+  ],
+  "contact": [
+    {
+      "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+              "code": "N"
+            }
+          ]
+        }
+      ],
+      "name": {
+        "family": "EmergencyContact-ae1101d1",
+        "given": [
+          "Carlos"
+        ]
+      },
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "555-9999"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "resourceType": "Observation",
+  "id": "e65d0b47-974f-431d-8ad0-563fe48a87ec",
+  "identifier": [
+    {
+      "system": "urn:oid:2.16.840.1.113883.19",
+      "value": "123456789"
+    }
+  ],
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "social-history",
+          "display": "Smoking Status"
+        }
+      ],
+      "text": "Smoking Status"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "72166-2",
+        "display": "Tobacco smoking status NHIS"
+      }
+    ],
+    "text": "Tobacco smoking status NHIS"
+  },
+  "subject": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Katherine Madison"
+  },
+  "performer": [
+    {
+      "reference": "Practitioner/7a349401-850e-4665-99ad-5cbd991eca56",
+      "display": "Henry Seven"
+    }
+  ],
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "449868002",
+        "display": "Smokes tobacco daily"
+      }
+    ],
+    "text": "Smokes tobacco daily"
+  },
+  "effectiveDateTime": "2014-06-06T10:32:00-05:00",
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#SmokingStatus"
+    }
+  ]
+}

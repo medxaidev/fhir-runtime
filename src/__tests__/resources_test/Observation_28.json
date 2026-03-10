@@ -1,0 +1,52 @@
+{
+  "resourceType": "Observation",
+  "id": "1791f1e7-9642-4b51-be66-997de22370bb",
+  "identifier": [
+    {
+      "system": "urn:oid:1.2.840.114350.1.13.861.1.7.1.2109",
+      "value": "5710719405-Z197199"
+    }
+  ],
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "vital-signs",
+          "display": "Vital Signs Organizer"
+        }
+      ],
+      "text": "Vital Signs Organizer"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "46680005",
+        "display": "Vital signs"
+      }
+    ],
+    "text": "Vital signs"
+  },
+  "subject": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Katherine Madison"
+  },
+  "effectiveDateTime": "2015-11-20T19:36:05-06:00",
+  "hasMember": [
+    {
+      "reference": "Observation/15c8bd35-b9dc-4da7-a13d-70b9618bc945",
+      "display": "Body mass index (BMI) [Percentile] Per age and sex"
+    },
+    {
+      "reference": "Observation/70ad5e83-58b8-453f-866a-afabd9e525fd",
+      "display": "Weight-for-length Per age and sex"
+    },
+    {
+      "reference": "Observation/cf5ac9f4-e31d-4066-8458-6f42be3877ef",
+      "display": "Head Occipital-frontal circumference Percentile"
+    }
+  ]
+}

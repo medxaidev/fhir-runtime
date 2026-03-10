@@ -1,0 +1,38 @@
+{
+  "resourceType": "Patient",
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "SS"
+          }
+        ]
+      },
+      "system": "http://hl7.org/fhir/sid/us-ssn",
+      "value": "923081234"
+    }
+  ],
+  "name": [
+    {
+      "given": [
+        "Walker",
+        "Texas"
+      ],
+      "family": "Ranger"
+    }
+  ],
+  "birthDate": "1970-01-01",
+  "address": [
+    {
+      "use": "home",
+      "line": [
+        "123 Main St."
+      ],
+      "city": "Dallas",
+      "state": "TX",
+      "postalCode": "98732"
+    }
+  ]
+}

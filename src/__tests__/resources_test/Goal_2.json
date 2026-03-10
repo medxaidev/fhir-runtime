@@ -1,0 +1,55 @@
+{
+  "resourceType": "Goal",
+  "id": "2a620155-9d11-439e-92b3-5d9815ff4dd3",
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#Goal2"
+    }
+  ],
+  "lifecycleStatus": "active",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "406162001",
+          "display": "Asthma management"
+        }
+      ],
+      "text": "Asthma management"
+    }
+  ],
+  "description": {
+    "text": "Asthma management"
+  },
+  "subject": {
+    "reference": "Patient/ce862cfe-6559-411e-92e9-e8d005b1c226",
+    "display": "Katherine Madison"
+  },
+  "startDate": "2012-08-15",
+  "target": [
+    {
+      "measure": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "311401005",
+            "display": "Patient education"
+          }
+        ],
+        "text": "Patient education"
+      },
+      "detailCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "311401005",
+            "display": "Patient education"
+          }
+        ],
+        "text": "Patient education"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "resourceType": "Task",
+  "intent": "order",
+  "status": "ready",
+  "focus": {
+    "reference": "urn:uuid:d9d3cba2-9db5-11ee-8c90-0242ac120002"
+  },
+  "for": {
+    "reference": "urn:uuid:3d9d2d9c-6648-4583-812b-d0d389facca2",
+    "display": "Walker Texas Ranger"
+  },
+  "performerType": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "224535009",
+          "display": "Registered Nurse"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "768820003",
+          "display": "Care Coordinator"
+        }
+      ]
+    }
+  ],
+  "businessStatus": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-example-app/task-status",
+        "code": "ready",
+        "display": "Ready"
+      }
+    ]
+  },
+  "restriction": {
+    "period": {
+      "end": "2024-04-01T16:00:00.000Z"
+    }
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-demo/task-type",
+        "code": "respond-to-message",
+        "display": "Respond to Patient Message"
+      }
+    ]
+  }
+}

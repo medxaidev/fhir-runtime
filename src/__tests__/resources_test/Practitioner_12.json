@@ -1,0 +1,17 @@
+{
+  "resourceType": "Practitioner",
+  "active": true,
+  "name": [
+    {
+      "prefix": [
+        "Nurse"
+      ],
+      "given": [
+        "Bob"
+      ],
+      "family": "Jones"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1973-11-02"
+}

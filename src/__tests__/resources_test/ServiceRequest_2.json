@@ -1,0 +1,21 @@
+{
+  "resourceType": "ServiceRequest",
+  "status": "completed",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "77477000",
+        "display": "CTScan-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:b22ec9fa-e688-45f5-8fbd-92f0135db1b2"
+  },
+  "authoredOn": "2025-02-01"
+}

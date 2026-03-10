@@ -1,0 +1,33 @@
+{
+  "resourceType": "Coverage",
+  "identifier": [
+    {
+      "system": "http://example.com/coverages",
+      "value": "homer-simpson"
+    }
+  ],
+  "status": "active",
+  "subscriber": {
+    "reference": "urn:uuid:32b6ef90-9351-42d1-8e66-8ee6e2fdafb0",
+    "display": "Homer Simpson"
+  },
+  "beneficiary": {
+    "reference": "urn:uuid:32b6ef90-9351-42d1-8e66-8ee6e2fdafb0",
+    "display": "Homer Simpson"
+  },
+  "payor": [
+    {
+      "reference": "urn:uuid:b884050a-bc99-472c-ad66-4f903fe84aa8",
+      "display": "Independence Blue Cross Blue Shield"
+    }
+  ],
+  "relationship": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship",
+        "code": "self",
+        "display": "Self"
+      }
+    ]
+  }
+}

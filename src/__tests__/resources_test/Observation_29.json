@@ -1,0 +1,44 @@
+{
+  "resourceType": "Observation",
+  "id": "fdbd831b-5919-4f06-9467-76b07022f8e8",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "vital-signs",
+          "display": "Vital Signs Observation"
+        }
+      ],
+      "text": "Vital Signs Observation"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "8480-6",
+        "display": "Systolic blood pressure"
+      }
+    ],
+    "text": "Systolic blood pressure"
+  },
+  "subject": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Katherine Madison"
+  },
+  "valueQuantity": {
+    "value": 120,
+    "unit": "mm[Hg]",
+    "system": "http://unitsofmeasure.org",
+    "code": "mm[Hg]"
+  },
+  "effectiveDateTime": "2014-05-20T19:36:05-05:00",
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#SystolicBP_1"
+    }
+  ]
+}

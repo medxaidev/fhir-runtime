@@ -1,0 +1,17 @@
+{
+  "resourceType": "Immunization",
+  "status": "completed",
+  "vaccineCode": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/sid/cvx",
+        "code": "08",
+        "display": "HepB-ae1101d1"
+      }
+    ]
+  },
+  "patient": {
+    "reference": "urn:uuid:393e7ef3-6d97-429c-bdb4-aa70945a359a"
+  },
+  "occurrenceDateTime": "2025-04-01"
+}

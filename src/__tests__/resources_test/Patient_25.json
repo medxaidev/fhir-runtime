@@ -1,0 +1,19 @@
+{
+  "resourceType": "Patient",
+  "id": "5adfedd2-3aaf-4a4f-aa35-5f6600b60c99",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-ssn",
+      "value": "111223333"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "family": "Madison",
+      "given": [
+        "Katherine"
+      ]
+    }
+  ]
+}

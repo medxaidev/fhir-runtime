@@ -1,0 +1,21 @@
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "8310-5",
+        "display": "BodyTemp-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:dce7c644-7578-4f45-b4b3-85bbadd805ae"
+  },
+  "valueQuantity": {
+    "value": 37.2,
+    "unit": "Cel"
+  },
+  "effectiveDateTime": "2025-06-01T11:35:00Z"
+}

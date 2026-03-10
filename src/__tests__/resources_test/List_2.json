@@ -1,0 +1,18 @@
+{
+  "resourceType": "List",
+  "status": "current",
+  "mode": "working",
+  "subject": {
+    "reference": "urn:uuid:18c0a57b-5a5a-4606-8044-f262fcc1a6b2",
+    "display": "Alex Smith"
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://example.org/listType",
+        "code": "doNotMatch",
+        "display": "Do Not Match"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "resourceType": "MedicationRequest",
+  "status": "active",
+  "intent": "order",
+  "medicationReference": {
+    "reference": "urn:uuid:6d6d196c-a50e-49f7-8dd5-cfd8c465c967"
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "requester": {
+    "reference": "urn:uuid:5ae0296d-c824-408f-8c7c-99a3bece18c6"
+  },
+  "authoredOn": "2025-02-01",
+  "dosageInstruction": [
+    {
+      "text": "250mg TID-ae1101d1"
+    }
+  ]
+}

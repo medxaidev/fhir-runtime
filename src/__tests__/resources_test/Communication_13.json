@@ -1,0 +1,12 @@
+{
+  "resourceType": "Communication",
+  "status": "in-progress",
+  "topic": {
+    "coding": [
+      {
+        "code": "Schedule a Physical",
+        "display": "Schedule a Physical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "resourceType": "Immunization",
+  "status": "completed",
+  "vaccineCode": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/sid/cvx",
+        "code": "113",
+        "display": "Tdap-ae1101d1"
+      }
+    ]
+  },
+  "patient": {
+    "reference": "urn:uuid:dce7c644-7578-4f45-b4b3-85bbadd805ae"
+  },
+  "occurrenceDateTime": "2025-06-01",
+  "encounter": {
+    "reference": "urn:uuid:041fee01-2381-407d-9768-b9d28c63933c"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "resourceType": "PractitionerRole",
+  "id": "7ae96c77-6b8f-4e5a-9938-2f6392857789",
+  "practitioner": {
+    "reference": "Practitioner/7ae96c77-6b8f-4e5a-9938-2f6392857789",
+    "display": "Amanda Assigned"
+  },
+  "organization": {
+    "reference": "Organization/7ae96c77-6b8f-4e5a-9938-2f6392857789",
+    "display": "Good Health Clinic"
+  }
+}

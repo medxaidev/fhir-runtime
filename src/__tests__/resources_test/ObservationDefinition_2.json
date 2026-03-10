@@ -1,0 +1,41 @@
+{
+  "resourceType": "ObservationDefinition",
+  "id": "observation-blood-potassium",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "6298-4",
+        "display": "Potassium [Moles/volume] in Blood"
+      }
+    ]
+  },
+  "preferredReportName": "Potassium Level",
+  "quantitativeDetails": {
+    "unit": {
+      "coding": [
+        {
+          "system": "http://unitsofmeasure.org",
+          "code": "mmol/L",
+          "display": "millimoles per liter"
+        }
+      ]
+    },
+    "decimalPrecision": 2
+  },
+  "qualifiedInterval": [
+    {
+      "condition": "Normal",
+      "range": {
+        "low": {
+          "value": 3.5,
+          "unit": "mmol/L"
+        },
+        "high": {
+          "value": 5.1,
+          "unit": "mmol/L"
+        }
+      }
+    }
+  ]
+}

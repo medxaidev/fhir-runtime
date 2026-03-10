@@ -22,7 +22,7 @@ import type { CanonicalProfile, CanonicalElement, Resource } from '../model/inde
 import type { ValidationOptions, ValidationResult, ValidationIssue } from './types.js';
 import { createValidationIssue, resolveValidationOptions } from './types.js';
 import { ProfileNotFoundError, ValidationFailedError } from './errors.js';
-import { extractValues } from './path-extractor.js';
+import { extractValues, extractValuesFromNode } from './path-extractor.js';
 import {
   validateCardinality,
   validateType,
@@ -215,8 +215,15 @@ export class StructureValidator {
         absentParents.add(element.path);
       }
 
-      // Validate cardinality
-      validateCardinality(element, values, issues);
+      // Validate cardinality.
+      // For child elements of repeatable parents (e.g., Observation.component.code
+      // where component is max=unbounded), cardinality must be checked per parent
+      // instance — not on the flattened list across all instances.
+      if (this.hasRepeatableAncestor(element, profile)) {
+        this.validateCardinalityPerInstance(resource, element, profile, issues);
+      } else {
+        validateCardinality(element, values, issues);
+      }
       this.checkFailFast(opts, issues);
 
       // Validate each value individually
@@ -261,6 +268,91 @@ export class StructureValidator {
   // ===========================================================================
   // Private: Helpers
   // ===========================================================================
+
+  /**
+   * Check if an element has a repeatable (max > 1) ancestor in the profile.
+   *
+   * For example, `Observation.component.code` has ancestor `Observation.component`
+   * which is `max=unbounded`. In that case, cardinality of `code` must be
+   * checked per component instance, not across all component instances.
+   */
+  private hasRepeatableAncestor(
+    element: CanonicalElement,
+    profile: CanonicalProfile,
+  ): boolean {
+    const segments = element.path.split('.');
+    // Need at least 3 segments: Type.parent.child
+    if (segments.length < 3) return false;
+
+    // Check each ancestor between root and current element
+    for (let i = 2; i < segments.length; i++) {
+      const ancestorPath = segments.slice(0, i).join('.');
+      const ancestor = profile.elements.get(ancestorPath);
+      if (ancestor && (ancestor.max === 'unbounded' || (typeof ancestor.max === 'number' && ancestor.max > 1))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Validate cardinality for a child element per each parent instance.
+   *
+   * When parent is repeatable (e.g., Observation.component[]), we must
+   * check cardinality of children (e.g., component.code) per each
+   * parent array item, not across all items combined.
+   */
+  private validateCardinalityPerInstance(
+    resource: Resource,
+    element: CanonicalElement,
+    profile: CanonicalProfile,
+    issues: ValidationIssue[],
+  ): void {
+    const segments = element.path.split('.');
+
+    // Find the nearest repeatable ancestor
+    let repeatableAncestorPath: string | undefined;
+    for (let i = segments.length - 1; i >= 2; i--) {
+      const ancestorPath = segments.slice(0, i).join('.');
+      const ancestor = profile.elements.get(ancestorPath);
+      if (ancestor && (ancestor.max === 'unbounded' || (typeof ancestor.max === 'number' && ancestor.max > 1))) {
+        repeatableAncestorPath = ancestorPath;
+        break;
+      }
+    }
+
+    if (!repeatableAncestorPath) {
+      // Fallback: shouldn't happen if hasRepeatableAncestor returned true
+      const values = extractValues(resource as unknown as Record<string, unknown>, element.path);
+      validateCardinality(element, values, issues);
+      return;
+    }
+
+    // Extract all parent instances
+    const parentInstances = extractValues(
+      resource as unknown as Record<string, unknown>,
+      repeatableAncestorPath,
+    );
+
+    if (parentInstances.length === 0) return;
+
+    // Build the relative path from the repeatable ancestor to this element
+    const ancestorSegments = repeatableAncestorPath.split('.');
+    const relativeSegments = segments.slice(ancestorSegments.length);
+    const relativePathFromAncestor = relativeSegments.join('.');
+
+    // Validate cardinality per instance
+    for (const parentInstance of parentInstances) {
+      if (!parentInstance || typeof parentInstance !== 'object') continue;
+
+      // Extract child values from this single parent instance
+      const childValues = relativePathFromAncestor
+        ? extractValuesFromNode(parentInstance as Record<string, unknown>, relativePathFromAncestor)
+        : [parentInstance];
+
+      validateCardinality(element, childValues, issues);
+    }
+  }
 
   /**
    * Get all named slice elements for a slicing root path.

@@ -1,0 +1,28 @@
+{
+  "resourceType": "DiagnosticReport",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "55399-0",
+        "display": "Vitals-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:dce7c644-7578-4f45-b4b3-85bbadd805ae"
+  },
+  "encounter": {
+    "reference": "urn:uuid:041fee01-2381-407d-9768-b9d28c63933c"
+  },
+  "result": [
+    {
+      "reference": "urn:uuid:b3697be2-24fe-474c-921d-990ca5c44395"
+    },
+    {
+      "reference": "urn:uuid:8ffb44dd-5ee3-4498-a151-dca810a879c6"
+    }
+  ],
+  "effectiveDateTime": "2025-06-01T12:00:00Z"
+}

@@ -1,0 +1,91 @@
+{
+  "resourceType": "Questionnaire",
+  "url": "https://www.medplum.com/questionnaire/comprehensive-physical-examination",
+  "status": "active",
+  "item": [
+    {
+      "id": "id-5",
+      "linkId": "q5",
+      "type": "text",
+      "required": true,
+      "text": "General Appearance"
+    },
+    {
+      "id": "id-6",
+      "linkId": "q6",
+      "type": "text",
+      "text": "Head, Eyes, Ears, Nose & Throat ",
+      "repeats": false,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceResource",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/fhir-types",
+                "display": "Patient",
+                "code": "Patient"
+              }
+            ]
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceResource",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/fhir-types",
+                "display": "Practitioner",
+                "code": "Practitioner"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "id-56",
+      "linkId": "q43",
+      "type": "text",
+      "text": "Cardiovascular"
+    },
+    {
+      "id": "id-84",
+      "linkId": "q44",
+      "type": "text",
+      "text": "Respiratory"
+    },
+    {
+      "id": "id-85",
+      "linkId": "q45",
+      "type": "text",
+      "text": "Abdomen"
+    },
+    {
+      "id": "id-86",
+      "linkId": "q46",
+      "type": "text",
+      "text": "Extremities"
+    },
+    {
+      "id": "id-87",
+      "linkId": "q47",
+      "type": "text",
+      "text": "Neurological"
+    },
+    {
+      "id": "id-88",
+      "linkId": "q48",
+      "type": "text",
+      "text": "Skin"
+    }
+  ],
+  "name": "Comprehensive Physical Examination",
+  "title": "Comprehensive Physical Examination",
+  "code": [
+    {
+      "code": "SNOMED 162673000",
+      "display": "SNOMED 162673000"
+    }
+  ]
+}

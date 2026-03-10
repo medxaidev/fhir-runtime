@@ -1,0 +1,41 @@
+{
+  "resourceType": "Procedure",
+  "id": "64af26d5-88ef-4169-ba16-c6ef16a1824f",
+  "status": "completed",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "6025007",
+        "display": "Laparoscopic appendectomy"
+      }
+    ],
+    "text": "Laparoscopic appendectomy"
+  },
+  "subject": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Katherine Madison"
+  },
+  "performedPeriod": {
+    "start": "2014-02-03T09:22:05-07:00",
+    "end": "2014-02-03T11:15:14-07:00"
+  },
+  "bodySite": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "181255000",
+          "display": "Entire appendix"
+        }
+      ],
+      "text": "Entire appendix"
+    }
+  ],
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#Procedure1"
+    }
+  ]
+}

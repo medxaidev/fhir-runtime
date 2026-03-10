@@ -1,0 +1,41 @@
+{
+  "resourceType": "ObservationDefinition",
+  "id": "observation-serum-estradiol-e2",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "14715-7",
+        "display": "Estradiol (E2) [Moles/volume] in Serum or Plasma"
+      }
+    ]
+  },
+  "preferredReportName": "Estradiol (E2) Level",
+  "quantitativeDetails": {
+    "unit": {
+      "coding": [
+        {
+          "system": "http://unitsofmeasure.org",
+          "code": "pmol/L",
+          "display": "picomoles per liter"
+        }
+      ]
+    },
+    "decimalPrecision": 2
+  },
+  "qualifiedInterval": [
+    {
+      "condition": "Normal",
+      "range": {
+        "low": {
+          "value": 40,
+          "unit": "pmol/L"
+        },
+        "high": {
+          "value": 200,
+          "unit": "pmol/L"
+        }
+      }
+    }
+  ]
+}

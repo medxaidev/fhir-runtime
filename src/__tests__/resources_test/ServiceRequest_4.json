@@ -1,0 +1,21 @@
+{
+  "resourceType": "ServiceRequest",
+  "status": "active",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "252275004",
+        "display": "Imaging-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:3f8e5eef-a99f-4ffa-8f1c-772ff18b2223"
+  },
+  "encounter": {
+    "reference": "urn:uuid:a8f21a44-2ccb-4b55-a8ed-fab987c879c3"
+  },
+  "authoredOn": "2026-02-25"
+}

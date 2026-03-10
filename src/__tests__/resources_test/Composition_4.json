@@ -1,0 +1,47 @@
+{
+  "resourceType": "Composition",
+  "id": "3db70aff-83f5-4caf-91dc-d23fcc5e03bb",
+  "language": "en-US",
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "34133-9",
+        "display": "Summarization of Episode Note"
+      }
+    ],
+    "text": "Summarization of Episode Note"
+  },
+  "author": [
+    {
+      "display": "Medplum"
+    }
+  ],
+  "date": "2025-01-01T00:00:00-05:00",
+  "title": "Medical Summary",
+  "section": [
+    {
+      "title": "MEDICATIONS",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "10160-0",
+            "display": "History of Medication Use"
+          }
+        ],
+        "text": "History of Medication Use"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table border=\"1\" width=\"100%\"><thead><tr><th>Medication</th><th>Instructions</th><th>Dosage</th><th>Effective Dates (start - stop)</th><th>Status</th></tr></thead><tbody><tr ID=\"Medication_6\"><td><content ID=\"MedicationName_6\">3 ML Insulin Glargine 100 UNT/ML Pen Injector [Lantus]</content></td><td><content ID=\"MedicationSig_6\">Administer 40 units at bedtime</content></td><td><content>40 units</content></td><td>Jan-09-2009 -</td><td>Active</td></tr></tbody></table></div>"
+      },
+      "entry": [
+        {
+          "reference": "MedicationRequest/1310a2d3-f888-4722-b4c4-a3c5911ac7f9"
+        }
+      ]
+    }
+  ]
+}

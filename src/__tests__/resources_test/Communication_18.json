@@ -1,0 +1,22 @@
+{
+  "resourceType": "Communication",
+  "status": "in-progress",
+  "payload": [
+    {
+      "contentString": "Do you have the results of my lab tests yet?"
+    }
+  ],
+  "topic": {
+    "text": "December 15th lab tests."
+  },
+  "partOf": [
+    {
+      "reference": "urn:uuid:d9d3cba2-9db5-11ee-8c90-0242ac120002"
+    }
+  ],
+  "sender": {
+    "reference": "urn:uuid:c9d3cba2-9db5-11ee-8c90-0242ac120002",
+    "display": "Jane California"
+  },
+  "sent": "2023-12-18T14:26:06.531Z"
+}

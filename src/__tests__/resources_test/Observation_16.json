@@ -1,0 +1,39 @@
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "35217-9",
+        "display": "Triglyceride [Mass or Moles/volume] in Serum or Plasma"
+      }
+    ],
+    "text": "Triglyceride"
+  },
+  "subject": {
+    "reference": "urn:uuid:c9d3cba2-9db5-11ee-8c90-0242ac120002",
+    "display": "Jane California"
+  },
+  "performer": [
+    {
+      "display": "Acme Laboratory, Inc"
+    }
+  ],
+  "valueQuantity": {
+    "value": 1.3,
+    "unit": "mmol/L",
+    "system": "http://unitsofmeasure.org",
+    "code": "mmol/L"
+  },
+  "referenceRange": [
+    {
+      "high": {
+        "value": 2,
+        "unit": "mmol/L",
+        "system": "http://unitsofmeasure.org",
+        "code": "mmol/L"
+      }
+    }
+  ]
+}

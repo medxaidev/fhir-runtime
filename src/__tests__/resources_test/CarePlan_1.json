@@ -1,0 +1,27 @@
+{
+  "resourceType": "CarePlan",
+  "status": "active",
+  "intent": "plan",
+  "title": "DM Management-ae1101d1",
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:42fb56e6-8ab2-425c-8622-cd2d8c7d9621"
+  },
+  "addresses": [
+    {
+      "reference": "urn:uuid:34673b3e-b342-495e-b917-98a5757f2ad4"
+    }
+  ],
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+          "code": "assess-plan"
+        }
+      ]
+    }
+  ]
+}

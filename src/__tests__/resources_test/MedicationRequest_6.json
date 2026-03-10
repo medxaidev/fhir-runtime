@@ -1,0 +1,19 @@
+{
+  "resourceType": "MedicationRequest",
+  "status": "active",
+  "intent": "order",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "861730",
+        "display": "metformin hydrochloride 250 MG"
+      }
+    ],
+    "text": "Metformin"
+  },
+  "subject": {
+    "reference": "urn:uuid:18c0a57b-5a5a-4606-8044-f262fcc1a6b2",
+    "display": "Alex Smith"
+  }
+}

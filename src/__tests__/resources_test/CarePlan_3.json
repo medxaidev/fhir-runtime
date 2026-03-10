@@ -1,0 +1,14 @@
+{
+  "resourceType": "CarePlan",
+  "status": "completed",
+  "intent": "plan",
+  "title": "Pneumonia Recovery-ae1101d1",
+  "subject": {
+    "reference": "urn:uuid:393e7ef3-6d97-429c-bdb4-aa70945a359a"
+  },
+  "addresses": [
+    {
+      "reference": "urn:uuid:47a1fd87-50e9-4596-b213-0d661c0611a6"
+    }
+  ]
+}

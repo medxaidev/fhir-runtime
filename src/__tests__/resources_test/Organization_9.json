@@ -1,0 +1,22 @@
+{
+  "resourceType": "Organization",
+  "name": "CVS Pharmacy",
+  "active": true,
+  "identifier": [
+    {
+      "system": "http://example.com/pharmacy-orgs",
+      "value": "cvs-pharmacy"
+    }
+  ],
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        }
+      ]
+    }
+  ]
+}

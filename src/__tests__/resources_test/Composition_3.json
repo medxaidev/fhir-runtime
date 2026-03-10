@@ -1,0 +1,47 @@
+{
+  "resourceType": "Composition",
+  "id": "3db70aff-83f5-4caf-91dc-d23fcc5e03bb",
+  "language": "en-US",
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "34133-9",
+        "display": "Summarization of Episode Note"
+      }
+    ],
+    "text": "Summarization of Episode Note"
+  },
+  "author": [
+    {
+      "display": "Medplum"
+    }
+  ],
+  "date": "2025-01-01T00:00:00-05:00",
+  "title": "Medical Summary",
+  "section": [
+    {
+      "title": "IMMUNIZATIONS",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "11369-6",
+            "display": "History of immunizations"
+          }
+        ],
+        "text": "History of immunizations"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><content ID=\"immunSect\"/><table border=\"1\" width=\"100%\"><thead><tr><th>Vaccine</th><th>Lot Number</th><th>Date</th><th>Status</th></tr></thead><tbody><tr ID=\"immun1\"><td ID=\"ImmunizationProduct_100\">Influenza Virus Vaccine</td><td>1</td><td>8/15/2010</td><td>Completed</td></tr></tbody></table></div>"
+      },
+      "entry": [
+        {
+          "reference": "Immunization/e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92"
+        }
+      ]
+    }
+  ]
+}

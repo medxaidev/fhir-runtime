@@ -1,0 +1,15 @@
+{
+  "resourceType": "MedicationRequest",
+  "status": "active",
+  "intent": "order",
+  "medicationReference": {
+    "reference": "urn:uuid:075c3a13-2a12-4699-95e3-9f0b058d7040"
+  },
+  "subject": {
+    "reference": "urn:uuid:393e7ef3-6d97-429c-bdb4-aa70945a359a"
+  },
+  "requester": {
+    "reference": "urn:uuid:45b10dac-da13-43d4-bdca-f3a3ff3b6364"
+  },
+  "authoredOn": "2025-03-15"
+}

@@ -1,0 +1,55 @@
+{
+  "resourceType": "Practitioner",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-npi",
+      "value": "1234567890"
+    }
+  ],
+  "name": [
+    {
+      "family": "Smith",
+      "given": [
+        "Alice"
+      ],
+      "prefix": [
+        "Dr."
+      ]
+    }
+  ],
+  "gender": "female",
+  "qualification": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+            "code": "MD"
+          }
+        ],
+        "text": "MD"
+      },
+      "issuer": {
+        "display": "State of New York"
+      },
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/practitioner-qualification",
+          "extension": [
+            {
+              "url": "whereValid",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://www.usps.com/",
+                    "code": "NY"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

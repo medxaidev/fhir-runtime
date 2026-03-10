@@ -1,0 +1,10 @@
+{
+  "resourceType": "Organization",
+  "name": "Pharmacy Services-ae1101d1",
+  "identifier": [
+    {
+      "system": "http://example.com/org",
+      "value": "ORG-003-ae1101d1"
+    }
+  ]
+}

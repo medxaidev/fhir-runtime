@@ -1,0 +1,20 @@
+{
+  "resourceType": "Immunization",
+  "status": "completed",
+  "vaccineCode": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/sid/cvx",
+        "code": "208",
+        "display": "COVID19-ae1101d1"
+      }
+    ]
+  },
+  "patient": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "occurrenceDateTime": "2025-01-15T09:00:00Z",
+  "encounter": {
+    "reference": "urn:uuid:42fb56e6-8ab2-425c-8622-cd2d8c7d9621"
+  }
+}

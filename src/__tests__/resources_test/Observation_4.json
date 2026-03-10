@@ -1,0 +1,35 @@
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "2339-0",
+        "display": "Glucose-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:393e7ef3-6d97-429c-bdb4-aa70945a359a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:9c20200e-e11a-4982-a8ea-dadc420bbaaf"
+  },
+  "valueQuantity": {
+    "value": 95,
+    "unit": "mg/dL"
+  },
+  "effectiveDateTime": "2025-03-15T14:30:00Z",
+  "interpretation": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code": "N",
+          "display": "Normal"
+        }
+      ]
+    }
+  ]
+}

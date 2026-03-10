@@ -1,0 +1,21 @@
+{
+  "resourceType": "Organization",
+  "name": "Specialty Clinic-ae1101d1",
+  "identifier": [
+    {
+      "system": "http://example.com/org",
+      "value": "ORG-005-ae1101d1"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "200 Oak Ave"
+      ],
+      "city": "Shelbyville",
+      "state": "IL",
+      "postalCode": "62702",
+      "country": "US"
+    }
+  ]
+}

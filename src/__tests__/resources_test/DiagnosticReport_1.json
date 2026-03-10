@@ -1,0 +1,29 @@
+{
+  "resourceType": "DiagnosticReport",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "58410-2",
+        "display": "CBC-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:42fb56e6-8ab2-425c-8622-cd2d8c7d9621"
+  },
+  "result": [
+    {
+      "reference": "urn:uuid:09037301-0822-4327-acea-53040f9a679a"
+    },
+    {
+      "reference": "urn:uuid:f1535970-10e5-4d24-9a29-04628f86bcaf"
+    }
+  ],
+  "effectiveDateTime": "2025-01-10T09:00:00Z",
+  "issued": "2025-01-10T10:00:00Z"
+}

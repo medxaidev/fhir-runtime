@@ -1,0 +1,20 @@
+{
+  "resourceType": "PractitionerRole",
+  "practitioner": {
+    "reference": "urn:uuid:ce34cc02-9302-4f1c-838d-26c6f7bcb69d"
+  },
+  "organization": {
+    "reference": "urn:uuid:9282198b-8182-40fb-b23c-555f4916838f"
+  },
+  "code": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "309343006",
+          "display": "Specialist-ae1101d1"
+        }
+      ]
+    }
+  ]
+}

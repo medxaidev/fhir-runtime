@@ -1,0 +1,18 @@
+{
+  "resourceType": "Encounter",
+  "status": "finished",
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "IMP"
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "serviceProvider": {
+    "reference": "urn:uuid:ebda6e1b-5854-4a12-9195-a19250156d2e"
+  },
+  "period": {
+    "start": "2025-02-01T10:00:00Z",
+    "end": "2025-02-05T14:00:00Z"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "resourceType": "Patient",
+  "active": true,
+  "gender": "other",
+  "birthDate": "2000-03-01",
+  "name": [
+    {
+      "use": "official",
+      "family": "Garcia-ae1101d1",
+      "given": [
+        "Alex",
+        "M"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/mrn",
+      "value": "MRN-005-ae1101d1"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "value": "alex.garcia-ae1101d1@example.com"
+    }
+  ]
+}

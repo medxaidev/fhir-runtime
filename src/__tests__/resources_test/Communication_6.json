@@ -1,0 +1,53 @@
+{
+  "resourceType": "Communication",
+  "status": "in-progress",
+  "sender": {
+    "reference": "urn:uuid:6bcf025a-c8b0-483e-8399-e3e9f43bd944",
+    "display": "Dr. Gregory House"
+  },
+  "sent": "2024-03-22T20:28:42.148Z",
+  "recipient": [
+    {
+      "reference": "urn:uuid:3bf50fa0-9c13-48ca-9cd7-1379dbf5f111",
+      "display": "Dr. Alice Smith"
+    },
+    {
+      "reference": "urn:uuid:5be59c7f-7b82-49d3-9183-46d1a9c385c6",
+      "display": "Nurse Jackie"
+    },
+    {
+      "reference": "urn:uuid:6bcf025a-c8b0-483e-8399-e3e9f43bd944",
+      "display": "Dr. Gregory House"
+    }
+  ],
+  "partOf": [
+    {
+      "reference": "urn:uuid:d2fe5b7d-98f5-4126-bd25-0dbb2ade1ff2"
+    }
+  ],
+  "topic": {
+    "coding": [
+      {
+        "display": "Capturing Homer's vitals"
+      }
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "display": "Vital Signs"
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "urn:uuid:ec42014b-63af-407e-ba31-c5b080c527a4",
+    "display": "Homer Simpson"
+  },
+  "payload": [
+    {
+      "contentString": "Are either of available to take Homer's vital signs before his physical tomorrow?"
+    }
+  ]
+}

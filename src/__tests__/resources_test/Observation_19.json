@@ -1,0 +1,48 @@
+{
+  "resourceType": "Observation",
+  "id": "c03e5445-af1b-4911-a419-e2782f21448c",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "exam",
+          "display": "Procedure Activity Observation"
+        }
+      ],
+      "text": "Procedure Activity Observation"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "268400002",
+        "display": "12 lead electrocardiogram"
+      }
+    ],
+    "text": "12 lead electrocardiogram"
+  },
+  "subject": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Katherine Madison"
+  },
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "251135002",
+        "display": "Borderline normal electrocardiogram"
+      }
+    ],
+    "text": "Borderline normal electrocardiogram"
+  },
+  "effectiveDateTime": "2014-03-29T09:15:22-05:00",
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#Procedure2"
+    }
+  ]
+}

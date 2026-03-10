@@ -1,0 +1,21 @@
+{
+  "resourceType": "DocumentReference",
+  "status": "current",
+  "docStatus": "final",
+  "type": {
+    "text": "Driver's License"
+  },
+  "category": [
+    {
+      "text": "Identity Document"
+    }
+  ],
+  "content": [
+    {
+      "attachment": {
+        "contentType": "image/jpeg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Californian_sample_driver%27s_license%2C_c._2019.jpg"
+      }
+    }
+  ]
+}

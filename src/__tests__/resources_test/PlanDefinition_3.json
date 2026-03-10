@@ -1,0 +1,57 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "example-lab-service-electrolytes-panel-blood",
+  "status": "active",
+  "url": "http://example.org/PlanDefinition/lab-service-electrolytes-panel-blood",
+  "identifier": [
+    {
+      "use": "official",
+      "value": "electrolytes_panel_test"
+    }
+  ],
+  "name": "electrolytes-panel-blood-measurement",
+  "title": "Electrolytes panel measurement in blood",
+  "description": "Electrolytes panel measurement on blood specimen",
+  "type": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/uv/order-catalog/CodeSystem/laboratory-service-definition-type",
+        "code": "panel",
+        "display": "collection of tests and panels performed on one or more in vitro biologic specimens"
+      }
+    ]
+  },
+  "action": [
+    {
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55231-5",
+              "display": "Electrolytes panel - Blood"
+            }
+          ]
+        }
+      ],
+      "definitionCanonical": "http://example.org/lab-procedure-electrolytes-panel-blood"
+    }
+  ],
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "task"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code": "LABOE",
+            "display": "laboratory test order entry task"
+          }
+        ]
+      }
+    }
+  ]
+}

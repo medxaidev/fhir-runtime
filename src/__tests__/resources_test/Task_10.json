@@ -1,0 +1,47 @@
+{
+  "resourceType": "Task",
+  "status": "ready",
+  "priority": "asap",
+  "focus": {
+    "reference": "urn:uuid:569781a7-6ee9-42f1-88ac-ac4cacf721b8"
+  },
+  "intent": "order",
+  "for": {
+    "reference": "urn:uuid:ba4a1ef7-c674-4acb-a506-6aac4a7aec53",
+    "display": "Tony Soprano"
+  },
+  "performerType": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "768820003",
+          "display": "Care Coordinator"
+        }
+      ]
+    }
+  ],
+  "businessStatus": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-example-app/task-status",
+        "code": "ready",
+        "display": "Ready"
+      }
+    ]
+  },
+  "restriction": {
+    "period": {
+      "end": "2024-04-01T17:30:00.000Z"
+    }
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "https://medplum.com/medplum-task-demo/task-type",
+        "code": "verify-drivers-license",
+        "display": "Verify Drivers License"
+      }
+    ]
+  }
+}

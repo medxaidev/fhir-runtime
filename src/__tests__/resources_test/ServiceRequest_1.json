@@ -1,0 +1,24 @@
+{
+  "resourceType": "ServiceRequest",
+  "status": "active",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "26604007",
+        "display": "FBC-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:42fb56e6-8ab2-425c-8622-cd2d8c7d9621"
+  },
+  "requester": {
+    "reference": "urn:uuid:5ae0296d-c824-408f-8c7c-99a3bece18c6"
+  },
+  "authoredOn": "2025-01-10"
+}

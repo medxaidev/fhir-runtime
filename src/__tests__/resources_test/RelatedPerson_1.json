@@ -1,0 +1,43 @@
+{
+  "resourceType": "RelatedPerson",
+  "id": "b3cbace4-c487-4999-aee3-b19334b66f12",
+  "patient": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Alice Jones Newman"
+  },
+  "relationship": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+          "code": "GRPRN",
+          "display": "grandparent"
+        }
+      ],
+      "text": "grandparent"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "prefix": [
+        "Mr"
+      ],
+      "family": "Holler",
+      "given": [
+        "Rick"
+      ]
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "1357 Amber Dr"
+      ],
+      "city": "Beaverton",
+      "state": "OR",
+      "postalCode": "97006",
+      "country": "US"
+    }
+  ]
+}

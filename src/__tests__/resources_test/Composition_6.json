@@ -1,0 +1,175 @@
+{
+  "resourceType": "Composition",
+  "id": "cf27813f-10d2-433b-be9a-2f7e82bf9da8",
+  "language": "en-US",
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "34133-9",
+        "display": "Summarization of Episode Note"
+      }
+    ],
+    "text": "Summarization of Episode Note"
+  },
+  "confidentiality": "N",
+  "author": [
+    {
+      "reference": "Practitioner/20cf14fb-b65c-4c8c-a54d-b0cca834c18c",
+      "display": "Dr Albert Davis"
+    }
+  ],
+  "custodian": {
+    "reference": "Organization/03e3df0b-c295-4434-aede-f35a9dafbe00",
+    "display": "Neighborhood Physicians Practice"
+  },
+  "event": [
+    {
+      "period": {
+        "start": "2013-07-20T00:00:00Z",
+        "end": "2013-08-15T00:00:00Z"
+      }
+    }
+  ],
+  "date": "2015-06-22T12:00:00-05:00",
+  "title": "Alicia Newman Summary Record",
+  "section": [
+    {
+      "title": "Allergies, Adverse Reactions and Alerts",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "48765-2",
+            "display": "Allergies and Adverse Reactions"
+          }
+        ],
+        "text": "Allergies and Adverse Reactions"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Allergies</div>"
+      }
+    },
+    {
+      "title": "MEDICATIONS",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "10160-0",
+            "display": "History of Medication Use"
+          }
+        ],
+        "text": "History of Medication Use"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Medications</div>"
+      }
+    },
+    {
+      "title": "Problem List",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "11450-4",
+            "display": "Problem List"
+          }
+        ],
+        "text": "Problem List"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Problems</div>"
+      }
+    },
+    {
+      "title": "Results",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "30954-2",
+            "display": "Relevant Diagnostic Tests"
+          }
+        ],
+        "text": "Relevant Diagnostic Tests"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Results</div>"
+      }
+    },
+    {
+      "title": "Social History",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "29762-2",
+            "display": "Social History"
+          }
+        ],
+        "text": "Social History"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Social History</div>"
+      }
+    },
+    {
+      "title": "Vital Signs (Last Filed)",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "8716-3",
+            "display": "Vital signs"
+          }
+        ],
+        "text": "Vital signs"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Vital Signs</div>"
+      }
+    },
+    {
+      "title": "Procedures",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "47519-4",
+            "display": "HISTORY OF PROCEDURES"
+          }
+        ],
+        "text": "HISTORY OF PROCEDURES"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Procedures</div>"
+      }
+    },
+    {
+      "title": "Plan of Treatment",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "18776-5",
+            "display": "Plan of care note"
+          }
+        ],
+        "text": "Plan of care note"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Plan of Treatment</div>"
+      }
+    }
+  ]
+}

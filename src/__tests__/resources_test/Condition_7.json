@@ -1,0 +1,59 @@
+{
+  "resourceType": "Condition",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code": "problem-list-item",
+          "display": "Problem List Item"
+        }
+      ],
+      "text": "Problem List Item"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/0533682a-d8af-4585-8470-d84fe8dbe5e7",
+    "display": "David James Williams"
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)"
+      }
+    ]
+  },
+  "clinicalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "code": "active",
+        "display": "Active"
+      }
+    ]
+  },
+  "onsetDateTime": "2026-01-13T18:23:33.000Z",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns"
+    ],
+    "versionId": "03f42d61-ecb9-41c6-9866-4187e14f442f",
+    "lastUpdated": "2026-01-13T18:23:36.986Z",
+    "author": {
+      "reference": "Practitioner/f7bd3abd-b597-4eaf-adbd-69481a43b645",
+      "display": "Kevin Shaw"
+    },
+    "project": "0c3ebe6d-8c67-419e-8971-f7f34e2de6c0",
+    "compartment": [
+      {
+        "reference": "Project/0c3ebe6d-8c67-419e-8971-f7f34e2de6c0"
+      },
+      {
+        "reference": "Patient/0533682a-d8af-4585-8470-d84fe8dbe5e7"
+      }
+    ]
+  },
+  "id": "856d3666-9d11-4cfb-9e7b-1c56054a5d8f"
+}

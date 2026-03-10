@@ -1,0 +1,39 @@
+{
+  "resourceType": "Encounter",
+  "id": "2a620155-9d12-439e-92b3-5d9815ff4de8",
+  "status": "finished",
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "AMB",
+    "display": "Ambulatory"
+  },
+  "type": [
+    {
+      "coding": [
+        {}
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "Patient/ce862cfe-6559-411e-92e9-e8d005b1c226",
+    "display": "Katherine Madison"
+  },
+  "participant": [
+    {
+      "type": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+              "code": "PPRF",
+              "display": "Primary Performer"
+            }
+          ]
+        }
+      ],
+      "individual": {
+        "reference": "PractitionerRole/27aa3679-130e-498b-bfde-3964a2a1605a"
+      }
+    }
+  ]
+}

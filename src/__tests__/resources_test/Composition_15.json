@@ -1,0 +1,52 @@
+{
+  "resourceType": "Composition",
+  "id": "3db70aff-83f5-4caf-91dc-d23fcc5e03bb",
+  "language": "en-US",
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "34133-9",
+        "display": "Summarization of Episode Note"
+      }
+    ],
+    "text": "Summarization of Episode Note"
+  },
+  "author": [
+    {
+      "display": "Medplum"
+    }
+  ],
+  "date": "2025-01-01T00:00:00-05:00",
+  "title": "Medical Summary",
+  "section": [
+    {
+      "title": "Vital Signs",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "8716-3",
+            "display": "Vital signs"
+          }
+        ],
+        "text": "Vital signs"
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table><thead><tr><th>Vital Sign</th><th>Reading</th><th>Time Taken</th></tr></thead><tbody><tr ID=\"WfLPerc_1\"><td><content ID=\"WfLPerc_1Name\">Weight-for-length Percentile</content><content ID=\"WfLPerc_1GC\">WHO Males, 0-2 years Chart</content>()</td><td>50 %</td><td>05/20/2014 7:36 PM</td></tr><tr ID=\"headCircPerc_1\"><td><content ID=\"headCircPerc_1Name\">Head Circumference Percentile</content><content ID=\"headCircPerc_1GC\">WHO Males, 0-2 years Chart</content>()</td><td>45 %</td><td>05/20/2014 7:36 PM</td></tr><tr ID=\"bmiPerc_2\"><td><content ID=\"bmiPerc_2Name\">Body Mass Index Percentile</content><content ID=\"bmiPerc_2GC\">CDC Males, 2-20 years Chart</content>()</td><td>49 %</td><td>11/20/2015 7:36 PM</td></tr><tr ID=\"WfLPerc_2\"><td><content ID=\"WfLPerc_2Name\">Weight-for-length Percentile</content><content ID=\"WfLPerc_2GC\">CDC Males, 2-20 years Chart</content>()</td><td>48 %</td><td>11/20/2015 7:36 PM</td></tr><tr ID=\"headCircPerc_2\"><td><content ID=\"headCircPerc_2Name\">Head Circumference Percentile</content><content ID=\"headCircPerc_2GC\">CDC Males, 0-36 months Chart</content>()</td><td>50 %</td><td>11/20/2015 7:36 PM</td></tr></tbody></table></div>"
+      },
+      "entry": [
+        {
+          "reference": "Observation/1a70f2d9-d576-466e-ba5c-003da6fb2107",
+          "display": "Vital signs"
+        },
+        {
+          "reference": "Observation/1791f1e7-9642-4b51-be66-997de22370bb",
+          "display": "Vital signs"
+        }
+      ]
+    }
+  ]
+}

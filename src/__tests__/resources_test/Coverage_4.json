@@ -1,0 +1,33 @@
+{
+  "resourceType": "Coverage",
+  "identifier": [
+    {
+      "system": "http://example.com/coverages",
+      "value": "john-smith"
+    }
+  ],
+  "status": "active",
+  "beneficiary": {
+    "reference": "urn:uuid:3b565ddd-0463-497a-a9e1-0ccbfb20e748",
+    "display": "John Smith"
+  },
+  "payor": [
+    {
+      "reference": "urn:uuid:b884050a-bc99-472c-ad66-4f903fe84aa8",
+      "display": "Independence Blue Cross Blue Shield"
+    }
+  ],
+  "subscriber": {
+    "reference": "urn:uuid:3b565ddd-0463-497a-a9e1-0ccbfb20e748",
+    "display": "John Smith"
+  },
+  "relationship": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship",
+        "code": "self",
+        "display": "Self"
+      }
+    ]
+  }
+}

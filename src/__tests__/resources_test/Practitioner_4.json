@@ -1,0 +1,18 @@
+{
+  "resourceType": "Practitioner",
+  "name": [
+    {
+      "family": "Brown-ae1101d1",
+      "given": [
+        "Sarah"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/npi",
+      "value": "NPI-004-ae1101d1"
+    }
+  ],
+  "gender": "female"
+}

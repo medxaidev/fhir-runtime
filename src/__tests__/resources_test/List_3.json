@@ -1,0 +1,18 @@
+{
+  "resourceType": "List",
+  "status": "current",
+  "mode": "working",
+  "subject": {
+    "reference": "urn:uuid:82f09bce-b178-4a5b-9ed5-d83091c1aed4",
+    "display": "Ms. Alex Smith"
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://example.org/listType",
+        "code": "doNotMatch",
+        "display": "Do Not Match"
+      }
+    ]
+  }
+}

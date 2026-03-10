@@ -1,0 +1,94 @@
+{
+  "resourceType": "Patient",
+  "active": true,
+  "gender": "male",
+  "birthDate": "1985-06-15",
+  "name": [
+    {
+      "use": "official",
+      "family": "Doe-ae1101d1",
+      "given": [
+        "John",
+        "Michael"
+      ]
+    },
+    {
+      "use": "nickname",
+      "given": [
+        "Johnny"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/mrn",
+      "value": "MRN-001-ae1101d1"
+    },
+    {
+      "system": "http://example.com/ssn",
+      "value": "SSN-001-ae1101d1"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "555-1001",
+      "use": "home"
+    },
+    {
+      "system": "email",
+      "value": "john.doe-ae1101d1@example.com",
+      "use": "work"
+    }
+  ],
+  "address": [
+    {
+      "use": "home",
+      "line": [
+        "123 Elm St",
+        "Apt 4B"
+      ],
+      "city": "Springfield",
+      "state": "IL",
+      "postalCode": "62701",
+      "country": "US"
+    }
+  ],
+  "managingOrganization": {
+    "reference": "urn:uuid:ebda6e1b-5854-4a12-9195-a19250156d2e"
+  },
+  "generalPractitioner": [
+    {
+      "reference": "urn:uuid:5ae0296d-c824-408f-8c7c-99a3bece18c6"
+    }
+  ],
+  "meta": {
+    "tag": [
+      {
+        "system": "http://example.com/tags",
+        "code": "vip-ae1101d1"
+      }
+    ]
+  },
+  "maritalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "M",
+        "display": "Married"
+      }
+    ]
+  },
+  "communication": [
+    {
+      "language": {
+        "coding": [
+          {
+            "system": "urn:ietf:bcp:47",
+            "code": "en"
+          }
+        ]
+      }
+    }
+  ]
+}

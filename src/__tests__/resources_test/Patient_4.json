@@ -1,0 +1,22 @@
+{
+  "resourceType": "Patient",
+  "active": false,
+  "gender": "female",
+  "birthDate": "2005-08-10",
+  "name": [
+    {
+      "use": "official",
+      "family": "Davis-ae1101d1",
+      "given": [
+        "Alice"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/mrn",
+      "value": "MRN-004-ae1101d1"
+    }
+  ],
+  "deceasedBoolean": false
+}

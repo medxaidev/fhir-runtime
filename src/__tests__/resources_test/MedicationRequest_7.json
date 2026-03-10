@@ -1,0 +1,19 @@
+{
+  "resourceType": "MedicationRequest",
+  "intent": "order",
+  "status": "completed",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "596",
+        "display": "Amlodipine"
+      }
+    ],
+    "text": "Amlodipine"
+  },
+  "subject": {
+    "reference": "urn:uuid:18c0a57b-5a5a-4606-8044-f262fcc1a6b2",
+    "display": "Alex Smith"
+  }
+}

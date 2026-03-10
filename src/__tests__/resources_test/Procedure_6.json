@@ -1,0 +1,26 @@
+{
+  "resourceType": "Procedure",
+  "id": "9c0f070c-2e9e-4be1-a5b5-ff6d0f68123c",
+  "status": "completed",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "61310001",
+        "display": "Nutrition education"
+      }
+    ],
+    "text": "Nutrition education"
+  },
+  "subject": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Katherine Madison"
+  },
+  "performedDateTime": "2014-03-29T10:45:13-05:00",
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#Procedure3"
+    }
+  ]
+}

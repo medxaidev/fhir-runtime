@@ -1,0 +1,34 @@
+{
+  "resourceType": "ActivityDefinition",
+  "status": "active",
+  "id": "lab-procedure-testosterone-free-weakly-bound-serum",
+  "name": "testosterone-free-weakly-bound-measurement-procedure",
+  "title": "Procedure - Testosterone free & weakly bound measurement in in vitro serum",
+  "url": "http://example.org/lab-procedure-testosterone-free-weakly-bound-serum",
+  "identifier": [
+    {
+      "use": "official",
+      "value": "Testosterone_free_weakly_bound_test"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "41018-3",
+        "display": "Testosterone.free+weakly bound [Moles/volume] in Serum or Plasma"
+      }
+    ]
+  },
+  "kind": "ServiceRequest",
+  "observationResultRequirement": [
+    {
+      "reference": "ObservationDefinition/observation-serum-testosterone-free-weakly-bound"
+    }
+  ],
+  "specimenRequirement": [
+    {
+      "reference": "SpecimenDefinition/fingerprick-capillary-blood"
+    }
+  ]
+}

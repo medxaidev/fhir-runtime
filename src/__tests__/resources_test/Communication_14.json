@@ -1,0 +1,22 @@
+{
+  "resourceType": "Communication",
+  "status": "in-progress",
+  "payload": [
+    {
+      "contentString": "Can I schedule a physical for December 23rd?"
+    }
+  ],
+  "topic": {
+    "text": "Schedule a Physical"
+  },
+  "partOf": [
+    {
+      "reference": "urn:uuid:b0fa2a73-1b87-4121-9a04-731bc0c177ea"
+    }
+  ],
+  "sender": {
+    "reference": "urn:uuid:93e4cba2-9db5-11ee-8c90-0242ac876543",
+    "display": "John Smith"
+  },
+  "sent": "2023-12-18T14:01:15.175Z"
+}

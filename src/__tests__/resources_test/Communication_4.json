@@ -1,0 +1,46 @@
+{
+  "resourceType": "Communication",
+  "status": "in-progress",
+  "partOf": [
+    {
+      "reference": "urn:uuid:5e18d560-9223-4f43-a133-76a30200315d"
+    }
+  ],
+  "sender": {
+    "reference": "urn:uuid:3bf50fa0-9c13-48ca-9cd7-1379dbf5f111",
+    "display": "Dr. Alice Smith"
+  },
+  "recipient": [
+    {
+      "reference": "urn:uuid:ec42014b-63af-407e-ba31-c5b080c527a4",
+      "display": "Homer Simpson"
+    }
+  ],
+  "topic": {
+    "coding": [
+      {
+        "display": "Blood Test for Peanut Allergy"
+      }
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "display": "Lab Tests"
+        }
+      ]
+    }
+  ],
+  "sent": "2024-03-21T20:40:42.148Z",
+  "inResponseTo": [
+    {
+      "reference": "urn:uuid:09ab29bd-934f-4f99-b3c5-8a35f85e312b"
+    }
+  ],
+  "payload": [
+    {
+      "contentString": "If you insist... Unfortunately, the results came back positive. You're allergic to peanuts."
+    }
+  ]
+}

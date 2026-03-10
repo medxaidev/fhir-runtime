@@ -1,0 +1,63 @@
+{
+  "resourceType": "Patient",
+  "active": true,
+  "gender": "male",
+  "birthDate": "1978-01-30",
+  "name": [
+    {
+      "use": "official",
+      "family": "Williams-ae1101d1",
+      "given": [
+        "Robert"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/mrn",
+      "value": "MRN-003-ae1101d1"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "789 Pine Rd"
+      ],
+      "city": "Shelbyville",
+      "state": "IL",
+      "postalCode": "62702",
+      "country": "US"
+    },
+    {
+      "use": "work",
+      "line": [
+        "100 Main St"
+      ],
+      "city": "Springfield",
+      "state": "IL"
+    }
+  ],
+  "generalPractitioner": [
+    {
+      "reference": "urn:uuid:c8b24ca7-9716-40dd-a48a-13deb790a464"
+    }
+  ],
+  "meta": {
+    "tag": [
+      {
+        "system": "http://example.com/tags",
+        "code": "urgent-ae1101d1"
+      },
+      {
+        "system": "http://example.com/tags",
+        "code": "flagged-ae1101d1"
+      }
+    ],
+    "security": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+        "code": "R"
+      }
+    ]
+  }
+}

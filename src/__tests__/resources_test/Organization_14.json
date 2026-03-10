@@ -1,0 +1,28 @@
+{
+  "resourceType": "Organization",
+  "id": "03e3df0b-c295-4434-aede-f35a9dafbe00",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-npi",
+      "value": "99999999"
+    }
+  ],
+  "name": "Neighborhood Physicians Practice",
+  "address": [
+    {
+      "line": [
+        "2472 Rocky place"
+      ],
+      "city": "Beaverton",
+      "state": "OR",
+      "postalCode": "97006",
+      "country": "US"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "+1(555)-555-1002"
+    }
+  ]
+}

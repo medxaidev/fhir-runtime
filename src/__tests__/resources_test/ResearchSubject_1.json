@@ -1,0 +1,34 @@
+{
+  "resourceType": "ResearchSubject",
+  "status": "on-study",
+  "study": {
+    "reference": "ResearchStudy/c26ed3ad-fd3f-49ae-ac7a-c6510a2cd20a",
+    "display": "Paliperidone Palmitate PP6M vs PP3M Study"
+  },
+  "individual": {
+    "reference": "Patient/0533682a-d8af-4585-8470-d84fe8dbe5e7",
+    "display": "David Williams"
+  },
+  "assignedArm": "PP6M (6-Month Paliperidone Palmitate)",
+  "period": {
+    "start": "2024-04-01"
+  },
+  "id": "3de54afe-d6c5-4dda-8aa9-345f817ee8ed",
+  "meta": {
+    "versionId": "ef72c1d9-08d1-42ba-abe5-9711f8caff8e",
+    "lastUpdated": "2026-01-10T23:48:48.679Z",
+    "author": {
+      "reference": "Practitioner/ed6a2d0f-af13-4f98-9fe8-70d209a9d29a",
+      "display": "David Yanez"
+    },
+    "project": "0c3ebe6d-8c67-419e-8971-f7f34e2de6c0",
+    "compartment": [
+      {
+        "reference": "Project/0c3ebe6d-8c67-419e-8971-f7f34e2de6c0"
+      },
+      {
+        "reference": "Patient/0533682a-d8af-4585-8470-d84fe8dbe5e7"
+      }
+    ]
+  }
+}

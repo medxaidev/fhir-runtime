@@ -1,0 +1,43 @@
+{
+  "resourceType": "ActivityDefinition",
+  "id": "lab-procedure-electrolytes-panel-blood",
+  "status": "active",
+  "name": "electrolytes-panel-blood-measurement-procedure",
+  "title": "Procedure - Electrolytes panel measurement in blood",
+  "url": "http://example.org/lab-procedure-electrolytes-panel-blood",
+  "identifier": [
+    {
+      "use": "official",
+      "value": "electrolytes_panel_test"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "55231-5",
+        "display": "Electrolytes panel - Blood"
+      }
+    ]
+  },
+  "kind": "ServiceRequest",
+  "observationResultRequirement": [
+    {
+      "reference": "ObservationDefinition/observation-blood-potassium"
+    },
+    {
+      "reference": "ObservationDefinition/observation-blood-chloride"
+    },
+    {
+      "reference": "ObservationDefinition/observation-blood-carbon-dioxide"
+    },
+    {
+      "reference": "ObservationDefinition/observation-blood-sodium"
+    }
+  ],
+  "specimenRequirement": [
+    {
+      "reference": "SpecimenDefinition/fingerprick-capillary-blood"
+    }
+  ]
+}

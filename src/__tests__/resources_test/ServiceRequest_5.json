@@ -1,0 +1,18 @@
+{
+  "resourceType": "ServiceRequest",
+  "status": "active",
+  "intent": "plan",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "409063005",
+        "display": "Counseling-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:dce7c644-7578-4f45-b4b3-85bbadd805ae"
+  },
+  "authoredOn": "2025-06-01"
+}

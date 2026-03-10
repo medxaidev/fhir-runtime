@@ -1,0 +1,55 @@
+{
+  "resourceType": "DiagnosticReport",
+  "identifier": [
+    {
+      "system": "http://acme.com/lab/reports",
+      "value": "5234342"
+    }
+  ],
+  "status": "preliminary",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+          "code": "HM"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "57698-3",
+        "display": "Lipid panel with direct LDL - Serum or Plasma"
+      }
+    ],
+    "text": "Lipid Panel"
+  },
+  "subject": {
+    "reference": "urn:uuid:9812cba2-9db5-11ee-8c90-0242ac104829",
+    "display": "Benny Hill"
+  },
+  "effectiveDateTime": "2011-03-04T08:30:00+11:00",
+  "issued": "2013-01-27T11:45:33+11:00",
+  "performer": [
+    {
+      "display": "Acme Laboratory, Inc"
+    }
+  ],
+  "result": [
+    {
+      "reference": "urn:uuid:3385ee9e-f180-4e8b-8b12-cf4833144e7b"
+    },
+    {
+      "reference": "urn:uuid:94e4378e-9336-4538-98f5-47dcf1ded634"
+    },
+    {
+      "reference": "urn:uuid:3b7c71bb-1357-4cac-88d7-3e374676e988"
+    },
+    {
+      "reference": "urn:uuid:f2aedf86-166c-4f14-995e-9320ebab06e7"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "resourceType": "CarePlan",
+  "status": "active",
+  "intent": "plan",
+  "title": "HTN Management-ae1101d1",
+  "subject": {
+    "reference": "urn:uuid:35c8f6c3-4126-4bc2-af08-ad9662a7f40a"
+  },
+  "addresses": [
+    {
+      "reference": "urn:uuid:7d897366-f3df-45b0-8c56-6de023ac7a75"
+    }
+  ]
+}

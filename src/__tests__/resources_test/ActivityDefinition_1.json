@@ -1,0 +1,48 @@
+{
+  "resourceType": "ActivityDefinition",
+  "url": "https://www.medplum.com/activitydefinition/comprehensive-laboratory-screening",
+  "name": "Comprehensive Laboratory Screening",
+  "status": "active",
+  "extension": [
+    {
+      "url": "http://medplum.com/fhir/StructureDefinition/applicable-charge-definition",
+      "valueCanonical": "https://www.medplum.com/chargeItemDefinition/simpleinitialvisit"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "26604007",
+        "display": "Complete blood count"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "108252007",
+        "display": "Laboratory procedure (procedure)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "371361000119107",
+        "display": "Comprehensive metabolic panel (procedure)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "16254007",
+        "display": "Lipid panel (procedure)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "27171005",
+        "display": "Urinalysis (procedure)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "35650009",
+        "display": "Thyroid panel (procedure)"
+      }
+    ]
+  },
+  "kind": "ServiceRequest",
+  "intent": "order"
+}

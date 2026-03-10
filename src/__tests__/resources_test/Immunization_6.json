@@ -1,0 +1,37 @@
+{
+  "resourceType": "Immunization",
+  "id": "e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92",
+  "status": "completed",
+  "vaccineCode": {
+    "coding": [
+      {
+        "system": "http://nucc.org/cvx",
+        "code": "88",
+        "display": "influenza virus vaccine, unspecified formulation"
+      }
+    ],
+    "text": "influenza virus vaccine, unspecified formulation"
+  },
+  "patient": {
+    "reference": "Patient/ce862cfe-6559-411e-92e9-e8d005b1c226",
+    "display": "Katherine Madison"
+  },
+  "occurrenceDateTime": "2010-08-15T00:00:00Z",
+  "lotNumber": "1",
+  "performer": [
+    {
+      "actor": {
+        "reference": "PractitionerRole/7ae96c77-6b8f-4e5a-9938-2f6392857789"
+      }
+    }
+  ],
+  "extension": [
+    {
+      "url": "https://medplum.com/fhir/StructureDefinition/ccda-narrative-reference",
+      "valueString": "#immun1"
+    }
+  ],
+  "manufacturer": {
+    "display": "Health LS - Immuno Inc."
+  }
+}

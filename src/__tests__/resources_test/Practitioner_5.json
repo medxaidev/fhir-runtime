@@ -1,0 +1,29 @@
+{
+  "resourceType": "Practitioner",
+  "name": [
+    {
+      "family": "Davis-ae1101d1",
+      "given": [
+        "Michael",
+        "J"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/npi",
+      "value": "NPI-005-ae1101d1"
+    }
+  ],
+  "gender": "male",
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "555-0200"
+    },
+    {
+      "system": "email",
+      "value": "michael.davis-ae1101d1@hospital.com"
+    }
+  ]
+}

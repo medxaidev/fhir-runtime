@@ -1,0 +1,29 @@
+{
+  "resourceType": "ChargeItemDefinition",
+  "url": "https://www.medplum.com/chargeItemDefinition/simpleinitialvisit",
+  "title": "Simple Initial Visit",
+  "status": "active",
+  "propertyGroup": [
+    {
+      "priceComponent": [
+        {
+          "type": "base",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.ama-assn.org/go/cpt",
+                "code": "99203",
+                "display": "New patient office visit"
+              }
+            ]
+          },
+          "factor": 1,
+          "amount": {
+            "value": 180,
+            "currency": "USD"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "resourceType": "Medication",
+  "code": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "197361",
+        "display": "Amoxicillin-ae1101d1"
+      }
+    ]
+  },
+  "status": "active",
+  "manufacturer": {
+    "reference": "urn:uuid:5206fbde-d14b-432e-b5da-98b8d26dcacd"
+  }
+}

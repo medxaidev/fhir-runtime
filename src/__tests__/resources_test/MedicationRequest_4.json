@@ -1,0 +1,15 @@
+{
+  "resourceType": "MedicationRequest",
+  "status": "stopped",
+  "intent": "order",
+  "medicationReference": {
+    "reference": "urn:uuid:a3ce056b-c505-4c72-b214-77b99a623737"
+  },
+  "subject": {
+    "reference": "urn:uuid:3f8e5eef-a99f-4ffa-8f1c-772ff18b2223"
+  },
+  "requester": {
+    "reference": "urn:uuid:c8b24ca7-9716-40dd-a48a-13deb790a464"
+  },
+  "authoredOn": "2025-04-01"
+}

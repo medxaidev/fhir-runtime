@@ -1,0 +1,22 @@
+{
+  "resourceType": "Patient",
+  "active": true,
+  "gender": "male",
+  "birthDate": "1960-12-25",
+  "name": [
+    {
+      "use": "official",
+      "family": "Wilson-ae1101d1",
+      "given": [
+        "George"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.com/mrn",
+      "value": "MRN-006-ae1101d1"
+    }
+  ],
+  "deceasedDateTime": "2025-01-15T10:30:00Z"
+}

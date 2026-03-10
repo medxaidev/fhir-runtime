@@ -1,0 +1,43 @@
+{
+  "resourceType": "MedicationRequest",
+  "status": "active",
+  "intent": "order",
+  "requester": {
+    "reference": "Practitioner/f7bd3abd-b597-4eaf-adbd-69481a43b645",
+    "display": "Kevin Shaw"
+  },
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "1161611",
+        "display": "metformin Pill"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/0533682a-d8af-4585-8470-d84fe8dbe5e7",
+    "display": "David James Williams"
+  },
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
+    ],
+    "versionId": "30a55573-ba8f-4d54-963f-ccc4f3cc17fb",
+    "lastUpdated": "2026-01-13T18:23:50.506Z",
+    "author": {
+      "reference": "Practitioner/f7bd3abd-b597-4eaf-adbd-69481a43b645",
+      "display": "Kevin Shaw"
+    },
+    "project": "0c3ebe6d-8c67-419e-8971-f7f34e2de6c0",
+    "compartment": [
+      {
+        "reference": "Project/0c3ebe6d-8c67-419e-8971-f7f34e2de6c0"
+      },
+      {
+        "reference": "Patient/0533682a-d8af-4585-8470-d84fe8dbe5e7"
+      }
+    ]
+  },
+  "id": "46185986-734f-4399-a5d0-3b88e8e11749"
+}

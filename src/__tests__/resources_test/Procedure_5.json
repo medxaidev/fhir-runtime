@@ -1,0 +1,20 @@
+{
+  "resourceType": "Procedure",
+  "status": "completed",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "274025005",
+        "display": "EKG-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:dce7c644-7578-4f45-b4b3-85bbadd805ae"
+  },
+  "encounter": {
+    "reference": "urn:uuid:041fee01-2381-407d-9768-b9d28c63933c"
+  },
+  "performedDateTime": "2025-06-01T11:45:00Z"
+}

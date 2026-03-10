@@ -1,0 +1,13 @@
+{
+  "resourceType": "Medication",
+  "code": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "198440",
+        "display": "Omeprazole-ae1101d1"
+      }
+    ]
+  },
+  "status": "inactive"
+}

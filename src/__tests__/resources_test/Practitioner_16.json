@@ -1,0 +1,23 @@
+{
+  "resourceType": "Practitioner",
+  "id": "7ae96c77-6b8f-4e5a-9938-2f6392857789",
+  "name": [
+    {
+      "family": "Assigned",
+      "given": [
+        "Amanda"
+      ]
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "1021 Health Drive"
+      ],
+      "city": "Ann Arbor",
+      "state": "MI",
+      "postalCode": "99099",
+      "country": "US"
+    }
+  ]
+}

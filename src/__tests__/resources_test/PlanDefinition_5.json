@@ -1,0 +1,71 @@
+{
+  "resourceType": "PlanDefinition",
+  "status": "active",
+  "id": "example-lab-service-womens-health",
+  "url": "http://example.org/PlanDefinition/lab-service-womens-health",
+  "identifier": [
+    {
+      "use": "official",
+      "value": "womens_health_panel_test"
+    }
+  ],
+  "name": "womens-health-panel",
+  "title": "Women's Health Panel",
+  "description": "Women's health-related laboratory tests",
+  "type": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/uv/order-catalog/CodeSystem/laboratory-service-definition-type",
+        "code": "panel",
+        "display": "collection of tests and panels performed on one or more in vitro biologic specimens"
+      }
+    ]
+  },
+  "action": [
+    {
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "14715-7",
+              "display": "Estradiol (E2) [Moles/volume] in Serum or Plasma"
+            }
+          ]
+        }
+      ],
+      "definitionCanonical": "http://example.org/lab-procedure-estradiol-e2-serum"
+    },
+    {
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55231-5",
+              "display": "Electrolytes panel - Blood"
+            }
+          ]
+        }
+      ],
+      "definitionCanonical": "http://example.org/lab-procedure-electrolytes-panel-blood"
+    }
+  ],
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "task"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code": "LABOE",
+            "display": "laboratory test order entry task"
+          }
+        ]
+      }
+    }
+  ]
+}

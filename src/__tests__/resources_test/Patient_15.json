@@ -1,0 +1,21 @@
+{
+  "resourceType": "Patient",
+  "active": true,
+  "name": [
+    {
+      "family": "Smith",
+      "given": [
+        "John"
+      ]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1990-08-30",
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "888-555-8439",
+      "use": "mobile"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "resourceType": "Condition",
+  "clinicalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "code": "resolved"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "195662009",
+        "display": "Pneumonia-ae1101d1"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:uuid:393e7ef3-6d97-429c-bdb4-aa70945a359a"
+  },
+  "encounter": {
+    "reference": "urn:uuid:9c20200e-e11a-4982-a8ea-dadc420bbaaf"
+  },
+  "onsetDateTime": "2025-03-10",
+  "abatementDateTime": "2025-03-25"
+}

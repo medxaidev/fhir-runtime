@@ -1,0 +1,43 @@
+{
+  "resourceType": "RelatedPerson",
+  "id": "345e3164-be73-43ce-95d4-dc3aa226d619",
+  "patient": {
+    "reference": "Patient/d7830f15-e2c8-4cee-aa2d-a24b36080d53",
+    "display": "Alice Jones Newman"
+  },
+  "relationship": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+          "code": "SPS",
+          "display": "SPOUSE"
+        }
+      ],
+      "text": "SPOUSE"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "prefix": [
+        "Mr"
+      ],
+      "family": "Newman",
+      "given": [
+        "Matthew"
+      ]
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "1357 Amber Dr"
+      ],
+      "city": "Beaverton",
+      "state": "OR",
+      "postalCode": "97006",
+      "country": "US"
+    }
+  ]
+}

@@ -261,15 +261,21 @@ function inferComplexType(obj: Record<string, unknown>): string {
     return 'Address';
   }
 
-  // Identifier: { system, value } (no code)
+  // ContactPoint vs Identifier — both have { system, value } shape.
+  // Disambiguate using ContactPoint.system known values.
   if ('system' in obj && 'value' in obj && !('code' in obj)) {
+    const CONTACT_POINT_SYSTEMS = new Set(['phone', 'fax', 'email', 'pager', 'url', 'sms', 'other']);
+    if (typeof obj.system === 'string' && CONTACT_POINT_SYSTEMS.has(obj.system)) {
+      return 'ContactPoint';
+    }
+    // If 'use' is a ContactPoint.use value, also prefer ContactPoint
+    if ('use' in obj) {
+      const CONTACT_POINT_USES = new Set(['home', 'work', 'temp', 'old', 'mobile']);
+      if (typeof obj.use === 'string' && CONTACT_POINT_USES.has(obj.use)) {
+        return 'ContactPoint';
+      }
+    }
     return 'Identifier';
-  }
-
-  // ContactPoint: { system, value } with system being phone/fax/email/pager/url/sms/other
-  if ('system' in obj && 'value' in obj && 'code' in obj) {
-    // Already matched as Coding above, but just in case
-    return 'Coding';
   }
 
   // Attachment: { contentType } or { data }
@@ -392,6 +398,16 @@ function isTypeCompatible(inferredType: string, allowedType: string): boolean {
     // BackboneElement is compatible with any non-primitive type
     const primitives = new Set(['string', 'boolean', 'integer', 'decimal', 'null', 'array', 'unknown']);
     return !primitives.has(allowedType);
+  }
+
+  // Shape-ambiguous complex types — these share the same { system, value }
+  // shape and cannot be reliably distinguished by heuristics alone.
+  // Trust the profile's declared type when the inferred type is ambiguous.
+  if (
+    (inferredType === 'Identifier' && allowedType === 'ContactPoint') ||
+    (inferredType === 'ContactPoint' && allowedType === 'Identifier')
+  ) {
+    return true;
   }
 
   // Element type (base of all) — very permissive
