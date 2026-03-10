@@ -1,7 +1,7 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.6.0  
+> **Version:** 0.7.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
@@ -9,22 +9,22 @@
 
 ---
 
-## v0.6.0 Update
+## v0.7.0 Update
 
-`v0.6.0` completes the **IG Package & Canonical Resolution (STAGE-4)**.
+`v0.7.0` completes the **Server/Persistence Integration (STAGE-5)**.
 
 This release adds:
 
-- `NpmPackageLoader` — load conformance resources from extracted FHIR IG NPM packages
-- `PackageManager` — register, discover, and manage multiple IG packages
-- Cross-package canonical URL resolution with version awareness (`url|version`)
-- Dependency graph resolution with topological sorting and circular dependency detection
-- `.index.json` fast lookup with filesystem scan fallback
-- US Core IG (v9.0.0) successfully loaded and validated
+- `parseSearchParameter()` / `parseSearchParametersFromBundle()` — typed SearchParameter parsing
+- `extractSearchValues()` / `extractAllSearchValues()` — FHIRPath-based search index value extraction
+- `extractReferences()` / `extractReferencesFromBundle()` — Reference tree walking
+- `validateReferenceTargets()` — Reference target type validation against profiles
+- `buildCapabilityFragment()` — CapabilityStatement REST fragment generation
+- `ResourceTypeRegistry` + `FHIR_R4_RESOURCE_TYPES` — complete FHIR R4 resource type catalog
 
-This release remains **backward compatible** with `v0.5.0`. `NpmPackageLoader` implements `StructureDefinitionLoader` for drop-in integration with `CompositeLoader`.
+All 5 STAGE plans are now complete. **v1.0 API freeze** is pending comprehensive evaluation and testing.
 
-Integration & API Freeze is planned for **STAGE-5 (`v1.0`)**.
+This release remains **backward compatible** with `v0.6.0`.
 
 ---
 
@@ -70,6 +70,7 @@ src/
 ├── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcome builders
 ├── terminology/  ← Binding validation, InMemoryTerminologyProvider, CS/VS registries
 ├── package/      ← IG package loading, NpmPackageLoader, PackageManager, canonical resolution
+├── integration/  ← SearchParameter, search value extraction, references, CapabilityStatement
 └── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
 ```
 
@@ -82,11 +83,12 @@ model ← parser ← context ← profile ← validator
 
 terminology → model, provider (binding validation, in-memory registries)
 package → model, parser, context (IG package loading)
+integration → model, parser, context, fhirpath (search/reference/capability)
 pipeline → model, validator, provider (wraps existing infrastructure)
 pipeline → fhirpath (via InvariantValidationStep)
 ```
 
-Strictly enforced: each module may only import from modules to its left. The `fhirpath` module is used by `validator` for invariant evaluation. The `pipeline` module wraps validator, provider, and fhirpath as composable steps.
+Strictly enforced: each module may only import from modules to its left. The `fhirpath` module is used by `validator` for invariant evaluation. The `integration` module uses `fhirpath` for SearchParameter expression evaluation. The `pipeline` module wraps validator, provider, and fhirpath as composable steps.
 
 ### Key Design Principles
 
@@ -283,9 +285,19 @@ Three error class hierarchies for exceptional cases:
 
 ### Test Coverage
 
-- **3,266 tests** across all modules
-- **82 test files** covering model, parser, context, profile, validator, FHIRPath, provider, terminology, package, and pipeline
+- **3,376 tests** across all modules
+- **88 test files** covering model, parser, context, profile, validator, FHIRPath, provider, terminology, package, integration, and pipeline
 - **100% pass rate** on HAPI-generated snapshot fixtures (35/35)
+
+### v0.7 Integration Coverage
+
+- **110 new tests** across 6 integration test files
+- **SearchParameter parser** — 24 tests
+- **Search value extractor** — 21 tests (string, token, reference, date, number, quantity, uri)
+- **Reference extractor** — 22 tests (literal, contained, absolute, logical, bundle)
+- **CapabilityStatement builder** — 12 tests
+- **Resource type registry** — 16 tests
+- **End-to-end integration** — 15 tests
 
 ### v0.6 Package Coverage
 
@@ -330,14 +342,14 @@ Three error class hierarchies for exceptional cases:
 | Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
 | Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
-| Public exports           | ~296 symbols across 10 modules                 |
-| Test count               | 3,266 tests across 82 test files               |
+| Public exports           | ~280+ symbols across 11 modules                |
+| Test count               | 3,376 tests across 88 test files               |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.6.md`](../specs/engine-capability-contract-v0.6.md)
-- **API Reference:** [`docs/api/fhir-runtime-api-v0.6.md`](../api/fhir-runtime-api-v0.6.md)
-- **Release Notes:** [`docs/releases/v0.6.0.md`](../releases/v0.6.0.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.7.md`](../specs/engine-capability-contract-v0.7.md)
+- **API Reference:** [`docs/api/fhir-runtime-api-v0.7.md`](../api/fhir-runtime-api-v0.7.md)
+- **Release Notes:** [`docs/releases/v0.7.0.md`](../releases/v0.7.0.md)
 - **Main README:** [`README.md`](../../README.md)

@@ -5,6 +5,65 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-03-10
+
+### Added
+
+#### Server/Persistence Integration (STAGE-5)
+
+- **New module: `src/integration/`** — SearchParameter parsing, search value extraction, reference extraction, CapabilityStatement generation
+  - `parseSearchParameter()` — parse a single SearchParameter JSON into typed object
+  - `parseSearchParametersFromBundle()` — batch parse SearchParameters from a FHIR Bundle
+  - `extractSearchValues()` — extract search index values for a single SearchParameter from a resource using FHIRPath
+  - `extractAllSearchValues()` — extract search index values for all applicable SearchParameters from a resource
+  - `extractReferences()` — walk a resource tree and extract all Reference elements
+  - `extractReferencesFromBundle()` — extract all References from a FHIR Bundle
+  - `validateReferenceTargets()` — validate Reference target types against profile constraints
+  - `buildCapabilityFragment()` — generate CapabilityStatement REST fragments from profiles and search parameters
+  - `ResourceTypeRegistry` class — registry of known FHIR resource types with metadata
+  - `FHIR_R4_RESOURCE_TYPES` constant — complete list of 148 FHIR R4 resource types
+
+- **Search value extraction** supports all FHIR search parameter types:
+  - `string` — HumanName, Address, plain string extraction
+  - `token` — Coding, CodeableConcept, Identifier, boolean, code extraction
+  - `reference` — literal, absolute, contained reference extraction with type/id parsing
+  - `date` — date, dateTime, Period extraction
+  - `number` — numeric value extraction
+  - `quantity` — Quantity extraction with value, unit, system, code
+  - `uri` — URI string extraction
+
+- **Reference extraction** classifies references into 4 types:
+  - `literal` — relative references (e.g., `Patient/123`)
+  - `absolute` — full URL references (e.g., `https://example.org/fhir/Patient/456`)
+  - `contained` — fragment references (e.g., `#contained-1`)
+  - `logical` — identifier-based references
+
+- **Type definitions** — 12 new type exports: `SearchParamType`, `SearchParameter`, `SearchIndexValue`, `SearchIndexEntry`, `ReferenceType`, `ReferenceInfo`, `CapabilitySearchParam`, `CapabilityRestResource`, `CapabilityStatementRest`, `ResourceTypeInfo`
+
+- **New exports in `src/index.ts`** — 12 type exports + 11 value exports from integration module
+
+#### Testing
+
+- 110 new tests across 6 test files in `src/integration/__tests__/`
+  - `search-parameter-parser.test.ts` (24 tests — valid parsing, error cases, all types)
+  - `search-value-extractor.test.ts` (21 tests — string, token, reference, date, number, quantity, uri)
+  - `reference-extractor.test.ts` (22 tests — literal, contained, absolute, logical, bundle, validation)
+  - `capability-builder.test.ts` (12 tests — profiles, search params, dedup, sorting, modes)
+  - `resource-type-registry.test.ts` (16 tests — CRUD, fromList, concrete types, FHIR_R4 list)
+  - `integration.test.ts` (15 tests — end-to-end parse+extract, bundle workflow, capability gen)
+- All v0.6.0 tests remain 100% passing (backward compatibility verified)
+- Total: 3,376 tests across 88 test files
+
+### Notes
+
+- `extractSearchValues()` uses the existing FHIRPath engine (`evalFhirPath`) for expression evaluation
+- No SQL generation or persistence logic — separation of concerns maintained (fhir-runtime vs fhir-persistence)
+- `ResourceTypeRegistry.fromContext()` supports building registry from FhirContext with loaded StructureDefinitions
+- Version bumped to v0.7.0 (not v1.0-rc) — comprehensive evaluation and testing required before API freeze
+- This release remains backward compatible with v0.6.0
+
+---
+
 ## [0.6.0] - 2026-03-09
 
 ### Added

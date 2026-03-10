@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-green)](https://nodejs.org/)
-[![Tests](https://img.shields.io/badge/Tests-3266%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/Tests-3376%20passing-brightgreen)]()
 
 `fhir-runtime` is a **structural FHIR R4 engine** that provides comprehensive capabilities for parsing, validating, and manipulating FHIR resources — without requiring a running FHIR server, database, or external terminology service.
 
@@ -22,6 +22,7 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 - Validation Pipeline (STAGE-2) — Composable multi-step pipeline with hooks, batch validation, and enhanced error messages
 - Terminology Binding (STAGE-3) — InMemoryTerminologyProvider, binding strength validation, CS/VS registries
 - IG Package Loading (STAGE-4) — NpmPackageLoader, PackageManager, cross-package canonical resolution
+- Server/Persistence Integration (STAGE-5) — SearchParameter parsing, search value extraction, reference extraction, CapabilityStatement generation
 - Provider Abstraction Layer (STAGE-1) — Terminology and reference contracts with default NoOp implementations
 - Snapshot Generation — HAPI-equivalent differential expansion
 - FHIRPath Engine — 60+ functions, Pratt parser with AST caching
@@ -32,9 +33,10 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 
 ### Quality & Testing
 
-- 3,266 tests across 82 test files — 100% passing
+- 3,376 tests across 88 test files — 100% passing
 - US Core IG verified — 70 StructureDefinitions loaded from real US Core v9.0.0 package
 - IG package tested — 138 package tests including real US Core integration
+- Integration tested — 110 tests for SearchParameter, value extraction, references, capability builder
 - HAPI-equivalent — 35/35 snapshot fixtures match HAPI output
 - Stress tested — Malformed input, deep nesting, large payloads, concurrency
 - Zero dependencies — Pure TypeScript, no external runtime deps
@@ -182,9 +184,9 @@ const hasOfficial = evalFhirPathBoolean(
 ## 📚 Documentation
 
 - **[Technical Overview](docs/overview/fhir-runtime-overview.md)** — Architecture, design principles, capabilities
-- **[API Reference](docs/api/fhir-runtime-api-v0.6.md)** — Public API reference for the v0.6.0 release surface
-- **[Capability Contract](docs/specs/engine-capability-contract-v0.6.md)** — Behavioral guarantees and release contract for v0.6.0
-- **[Release Notes v0.6.0](docs/releases/v0.6.0.md)** — Detailed v0.6.0 release notes
+- **[API Reference](docs/api/fhir-runtime-api-v0.7.md)** — Public API reference for the v0.7.0 release surface
+- **[Capability Contract](docs/specs/engine-capability-contract-v0.7.md)** — Behavioral guarantees and release contract for v0.7.0
+- **[Release Notes v0.7.0](docs/releases/v0.7.0.md)** — Detailed v0.7.0 release notes
 
 ---
 
@@ -193,10 +195,23 @@ const hasOfficial = evalFhirPathBoolean(
 ### Test Coverage
 
 ```
-✅ 3,266 tests across 82 test files
+✅ 3,376 tests across 88 test files
 ✅ 100% pass rate on HAPI snapshot fixtures (35/35)
-✅ All 10 modules fully tested (model, parser, context, profile, validator, fhirpath, provider, terminology, package, pipeline)
+✅ All 11 modules fully tested (model, parser, context, profile, validator, fhirpath, provider, terminology, package, pipeline, integration)
 ✅ IG package tested — 138 package tests including real US Core v9.0.0 integration
+✅ Integration tested — 110 tests for SearchParameter, value extraction, references, capability
+```
+
+### v0.7.0 Integration Coverage
+
+```
+✅ 110 new tests across 6 integration test files
+✅ SearchParameter parser — 24 tests
+✅ Search value extractor — 21 tests (string, token, reference, date, number, quantity, uri)
+✅ Reference extractor — 22 tests (literal, contained, absolute, logical, bundle)
+✅ CapabilityStatement builder — 12 tests
+✅ Resource type registry — 16 tests
+✅ End-to-end integration — 15 tests
 ```
 
 ### v0.6.0 Package Coverage
@@ -251,6 +266,7 @@ src/
 ├── provider/     ← Terminology/reference abstractions, NoOp providers, OperationOutcomeBuilder
 ├── terminology/  ← Binding validation, InMemoryTerminologyProvider, CS/VS registries
 ├── package/      ← IG package loading, NpmPackageLoader, PackageManager, canonical resolution
+├── integration/  ← SearchParameter, search value extraction, references, CapabilityStatement
 └── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
 ```
 
@@ -289,18 +305,28 @@ MIT License - see [LICENSE](LICENSE) file for details.
 | Property                 | Value                           |
 | ------------------------ | ------------------------------- |
 | Package name             | `fhir-runtime`                  |
-| Version                  | 0.6.0                           |
+| Version                  | 0.7.0                           |
 | License                  | MIT                             |
 | FHIR Version             | R4 (4.0.1)                      |
 | Module formats           | ESM + CJS                       |
 | Runtime dependencies     | None (zero dependencies)        |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions |
-| Public exports           | ~296 symbols across 10 modules  |
-| Test coverage            | 3,266 tests across 82 files     |
+| Public exports           | ~280+ symbols across 11 modules |
+| Test coverage            | 3,376 tests across 88 files     |
 
 ---
 
 ## 🆕 Release Highlights
+
+### v0.7.0
+
+- **SearchParameter Parsing** — `parseSearchParameter()` and `parseSearchParametersFromBundle()` for typed SearchParameter resource parsing
+- **Search Value Extraction** — `extractSearchValues()` and `extractAllSearchValues()` using FHIRPath to extract indexable values from resources
+- **Reference Extraction** — `extractReferences()` walks resource tree to find all Reference elements (literal, logical, contained, absolute)
+- **CapabilityStatement Builder** — `buildCapabilityFragment()` generates REST fragments from profiles and search parameters
+- **Resource Type Registry** — `ResourceTypeRegistry` with `FHIR_R4_RESOURCE_TYPES` (148 R4 resource types)
+- **Reference Validation** — `validateReferenceTargets()` checks reference target types against profile constraints
+- **110 new tests** — 3,376 total across 88 test files
 
 ### v0.6.0
 

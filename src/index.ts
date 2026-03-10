@@ -345,6 +345,33 @@ export {
   resolveAllByType,
 } from './package/index.js';
 
+// ─── Integration module (STAGE-5: v0.7.0) ────────────────────────────────
+export type {
+  SearchParamType,
+  SearchParameter,
+  SearchIndexValue,
+  SearchIndexEntry,
+  ReferenceType,
+  ReferenceInfo,
+  CapabilitySearchParam,
+  CapabilityRestResource,
+  CapabilityStatementRest,
+  ResourceTypeInfo,
+} from './integration/index.js';
+
+export {
+  parseSearchParameter,
+  parseSearchParametersFromBundle,
+  extractSearchValues,
+  extractAllSearchValues,
+  extractReferences,
+  extractReferencesFromBundle,
+  validateReferenceTargets,
+  buildCapabilityFragment,
+  ResourceTypeRegistry,
+  FHIR_R4_RESOURCE_TYPES,
+} from './integration/index.js';
+
 // ─── Pipeline module (STAGE-2: v0.4.0) ──────────────────────────────────
 export type {
   ValidationStep,
