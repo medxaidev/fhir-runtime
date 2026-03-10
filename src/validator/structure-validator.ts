@@ -175,6 +175,12 @@ export class StructureValidator {
       return;
     }
 
+    // Pre-compute which parent backbone paths are absent so we can skip
+    // cardinality checks on their children.  A child element like
+    // "Patient.link.other" (min=1) must NOT raise an error when the
+    // optional parent "Patient.link" (min=0) is simply not present.
+    const absentParents = new Set<string>();
+
     for (const element of profile.elements.values()) {
       // Skip root element (already validated via resourceType check)
       if (element.path === profile.type) continue;
@@ -182,8 +188,32 @@ export class StructureValidator {
       // Skip slice-specific elements (handled by slicing validation)
       if (element.sliceName) continue;
 
+      // --- Check if a parent backbone element is absent ----------------------
+      // If any ancestor of this element's path has already been determined
+      // absent, we must skip cardinality (and all other) checks because
+      // the parent itself is optional and not present.
+      const pathSegments = element.path.split('.');
+      let parentAbsent = false;
+      if (pathSegments.length > 2) {
+        // Build each ancestor path and check
+        for (let i = 2; i < pathSegments.length; i++) {
+          const ancestorPath = pathSegments.slice(0, i).join('.');
+          if (absentParents.has(ancestorPath)) {
+            parentAbsent = true;
+            break;
+          }
+        }
+      }
+      if (parentAbsent) continue;
+
       // Extract values from resource at this element's path
       const values = extractValues(resource as unknown as Record<string, unknown>, element.path);
+
+      // If this element is absent and optional, record it so that its
+      // required children are not checked.
+      if (values.length === 0 && element.min === 0) {
+        absentParents.add(element.path);
+      }
 
       // Validate cardinality
       validateCardinality(element, values, issues);

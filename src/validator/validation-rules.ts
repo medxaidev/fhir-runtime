@@ -137,6 +137,19 @@ const STRING_FHIR_TYPES = new Set([
 ]);
 
 /**
+ * FHIRPath System type URLs that are compatible with JS `string`.
+ *
+ * Core StructureDefinitions use these URLs (instead of plain type names)
+ * for primitive elements like `Resource.id` whose type is
+ * `http://hl7.org/fhirpath/System.String`.
+ *
+ * @internal
+ */
+const FHIRPATH_STRING_TYPES = new Set([
+  'http://hl7.org/fhirpath/System.String',
+]);
+
+/**
  * Infer the FHIR type from a JavaScript value.
  *
  * Uses heuristics to determine the most likely FHIR type based on
@@ -316,6 +329,34 @@ function isTypeCompatible(inferredType: string, allowedType: string): boolean {
 
   // String-like primitives are all compatible with 'string'
   if (inferredType === 'string' && STRING_FHIR_TYPES.has(allowedType)) {
+    return true;
+  }
+
+  // FHIRPath System types — these appear in core StructureDefinitions for
+  // primitive elements like Resource.id whose type is
+  // "http://hl7.org/fhirpath/System.String" rather than plain "string".
+  if (inferredType === 'string' && FHIRPATH_STRING_TYPES.has(allowedType)) {
+    return true;
+  }
+  if (inferredType === 'boolean' && allowedType === 'http://hl7.org/fhirpath/System.Boolean') {
+    return true;
+  }
+  if (inferredType === 'integer' && allowedType === 'http://hl7.org/fhirpath/System.Integer') {
+    return true;
+  }
+  if (
+    (inferredType === 'decimal' || inferredType === 'integer') &&
+    allowedType === 'http://hl7.org/fhirpath/System.Decimal'
+  ) {
+    return true;
+  }
+  if (inferredType === 'string' && allowedType === 'http://hl7.org/fhirpath/System.DateTime') {
+    return true;
+  }
+  if (inferredType === 'string' && allowedType === 'http://hl7.org/fhirpath/System.Date') {
+    return true;
+  }
+  if (inferredType === 'string' && allowedType === 'http://hl7.org/fhirpath/System.Time') {
     return true;
   }
 

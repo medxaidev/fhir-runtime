@@ -1,6 +1,6 @@
 {
   "name": "fhir-runtime",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Production-ready FHIR R4 runtime engine for TypeScript/Node.js with zero dependencies. Includes parser, validator, snapshot generator, and FHIRPath engine.",
   "homepage": "https://github.com/medxaidev/fhir-runtime#readme",
   "license": "MIT",

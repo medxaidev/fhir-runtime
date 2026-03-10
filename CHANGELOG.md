@@ -5,6 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2026-03-10
+
+### Fixed
+
+- **Validator cardinality handling for optional backbone elements**
+  - Fixed a bug where the validator incorrectly reported `CARDINALITY_MIN_VIOLATION`
+    on child elements of absent optional backbone elements.
+  - Example: `Patient.link.other`, `Patient.link.type`, and
+    `Patient.communication.language` no longer raise errors when their optional
+    parent elements (`Patient.link`, `Patient.communication`) are not present.
+  - The validator now skips child-element cardinality checks when an optional
+    ancestor backbone element is absent.
+
+- **Validator type compatibility for FHIRPath System primitive URLs**
+  - Fixed a bug where primitive values such as `Patient.id` could incorrectly
+    raise `TYPE_MISMATCH` because core StructureDefinitions use FHIRPath type URLs
+    like `http://hl7.org/fhirpath/System.String` instead of plain primitive names.
+  - The validator now treats FHIRPath System primitive URLs as compatible with
+    their corresponding JavaScript/FHIR primitive values.
+
+### Testing
+
+- Added 7 regression tests covering:
+  - absent optional backbone elements with required children
+  - correct failure behavior when the parent backbone element is present but its
+    required child fields are missing
+  - FHIRPath System primitive URL compatibility for `Patient.id`
+- Full test suite passing: 3,578 tests across 97 test files
+
+### Notes
+
+- This is a patch release with no public API changes.
+- Behavior is now aligned with expected FHIR R4 cardinality semantics for optional elements.
+
 ## [0.7.0] - 2026-03-10
 
 ### Added
