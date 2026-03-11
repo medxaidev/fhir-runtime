@@ -11,7 +11,7 @@
 
 Designed as a pure runtime layer with **zero dependencies**, it's suitable for embedding in servers, CLIs, web applications, or custom platforms.
 
-**🎮 Live Demo:** [medxaidev.github.io/fhir-runtime-tools/](https://medxaidev.github.io/fhir-runtime-tools/) — Try fhir-runtime in your browser
+**🎮 Live Demo:** [fhir-runtime-tools.vercel.app/](https://fhir-runtime-tools.vercel.app/) — Try fhir-runtime in your browser
 
 ---
 
