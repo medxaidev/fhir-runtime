@@ -1,30 +1,31 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.7.0  
+> **Version:** 0.8.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
+> **Dependencies:** `fhir-definition@0.4.0`  
 > **License:** MIT
 
 ---
 
-## v0.7.0 Update
+## v0.8.0 Update
 
-`v0.7.0` completes the **Server/Persistence Integration (STAGE-5)**.
+`v0.8.0` completes the **fhir-definition Integration (STAGE-6)**.
 
 This release adds:
 
-- `parseSearchParameter()` / `parseSearchParametersFromBundle()` — typed SearchParameter parsing
-- `extractSearchValues()` / `extractAllSearchValues()` — FHIRPath-based search index value extraction
-- `extractReferences()` / `extractReferencesFromBundle()` — Reference tree walking
-- `validateReferenceTargets()` — Reference target type validation against profiles
-- `buildCapabilityFragment()` — CapabilityStatement REST fragment generation
-- `ResourceTypeRegistry` + `FHIR_R4_RESOURCE_TYPES` — complete FHIR R4 resource type catalog
+- `DefinitionProvider` interface — re-exported from `fhir-definition` for consuming FHIR definitions
+- `DefinitionBridge` adapter — composes FhirContext + VS/CS/SP registries into unified DefinitionProvider
+- `NoOpDefinitionProvider` — default no-op implementation
+- `DefinitionProviderLoader` — bridges DefinitionProvider into FhirContext's loader pipeline
+- `createRuntime()` factory — one-step creation of fully configured runtime instance
+- `FhirRuntimeInstance` — unified runtime interface with validate(), getSearchParameters(), extractSearchValues()
 
-All 5 STAGE plans are now complete. **v1.0 API freeze** is pending comprehensive evaluation and testing.
+All 6 STAGE plans are now complete. **v1.0 API freeze** is pending comprehensive evaluation and testing.
 
-This release remains **backward compatible** with `v0.6.0`.
+This release remains **fully backward compatible** with `v0.7.x`.
 
 ---
 
@@ -71,7 +72,8 @@ src/
 ├── terminology/  ← Binding validation, InMemoryTerminologyProvider, CS/VS registries
 ├── package/      ← IG package loading, NpmPackageLoader, PackageManager, canonical resolution
 ├── integration/  ← SearchParameter, search value extraction, references, CapabilityStatement
-└── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
+├── pipeline/     ← Composable validation pipeline, hooks, batch, reports, enhanced messages
+└── definition/   ← DefinitionProvider integration, DefinitionBridge, createRuntime() factory
 ```
 
 ### Dependency Direction

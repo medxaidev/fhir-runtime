@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-03-12
+
+### Added
+
+- **STAGE-6: fhir-definition Integration** — new `src/definition/` module (12th module)
+  - Added `fhir-definition` v0.4.0 as a runtime dependency
+  - **DefinitionProvider** — re-exported from `fhir-definition`, the core interface for consuming FHIR definitions (StructureDefinition, ValueSet, CodeSystem, SearchParameter)
+  - **DefinitionBridge** — adapter that composes `FhirContext` + optional VS/CS/SP registries into a unified `DefinitionProvider`
+  - **NoOpDefinitionProvider** — default no-op implementation returning undefined/empty for all queries
+  - **DefinitionProviderLoader** — `StructureDefinitionLoader` adapter bridging `DefinitionProvider` into `FhirContext`'s loader pipeline
+  - **createRuntime()** — async factory function creating a fully configured `FhirRuntimeInstance` with three usage patterns:
+    1. With external `DefinitionProvider` (from `fhir-definition`)
+    2. With `FhirContext` (legacy/standalone mode)
+    3. Bare minimum (auto-creates everything with defaults)
+  - **FhirRuntimeInstance** — unified runtime object exposing `validate()`, `getSearchParameters()`, `extractSearchValues()`
+  - Re-exported fhir-definition types: `DefinitionRegistry`, `InMemoryDefinitionRegistry`, `RegistryStatistics`, `FhirDefStructureDefinition`, `FhirDefValueSet`, `FhirDefCodeSystem`, `FhirDefSearchParameter`
+
+### Changed
+
+- `package.json` description updated (no longer "zero dependencies")
+- Added `fhir-definition` keyword
+
+### Stats
+
+- 12 modules, ~330 exports
+- 4,153 tests (59 new), 106 test files
+- `tsc --noEmit` zero errors
+
 ## [0.7.2] - 2026-03-10
 
 ### Fixed

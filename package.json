@@ -1,7 +1,7 @@
 {
   "name": "fhir-runtime",
-  "version": "0.7.2",
-  "description": "Production-ready FHIR R4 runtime engine for TypeScript/Node.js with zero dependencies. Includes parser, validator, snapshot generator, and FHIRPath engine.",
+  "version": "0.8.0",
+  "description": "Production-ready FHIR R4 runtime engine for TypeScript/Node.js. Includes parser, validator, snapshot generator, FHIRPath engine, and fhir-definition integration.",
   "homepage": "https://github.com/medxaidev/fhir-runtime#readme",
   "license": "MIT",
   "author": "Fangjun <fangjun20208@gmail.com>",
@@ -27,7 +27,7 @@
     "clinical",
     "us-core",
     "implementation-guide",
-    "zero-dependencies"
+    "fhir-definition"
   ],
   "repository": {
     "type": "git",
@@ -70,7 +70,9 @@
     "test": "vitest run",
     "prepublishOnly": "npm run test && npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fhir-definition": "0.4.0"
+  },
   "devDependencies": {
     "typescript": "5.9.3",
     "@types/node": "25.2.0",

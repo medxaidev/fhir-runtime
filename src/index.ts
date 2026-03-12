@@ -400,3 +400,25 @@ export {
   enhanceIssues,
   HookManager,
 } from './pipeline/index.js';
+
+// ─── Definition module (STAGE-6: v0.8.0) ────────────────────────────────
+export type {
+  DefinitionProvider,
+  FhirDefStructureDefinition,
+  FhirDefValueSet,
+  FhirDefCodeSystem,
+  FhirDefSearchParameter,
+  DefinitionRegistry,
+  InMemoryDefinitionRegistry,
+  RegistryStatistics,
+  DefinitionBridgeOptions,
+  RuntimeOptions,
+  FhirRuntimeInstance,
+} from './definition/index.js';
+
+export {
+  DefinitionBridge,
+  NoOpDefinitionProvider,
+  DefinitionProviderLoader,
+  createRuntime,
+} from './definition/index.js';

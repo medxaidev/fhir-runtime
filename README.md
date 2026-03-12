@@ -5,11 +5,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-green)](https://nodejs.org/)
-[![Tests](https://img.shields.io/badge/Tests-3376%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/Tests-4153%20passing-brightgreen)]()
 
 `fhir-runtime` is a **structural FHIR R4 engine** that provides comprehensive capabilities for parsing, validating, and manipulating FHIR resources — without requiring a running FHIR server, database, or external terminology service.
 
-Designed as a pure runtime layer with **zero dependencies**, it's suitable for embedding in servers, CLIs, web applications, or custom platforms.
+Designed as a lightweight runtime layer with a single dependency (`fhir-definition`), it's suitable for embedding in servers, CLIs, web applications, or custom platforms.
 
 **🎮 Live Demo:** [fhir-runtime-tools.vercel.app/](https://fhir-runtime-tools.vercel.app/) — Try fhir-runtime in your browser
 
@@ -25,6 +25,7 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 - Terminology Binding (STAGE-3) — InMemoryTerminologyProvider, binding strength validation, CS/VS registries
 - IG Package Loading (STAGE-4) — NpmPackageLoader, PackageManager, cross-package canonical resolution
 - Server/Persistence Integration (STAGE-5) — SearchParameter parsing, search value extraction, reference extraction, CapabilityStatement generation
+- **fhir-definition Integration (STAGE-6)** — `DefinitionProvider` interface, `DefinitionBridge` adapter, `createRuntime()` factory, `DefinitionProviderLoader`
 - Provider Abstraction Layer (STAGE-1) — Terminology and reference contracts with default NoOp implementations
 - Snapshot Generation — HAPI-equivalent differential expansion
 - FHIRPath Engine — 60+ functions, Pratt parser with AST caching
@@ -35,13 +36,14 @@ Designed as a pure runtime layer with **zero dependencies**, it's suitable for e
 
 ### Quality & Testing
 
-- 3,376 tests across 88 test files — 100% passing
+- 4,153 tests across 106 test files — 100% passing
 - US Core IG verified — 70 StructureDefinitions loaded from real US Core v9.0.0 package
 - IG package tested — 138 package tests including real US Core integration
 - Integration tested — 110 tests for SearchParameter, value extraction, references, capability builder
+- Definition integration tested — 59 tests for DefinitionProvider, DefinitionBridge, createRuntime, E2E
 - HAPI-equivalent — 35/35 snapshot fixtures match HAPI output
 - Stress tested — Malformed input, deep nesting, large payloads, concurrency
-- Zero dependencies — Pure TypeScript, no external runtime deps
+- Single dependency — `fhir-definition` (FHIR Knowledge Engine)
 - Type-safe — Full TypeScript definitions for all FHIR R4 types
 
 ---
@@ -137,6 +139,30 @@ pipeline.addStep(new InvariantValidationStep());
 
 const result = await pipeline.validate(resource, profile);
 const report = generateReport(result);
+```
+
+### createRuntime() — One-step Setup (v0.8.0)
+
+```typescript
+import { createRuntime } from "fhir-runtime";
+
+// Pattern 1: With fhir-definition (recommended)
+import { InMemoryDefinitionRegistry, loadFromDirectory } from "fhir-definition";
+const registry = new InMemoryDefinitionRegistry();
+await loadFromDirectory("./definitions", registry);
+const runtime = await createRuntime({ definitions: registry });
+
+// Pattern 2: Bare minimum (auto-loads R4 core definitions)
+const runtime2 = await createRuntime();
+
+// Validate
+const result = await runtime.validate(
+  patient,
+  "http://hl7.org/fhir/StructureDefinition/Patient",
+);
+
+// Get search parameters
+const sps = runtime.getSearchParameters("Patient");
 ```
 
 ### Generate a Snapshot
