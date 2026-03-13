@@ -69,7 +69,47 @@ npm install fhir-runtime
 
 ---
 
-## 🚀 Quick Start
+## � Related Projects
+
+### fhir-runtime-cli
+
+**Command-line interface for fhir-runtime** — A powerful CLI tool for FHIR resource validation, IG package management, and development workflows.
+
+**Key Features:**
+
+- **Validate** — Validate FHIR resources against profiles with support for local IG packages
+- **IG Package Loading** — Load and inspect FHIR Implementation Guide packages
+- **Search Parameters** — List and explore SearchParameters for resource types
+- **Batch Operations** — Validate multiple resources in batch mode
+- **Configuration Support** — `.fhir-runtime.json` config file for project-specific settings
+
+**Installation:**
+
+```bash
+npm install -g fhir-runtime-cli
+```
+
+**Quick Example:**
+
+```bash
+# Validate a Patient resource against US Core profile
+fhir-runtime-cli validate \
+  --file patient.json \
+  --profile http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient \
+  --ig-path ./fhir-packages/hl7.fhir.us.core
+
+# List SearchParameters for Patient resource type
+fhir-runtime-cli search-params Patient
+
+# Load and inspect an IG package
+fhir-runtime-cli load-package ./fhir-packages/hl7.fhir.us.core
+```
+
+**Repository:** [github.com/medxaidev/fhir-runtime-cli](https://github.com/medxaidev/fhir-runtime-cli)
+
+---
+
+## �🚀 Quick Start
 
 ### Parse a FHIR Resource
 
