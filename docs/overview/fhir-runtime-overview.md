@@ -1,31 +1,31 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.8.0  
+> **Version:** 0.9.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
-> **Dependencies:** `fhir-definition@0.4.0`  
+> **Dependencies:** `fhir-definition@0.6.0`  
 > **License:** MIT
 
 ---
 
-## v0.8.0 Update
+## v0.9.0 Update
 
-`v0.8.0` completes the **fhir-definition Integration (STAGE-6)**.
+`v0.9.0` completes the **fhir-server Prerequisites (STAGE-B)**.
 
 This release adds:
 
-- `DefinitionProvider` interface — re-exported from `fhir-definition` for consuming FHIR definitions
-- `DefinitionBridge` adapter — composes FhirContext + VS/CS/SP registries into unified DefinitionProvider
-- `NoOpDefinitionProvider` — default no-op implementation
-- `DefinitionProviderLoader` — bridges DefinitionProvider into FhirContext's loader pipeline
-- `createRuntime()` factory — one-step creation of fully configured runtime instance
-- `FhirRuntimeInstance` — unified runtime interface with validate(), getSearchParameters(), extractSearchValues()
+- `RemoteTerminologyProvider` interface — contract for delegating `$expand`, `$validate-code`, `$lookup` to remote terminology servers
+- `validateMany()` — batch validation API with concurrency control and fail-fast mode for transaction Bundle processing
+- `SnapshotCache` — lazy snapshot generation with concurrent deduplication
+- `warmupSnapshots()` / `getSnapshotCacheSize()` — server-side snapshot management APIs
+- `RuntimeOptions.snapshotMode` — `'eager'` (default) or `'lazy'` snapshot generation strategy
+- `BatchValidationOptions` / `BatchValidationResult` — batch validation types
 
-All 6 STAGE plans are now complete. **v1.0 API freeze** is pending comprehensive evaluation and testing.
+All STAGE plans and fhir-server prerequisites are now complete. **v1.0 API freeze** is pending comprehensive evaluation.
 
-This release remains **fully backward compatible** with `v0.7.x`.
+This release remains **fully backward compatible** with `v0.8.x`.
 
 ---
 

@@ -32,6 +32,16 @@ export type {
 export { NoOpTerminologyProvider } from './noop-terminology-provider.js';
 export { NoOpReferenceResolver } from './noop-reference-resolver.js';
 
+// ─── Remote Terminology Provider ───
+export type {
+  RemoteTerminologyProvider,
+  RemoteExpandParams,
+  RemoteValidateCodeParams,
+  RemoteValidateCodeResult,
+  RemoteLookupParams,
+  RemoteLookupResult,
+} from './remote-terminology-provider.js';
+
 // ─── OperationOutcome Builders ───
 export {
   buildOperationOutcome,

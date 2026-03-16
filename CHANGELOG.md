@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-03-16
+
+### Added
+
+- **STAGE-B: fhir-server Prerequisites** — three improvements for fhir-server integration
+  - **B1: RemoteTerminologyProvider interface** — contract for delegating `$expand`, `$validate-code`, `$lookup` to remote terminology servers
+    - `RemoteTerminologyProvider` interface with `expandValueSet()`, `validateCode()`, `lookupCode()`
+    - Supporting types: `RemoteExpandParams`, `RemoteValidateCodeParams`, `RemoteValidateCodeResult`, `RemoteLookupParams`, `RemoteLookupResult`
+    - `FhirRuntimeInstance.setRemoteTerminologyProvider()` / `getRemoteTerminologyProvider()` injection points
+  - **B2: Batch Validation API** — `validateMany()` for transaction Bundle validation
+    - `FhirRuntimeInstance.validateMany(resources, options)` with concurrency control and `failFast` mode
+    - Supporting types: `BatchValidationOptions`, `BatchValidationResult`
+  - **B3: SnapshotCache** — lazy snapshot generation with concurrent deduplication
+    - `SnapshotCache` class with `getSnapshot()`, `has()`, `size()`, `clear()`
+    - `FhirRuntimeInstance.warmupSnapshots(resourceTypes)` for server-side pre-warming
+    - `FhirRuntimeInstance.getSnapshotCacheSize()` for monitoring
+  - `RuntimeOptions.snapshotMode` option: `'eager'` (default) or `'lazy'`
+
+### Changed
+
+- Updated `fhir-definition` dependency from v0.5.0 to v0.6.0
+
+### Stats
+
+- 12 modules, ~350 exports (+16 new)
+- 4,181 tests (+28 new), 109 test files (+3 new)
+- `tsc --noEmit` zero errors
+- Fully backward compatible with v0.8.x
+
 ## [0.8.1] - 2026-03-13
 
 ### Changed

@@ -3,9 +3,10 @@
  *
  * Provides DefinitionProvider integration with fhir-definition package,
  * DefinitionBridge adapter, NoOpDefinitionProvider, DefinitionProviderLoader,
- * and createRuntime factory.
+ * createRuntime factory, SnapshotCache, and batch validation types.
  *
  * STAGE-6: fhir-definition Integration (v0.8.0)
+ * STAGE-B: fhir-server prerequisites (v0.9.0)
  *
  * @module fhir-definition
  */
@@ -23,6 +24,8 @@ export type {
   DefinitionBridgeOptions,
   RuntimeOptions,
   FhirRuntimeInstance,
+  BatchValidationOptions,
+  BatchValidationResult,
 } from './types.js';
 
 // --- DefinitionBridge ---
@@ -36,3 +39,6 @@ export { DefinitionProviderLoader } from './definition-provider-loader.js';
 
 // --- Runtime Factory ---
 export { createRuntime } from './create-runtime.js';
+
+// --- Snapshot Cache (STAGE-B: v0.9.0) ---
+export { SnapshotCache } from './snapshot-cache.js';

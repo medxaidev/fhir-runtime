@@ -5,6 +5,7 @@
  * types for integrating fhir-definition into fhir-runtime.
  *
  * STAGE-6: fhir-definition Integration (v0.8.0)
+ * STAGE-B: fhir-server prerequisites (v0.9.0)
  *
  * @module fhir-definition
  */
@@ -22,7 +23,7 @@ import type {
 
 import type { Resource } from '../model/index.js';
 import type { FhirContext } from '../context/index.js';
-import type { TerminologyProvider, ReferenceResolver } from '../provider/index.js';
+import type { TerminologyProvider, ReferenceResolver, RemoteTerminologyProvider } from '../provider/index.js';
 import type {
   SearchParameter as RuntimeSearchParameter,
   SearchIndexEntry,
@@ -36,7 +37,7 @@ import type { ValidationResult } from '../validator/index.js';
 /**
  * Re-export fhir-definition types under the fhir-runtime namespace.
  *
- * These are the canonical types from `fhir-definition` v0.4.0.
+ * These are the canonical types from `fhir-definition` v0.6.0.
  * Consumers of fhir-runtime can use these without importing fhir-definition directly.
  */
 export type {
@@ -104,7 +105,58 @@ export interface RuntimeOptions {
    * @default true
    */
   readonly preloadCore?: boolean;
+
+  /**
+   * Snapshot generation mode.
+   * - `'eager'` (default): Generate all snapshots at startup (current behavior, backward compatible).
+   * - `'lazy'`: Generate snapshots on first access and cache them.
+   * @default 'eager'
+   */
+  readonly snapshotMode?: 'eager' | 'lazy';
 }
+
+// =============================================================================
+// Section 4: Batch Validation Types (STAGE-B: v0.9.0)
+// =============================================================================
+
+/**
+ * Options for batch validation.
+ */
+export interface BatchValidationOptions {
+  /**
+   * Concurrency level for batch validation.
+   * Uses microtask scheduling (not real threads) in Node.js single-threaded environment.
+   * @default 4
+   */
+  readonly concurrency?: number;
+
+  /**
+   * Stop at the first resource with Error-level issues.
+   * @default false
+   */
+  readonly failFast?: boolean;
+}
+
+/**
+ * Result of a batch validation operation.
+ */
+export interface BatchValidationResult {
+  /** Whether all resources passed validation. */
+  readonly valid: boolean;
+
+  /** Per-resource validation results (1:1 correspondence with input array). */
+  readonly results: ValidationResult[];
+
+  /** Total number of errors across all resources. */
+  readonly errorCount: number;
+
+  /** Total number of warnings across all resources. */
+  readonly warningCount: number;
+}
+
+// =============================================================================
+// Section 5: FhirRuntimeInstance (STAGE-6 + STAGE-B)
+// =============================================================================
 
 /**
  * A fully configured fhir-runtime instance.
@@ -131,6 +183,21 @@ export interface FhirRuntimeInstance {
   validate(resource: Resource, profileUrl: string): Promise<ValidationResult>;
 
   /**
+   * Validate multiple resources in batch.
+   *
+   * Supports concurrency control and fail-fast mode.
+   * Designed for fhir-server transaction Bundle validation.
+   *
+   * @param resources - Array of { resource, profileUrl } entries.
+   * @param options - Batch validation options (concurrency, failFast).
+   * @returns Aggregated batch validation result.
+   */
+  validateMany(
+    resources: ReadonlyArray<{ resource: Resource; profileUrl: string }>,
+    options?: BatchValidationOptions,
+  ): Promise<BatchValidationResult>;
+
+  /**
    * Get SearchParameters for a resource type from the DefinitionProvider.
    */
   getSearchParameters(resourceType: string): FhirDefSP[];
@@ -139,4 +206,30 @@ export interface FhirRuntimeInstance {
    * Extract search values from a resource using a SearchParameter.
    */
   extractSearchValues(resource: Resource, searchParam: RuntimeSearchParameter): SearchIndexEntry;
+
+  // --- Remote Terminology Provider (STAGE-B: v0.9.0) ---
+
+  /**
+   * Register a remote terminology provider.
+   * fhir-server injects its implementation at startup.
+   */
+  setRemoteTerminologyProvider(provider: RemoteTerminologyProvider): void;
+
+  /**
+   * Get the currently registered remote terminology provider (may be undefined).
+   */
+  getRemoteTerminologyProvider(): RemoteTerminologyProvider | undefined;
+
+  // --- Snapshot Cache (STAGE-B: v0.9.0) ---
+
+  /**
+   * Pre-warm snapshot cache for the given resource types.
+   * Useful for fhir-server to warm up common types after startup.
+   */
+  warmupSnapshots(resourceTypes: string[]): Promise<void>;
+
+  /**
+   * Get the number of cached snapshots.
+   */
+  getSnapshotCacheSize(): number;
 }

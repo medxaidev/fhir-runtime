@@ -276,6 +276,12 @@ export type {
   OperationOutcome,
   OperationOutcomeIssue,
   OperationOutcomeIssueType,
+  RemoteTerminologyProvider,
+  RemoteExpandParams,
+  RemoteValidateCodeParams,
+  RemoteValidateCodeResult,
+  RemoteLookupParams,
+  RemoteLookupResult,
 } from './provider/index.js';
 
 export {
@@ -414,6 +420,8 @@ export type {
   DefinitionBridgeOptions,
   RuntimeOptions,
   FhirRuntimeInstance,
+  BatchValidationOptions,
+  BatchValidationResult,
 } from './definition/index.js';
 
 export {
@@ -421,4 +429,5 @@ export {
   NoOpDefinitionProvider,
   DefinitionProviderLoader,
   createRuntime,
+  SnapshotCache,
 } from './definition/index.js';

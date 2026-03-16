@@ -11,6 +11,10 @@
  * 3. Bare minimum (auto-creates everything with defaults)
  *
  * STAGE-6: fhir-definition Integration (v0.8.0)
+ * STAGE-B: fhir-server prerequisites (v0.9.0)
+ *   - validateMany() batch validation
+ *   - RemoteTerminologyProvider injection
+ *   - SnapshotCache lazy loading + warmup
  *
  * @module fhir-definition
  */
@@ -21,7 +25,10 @@ import type { Resource } from '../model/index.js';
 import type {
   RuntimeOptions,
   FhirRuntimeInstance,
+  BatchValidationOptions,
+  BatchValidationResult,
 } from './types.js';
+import type { RemoteTerminologyProvider } from '../provider/index.js';
 import type { FhirContext } from '../context/index.js';
 import { FhirContextImpl, MemoryLoader } from '../context/index.js';
 import type { TerminologyProvider, ReferenceResolver } from '../provider/index.js';
@@ -34,6 +41,7 @@ import type { SearchParameter as RuntimeSP, SearchIndexEntry } from '../integrat
 import { extractSearchValues } from '../integration/index.js';
 import { DefinitionBridge } from './definition-bridge.js';
 import { DefinitionProviderLoader } from './definition-provider-loader.js';
+import { SnapshotCache } from './snapshot-cache.js';
 
 // =============================================================================
 // createRuntime
@@ -116,6 +124,29 @@ export async function createRuntime(
   // Pre-create shared validator and snapshot generator
   const validator = new StructureValidator();
   const snapshotGenerator = new SnapshotGenerator(context);
+  const snapshotCache = new SnapshotCache();
+
+  // Mutable state for remote terminology provider
+  let remoteTerminologyProvider: RemoteTerminologyProvider | undefined;
+
+  // Internal helper: validate a single resource (with snapshot cache)
+  async function validateOne(
+    resource: Resource,
+    profileUrl: string,
+  ): Promise<ValidationResult> {
+    // Use snapshot cache for lazy/eager mode
+    const snapshotSd = await snapshotCache.getSnapshot(
+      profileUrl,
+      async (url) => {
+        const sd = await context.loadStructureDefinition(url);
+        const snapshotResult = await snapshotGenerator.generate(sd);
+        return snapshotResult.structureDefinition;
+      },
+    );
+
+    const profile = buildCanonicalProfile(snapshotSd);
+    return validator.validate(resource, profile);
+  }
 
   // Build the runtime instance
   const instance: FhirRuntimeInstance = {
@@ -128,18 +159,51 @@ export async function createRuntime(
       resource: Resource,
       profileUrl: string,
     ): Promise<ValidationResult> {
-      // 1. Load StructureDefinition
-      const sd = await context.loadStructureDefinition(profileUrl);
+      return validateOne(resource, profileUrl);
+    },
 
-      // 2. Generate snapshot if needed
-      const snapshotResult = await snapshotGenerator.generate(sd);
-      const snapshotSd = snapshotResult.structureDefinition;
+    async validateMany(
+      resources: ReadonlyArray<{ resource: Resource; profileUrl: string }>,
+      options?: BatchValidationOptions,
+    ): Promise<BatchValidationResult> {
+      const concurrency = options?.concurrency ?? 4;
+      const failFast = options?.failFast ?? false;
 
-      // 3. Build CanonicalProfile
-      const profile = buildCanonicalProfile(snapshotSd);
+      const results: ValidationResult[] = new Array(resources.length);
+      let errorCount = 0;
+      let warningCount = 0;
 
-      // 4. Run structural validation
-      return validator.validate(resource, profile);
+      for (let i = 0; i < resources.length; i += concurrency) {
+        const chunk = resources.slice(i, i + concurrency);
+        const chunkResults = await Promise.all(
+          chunk.map(entry =>
+            validateOne(entry.resource, entry.profileUrl),
+          ),
+        );
+
+        for (let j = 0; j < chunkResults.length; j++) {
+          const result = chunkResults[j];
+          results[i + j] = result;
+          errorCount += result.issues?.filter(iss => iss.severity === 'error').length ?? 0;
+          warningCount += result.issues?.filter(iss => iss.severity === 'warning').length ?? 0;
+
+          if (failFast && (result.issues?.some(iss => iss.severity === 'error') ?? false)) {
+            return {
+              valid: false,
+              results: results.slice(0, i + j + 1),
+              errorCount,
+              warningCount,
+            };
+          }
+        }
+      }
+
+      return {
+        valid: errorCount === 0,
+        results,
+        errorCount,
+        warningCount,
+      };
     },
 
     getSearchParameters(resourceType: string): FhirDefSP[] {
@@ -151,6 +215,31 @@ export async function createRuntime(
       searchParam: RuntimeSP,
     ): SearchIndexEntry {
       return extractSearchValues(resource, searchParam);
+    },
+
+    setRemoteTerminologyProvider(provider: RemoteTerminologyProvider): void {
+      remoteTerminologyProvider = provider;
+    },
+
+    getRemoteTerminologyProvider(): RemoteTerminologyProvider | undefined {
+      return remoteTerminologyProvider;
+    },
+
+    async warmupSnapshots(resourceTypes: string[]): Promise<void> {
+      await Promise.all(
+        resourceTypes.map(rt => {
+          const url = `http://hl7.org/fhir/StructureDefinition/${rt}`;
+          return snapshotCache.getSnapshot(url, async (u) => {
+            const sd = await context.loadStructureDefinition(u);
+            const snapshotResult = await snapshotGenerator.generate(sd);
+            return snapshotResult.structureDefinition;
+          });
+        }),
+      );
+    },
+
+    getSnapshotCacheSize(): number {
+      return snapshotCache.size();
     },
   };
 
