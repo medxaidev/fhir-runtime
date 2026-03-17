@@ -118,6 +118,8 @@ export type {
   Invariant,
   SlicingDefinition,
   SlicingDiscriminatorDef,
+  SlicedElement,
+  SliceDefinition,
 } from './model/index.js';
 
 // ─── Context module ─────────────────────────────────────────────────────────
@@ -169,6 +171,7 @@ export type {
   DiffElementTracker,
   TraversalScope,
   MergeContext,
+  ChoiceTypeResolution,
 } from './profile/index.js';
 
 export {
@@ -234,6 +237,25 @@ export {
   diffsConstrainTypes,
   handleNewSlicing,
   handleExistingSlicing,
+
+  // Slicing utilities (STAGE-7)
+  matchSlice,
+  countSliceInstances,
+  generateSliceSkeleton,
+  isExtensionSlicing,
+
+  // Choice type utilities (STAGE-7)
+  isChoiceType,
+  getChoiceBaseName,
+  buildChoiceJsonKey,
+  parseChoiceJsonKey,
+  resolveActiveChoiceType,
+  resolveChoiceFromJsonKey,
+
+  // BackboneElement utilities (STAGE-7)
+  isBackboneElement,
+  isArrayElement,
+  getBackboneChildren,
 } from './profile/index.js';
 
 // ─── Validator module ──────────────────────────────────────────────────────

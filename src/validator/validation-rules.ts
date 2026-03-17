@@ -262,19 +262,31 @@ function inferComplexType(obj: Record<string, unknown>): string {
   }
 
   // ContactPoint vs Identifier — both have { system, value } shape.
-  // Disambiguate using ContactPoint.system known values.
+  // Disambiguate using multiple heuristics in priority order.
   if ('system' in obj && 'value' in obj && !('code' in obj)) {
+    // 1. ContactPoint.system is an enum (phone|fax|email|pager|url|sms|other)
     const CONTACT_POINT_SYSTEMS = new Set(['phone', 'fax', 'email', 'pager', 'url', 'sms', 'other']);
     if (typeof obj.system === 'string' && CONTACT_POINT_SYSTEMS.has(obj.system)) {
       return 'ContactPoint';
     }
-    // If 'use' is a ContactPoint.use value, also prefer ContactPoint
-    if ('use' in obj) {
+    // 2. Identifier-specific fields: type, assigner, period (not on ContactPoint)
+    if ('type' in obj || 'assigner' in obj) {
+      return 'Identifier';
+    }
+    // 3. ContactPoint.use has 'mobile' which is NOT a valid Identifier.use value
+    if ('use' in obj && typeof obj.use === 'string') {
+      if (obj.use === 'mobile') return 'ContactPoint';
+      // 'home'/'work'/'temp'/'old' overlap — check if system looks like a URI
       const CONTACT_POINT_USES = new Set(['home', 'work', 'temp', 'old', 'mobile']);
-      if (typeof obj.use === 'string' && CONTACT_POINT_USES.has(obj.use)) {
+      if (CONTACT_POINT_USES.has(obj.use)) {
+        // If system is a URI (contains :// or urn:), likely Identifier
+        if (typeof obj.system === 'string' && (obj.system.includes('://') || obj.system.startsWith('urn:'))) {
+          return 'Identifier';
+        }
         return 'ContactPoint';
       }
     }
+    // 4. If system is a URI, prefer Identifier; otherwise default to Identifier
     return 'Identifier';
   }
 

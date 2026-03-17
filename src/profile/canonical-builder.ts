@@ -30,6 +30,8 @@ import type {
   Invariant,
   SlicingDefinition,
   SlicingDiscriminatorDef,
+  SlicedElement,
+  SliceDefinition,
 } from '../model/index.js';
 import type {
   ElementDefinition,
@@ -63,12 +65,19 @@ export function buildCanonicalProfile(sd: StructureDefinition): CanonicalProfile
 
   const elements = new Map<string, CanonicalElement>();
 
+  // Pass 1: Process non-slice elements (id does NOT contain ':')
+  // This ensures base elements are not overwritten by slice elements.
   for (const el of sd.snapshot.element) {
+    const id = (el.id as string) ?? (el.path as string) ?? '';
+    if (id.includes(':')) continue; // skip slice elements in first pass
     const canonical = buildCanonicalElement(el);
     elements.set(canonical.path, canonical);
   }
 
-  return {
+  // Pass 2: Extract slicing information from slice elements (id contains ':')
+  const slicing = extractSlicingFromSnapshot(sd.snapshot.element);
+
+  const profile: CanonicalProfile = {
     url: sd.url as string,
     version: sd.version ? (sd.version as string) : undefined,
     name: sd.name as string,
@@ -79,6 +88,12 @@ export function buildCanonicalProfile(sd: StructureDefinition): CanonicalProfile
     derivation: sd.derivation,
     elements,
   };
+
+  if (slicing.size > 0) {
+    profile.slicing = slicing;
+  }
+
+  return profile;
 }
 
 // =============================================================================
@@ -288,4 +303,157 @@ function convertMax(max: string | undefined): number | 'unbounded' {
   }
   const num = parseInt(max, 10);
   return isNaN(num) ? 1 : num;
+}
+
+// =============================================================================
+// Section 8: Slicing Extraction (STAGE-7)
+// =============================================================================
+
+/**
+ * Extract fixed[Type] and pattern[Type] values from an ElementDefinition.
+ *
+ * Scans all keys for prefixes "fixed" and "pattern" and collects
+ * the values into a flat record keyed by the JSON field name.
+ *
+ * @internal
+ */
+function extractFixedPatternValues(el: ElementDefinition): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
+  const raw = el as unknown as Record<string, unknown>;
+  const prefixes = ['fixed', 'pattern'];
+  for (const key of Object.keys(raw)) {
+    for (const prefix of prefixes) {
+      if (key.startsWith(prefix) && key.length > prefix.length) {
+        const typeKey = key.slice(prefix.length);
+        const jsonKey = typeKey.charAt(0).toLowerCase() + typeKey.slice(1);
+        result[jsonKey] = raw[key];
+      }
+    }
+  }
+  return result;
+}
+
+/**
+ * Extract profile-level slicing information from a snapshot element array.
+ *
+ * Two-pass algorithm:
+ * 1. Find all base elements that define slicing (have `slicing.discriminator`).
+ * 2. Collect all slice elements (id contains `:`) and group them by base path.
+ *
+ * @internal
+ */
+function extractSlicingFromSnapshot(
+  snapshotElements: readonly ElementDefinition[],
+): Map<string, SlicedElement> {
+  const result = new Map<string, SlicedElement>();
+
+  // Step 1: Find base elements with slicing definitions
+  const slicingBases = new Map<string, {
+    discriminators: SlicingDiscriminatorDef[];
+    rules: 'open' | 'closed' | 'openAtEnd';
+    ordered: boolean;
+    description?: string;
+  }>();
+
+  for (const el of snapshotElements) {
+    const id = (el.id as string) ?? '';
+    if (id.includes(':')) continue; // skip slice elements
+    const slicing = el.slicing as ElementDefinitionSlicing | undefined;
+    if (!slicing?.discriminator?.length) continue;
+
+    const path = el.path as string;
+    slicingBases.set(path, {
+      discriminators: (slicing.discriminator ?? []).map((d) => ({
+        type: d.type,
+        path: d.path as string,
+      })),
+      rules: (slicing.rules ?? 'open') as 'open' | 'closed' | 'openAtEnd',
+      ordered: slicing.ordered === true,
+      description: slicing.description ? (slicing.description as string) : undefined,
+    });
+  }
+
+  if (slicingBases.size === 0) return result;
+
+  // Step 2: Collect slice elements and build SliceDefinitions
+  for (const [basePath, meta] of slicingBases) {
+    const slices: SliceDefinition[] = [];
+
+    for (const el of snapshotElements) {
+      const elId = (el.id as string) ?? '';
+      const elPath = (el.path as string) ?? '';
+      const sliceName = el.sliceName as string | undefined;
+
+      // Only direct slice roots: same path, has sliceName, id contains ':'
+      if (elPath !== basePath || !sliceName || !elId.includes(':')) continue;
+
+      // Extract fixed/pattern values from the slice root element
+      const fixedValues = extractFixedPatternValues(el);
+
+      // Also check child elements of this slice for discriminator values
+      const slicePrefix = `${basePath}:${sliceName}`;
+      for (const disc of meta.discriminators) {
+        const childId = `${slicePrefix}.${disc.path}`;
+        const discChild = snapshotElements.find(
+          (c) => (c.id as string) === childId,
+        );
+        if (discChild) {
+          const childFixed = extractFixedPatternValues(discChild);
+          for (const [k, v] of Object.entries(childFixed)) {
+            fixedValues[`${disc.path}.${k}`] = v;
+          }
+          // Check for pattern on the child element directly
+          const childRaw = discChild as unknown as Record<string, unknown>;
+          if (childRaw.patternCodeableConcept) {
+            fixedValues[disc.path] = childRaw.patternCodeableConcept;
+          } else if (childRaw.patternCoding) {
+            fixedValues[disc.path] = childRaw.patternCoding;
+          }
+        }
+      }
+
+      // Handle extension slices
+      let extensionUrl: string | undefined;
+      let extensionProfile: string | undefined;
+      if (basePath.endsWith('.extension') || basePath.endsWith('.modifierExtension')) {
+        const elTypes = el.type as ElementDefinitionType[] | undefined;
+        const extType = elTypes?.find((t) => (t.code as string) === 'Extension');
+        if (extType) {
+          const profiles = extType.profile as string[] | undefined;
+          if (profiles?.[0]) {
+            extensionProfile = profiles[0];
+            extensionUrl = (fixedValues['url'] as string) ?? profiles[0];
+            if (!fixedValues['url']) {
+              fixedValues['url'] = extensionUrl;
+            }
+          }
+        }
+      }
+
+      slices.push({
+        id: elId,
+        sliceName,
+        basePath,
+        min: typeof el.min === 'number' ? el.min : 0,
+        max: convertMax(el.max as string | undefined),
+        fixedValues,
+        mustSupport: el.mustSupport === true,
+        extensionUrl,
+        extensionProfile,
+      });
+    }
+
+    if (slices.length > 0) {
+      result.set(basePath, {
+        basePath,
+        discriminators: meta.discriminators,
+        rules: meta.rules,
+        ordered: meta.ordered,
+        description: meta.description,
+        slices,
+      });
+    }
+  }
+
+  return result;
 }

@@ -1,7 +1,7 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.9.0  
+> **Version:** 0.10.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
@@ -10,22 +10,21 @@
 
 ---
 
-## v0.9.0 Update
+## v0.10.0 Update
 
-`v0.9.0` completes the **fhir-server Prerequisites (STAGE-B)**.
+`v0.10.0` completes **STAGE-7: Profile Slicing & UI Utility API**, addressing critical gaps identified by the `fhir-runtime-tools` integration analysis.
 
 This release adds:
 
-- `RemoteTerminologyProvider` interface — contract for delegating `$expand`, `$validate-code`, `$lookup` to remote terminology servers
-- `validateMany()` — batch validation API with concurrency control and fail-fast mode for transaction Bundle processing
-- `SnapshotCache` — lazy snapshot generation with concurrent deduplication
-- `warmupSnapshots()` / `getSnapshotCacheSize()` — server-side snapshot management APIs
-- `RuntimeOptions.snapshotMode` — `'eager'` (default) or `'lazy'` snapshot generation strategy
-- `BatchValidationOptions` / `BatchValidationResult` — batch validation types
+- **Profile Slicing Preservation** — `buildCanonicalProfile()` uses a two-pass algorithm to preserve slice definitions. New `CanonicalProfile.slicing` field with `SlicedElement`/`SliceDefinition` types.
+- **Slicing API** — `matchSlice()`, `countSliceInstances()`, `generateSliceSkeleton()`, `isExtensionSlicing()`
+- **inferComplexType fix** — Improved ContactPoint vs Identifier disambiguation
+- **Choice Type Utilities** — `isChoiceType()`, `getChoiceBaseName()`, `buildChoiceJsonKey()`, `resolveActiveChoiceType()`, `resolveChoiceFromJsonKey()`
+- **BackboneElement Utilities** — `isBackboneElement()`, `isArrayElement()`, `getBackboneChildren()`
 
-All STAGE plans and fhir-server prerequisites are now complete. **v1.0 API freeze** is pending comprehensive evaluation.
+These additions reduce application-layer self-implementation by ~520 lines and provide standardized FHIR semantic APIs.
 
-This release remains **fully backward compatible** with `v0.8.x`.
+This release remains **fully backward compatible** with `v0.9.x`.
 
 ---
 
@@ -344,14 +343,14 @@ Three error class hierarchies for exceptional cases:
 | Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
 | Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
-| Public exports           | ~280+ symbols across 11 modules                |
-| Test count               | 3,376 tests across 88 test files               |
+| Public exports           | ~368 symbols across 12 modules                 |
+| Test count               | ~4,250 tests across 114 test files             |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.7.md`](../specs/engine-capability-contract-v0.7.md)
-- **API Reference:** [`docs/api/fhir-runtime-api-v0.7.md`](../api/fhir-runtime-api-v0.7.md)
-- **Release Notes:** [`docs/releases/v0.7.0.md`](../releases/v0.7.0.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.10.md`](../specs/engine-capability-contract-v0.10.md)
+- **API Reference:** [`docs/api/fhir-runtime-api-v0.10.md`](../api/fhir-runtime-api-v0.10.md)
+- **Release Notes:** [`docs/releases/v0.10.0.md`](../releases/v0.10.0.md)
 - **Main README:** [`README.md`](../../README.md)

@@ -103,3 +103,29 @@ export {
   handleNewSlicing,
   handleExistingSlicing,
 } from './slicing-handler.js';
+
+// ─── Slicing Utilities (STAGE-7) ───
+export {
+  matchSlice,
+  countSliceInstances,
+  generateSliceSkeleton,
+  isExtensionSlicing,
+} from './slicing-utils.js';
+
+// ─── Choice Type Utilities (STAGE-7) ───
+export type { ChoiceTypeResolution } from './choice-type-utils.js';
+export {
+  isChoiceType,
+  getChoiceBaseName,
+  buildChoiceJsonKey,
+  parseChoiceJsonKey,
+  resolveActiveChoiceType,
+  resolveChoiceFromJsonKey,
+} from './choice-type-utils.js';
+
+// ─── BackboneElement Utilities (STAGE-7) ───
+export {
+  isBackboneElement,
+  isArrayElement,
+  getBackboneChildren,
+} from './backbone-utils.js';

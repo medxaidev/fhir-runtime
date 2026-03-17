@@ -414,6 +414,21 @@ export interface CanonicalProfile {
   elements: Map<string, CanonicalElement>;
 
   /**
+   * Profile-level slicing information, keyed by the base element path.
+   *
+   * Contains discriminator metadata and all named slice definitions
+   * for each sliced element. Populated by `buildCanonicalProfile()`.
+   *
+   * @example
+   * ```typescript
+   * const profile = buildCanonicalProfile(usCoreObservationSD);
+   * const catSlicing = profile.slicing?.get('Observation.category');
+   * // catSlicing.slices[0].sliceName === 'VSCat'
+   * ```
+   */
+  slicing?: Map<string, SlicedElement>;
+
+  /**
    * Inner types extracted from BackboneElement elements.
    *
    * Keyed by generated type name (e.g., `'PatientContact'`).
@@ -439,4 +454,75 @@ export interface CanonicalProfile {
    * Top-level profiles have `parentType` as `undefined`.
    */
   parentType?: string;
+}
+
+// =============================================================================
+// Section 4: Slicing Types (STAGE-7)
+// =============================================================================
+
+/**
+ * Profile-level slicing information for a sliced element path.
+ *
+ * Aggregates the slicing metadata (discriminator, rules) from the
+ * base element together with all named slice definitions.
+ */
+export interface SlicedElement {
+  /** The base element path, e.g. "Observation.category" */
+  basePath: string;
+
+  /** Discriminators used to match instances to slices. */
+  discriminators: SlicingDiscriminatorDef[];
+
+  /** closed | open | openAtEnd */
+  rules: SlicingRules;
+
+  /** Whether elements must appear in the same order as slices. */
+  ordered: boolean;
+
+  /** Human-readable description of the slicing. */
+  description?: string;
+
+  /** All named slices defined for this element. */
+  slices: SliceDefinition[];
+}
+
+/**
+ * A single named slice within a sliced element.
+ *
+ * Contains the slice identity, cardinality, and the fixed/pattern values
+ * that define its discriminator match criteria.
+ */
+export interface SliceDefinition {
+  /** Full element id, e.g. "Observation.category:VSCat" */
+  id: string;
+
+  /** Slice name, e.g. "VSCat" */
+  sliceName: string;
+
+  /** The base element path, e.g. "Observation.category" */
+  basePath: string;
+
+  /** Minimum cardinality for this slice. */
+  min: number;
+
+  /** Maximum cardinality for this slice. */
+  max: number | 'unbounded';
+
+  /**
+   * Fixed/pattern values extracted from the slice definition,
+   * used for discriminator matching.
+   *
+   * Keys are discriminator paths (e.g. "coding" for a pattern discriminator),
+   * values are the fixed or pattern values from the SD.
+   */
+  fixedValues: Record<string, unknown>;
+
+  /** Whether this slice is mustSupport. */
+  mustSupport: boolean;
+
+  /** For extension slices: the extension URL used as discriminator value. */
+  extensionUrl?: string;
+
+  /** For extension slices: the Extension profile canonical URL. */
+  extensionProfile?: string;
 }

@@ -97,4 +97,6 @@ export type {
   Invariant,
   SlicingDefinition,
   SlicingDiscriminatorDef,
+  SlicedElement,
+  SliceDefinition,
 } from './canonical-profile.js';

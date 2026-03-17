@@ -5,6 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2026-03-18
+
+### Added
+
+- **STAGE-7: Profile Slicing & UI Utility API** — addresses critical gaps identified by fhir-runtime-tools integration analysis
+  - **7.1: Profile Slicing Preservation** — `buildCanonicalProfile()` now preserves slice definitions
+    - Two-pass algorithm: non-slice elements first, then slice extraction
+    - `CanonicalProfile.slicing?: Map<string, SlicedElement>` field
+    - New types: `SlicedElement`, `SliceDefinition`
+    - Supports pattern/value/exists discriminators, extension slicing
+  - **7.2: Slicing API** — standard functions for discriminator matching and skeleton generation
+    - `matchSlice(instance, slicedElement)` — match instance to slice
+    - `countSliceInstances(items, slicedElement)` — count per-slice instances
+    - `generateSliceSkeleton(slice)` — pre-filled skeleton from fixedValues
+    - `isExtensionSlicing(basePath)` — detect extension slicing
+  - **7.3: inferComplexType fix** — improved ContactPoint vs Identifier disambiguation
+    - Checks Identifier-specific fields (`type`, `assigner`) first
+    - `mobile` use value is ContactPoint-only
+    - URI-format `system` with overlapping `use` values resolves to Identifier
+  - **7.4: Choice Type Utilities** — standard functions for `[x]` element handling
+    - `isChoiceType()`, `getChoiceBaseName()`, `buildChoiceJsonKey()`, `parseChoiceJsonKey()`
+    - `resolveActiveChoiceType()`, `resolveChoiceFromJsonKey()`
+    - New type: `ChoiceTypeResolution`
+  - **7.5: BackboneElement Utilities** — standard functions for backbone elements
+    - `isBackboneElement()`, `isArrayElement()`, `getBackboneChildren()`
+
+### Stats
+
+- 12 modules, ~368 exports (+18 new)
+- ~4,250 tests (+69 new), 114 test files (+5 new)
+- 3 new source files: `slicing-utils.ts`, `choice-type-utils.ts`, `backbone-utils.ts`
+- `tsc --noEmit` zero errors
+- Fully backward compatible with v0.9.x
+
 ## [0.9.0] - 2026-03-16
 
 ### Added
