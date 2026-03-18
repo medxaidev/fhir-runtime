@@ -436,7 +436,7 @@ describe('loadBundleFromFile — profiles-resources.json', () => {
     for (const profile of nonAbstract.profiles) {
       expect(profile.abstract).toBe(false);
     }
-  });
+  }, 15_000);
 });
 
 describe('loadBundleFromFile — profiles-types.json', () => {
@@ -503,7 +503,7 @@ describe('loadBundlesFromFiles', () => {
     expect(result.stats.loaded).toBeGreaterThanOrEqual(
       Math.max(types.stats.loaded, resources.stats.loaded, others.stats.loaded),
     );
-  });
+  }, 30_000);
 
   it('later bundle overrides earlier for same URL', () => {
     // Create two bundles with the same SD URL

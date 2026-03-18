@@ -39,5 +39,9 @@ export { ValueSetRegistry } from './valueset-registry.js';
 // ─── ValueSet Membership ────────────────────────────────────────────────────
 export { isCodeInValueSet } from './valueset-membership.js';
 
-// ─── InMemoryTerminologyProvider ────────────────────────────────────────────
+// ─── InMemoryTerminologyProvider ────────────────────────────────────────
 export { InMemoryTerminologyProvider } from './inmemory-terminology-provider.js';
+
+// ─── Concept Hierarchy Extractor (v0.11.0) ─────────────────────────────
+export type { ConceptRow } from './concept-hierarchy-extractor.js';
+export { flattenConceptHierarchy } from './concept-hierarchy-extractor.js';

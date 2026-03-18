@@ -256,7 +256,13 @@ export {
   isBackboneElement,
   isArrayElement,
   getBackboneChildren,
+
+  // IG extraction utilities (v0.11.0)
+  extractSDDependencies,
+  extractElementIndexRows,
 } from './profile/index.js';
+
+export type { ElementIndexRow } from './profile/index.js';
 
 // ─── Validator module ──────────────────────────────────────────────────────
 export type {
@@ -340,7 +346,12 @@ export {
   CodeSystemRegistry,
   ValueSetRegistry,
   isCodeInValueSet,
+
+  // IG extraction utilities (v0.11.0)
+  flattenConceptHierarchy,
 } from './terminology/index.js';
+
+export type { ConceptRow } from './terminology/index.js';
 
 // ─── Package module (STAGE-4: v0.6.0) ────────────────────────────────────
 export type {

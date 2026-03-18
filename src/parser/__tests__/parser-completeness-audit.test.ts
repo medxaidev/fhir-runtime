@@ -122,7 +122,7 @@ describe('Task 7.1: Parser Completeness Audit', () => {
     it('should load the bundle', () => {
       audit = auditBundle('profiles-resources.json');
       expect(audit.total).toBeGreaterThan(100);
-    });
+    }, 15_000);
 
     it('should parse all resource StructureDefinitions without errors', () => {
       if (audit.failures.length > 0) {

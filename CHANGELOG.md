@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2026-03-18
+
+### Added
+
+- **IG Extraction API** — standardized data extraction utilities for IG import pipelines (REQ-13)
+  - **R1: `extractSDDependencies(sd)`** — extract all direct type dependencies from a StructureDefinition
+    - Collects `type.code`, `type.profile[]`, `type.targetProfile[]` from snapshot elements
+    - Excludes FHIR primitive types by default (configurable via `includePrimitives` option)
+    - Excludes self URL, returns sorted de-duplicated array
+    - Location: `src/profile/sd-dependency-extractor.ts`
+  - **R2: `extractElementIndexRows(sd)`** — extract element index rows from SD snapshot
+    - Each element → `ElementIndexRow` with path, cardinality, types, slice info, binding, mustSupport
+    - Designed for `structure_element_index` database table population
+    - Location: `src/profile/element-index-extractor.ts`
+  - **R3: `flattenConceptHierarchy(codeSystem)`** — flatten nested CodeSystem concept hierarchy
+    - Recursively walks concept tree, produces `ConceptRow[]` with parent-child relationships
+    - Accepts both raw FHIR CodeSystem JSON and runtime `CodeSystemDefinition`
+    - Designed for `code_system_concept` database table population
+    - Location: `src/terminology/concept-hierarchy-extractor.ts`
+  - New types: `ElementIndexRow`, `ConceptRow`
+
+### Stats
+
+- 12 modules, ~371 exports (+3 functions, +2 types)
+- ~4,277 tests (+27 new), 117 test files (+3 new)
+- 2 new source files in profile/, 1 in terminology/
+- `tsc --noEmit` zero errors
+- Fully backward compatible with v0.10.x
+
 ## [0.10.0] - 2026-03-18
 
 ### Added

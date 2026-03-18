@@ -129,3 +129,8 @@ export {
   isArrayElement,
   getBackboneChildren,
 } from './backbone-utils.js';
+
+// ─── IG Extraction Utilities (v0.11.0) ───
+export { extractSDDependencies } from './sd-dependency-extractor.js';
+export type { ElementIndexRow } from './element-index-extractor.js';
+export { extractElementIndexRows } from './element-index-extractor.js';

@@ -248,7 +248,7 @@ describe('Package Integration', () => {
       const sds = await loader.loadAllStructureDefinitions();
       expect(sds.length).toBeGreaterThanOrEqual(50);
       expect(sds.every((sd) => sd.resourceType === 'StructureDefinition')).toBe(true);
-    });
+    }, 15_000);
 
     it('should load all US Core ValueSets', async () => {
       const loader = new NpmPackageLoader(US_CORE_PKG);

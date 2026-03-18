@@ -1,7 +1,7 @@
 # fhir-runtime — Technical Overview
 
 > **Package:** `fhir-runtime`  
-> **Version:** 0.10.0  
+> **Version:** 0.11.0  
 > **FHIR Version:** R4 (4.0.1)  
 > **Runtime:** Node.js >=18.0.0  
 > **Language:** TypeScript 5.9  
@@ -10,21 +10,20 @@
 
 ---
 
-## v0.10.0 Update
+## v0.11.0 Update
 
-`v0.10.0` completes **STAGE-7: Profile Slicing & UI Utility API**, addressing critical gaps identified by the `fhir-runtime-tools` integration analysis.
+`v0.11.0` implements the **IG Extraction API** (REQ-13), providing standardized data extraction utilities for IG import pipelines required by Phase-fhir-server-004.
 
 This release adds:
 
-- **Profile Slicing Preservation** — `buildCanonicalProfile()` uses a two-pass algorithm to preserve slice definitions. New `CanonicalProfile.slicing` field with `SlicedElement`/`SliceDefinition` types.
-- **Slicing API** — `matchSlice()`, `countSliceInstances()`, `generateSliceSkeleton()`, `isExtensionSlicing()`
-- **inferComplexType fix** — Improved ContactPoint vs Identifier disambiguation
-- **Choice Type Utilities** — `isChoiceType()`, `getChoiceBaseName()`, `buildChoiceJsonKey()`, `resolveActiveChoiceType()`, `resolveChoiceFromJsonKey()`
-- **BackboneElement Utilities** — `isBackboneElement()`, `isArrayElement()`, `getBackboneChildren()`
+- **`extractSDDependencies(sd)`** — extract all direct type dependencies from a StructureDefinition (type codes, profiles, targetProfiles)
+- **`extractElementIndexRows(sd)`** — extract element index rows from SD snapshot for `structure_element_index` table population
+- **`flattenConceptHierarchy(codeSystem)`** — flatten nested CodeSystem concept hierarchy into parent-child rows for `code_system_concept` table
+- New types: `ElementIndexRow`, `ConceptRow`
 
-These additions reduce application-layer self-implementation by ~520 lines and provide standardized FHIR semantic APIs.
+These utilities are designed as upstream APIs for the fhir-persistence conformance module and fhir-server IG import orchestrator.
 
-This release remains **fully backward compatible** with `v0.9.x`.
+This release remains **fully backward compatible** with `v0.10.x`.
 
 ---
 
@@ -343,14 +342,14 @@ Three error class hierarchies for exceptional cases:
 | Dev dependencies         | TypeScript 5.9, vitest, esbuild, api-extractor |
 | Build output             | ESM + CJS + d.ts (api-extractor rolled up)     |
 | Bundled core definitions | 73 FHIR R4 StructureDefinitions                |
-| Public exports           | ~368 symbols across 12 modules                 |
-| Test count               | ~4,250 tests across 114 test files             |
+| Public exports           | ~371 symbols across 12 modules                 |
+| Test count               | ~4,277 tests across 117 test files             |
 
 ---
 
 ## Related Documents
 
-- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.10.md`](../specs/engine-capability-contract-v0.10.md)
-- **API Reference:** [`docs/api/fhir-runtime-api-v0.10.md`](../api/fhir-runtime-api-v0.10.md)
-- **Release Notes:** [`docs/releases/v0.10.0.md`](../releases/v0.10.0.md)
+- **Capability Contract:** [`docs/specs/engine-capability-contract-v0.11.md`](../specs/engine-capability-contract-v0.11.md)
+- **API Reference:** [`docs/api/fhir-runtime-api-v0.11.md`](../api/fhir-runtime-api-v0.11.md)
+- **Release Notes:** [`docs/releases/v0.11.0.md`](../releases/v0.11.0.md)
 - **Main README:** [`README.md`](../../README.md)
